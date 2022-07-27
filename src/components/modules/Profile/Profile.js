@@ -106,6 +106,7 @@ const Profile = props => {
             nRequestClose={() => changeModalVisible(true)}>
             <CustomProfilePopup
               data={data}
+              navigation={props.navigation}
               changeModalVisible={changeModalVisible}
             />
           </Modal>
