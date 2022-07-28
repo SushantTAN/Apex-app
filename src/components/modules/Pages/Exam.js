@@ -22,7 +22,9 @@ import CustomButton from '@apexapp/components/elements/CustomButton';
 import CustomButtonPopup from '@apexapp/components/elements/CustomButtonPopup';
 import CustomTextInput from '@apexapp/components/elements/CustomTextInput';
 import { examsFullListRequest } from '@apexapp/store/actions/exam';
+import NoteIcon from '@assets/images/note.svg';
 import styles from '@styles/modules/Pages/Exam';
+import SearchIcon from '@assets/images/Search.svg'
 
 
 let preparation = [
@@ -134,10 +136,7 @@ const Exam = props => {
 
       <View style={styles.searchandfilter}>
         <TouchableOpacity style={styles.search}>
-          <Image
-            style={styles.searchicon}
-            source={require('@assets/images/search-interface-symbol.png')}
-          />
+        <SearchIcon/>
         </TouchableOpacity>
 
         <CustomTextInput
@@ -162,20 +161,22 @@ const Exam = props => {
 
       <View style={styles.line}></View>
 
-      <ScrollView nestedScrollEnabled={true}>
+      <ScrollView  nestedScrollEnabled={true} contentContainerStyle={{flexGrow:1,paddingBottom:370}}>
         <View>
           {examList.map((item, index) => {
             return (
               <TouchableOpacity onPress={() => handleToDetail(item.id)} style={styles.main} key={index}>
                 <View style={styles.card}>
-                  <Text style={styles.icon}>{item.icon}</Text>
+                  <View style={styles.icon}>
+                    <NoteIcon/>
+                  </View>
                   <Text style={styles.title}>LIVE</Text>
                   <Text style={styles.title1}>PRACTICE</Text>
                 </View>
 
                 <View>
                   <Text style={styles.text}>{item.name}</Text>
-                  <Text style={styles.amount}>{item.price}  {'\u2022'}  {item.template.duration}</Text>
+                  <Text style={styles.amount}>{item.price}  {'\u2022'}  {item.template.duration} {'\u2022'} 2079-0-11 </Text>
                 </View>
               </TouchableOpacity>
             );
@@ -189,7 +190,6 @@ const Exam = props => {
             style={styles.button}
           />
         </View>
-        <View style={{ height: Dimensions.get('window').height }}></View>
       </ScrollView>
     </View>
   );

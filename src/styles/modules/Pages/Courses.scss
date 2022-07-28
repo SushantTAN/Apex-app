@@ -93,9 +93,9 @@
 }
 
 .card {
-  padding: 16px;
+  // padding: 16px;
   flex-direction: row;
-  margin-left: 16px;
+  // margin-left: 16px;
 
 }
 
@@ -105,9 +105,11 @@
 .main {
   @extend .p1;
   @extend .title1-bcr;
-  padding: 8px;
+  padding: 2px 4px;
   border-radius: 5px;
-  margin-top: 18px;
+  font-size: 10px;
+  font-weight:700;
+  // margin-top: 18px;
 
 
 }
@@ -115,20 +117,23 @@
 .main1 {
   @extend .p1;
   @extend .title-bcr;
-  padding: 8px;
-
+  padding: 2px 4px;
+  font-size: 10px;
+  font-weight:700;
   border-radius: 5px;
-  margin-top: 18px;
+  // margin-top: 18px;
   margin-left: 12px;
 
 }
 
 .infos {
 
-  margin-left: 32px;
+  // margin-left: 32px;
   margin-top: 8px;
   margin-bottom: 8px;
   @extend .P;
+  font-size: 14px;
+  font-weight: 700;
 
 
 
@@ -136,25 +141,44 @@
 
 .date {
   align-items: flex-end;
-  padding-right: 16px;
-  padding-left: 20px;
+  // padding-right: 16px;
+  // padding-left: 20px;
   @extend .h6;
-  margin-left: 38px;
+  font-size: 12px;
+
+  // margin-left: 38px;
 
 
 
 }
 
-.data {
-  align-items: flex-end;
-  padding-right: 16px;
-  padding-left: 16.75px;
-  color: black;
-  margin-left: 38px;
-  font-size: 16px;
-  margin-top: 8px;
-  margin-bottom: 16px;
 
+.data {
+  // padding-right: 16px;
+  // padding-left: 16.75px;
+  color: black;
+  // margin-left: 38px;
+  font-size: 16px;
+  // margin-top: 8px;
+  font-size: 12px;
+  // margin-bottom: 16px;
+
+}
+
+.icon {
+  color:#000;
+  margin-right: 8px;
+}
+
+.tagContainer {
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cardContainer {
+  padding: 16px;
+  padding-bottom: 8px;
 }
 
 .gap {

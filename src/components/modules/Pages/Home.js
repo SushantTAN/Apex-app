@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import NoteIcon from '@assets/images/note.svg'
 
 import CustomButton from '@apexapp/components/elements/CustomButton';
 import {
@@ -145,12 +146,14 @@ const Home = props => {
       <>
         <TouchableOpacity activeOpacity={1} onPress={() => handleExamDetailsLink(item.id)} style={styles.cards}>
           <View style={styles.card}>
-            <View style={styles.file}></View>
-            <Text style={styles.title}>LIVE </Text>
-            <Text style={styles.title1}>RBB </Text>
+            <View style={styles.file}>
+            <NoteIcon/>
+            </View>
+            <Text style={styles.title}>LIVE</Text>
+            <Text style={styles.title1}>RBB</Text>
           </View>
 
-          <View>
+          <View >
             <Text style={styles.text}>{item.name}</Text>
 
             <Text style={styles.amount}>
@@ -168,7 +171,9 @@ const Home = props => {
       <>
         <TouchableOpacity activeOpacity={1} onPress={handleExamDetailsLink} style={styles.cards}>
           <View style={styles.card}>
-            <View style={styles.file}></View>
+            <View style={styles.file}>
+            <NoteIcon/>
+            </View>
 
             <Text style={styles.title1}>Practice </Text>
           </View>
@@ -222,7 +227,7 @@ const Home = props => {
         <View styles={styles.navbar}>
           <NavBar />
         </View>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView contentContainerStyle={{paddingBottom:180}} style={styles.scrollView}>
           <View>
             <View style={styles.gap} />
             <View style={styles.txt}>

@@ -25,6 +25,12 @@ import CustomSessionPopup from '@apexapp/components/elements/CustomSessionPopup'
 import { examDetail, examDetailRequest, examResultsRequest, examsEnrollRequest } from '@apexapp/store/actions/exam';
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
 import { getSocketUrl } from '@utils/api';
+import DateIcon from '@assets/images/date.svg'
+import TimeIcon from '@assets/images/time.svg'
+import ClockIcon from '@assets/images/clock.svg'
+import MarksIcon from '@assets/images/marks.svg'
+import MarkIcon from '@assets/images/mark.svg'
+
 
 const data = [
   {
@@ -105,21 +111,25 @@ const ExamDetail = props => {
     props.navigation.dispatch(CommonActions.goBack());
   };
 
+
   return (
     <>
       <ScrollView style={styles.maincontainer} refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
-        <View style={styles.main}>
-          <HeaderSearch
+         <HeaderSearch
             title="Exam Details"
             navigation={props.navigation}
             backnav="Exam"
           />
+        <View style={styles.main}>
+         
           <View style={styles.examDetail}>
             <View style={styles.flex1}>
               <View style={styles.flex2}>
-                <Text style={styles.icon}> </Text>
+                <View style={styles.icon}>
+                  <DateIcon style={{marginTop:-2}}/>
+                </View>
                 <View>
                   <Text style={styles.duration}>Date</Text>
                   <Text style={styles.duration1}>
@@ -129,7 +139,9 @@ const ExamDetail = props => {
               </View>
 
               <View style={styles.fullmark}>
-                <Text style={styles.icon}> </Text>
+                <View style={styles.icon}>
+                    <TimeIcon/>
+                </View>
                 <View>
                   <Text style={styles.fullmarks}>Duration</Text>
                   <Text style={styles.fullmarks1}>
@@ -140,11 +152,12 @@ const ExamDetail = props => {
             </View>
             <View style={styles.flex3}>
               <View style={styles.passmark}>
-                <Text style={styles.icon}> </Text>
+                <View style={styles.icon}>
+                  <ClockIcon/>
+                </View>
                 <View>
                   <Text style={styles.passmarks}>Time</Text>
                   <Text style={styles.passmarks1}>
-                    {' '}
                     {examDetails.sessions.length > 1
                       ? 'Multiple session'
                       : 'Single'}
@@ -152,7 +165,9 @@ const ExamDetail = props => {
                 </View>
               </View>
               <View style={styles.mark}>
-                <Text style={styles.icon}> </Text>
+                <View style={styles.icon}>
+                  <MarksIcon/>
+                </View>
                 <View>
                   <Text style={styles.marks}>Full marks</Text>
                   <Text style={styles.marks1}>
@@ -163,7 +178,9 @@ const ExamDetail = props => {
             </View>
             <View style={styles.flex3}>
               <View style={styles.pass}>
-                <Text style={styles.icon}> </Text>
+                <View style={styles.icon}>
+                  <MarkIcon/>
+                </View>
                 <View>
                   <Text style={styles.passmarks}>Pass marks</Text>
                   <Text style={styles.passmarks1}>
@@ -289,7 +306,7 @@ const ExamDetail = props => {
               data={{
                 exams: [{
                   exam: id,
-                  selected_session: examDetails.sessions[0].id
+                  // selected_session: examDetails.sessions && examDetails.sessions.length>0?sessions[0].id :''
                 }]
               }}
               examDetails={examDetails}

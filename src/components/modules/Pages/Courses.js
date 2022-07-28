@@ -18,6 +18,8 @@ import CustomTextInput from '@apexapp/components/elements/CustomTextInput';
 import CustomButtonPopup1 from '@apexapp/components/elements/CustomButtonPopup/index1';
 import styles from '@styles/modules/Pages/Courses';
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
+import DateIcon from '@assets/images/date.svg';
+import UserIcon from '@assets/images/User.svg';
 import { FlatList } from 'react-native-gesture-handler';
 
 let information = [
@@ -34,7 +36,7 @@ const data = [
     main1: 'Multiple  Section',
     info: 'Medical Entrance (ME-CEE) with multiple line ',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
   {
     image: '',
@@ -42,7 +44,7 @@ const data = [
     main1: 'Multiple Section',
     info: 'Medical Entrance  (ME-CEE) with multiple line ',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
 ];
 
@@ -53,7 +55,7 @@ const Courses = props => {
 
   return (
     <>
-      <ScrollView stickyHeaderIndices={[0]} style={styles.scrollView}>
+      <ScrollView contentContainerStyle={{paddingBottom:20}} stickyHeaderIndices={[0]} style={styles.scrollView}>
         <View styles={styles.Header}>
           <HeaderSearch
             navigation={props.navigation}
@@ -75,9 +77,11 @@ const Courses = props => {
                   <View style={styles.img}>
                     <Image
                       style={styles.image}
-                      source={require('@assets/images/home.jpeg')}
+                      resizeMode="contain"
+                      source={require('@assets/images/course.png')}
                     />
                   </View>
+                  <View style={styles.cardContainer}>
 
                   <View style={styles.card}>
                     <Text style={styles.main}>{item.main}</Text>
@@ -90,9 +94,17 @@ const Courses = props => {
                       <Text style={styles.infos}>{item.info}</Text>
                     </View>
 
+                  <View style={styles.tagContainer}>
+                  <DateIcon style={styles.icon} width={14} height={14} />
                     <Text style={styles.date}>{item.date}</Text>
+                  </View>
 
+                  <View style={styles.tagContainer}>
+                    <UserIcon style={styles.icon} width={14} height={14} />
                     <Text style={styles.data}>{item.data}</Text>
+                    </View>
+
+                  </View>
                   </View>
                 </TouchableOpacity>
               );
