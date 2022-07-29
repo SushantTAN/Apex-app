@@ -226,7 +226,7 @@ const ExamDetail = props => {
                 </View>
               </View>}
 
-              {examDetails?.sessions[0]?.status === 'resultsout' && <View style={[styles.pass, { marginHorizontal: 16 }]}>
+              {examDetails?.sessions[0]?.status === 'resultsout' && <View style={[styles.pass]}>
                 <Text style={styles.icon}> </Text>
                 <View>
                   <Text style={styles.passmarks}>Result</Text>
