@@ -40,16 +40,22 @@
    background-color: #F8A4A7;
    font-size: 12px;
    color: black;
-   border-radius: 5px;
+   text-transform: uppercase;
+   border-radius: 2px;
+   font-weight: 700;
    @extend .p1;
 }
 
 .title1 {
-   @extend .title1-bcr;
+   @extend .title-bcr;
    padding: 2px 4px;
-   margin-right: 8px;   
+   margin-right: 8px;
+   background-color: #EAEAEA;
+   font-size: 12px;
    color: black;
-   border-radius: 5px;
+   text-transform: uppercase;
+   border-radius: 2px;
+   font-weight: 700;
    @extend .p1;
 }
 
@@ -217,3 +223,6 @@
 
 }
 
+.icon {
+   color: #fff;
+}

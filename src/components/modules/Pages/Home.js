@@ -35,7 +35,7 @@ const data2 = [
     main1: 'Multiple Section',
     info: 'Medical Entrance (ME-CEE) with multiple line ',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
   {
     image: '',
@@ -43,7 +43,7 @@ const data2 = [
     main1: 'Multiple Section',
     info: 'Medical Entrance (ME-CEE) with multiple line',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
   {
     image: '',
@@ -51,7 +51,7 @@ const data2 = [
     main1: 'Multiple Section',
     info: 'Medical Entrance (ME-CEE) with multiple line',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
   {
     image: '',
@@ -59,7 +59,7 @@ const data2 = [
     main1: 'Multiple Section',
     info: 'Medical Entrance (ME-CEE) with multiple line',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
   {
     image: '',
@@ -67,7 +67,7 @@ const data2 = [
     main1: 'Multiple Section',
     info: 'Medical Entrance (ME-CEE) with multiple line ',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
 ];
 
@@ -147,7 +147,7 @@ const Home = props => {
         <TouchableOpacity activeOpacity={1} onPress={() => handleExamDetailsLink(item.id)} style={styles.cards}>
           <View style={styles.card}>
             <View style={styles.file}>
-            <NoteIcon/>
+            <NoteIcon style={styles.icon}/>
             </View>
             <Text style={styles.title}>LIVE</Text>
             <Text style={styles.title1}>RBB</Text>
@@ -172,7 +172,7 @@ const Home = props => {
         <TouchableOpacity activeOpacity={1} onPress={handleExamDetailsLink} style={styles.cards}>
           <View style={styles.card}>
             <View style={styles.file}>
-            <NoteIcon/>
+            <NoteIcon style={styles.icon} />
             </View>
 
             <Text style={styles.title1}>Practice </Text>

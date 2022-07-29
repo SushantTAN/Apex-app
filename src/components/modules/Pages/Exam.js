@@ -25,6 +25,8 @@ import { examsFullListRequest } from '@apexapp/store/actions/exam';
 import NoteIcon from '@assets/images/note.svg';
 import styles from '@styles/modules/Pages/Exam';
 import SearchIcon from '@assets/images/Search.svg'
+import FilterIcon from '@assets/images/Filter.svg';
+import BackIcon from '@assets/images/back.svg';
 
 
 let preparation = [
@@ -123,14 +125,11 @@ const Exam = props => {
     <View style={styles.maincontainer}>
       <View style={styles.filterDiv}>
         <TouchableOpacity onPress={handleArrow} style={styles.left}>
-          <Image source={require('@assets/images/leftArrow.png')} />
+          <BackIcon/>
           <Text style={styles.p}>Exams</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleFilter}>
-          <Image
-            style={styles.filter}
-            source={require('@assets/images/Filter.png')}
-          />
+         <FilterIcon/>
         </TouchableOpacity>
       </View>
 
@@ -146,9 +145,9 @@ const Exam = props => {
           onChange={onChange}
           placeholder="Search here"
           color="#000000"
-        />
+        /> 
 
-        <Modal
+         <Modal
           transparent={true}
           animationType="slide"
           visible={isModalVisible}
@@ -168,7 +167,7 @@ const Exam = props => {
               <TouchableOpacity onPress={() => handleToDetail(item.id)} style={styles.main} key={index}>
                 <View style={styles.card}>
                   <View style={styles.icon}>
-                    <NoteIcon/>
+                    <NoteIcon style={styles.examIcon}/>
                   </View>
                   <Text style={styles.title}>LIVE</Text>
                   <Text style={styles.title1}>PRACTICE</Text>

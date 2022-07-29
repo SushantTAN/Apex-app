@@ -122,7 +122,7 @@
 
 .fullmark {
     // margin-left: 60px;
-    flex-basis: 50%;
+    width: 50%;
     flex-direction: row;
 }
 
@@ -144,7 +144,7 @@
     margin-top: 12px;
     flex-direction: row;
     margin-bottom: 12px;
-    flex-basis: 50%;
+    width: 50%;
 
 }
 
@@ -165,7 +165,7 @@
     flex-direction: row;
     margin-top: 12px;
     // margin-left: 28px;
-    flex-basis: 50%;
+    width: 50%;
 
 }
 
@@ -191,6 +191,7 @@
     flex-direction: row;
     margin-bottom: 12px;
     margin-top: 4px;
+    width: 50%;
     // margin-top: 12px;
 }
 
@@ -265,7 +266,7 @@
 .flex2 {
 
     flex-direction: row;
-    flex-basis: 50%;
+    width: 50%;
 }
 
 .flex3 {

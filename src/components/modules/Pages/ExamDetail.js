@@ -30,6 +30,7 @@ import TimeIcon from '@assets/images/time.svg'
 import ClockIcon from '@assets/images/clock.svg'
 import MarksIcon from '@assets/images/marks.svg'
 import MarkIcon from '@assets/images/mark.svg'
+import RankIcon from '@assets/images/Rank.svg'
 
 
 const data = [
@@ -45,6 +46,14 @@ const data = [
 
 const ExamDetail = props => {
   const { id } = props.route.params;
+
+  const [ examId, setExamId ] = useState(id)
+
+  useEffect(()=>{
+    setExamId(id)
+  },[])
+
+  console.log(examId,"examid")
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -64,10 +73,10 @@ const ExamDetail = props => {
   }, [examDetails]);
 
   useEffect(() => {
-    dispatch(examDetailRequest(id));
+    dispatch(examDetailRequest(examId));
 
     const subscribe = props.navigation.addListener('focus', () => {
-      dispatch(examDetailRequest(id));
+      dispatch(examDetailRequest(examId));
       setIsModalVisible(false);
     });
 
@@ -76,7 +85,7 @@ const ExamDetail = props => {
 
   const onRefresh = async () => {
     setRefreshing(true);
-    await dispatch(examDetailRequest(id));
+    await dispatch(examDetailRequest(examId));
     setRefreshing(false);
   }
 
@@ -93,7 +102,7 @@ const ExamDetail = props => {
     let data = {
       exams: [{
         exam: id,
-        selected_session: examDetails.sessions[0].id
+        selected_session: examDetails.sessions.length>0?examDetails.sessions[0].id:''
       }]
     }
     dispatch(examsEnrollRequest(data, auth.access_token));
@@ -111,29 +120,31 @@ const ExamDetail = props => {
     props.navigation.dispatch(CommonActions.goBack());
   };
 
+  console.log(examDetails.template,examDetails.sessions,"detail")
 
   return (
     <>
-      <ScrollView style={styles.maincontainer} refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }>
          <HeaderSearch
             title="Exam Details"
             navigation={props.navigation}
             backnav="Exam"
           />
+      <ScrollView style={styles.maincontainer} refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
         <View style={styles.main}>
          
           <View style={styles.examDetail}>
             <View style={styles.flex1}>
               <View style={styles.flex2}>
                 <View style={styles.icon}>
-                  <DateIcon style={{marginTop:-2}}/>
+                  <DateIcon style={{marginTop:-2, color:"#fff"}}/>
                 </View>
                 <View>
-                  <Text style={styles.duration}>Date</Text>
+                  <Text style={styles.duration}>Exam Date</Text>
                   <Text style={styles.duration1}>
                     {/* {examDetails.sessions[0].start_date.split('T')[0]} */}
+                    29 Jan, 2022
                   </Text>
                 </View>
               </View>
@@ -189,8 +200,10 @@ const ExamDetail = props => {
                 </View>
               </View>
 
-              {examDetails?.sessions[0]?.status === 'resultsout' && <View style={[styles.pass, { marginHorizontal: 16 }]}>
-                <Text style={styles.icon}> </Text>
+              {examDetails?.sessions[0]?.status === 'resultsout' && <View style={[styles.pass]}>
+                <View style={styles.icon}>
+                  <MarkIcon/>
+                </View>
                 <View>
                   <Text style={styles.passmarks}>Marks</Text>
                   <Text style={styles.passmarks1}>
@@ -202,7 +215,9 @@ const ExamDetail = props => {
 
             <View style={styles.flex3}>
               {examDetails?.sessions[0]?.status === 'resultsout' && <View style={styles.pass}>
-                <Text style={styles.icon}> </Text>
+                <View style={styles.icon}>
+                  <RankIcon/>
+                </View>
                 <View>
                   <Text style={styles.passmarks}>Rank</Text>
                   <Text style={styles.passmarks1}>
