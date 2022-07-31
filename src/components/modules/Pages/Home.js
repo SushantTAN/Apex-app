@@ -27,6 +27,7 @@ import NavBar from '@apexapp/components/elements/Navbar/Navbar';
 import styles from '@styles/modules/Pages/Home.scss';
 import { WIDTH } from '@apexapp/utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
+import ExamCard from '../ExamCard';
 
 const data2 = [
   {
@@ -141,35 +142,23 @@ const Home = props => {
     props.navigation.navigate('ExamDetail', { id });
   };
 
+  const examCardInfo = [
+    { title: "Live" },
+    { title: "Practice" },
+  ]
+
   const _renderItemWithParallax = ({ item, index }, parallaxProps) => {
     return (
       <>
-        <TouchableOpacity activeOpacity={1} onPress={() => handleExamDetailsLink(item.id)} style={styles.cards}>
-          <View style={styles.card}>
-            <View style={styles.file}>
-            <NoteIcon style={styles.icon}/>
-            </View>
-            <Text style={styles.title}>LIVE</Text>
-            <Text style={styles.title1}>RBB</Text>
-          </View>
-
-          <View >
-            <Text style={styles.text}>{item.name}</Text>
-
-            <Text style={styles.amount}>
-              Rs. {item.price}
-              {' \u2022 '}
-              {item.template.duration}
-            </Text>
-          </View>
-        </TouchableOpacity>
+        
+        <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} handleExamDetailsLink={()=>handleExamDetailsLink(item.id)} />
       </>
     );
   };
   const _renderItemWithParallax1 = ({ item, index }, parallaxProps) => {
     return (
       <>
-        <TouchableOpacity activeOpacity={1} onPress={handleExamDetailsLink} style={styles.cards}>
+        {/* <TouchableOpacity activeOpacity={1} onPress={handleExamDetailsLink} style={styles.cards}>
           <View style={styles.card}>
             <View style={styles.file}>
             <NoteIcon style={styles.icon} />
@@ -186,14 +175,16 @@ const Home = props => {
               {' \u2022'} {item.template.duration}
             </Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+                <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={()=>handleExamDetailsLink(item.id)} />
+
       </>
     );
   };
   const _renderItemWithParallax2 = ({ item, index }, parallaxProps) => {
     return (
       <>
-        <View style={styles.cards}>
+        {/* <View style={styles.cards}>
           <View style={styles.img}>
             <Image
               style={styles.image}
@@ -216,7 +207,9 @@ const Home = props => {
 
             <Text style={styles.data}>{item.data}</Text>
           </View>
-        </View>
+        </View> */}
+                <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} handleExamDetailsLink={()=>handleExamDetailsLink(item.id)} />
+
       </>
     );
   };

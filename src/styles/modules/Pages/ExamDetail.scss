@@ -11,7 +11,8 @@
 
 .main {
     background-color: white;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    padding: 16px;
 }
 
 .main1 {
@@ -101,7 +102,7 @@
 
 .examDetail {
     margin-top: 6px;
-    padding-left: 16px;
+    // padding-left: 16px;
 
 }
 
@@ -113,7 +114,7 @@
     @extend .h5;
 }
 
-.duration1 {
+.durationSubText {
     margin-top: 4px;
     margin-left: 12px;
 
@@ -129,7 +130,7 @@
 .fullmarks {
     margin-left: 15px;
     font-weight: 700;
-    @extend .h5;
+    @extend .p3;
 }
 
 .fullmarks1 {
@@ -158,6 +159,10 @@
     margin-top: 4px; 
     margin-left: 12px;
     @extend .p1;
+}
+
+.tagContainer {
+    flex-direction: row;
 }
 
 
@@ -244,7 +249,7 @@
 
 .enroll1 {
 
-    @extend .h3;
+    @extend .h4;
     font-weight: 700;
     margin-bottom: 4px
 
@@ -260,7 +265,6 @@
 
 
 .CustomButton {
-    margin-top: 0px;
 }
 
 .flex2 {
@@ -276,4 +280,12 @@
 .borderBlack {
     border: 1px solid black;
     // background-color: green($color: #000000);
+}
+
+.examHeaderText {
+    margin-top: 26px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    color: #000;
 }

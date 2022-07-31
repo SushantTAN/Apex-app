@@ -20,7 +20,9 @@ import styles from '@styles/modules/Pages/Courses';
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
 import DateIcon from '@assets/images/date.svg';
 import UserIcon from '@assets/images/User.svg';
-import { FlatList } from 'react-native-gesture-handler';
+import TopBar from '@components/elements/TopBar';
+import CourseCard from '../CourseCard';
+import BackIcon from '@assets/images/back.svg';
 
 let information = [
   {
@@ -32,7 +34,7 @@ let information = [
 const data = [
   {
     image: '',
-    main: 'IOM ',
+    tags:["IOm","Multiple Section"],
     main1: 'Multiple  Section',
     info: 'Medical Entrance (ME-CEE) with multiple line ',
     date: 'Starting on Feb ,2022 (4 month)',
@@ -40,7 +42,7 @@ const data = [
   },
   {
     image: '',
-    main: 'IOM',
+    tags:["IOm","Multiple Section"],
     main1: 'Multiple Section',
     info: 'Medical Entrance  (ME-CEE) with multiple line ',
     date: 'Starting on Feb ,2022 (4 month)',
@@ -55,23 +57,16 @@ const Courses = props => {
 
   return (
     <>
-      <ScrollView contentContainerStyle={{paddingBottom:20}} stickyHeaderIndices={[0]} style={styles.scrollView}>
-        <View styles={styles.Header}>
-          <HeaderSearch
-            navigation={props.navigation}
-            backnav="Home"
-            showFilterButton={true}
-            title="Courses"
-            searchfunc={() => { }}
-            showSearchButton={true}
-          />
-        </View>
+      <ScrollView contentContainerStyle={{paddingBottom:10}} stickyHeaderIndices={[0]} style={styles.scrollView}>
+        <TopBar title="Courses" backIcon={ <BackIcon/> } />
         <View style={styles.gap} />
         <View style={styles.mainContainer}>
           <View style={styles.text}>
             {data.map((item, index) => {
               return (
-                <TouchableOpacity
+                <>
+
+                 {/* <TouchableOpacity
                   onPress={() => handleArrow(item.id)}
                   style={styles.cards}>
                   <View style={styles.img}>
@@ -83,11 +78,7 @@ const Courses = props => {
                   </View>
                   <View style={styles.cardContainer}>
 
-                  <View style={styles.card}>
-                    <Text style={styles.main}>{item.main}</Text>
-
-                    <Text style={styles.main1}>{item.main1}</Text>
-                  </View>
+                 
 
                   <View>
                     <View>
@@ -106,7 +97,10 @@ const Courses = props => {
 
                   </View>
                   </View>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+
+                <CourseCard tags={item.tags} actionPress={()=> handleArrow(item.id)} date={item.date} name={item.info} numberOfEnroll={item.data} />
+                </>
               );
             })}
           </View>

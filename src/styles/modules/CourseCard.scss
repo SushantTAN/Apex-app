@@ -1,0 +1,82 @@
+
+@use '../library' as themes;
+@import '../common';
+
+.cards {
+    @extend .card-bcr;
+    margin-bottom: 16px;
+    margin-right: 16px;
+    margin-left: 16px;
+
+  }
+
+  .img {
+    width: 100%;
+  
+  }
+  
+  .image {
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+  
+  .card {
+    // padding: 16px;
+    flex-direction: row;
+    // margin-left: 16px;
+  
+  }
+
+  .infos {
+
+    // margin-left: 32px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    @extend .P;
+    font-size: 14px;
+    font-weight: 700;
+
+  }
+
+  .tagContainer {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .date {
+    align-items: flex-end;
+    // padding-right: 16px;
+    // padding-left: 20px;
+    @extend .h6;
+    font-size: 12px;
+  
+    // margin-left: 38px;
+  
+  
+  
+  }
+  
+  .data {
+    // padding-right: 16px;
+    // padding-left: 16.75px;
+    color: black;
+    // margin-left: 38px;
+    font-size: 16px;
+    // margin-top: 8px;
+    font-size: 12px;
+    // margin-bottom: 16px;
+  
+  }
+
+  .cardContainer {
+    padding: 16px;
+
+  }
+
+  .icon {
+      color: #000;
+      margin-right: 8px;
+  }
+  

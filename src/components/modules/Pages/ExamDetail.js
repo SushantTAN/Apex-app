@@ -24,6 +24,10 @@ import styles from '@styles/modules/Pages/ExamDetail';
 import CustomSessionPopup from '@apexapp/components/elements/CustomSessionPopup';
 import { examDetail, examDetailRequest, examResultsRequest, examsEnrollRequest } from '@apexapp/store/actions/exam';
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
+import TopBar from '@apexapp/components/elements/TopBar';
+import Divider from '@components/elements/Divider/index';
+import FilterIcon from '@assets/images/Filter.svg';
+import BackIcon from '@assets/images/back.svg';
 import { getSocketUrl } from '@utils/api';
 import DateIcon from '@assets/images/date.svg'
 import TimeIcon from '@assets/images/time.svg'
@@ -31,6 +35,7 @@ import ClockIcon from '@assets/images/clock.svg'
 import MarksIcon from '@assets/images/marks.svg'
 import MarkIcon from '@assets/images/mark.svg'
 import RankIcon from '@assets/images/Rank.svg'
+import Tag from '@components/elements/Tag/index'
 
 
 const data = [
@@ -120,19 +125,25 @@ const ExamDetail = props => {
     props.navigation.dispatch(CommonActions.goBack());
   };
 
-  console.log(examDetails.template,examDetails.sessions,"detail")
+  console.log(examDetails.sessions,"detail")
 
   return (
     <>
-         <HeaderSearch
+         {/* <HeaderSearch
             title="Exam Details"
             navigation={props.navigation}
             backnav="Exam"
-          />
-      <ScrollView style={styles.maincontainer} refreshControl={
+          /> */}
+      <TopBar search={false}   backIcon={<BackIcon />} title="Exams details" />
+      <ScrollView style={{...styles.maincontainer}} refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
         <View style={styles.main}>
+        <View style={styles.tagContainer}>
+          <Tag title="Practice exam"/>
+          </View>
+
+          <Text style={styles.examHeaderText}>{examDetails.name}</Text>
          
           <View style={styles.examDetail}>
             <View style={styles.flex1}>
@@ -142,7 +153,7 @@ const ExamDetail = props => {
                 </View>
                 <View>
                   <Text style={styles.duration}>Exam Date</Text>
-                  <Text style={styles.duration1}>
+                  <Text style={styles.durationSubText}>
                     {/* {examDetails.sessions[0].start_date.split('T')[0]} */}
                     29 Jan, 2022
                   </Text>
@@ -242,21 +253,21 @@ const ExamDetail = props => {
         <View style={styles.main2}>
           <Text style={styles.instruction}>Instructions</Text>
           {/* {data.map((item, index) => {
-          return (
-            <View key={index}>
+            return (
+              <View key={index}>
               <Text style={styles.instruction1}>
-                {item.id}. {item.title}
+              {item.id}. {item.title}
               </Text>
-            </View>
-          );
-        })} */}
+              </View>
+              );
+            })} */}
           <Text style={styles.instruction1}>
             {examDetails.template.description}
           </Text>
         </View>
+          </ScrollView>
 
 
-      </ScrollView>
 
       <View style={styles.enroll}>
         <View style={styles.enroll0}>
@@ -321,7 +332,7 @@ const ExamDetail = props => {
               data={{
                 exams: [{
                   exam: id,
-                  // selected_session: examDetails.sessions && examDetails.sessions.length>0?sessions[0].id :''
+                  selected_session: examDetails.sessions && examDetails.sessions.length>0?examDetails.sessions[0].id :''
                 }]
               }}
               examDetails={examDetails}
