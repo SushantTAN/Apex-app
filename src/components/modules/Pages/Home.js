@@ -28,6 +28,7 @@ import styles from '@styles/modules/Pages/Home.scss';
 import { WIDTH } from '@apexapp/utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import ExamCard from '../ExamCard';
+import { examsFullListRequest, examsListRequest } from '@apexapp/store/actions/exam';
 
 const data2 = [
   {
@@ -124,6 +125,8 @@ const Home = props => {
   const examsPracticeList = useSelector(state => state.homeReducer.examsPracticeList,);
   const coursesList = useSelector(state => state.homeReducer.coursesList);
 
+  const [ searchText, setSearchText ] = useState('')
+
   const CarouselRef = useRef(null);
 
   const CarouselReff = useRef(null);
@@ -147,11 +150,18 @@ const Home = props => {
     { title: "Practice" },
   ]
 
+  const searchHandler = ( value ) => {
+
+    setSearchText(value)
+  }
+
+  
+
   const _renderItemWithParallax = ({ item, index }, parallaxProps) => {
     return (
       <>
         
-        <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} handleExamDetailsLink={()=>handleExamDetailsLink(item.id)} />
+        <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={()=>handleExamDetailsLink(item.id)} />
       </>
     );
   };
@@ -208,17 +218,20 @@ const Home = props => {
             <Text style={styles.data}>{item.data}</Text>
           </View>
         </View> */}
-                <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} handleExamDetailsLink={()=>handleExamDetailsLink(item.id)} />
+                <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={()=>handleExamDetailsLink(item.id)} />
 
       </>
     );
   };
 
+  console.log(searchText,"search")
+
+
   return (
     <>
       <View style={styles.division}>
         <View styles={styles.navbar}>
-          <NavBar />
+          <NavBar navigation={props.navigation} value={searchText} searchHandler={searchHandler} />
         </View>
         <ScrollView contentContainerStyle={{paddingBottom:180}} style={styles.scrollView}>
           <View>

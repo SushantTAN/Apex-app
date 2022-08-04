@@ -23,6 +23,7 @@ import UserIcon from '@assets/images/User.svg';
 import TopBar from '@components/elements/TopBar';
 import CourseCard from '../CourseCard';
 import BackIcon from '@assets/images/back.svg';
+import FilterIcon from '@assets/images/Filter.svg'
 
 let information = [
   {
@@ -58,7 +59,7 @@ const Courses = props => {
   return (
     <>
       <ScrollView contentContainerStyle={{paddingBottom:10}} stickyHeaderIndices={[0]} style={styles.scrollView}>
-        <TopBar title="Courses" backIcon={ <BackIcon/> } />
+        <TopBar title="Courses" backIcon={ <BackIcon/> } icon={<FilterIcon style={{color:"#000"}}/>} />
         <View style={styles.gap} />
         <View style={styles.mainContainer}>
           <View style={styles.text}>

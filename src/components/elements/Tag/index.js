@@ -18,6 +18,8 @@ const Tag = (props) => {
         case "practice exam":
             color = '#EAEAEA'
             break;
+        case 'multiple section':
+            color = "#F4777C"
 
         default:
             color = "#EAEAEA"

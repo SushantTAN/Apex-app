@@ -4,46 +4,47 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import styles from '@styles/elements/TopBar.scss'
 import Search from '@assets/images/Search.svg'
 import { useNavigation } from '@react-navigation/native'
+import SearchBar from '../SearchBar'
 
-const TopBar = ( props ) => {
+const TopBar = (props) => {
 
     const navigation = useNavigation()
 
-    const [searchValue, setSearchValue] = useState('')
 
-    console.log(searchValue, "search")
 
-    const { title, icon, backIcon, filterHandler, search=true } = props;
+    const { title, icon, backIcon, filterHandler, search = true, searchDesign, newBackIcon, newIcon } = props;
 
     return (
         <View style={styles.topbar}>
             <View style={styles.topbarContainer}>
                 <View style={styles.topbarTextContainer}>
-                    { backIcon && 
-                    <TouchableOpacity onPress={()=> navigation.goBack() } >
-                        {backIcon}
-                    </TouchableOpacity>
-                    
+                    <View style={styles.topBarTextHeader} >
+                        {backIcon &&
+                            <TouchableOpacity onPress={() => navigation.goBack()} >
+                                {backIcon}
+                            </TouchableOpacity>
+
+                        }
+
+                        {title && <Text style={styles.topbarHeaderTitle} >{title}</Text>}
+                    </View>
+                    {icon &&
+                        <TouchableOpacity style={styles.icon} onPress={filterHandler} >
+                            {icon}
+                        </TouchableOpacity>
                     }
-                    {title && <Text style={styles.topbarHeaderTitle} >{title}</Text>}
                 </View>
-                { icon &&  
-                <TouchableOpacity onPress={filterHandler} >
-                    { icon }
-                </TouchableOpacity>
-                }
+
 
             </View>
-            { search &&  
-            <View style={styles.searchbar}>
-                <Search />
-                <TextInput onChangeText={setSearchValue}
-                    value={searchValue}
-                    placeholder="Search here"
-                    placeholderTextColor="#000"
-                    style={styles.searchInput} />
-            </View>
+            {search &&
+                <View style={styles.searchContainer}>
+                    <SearchBar />
+                </View>
+
             }
+
+
         </View>
     )
 }

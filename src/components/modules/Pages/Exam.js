@@ -172,7 +172,7 @@ const Exam = props => {
       <View style={styles.line}></View>
 
       <ScrollView  nestedScrollEnabled={true} contentContainerStyle={{flexGrow:1,paddingBottom:370}}>
-        <View>
+        <View >
           {examList.map((item, index) => {
             return (
               // <TouchableOpacity onPress={() => handleToDetail(item.id)} style={styles.main} key={index}>

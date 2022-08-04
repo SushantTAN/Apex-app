@@ -9,6 +9,8 @@ import React, { useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import styles from '@styles/elements/NavBar/Navbar.scss';
+import SearchIcon from '@assets/images/Search.svg';
+import SearchBar from '../SearchBar';
 import CustomTextInput from '@apexapp/components/elements/CustomTextInput';
 
 let preparation = [
@@ -19,6 +21,7 @@ let preparation = [
 ];
 
 const NavBar = props => {
+  const { searchHandler, value } = props ;
   const [show, setShow] = useState(false);
   const [selectedItem, setSelectedItem] = useState(0);
   const onChange = item => {
@@ -33,7 +36,7 @@ const NavBar = props => {
           style={styles.image}
           source={require('@assets/images/apexLogo.png')}
         />
-        <View style={styles.flex}>
+        {/* <View style={styles.flex}>
 
           <TouchableOpacity style={styles.search}>
             <Image
@@ -49,7 +52,8 @@ const NavBar = props => {
             placeholder="Search here"
             color="#000000"
           />
-        </View>
+        </View> */}
+        <SearchBar navigation={props.navigation} value={value} searchHandler={searchHandler} style={styles.homeSearch}/>
       </View>
     </>
   );

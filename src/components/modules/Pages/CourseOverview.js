@@ -20,7 +20,9 @@ import CustomButton from '@components/elements/CustomButton';
 import CustomSessionPopup1 from '@apexapp/components/elements/CustomSessionPopup/index1';
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
 import styles from '@styles/modules/Pages/CourseOverview';
-import DateIcon from '@assets/images/date.svg'
+import TopBar from '@components/elements/TopBar';
+import DateIcon from '@assets/images/date.svg';
+import BackIcon from '@assets/images/back.svg';
 
 const CourseOverview = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -39,13 +41,13 @@ const CourseOverview = props => {
   return (
     <>
       <View style={{ flex: 1 }}>
-        <HeaderSearch
+        {/* <HeaderSearch
           title="Courses Details"
           navigation={props.navigation}
           backnav="Courses"
-        />
+        /> */}
+        <TopBar title="Course Details" backIcon={ <BackIcon/> } search={false} />
 
-        <View style={styles.gap} />
 
         <ScrollView nestedScrollEnabled={true} style={styles.mainContainer}>
           <View style={styles.main1}>
