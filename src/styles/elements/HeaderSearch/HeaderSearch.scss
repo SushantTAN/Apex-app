@@ -10,6 +10,10 @@
 
 .filterDiv {
   flex-direction: row;
+  padding-top: 32px;
+  padding-left: 16px ;
+  padding-right: 16px ;
+  padding-bottom: 8px ;
 }
 
 .left {
@@ -26,7 +30,7 @@
   //  font-weight: 700;
   @extend .H;
   line-height: 25px;
-  margin-left: 18px;
+  margin-left: 12px;
 }
 
 .filter {

@@ -10,6 +10,7 @@ import ExamDetail from '@screens/Pages/ExamDetail';
 import ExamPayment from '@screens/Pages/ExamPayment';
 import ExamsResults from '@screens/Exams/ExamsResults';
 import TakeExams from '@screens/Exams/Exams';
+import SearchBar from '@apexapp/screens/Search/Search';
 
 
 const HomeRouter = () => {
@@ -21,6 +22,7 @@ const HomeRouter = () => {
       <MyStack.Screen name="ExamPayment" component={ExamPayment} />
       <MyStack.Screen name="TakeExams" component={TakeExams} />
       <MyStack.Screen name="ExamsResults" component={ExamsResults} />
+      <MyStack.Screen name="SearchBar" component={SearchBar}/>
     </MyStack.Navigator>
   );
 };

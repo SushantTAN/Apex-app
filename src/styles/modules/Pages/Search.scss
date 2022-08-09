@@ -1,0 +1,118 @@
+@use '../../library' as themes;
+@import '../../common';
+
+.topbar {
+    padding: 24px 16px;
+    padding-bottom: 8px;
+    background-color: #fff;
+    margin-bottom: 8px;
+}
+
+.topbarContainer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbarTextContainer {
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchbar {
+    margin-top: 20px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #F8F8F8;
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchInput {
+    height: 30px;
+    padding: 0;
+    color: #000;
+    margin-left: 8px;
+    // color: red;
+    // background-color: red;
+    flex: 1;
+    // border-width: 1px;
+}
+.search {
+    flex-direction: row;
+    align-items: center;
+}
+
+.topbarHeaderTitle {
+    @extend .h3;
+    // font-size: 20px;
+    font-weight: 700;
+    line-height: 27px;
+    color: #000;
+    margin-left: 8px;
+}
+
+
+.button {
+    @extend .button-bcr;
+    border: solid;
+    padding: 15px;
+    margin-left: 20px;
+    width: 90%;
+    font-weight: 600;
+    margin-bottom: 20px;
+ 
+ }
+
+ .paginationContainers {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 0px 16px 0px;
+ }
+
+ .pagiDot {
+    width: 60px;
+    height: 5px;
+ }
+ .pagiStyle {
+    padding: 24px 0px 16px 0px;
+ }
+ .inactDotStyle {
+    width: 60px;
+ }
+ .searchMainContainer {
+    //  flex: 1;
+     background-color: #fff;
+ }
+ 
+ .p {
+
+    @extend .H;
+    line-height: 29px;
+ 
+    margin-bottom: 16px;
+    margin-left: 16px;
+ }
+
+ .txt {
+    font-family: 'Open Sans-serif';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 19px;
+    color: black;
+    padding-top: 16px;
+ }
+  
+
+
+
+
+
+
+
+
+
+
+ 

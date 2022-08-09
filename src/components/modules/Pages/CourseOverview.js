@@ -20,6 +20,9 @@ import CustomButton from '@components/elements/CustomButton';
 import CustomSessionPopup1 from '@apexapp/components/elements/CustomSessionPopup/index1';
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
 import styles from '@styles/modules/Pages/CourseOverview';
+import TopBar from '@components/elements/TopBar';
+import DateIcon from '@assets/images/date.svg';
+import BackIcon from '@assets/images/back.svg';
 
 const CourseOverview = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -38,13 +41,13 @@ const CourseOverview = props => {
   return (
     <>
       <View style={{ flex: 1 }}>
-        <HeaderSearch
+        {/* <HeaderSearch
           title="Courses Details"
           navigation={props.navigation}
           backnav="Courses"
-        />
+        /> */}
+        <TopBar title="Course Details" backIcon={ <BackIcon/> } search={false} />
 
-        <View style={styles.gap} />
 
         <ScrollView nestedScrollEnabled={true} style={styles.mainContainer}>
           <View style={styles.main1}>
@@ -71,31 +74,56 @@ const CourseOverview = props => {
             </View>
             <View style={styles.examDetail}>
               <View style={styles.flex1}>
-                <View style={styles.flex2}>
+              <View style={styles.tagContainer}>
+                <View style={styles.icon}>
+                  <DateIcon style={styles.tagIcon} />
+                </View>
+                <View style={{justifyContent:"flex-start"}}>
+                  <Text style={styles.tagTitle}>Starting Date</Text>
+                  <Text style={styles.tagDesc}>
+                  Multiple session
+                    {/* {examDetails.sessions[0].start_date.split('T')[0]} */}
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.tagContainer}>
+                <View style={styles.icon}>
+                  <DateIcon style={styles.tagIcon} />
+                </View>
+                <View style={{justifyContent:"flex-start"}}>
+                  <Text style={styles.tagTitle}>Duration</Text>
+                  <Text style={styles.tagDesc}>
+                    4 month
+                    {/* {examDetails.sessions[0].start_date.split('T')[0]} */}
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.tagContainer}>
+                <View style={styles.icon}>
+                  <DateIcon style={styles.tagIcon} />
+                </View>
+                <View style={{justifyContent:"flex-start"}}>
+                  <Text style={styles.tagTitle}>Student</Text>
+                  <Text style={styles.tagDesc}>
+                    200+ student
+                    {/* {examDetails.sessions[0].start_date.split('T')[0]} */}
+                  </Text>
+                </View>
+              </View>
+                {/* <View style={styles.flex2}>
                   <Text style={styles.icon}> </Text>
                   <View>
                     <Text style={styles.duration}>Date</Text>
                     <Text style={styles.duration1}>29 Jan,2022</Text>
                   </View>
-                </View>
+                </View> */}
 
-                <View style={styles.fullmark}>
-                  <Text style={styles.icon}> </Text>
-                  <View>
-                    <Text style={styles.fullmarks}>Duration</Text>
-                    <Text style={styles.fullmarks1}>4 month</Text>
-                  </View>
-                </View>
               </View>
-              <View style={styles.pass}>
-                <Text style={styles.icon}> </Text>
-                <View>
-                  <Text style={styles.passmarks}>Student</Text>
-                  <Text style={styles.passmarks1}>200+ student</Text>
-                </View>
               </View>
-            </View>
-          </View>
+              </View>
+
           <View style={styles.gap} />
           <View style={styles.main}>
             <View>

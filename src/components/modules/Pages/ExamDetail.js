@@ -24,7 +24,20 @@ import styles from '@styles/modules/Pages/ExamDetail';
 import CustomSessionPopup from '@apexapp/components/elements/CustomSessionPopup';
 import { examDetail, examDetailRequest, examResultsRequest, examsEnrollRequest } from '@apexapp/store/actions/exam';
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
+import TopBar from '@apexapp/components/elements/TopBar';
+import Divider from '@components/elements/Divider/index';
+import FilterIcon from '@assets/images/Filter.svg';
+import BackIcon from '@assets/images/back.svg';
 import { getSocketUrl } from '@utils/api';
+import DateIcon from '@assets/images/date.svg'
+import TimeIcon from '@assets/images/time.svg'
+import ClockIcon from '@assets/images/clock.svg'
+import MarksIcon from '@assets/images/marks.svg'
+import MarkIcon from '@assets/images/mark.svg'
+import RankIcon from '@assets/images/Rank.svg'
+import Tag from '@components/elements/Tag/index'
+import InfoBox from '@apexapp/components/elements/InfoBox';
+
 
 const data = [
   {
@@ -39,6 +52,14 @@ const data = [
 
 const ExamDetail = props => {
   const { id } = props.route.params;
+
+  const [examId, setExamId] = useState(id)
+
+  useEffect(() => {
+    setExamId(id)
+  }, [])
+
+  console.log(examId, "examid")
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -58,10 +79,10 @@ const ExamDetail = props => {
   }, [examDetails]);
 
   useEffect(() => {
-    dispatch(examDetailRequest(id));
+    dispatch(examDetailRequest(examId));
 
     const subscribe = props.navigation.addListener('focus', () => {
-      dispatch(examDetailRequest(id));
+      dispatch(examDetailRequest(examId));
       setIsModalVisible(false);
     });
 
@@ -70,7 +91,7 @@ const ExamDetail = props => {
 
   const onRefresh = async () => {
     setRefreshing(true);
-    await dispatch(examDetailRequest(id));
+    await dispatch(examDetailRequest(examId));
     setRefreshing(false);
   }
 
@@ -87,7 +108,7 @@ const ExamDetail = props => {
     let data = {
       exams: [{
         exam: id,
-        selected_session: examDetails.sessions[0].id
+        selected_session: examDetails.sessions.length > 0 ? examDetails.sessions[0].id : ''
       }]
     }
     dispatch(examsEnrollRequest(data, auth.access_token));
@@ -105,126 +126,83 @@ const ExamDetail = props => {
     props.navigation.dispatch(CommonActions.goBack());
   };
 
+  console.log(examDetails.sessions, "detail")
+
+
   return (
     <>
-      <ScrollView style={styles.maincontainer} refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }>
-        <View style={styles.main}>
-          <HeaderSearch
+      {/* <HeaderSearch
             title="Exam Details"
             navigation={props.navigation}
             backnav="Exam"
-          />
+          /> */}
+      <TopBar search={false} backIcon={<BackIcon />} title="Exams details" />
+      <ScrollView style={{ ...styles.maincontainer }} refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
+        <View style={styles.main}>
+          <View style={styles.tagContainer}>
+            <Tag title="Practice exam" />
+          </View>
+
+          <Text style={styles.examHeaderText}>{examDetails.name}</Text>
+
           <View style={styles.examDetail}>
             <View style={styles.flex1}>
-              <View style={styles.flex2}>
-                <Text style={styles.icon}> </Text>
+              {/* <View style={styles.flex2}>
+                <View style={styles.icon}>
+                  <DateIcon style={{marginTop:-2, color:"#fff"}}/>
+                </View>
                 <View>
-                  <Text style={styles.duration}>Date</Text>
-                  <Text style={styles.duration1}>
-                    {/* {examDetails.sessions[0].start_date.split('T')[0]} */}
+                  <Text style={styles.duration}>Exam Date</Text>
+                  <Text style={styles.durationSubText}>
+                    {examDetails.sessions[0].start_date.split('T')[0]}
+                    29 Jan, 2022
                   </Text>
                 </View>
-              </View>
+              </View> */}
 
-              <View style={styles.fullmark}>
-                <Text style={styles.icon}> </Text>
-                <View>
-                  <Text style={styles.fullmarks}>Duration</Text>
-                  <Text style={styles.fullmarks1}>
-                    {examDetails.template.duration}
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.flex3}>
-              <View style={styles.passmark}>
-                <Text style={styles.icon}> </Text>
-                <View>
-                  <Text style={styles.passmarks}>Time</Text>
-                  <Text style={styles.passmarks1}>
-                    {' '}
-                    {examDetails.sessions.length > 1
-                      ? 'Multiple session'
-                      : 'Single'}
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.mark}>
-                <Text style={styles.icon}> </Text>
-                <View>
-                  <Text style={styles.marks}>Full marks</Text>
-                  <Text style={styles.marks1}>
-                    {examDetails.template.full_marks}
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.flex3}>
-              <View style={styles.pass}>
-                <Text style={styles.icon}> </Text>
-                <View>
-                  <Text style={styles.passmarks}>Pass marks</Text>
-                  <Text style={styles.passmarks1}>
-                    {examDetails.template.pass_marks}
-                  </Text>
-                </View>
-              </View>
+              <InfoBox icon={<DateIcon style={{ color: "#fff" }} />} title="Exam Date" desc="29 Jan, 2022" />
+              <InfoBox icon={<TimeIcon style={{ color: "#fff" }} />} title="Duration" desc={examDetails.template.duration} />
+              <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={examDetails.sessions.length > 1 ? 'Multiple session' : 'Single'} />
+              <InfoBox icon={<MarksIcon style={{ color: "#fff" }} />} title="Full marks" desc={examDetails.template.full_marks} />
+              <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Pass marks" desc={examDetails.template.pass_marks} />
+              {examDetails?.sessions[0]?.status === 'resultsout' &&
+                <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Marks" desc={result.score ? result.score : 40} />
+              }
+              {examDetails?.sessions[0]?.status === 'resultsout' &&
+                <InfoBox title="Result" desc={result.status} />
+              }
+              {examDetails?.sessions[0]?.status === 'resultsout' &&
+                <InfoBox icon={<RankIcon style={{ color: "#fff" }} />} title="Rank" desc={result.rank} />
+              }
 
-              {examDetails?.sessions[0]?.status === 'resultsout' && <View style={[styles.pass, { marginHorizontal: 16 }]}>
-                <Text style={styles.icon}> </Text>
-                <View>
-                  <Text style={styles.passmarks}>Marks</Text>
-                  <Text style={styles.passmarks1}>
-                    {result.score}
-                  </Text>
-                </View>
-              </View>}
+
             </View>
 
-            <View style={styles.flex3}>
-              {examDetails?.sessions[0]?.status === 'resultsout' && <View style={styles.pass}>
-                <Text style={styles.icon}> </Text>
-                <View>
-                  <Text style={styles.passmarks}>Rank</Text>
-                  <Text style={styles.passmarks1}>
-                    {result.rank}
-                  </Text>
-                </View>
-              </View>}
 
-              {examDetails?.sessions[0]?.status === 'resultsout' && <View style={[styles.pass, { marginHorizontal: 16 }]}>
-                <Text style={styles.icon}> </Text>
-                <View>
-                  <Text style={styles.passmarks}>Result</Text>
-                  <Text style={styles.passmarks1}>
-                    {result.status}
-                  </Text>
-                </View>
-              </View>}
-            </View>
+
           </View>
         </View>
 
         <View style={styles.main2}>
           <Text style={styles.instruction}>Instructions</Text>
           {/* {data.map((item, index) => {
-          return (
-            <View key={index}>
+            return (
+              <View key={index}>
               <Text style={styles.instruction1}>
-                {item.id}. {item.title}
+              {item.id}. {item.title}
               </Text>
-            </View>
-          );
-        })} */}
+              </View>
+              );
+            })} */}
           <Text style={styles.instruction1}>
             {examDetails.template.description}
           </Text>
         </View>
-
-
       </ScrollView>
+
+
 
       { examDetails.sessions.length > 0 && <View style={styles.enroll}>
         <View style={styles.enroll0}>
@@ -264,7 +242,7 @@ const ExamDetail = props => {
               /> : (
                 examDetails.exam_enroll ?
                   <CustomButton
-                    onPress={() => {  }}
+                    onPress={() => { }}
                     style={[styles.CustomButton]}
                     type={'disabled'}
                     title={'Result Details'}
@@ -289,7 +267,7 @@ const ExamDetail = props => {
               data={{
                 exams: [{
                   exam: id,
-                  selected_session: examDetails.sessions[0].id
+                  selected_session: examDetails.sessions && examDetails.sessions.length > 0 ? examDetails.sessions[0].id : ''
                 }]
               }}
               examDetails={examDetails}

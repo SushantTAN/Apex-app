@@ -8,10 +8,18 @@ export const examsList = data => {
   };
 };
 
-export const examsListRequest = () => {
+export const examsListRequest = (query,page_size,page) => {
   return async dispatch => {
     try {
-      const response = await GET('api/exams/list/');
+      let url;
+      const dataValue={
+          page_size:page_size?`&page_size=${1}`:'',
+          query:query?`&search=${query}`:'',
+          page:page?`&page=${1}`:'',
+      }
+      url = `api/exams/list/?${dataValue.query}${dataValue.page}${dataValue.page_size}`
+
+      const response = await GET(url);
       const resJson = await response.json();
       // console.log(response, resJson)
       if (response.status === 200) {

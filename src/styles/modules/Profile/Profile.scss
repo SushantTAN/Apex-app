@@ -84,23 +84,27 @@
 .title1 {
     @extend .p1;
     @extend .title1-bcr;
-    padding: 8px 8px 8px;
+    padding: 4px 8px;
 
     color: black;
-    border-radius: 5px;
+    border-radius: 4px;
     flex-direction: row;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 16.79px;
+    font-size: 12px;
+    text-transform: uppercase;
+
 }
 
 .title2 {
     @extend .p1;
     @extend .title1-bcr;
-    padding: 8px 8px 8px;
+    padding: 4px 8px;
     color: black;
-    border-radius: 5px;
+    border-radius: 4px;
     flex-direction: row;
-    font-weight: 600;
+    font-weight: 700;
+    text-transform: uppercase;
     line-height: 16.79px;
     display: flex;
     flex-direction: row;
@@ -130,8 +134,13 @@
     font-weight: 600;
     // margin-bottom: 20px;
     margin-top: 24px;
+    flex-direction: row;
+    justify-content: center
 
+}
 
+.icon {
+    margin-right: 8px
 }
 
 .buttons {

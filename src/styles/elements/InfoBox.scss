@@ -1,0 +1,31 @@
+@use '../library' as themes;
+@import '../common';
+
+.infoBox {
+    flex-direction: row;
+    align-items: flex-start;
+    width: 50%;
+    margin-bottom: 12px;
+}
+
+.icon {
+    height: 28px;
+    width: 28px;
+    justify-content: center;
+    background-color: #FFCB05;
+    padding: 4px;
+    border-radius: 4px;   
+    margin-right: 12px;
+}
+
+.infoTitle {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 19px;
+    color: #000;
+}
+
+.infoDesc {
+    margin-top: 4px;
+    @extend .p1;
+}

@@ -12,6 +12,9 @@ import CustomProfilePopup from '@apexapp/components/elements/CustomProfilePopup'
 import CustomProfilePopup1 from '@apexapp/components/elements/CustomProfilePopup/index1';
 import CustomProfilePopup2 from '@apexapp/components/elements/CustomProfilePopup/index2';
 import styles from '@styles/modules/Profile/Profile';
+import EditIcon from '@assets/images/Edit.svg';
+import ResetIcon from '@assets/images/Lock.svg';
+import LogoutIcon from '@assets/images/Logout.svg'
 
 const data = {
   name: 'Suman Panday',
@@ -80,6 +83,7 @@ const Profile = props => {
             title={'Edit info'}
             style={styles.button}
             color="white"
+            icon = {<EditIcon style={styles.icon} />}
           />
           <Modal
             transparent={true}
@@ -97,6 +101,7 @@ const Profile = props => {
             title={'Logout'}
             style={styles.button}
             color="white"
+            icon = {<LogoutIcon style={styles.icon} />}
           />
 
           <Modal
@@ -114,8 +119,9 @@ const Profile = props => {
             onPress={handlereset}
             // type="theme"
             title={'Reset password?'}
-            style={styles.button}
+            style={ styles.button }
             color="white"
+            icon = {<ResetIcon style={styles.icon} /> }
           />
 
           <Modal
