@@ -125,7 +125,7 @@ const Home = props => {
   const examsPracticeList = useSelector(state => state.homeReducer.examsPracticeList,);
   const coursesList = useSelector(state => state.homeReducer.coursesList);
 
-  const [ searchText, setSearchText ] = useState('')
+  const [searchText, setSearchText] = useState('')
 
   const CarouselRef = useRef(null);
 
@@ -150,18 +150,18 @@ const Home = props => {
     { title: "Practice" },
   ]
 
-  const searchHandler = ( value ) => {
+  const searchHandler = (value) => {
 
     setSearchText(value)
   }
 
-  
+
 
   const _renderItemWithParallax = ({ item, index }, parallaxProps) => {
     return (
       <>
-        
-        <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={()=>handleExamDetailsLink(item.id)} />
+
+        <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={() => handleExamDetailsLink(item.id)} />
       </>
     );
   };
@@ -186,7 +186,7 @@ const Home = props => {
             </Text>
           </View>
         </TouchableOpacity> */}
-                <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={()=>handleExamDetailsLink(item.id)} />
+        <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={() => handleExamDetailsLink(item.id)} />
 
       </>
     );
@@ -194,7 +194,8 @@ const Home = props => {
   const _renderItemWithParallax2 = ({ item, index }, parallaxProps) => {
     return (
       <>
-        {/* <View style={styles.cards}>
+        {/* {console.log(item)} */}
+        <View style={styles.cards}>
           <View style={styles.img}>
             <Image
               style={styles.image}
@@ -217,14 +218,14 @@ const Home = props => {
 
             <Text style={styles.data}>{item.data}</Text>
           </View>
-        </View> */}
-                <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={()=>handleExamDetailsLink(item.id)} />
+        </View>
+        {/* <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={() => handleExamDetailsLink(item.id)} /> */}
 
       </>
     );
   };
 
-  console.log(searchText,"search")
+  console.log(searchText, "search")
 
 
   return (
@@ -233,7 +234,7 @@ const Home = props => {
         <View styles={styles.navbar}>
           <NavBar navigation={props.navigation} value={searchText} searchHandler={searchHandler} />
         </View>
-        <ScrollView contentContainerStyle={{paddingBottom:180}} style={styles.scrollView}>
+        <ScrollView contentContainerStyle={{ paddingBottom: 180 }} style={styles.scrollView}>
           <View>
             <View style={styles.gap} />
             <View style={styles.txt}>

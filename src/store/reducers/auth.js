@@ -24,7 +24,8 @@ const authReducer = (state = initialState, action) => {
 
     case types.SET_REGISTER_NAME:
       return { ...state, usernameForVerify: action.payload };
-
+    case types.LOGOUT:
+      return { ...action.payload };
     default:
       return state;
 
