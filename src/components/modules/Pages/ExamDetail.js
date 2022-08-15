@@ -204,7 +204,7 @@ const ExamDetail = props => {
 
 
 
-      { examDetails.sessions.length > 0 && <View style={styles.enroll}>
+      {examDetails.sessions.length > 0 && <View style={styles.enroll}>
         <View style={styles.enroll0}>
           <Text style={styles.enroll1}>Get enrollment</Text>
           <Text style={styles.enroll2}>

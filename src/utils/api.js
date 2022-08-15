@@ -1,8 +1,8 @@
 import react from 'react';
 // import axios from 'axios';
 
-// export const apiBaseURL = 'http://d8d3-2400-1a00-b030-73b2-297b-5a8c-8575-43d7.ngrok.io/';
-export const apiBaseURL = 'https://apex.calcgen.com/';
+export const apiBaseURL = 'http://192.168.0.46:8000/';
+// export const apiBaseURL = 'https://apex.calcgen.com/';
 
 
 export const getSocketUrl = () => {

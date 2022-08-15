@@ -12,10 +12,14 @@ import { View, Image, Text, TouchableOpacity, AppState } from 'react-native';
 
 import CustomButton from '../CustomButton';
 import styles from '@styles/elements/CustomProfilePopup.scss';
+import { logout } from '@apexapp/store/actions/auth';
+import { useDispatch } from 'react-redux';
 
 const CustomProfilePopup = props => {
+
+  const dispatch = useDispatch()
   const handlelogout = () => {
-    props.navigation.navigate('');
+    dispatch(logout(props.navigation))
   };
 
   const closeModal = bool => {
