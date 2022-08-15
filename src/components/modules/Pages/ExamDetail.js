@@ -50,8 +50,12 @@ const data = [
   },
 ];
 
+
 const ExamDetail = props => {
   const { id } = props.route.params;
+  console.log(`url  ${getSocketUrl()}/clock/exam_${id}`);
+  var ws = React.useRef(new WebSocket(`${getSocketUrl()}/clock/exam_${id}`)).current;
+
 
   const [examId, setExamId] = useState(id)
 
@@ -59,7 +63,7 @@ const ExamDetail = props => {
     setExamId(id)
   }, [])
 
-  console.log(examId, "examid")
+  // console.log(examId, "examid")
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -69,7 +73,7 @@ const ExamDetail = props => {
   const examDetails = useSelector(state => state.examsReducer.examDetail);
   const auth = useSelector(state => state.authReducer);
   const result = useSelector(state => state.examsReducer.examResult);
-  // console.log("exam detail", examDetails, id);
+  console.log("exam detail", examDetails, id);
 
 
   useEffect(() => {
@@ -77,6 +81,28 @@ const ExamDetail = props => {
       dispatch(examResultsRequest(examDetails?.exam_enroll?.id, auth.access_token));
     }
   }, [examDetails]);
+
+  useEffect(() => {
+    ws.onopen = () => {
+      // connection opened
+      console.log("saaa")  // send a message
+    };
+
+    ws.onmessage = (e) => {
+      console.log("message", ex);
+    };
+
+    ws.onclose = (e) => {
+      console.log("close");
+    };
+    ws.onerror = (e) => {
+      console.log("error", e);
+    };
+
+    return () => {
+      ws.close();
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(examDetailRequest(examId));
@@ -126,7 +152,7 @@ const ExamDetail = props => {
     props.navigation.dispatch(CommonActions.goBack());
   };
 
-  console.log(examDetails.sessions, "detail")
+  // console.log(examDetails.sessions, "detail")
 
 
   return (

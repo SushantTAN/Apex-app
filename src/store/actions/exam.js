@@ -63,9 +63,9 @@ export const examsEnrollRequest = (data, token) => {
     try {
       // console.log("test enroll", data, token);
       const response = await POST('api/enrollments/create/', data, token);
-      console.log("enroll", response)
+      // console.log("enroll", response)
       const resJson = await response.json();
-      console.log("enroll", resJson)
+      // console.log("enroll", resJson)
       if (response.status === 200) {
         dispatch(examsFullList(resJson.results));
         dispatch(examDetailRequest(data.exam[0].exam));
@@ -187,7 +187,7 @@ export const examResultsRequest = (id, token) => {
       const response = await GET('api/enrollments/exam/result/' + id, token);
       // console.log(response)
       const resJson = await response.json();
-      console.log(resJson)
+      // console.log(resJson)
       if (response.status === 200) {
         dispatch(examResults(resJson));
 

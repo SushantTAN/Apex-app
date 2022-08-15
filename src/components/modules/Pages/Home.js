@@ -225,7 +225,7 @@ const Home = props => {
     );
   };
 
-  console.log(searchText, "search")
+  // console.log(searchText, "search")
 
 
   return (
@@ -287,7 +287,7 @@ const Home = props => {
           <View>
             <View style={styles.gap} />
 
-            <View style={styles.div}>
+            {/* <View style={styles.div}>
               <View style={styles.txt}>
                 <Text style={styles.p}>Practice exams</Text>
               </View>
@@ -331,7 +331,7 @@ const Home = props => {
                   color="#000000"
                 />
               </View>
-            </View>
+            </View> */}
           </View>
           <View style={styles.gap} />
 
@@ -343,7 +343,7 @@ const Home = props => {
 
               <View style={styles.div1}>
                 <View style={styles.textContainer}>
-                  <Carousel
+                  {/* <Carousel
                     ref={CarouselRefff}
                     data={coursesList.results}
                     renderItem={_renderItemWithParallax2}
@@ -365,7 +365,7 @@ const Home = props => {
                       carouselRef={CarouselRefff}
                       tappableDots={!!CarouselRefff}
                     />
-                  </View>
+                  </View> */}
                   <CustomButton
                     type="white"
                     title={'Explore all'}
