@@ -66,9 +66,25 @@ export const examsEnrollRequest = (data, token) => {
       // console.log("enroll", response)
       const resJson = await response.json();
       // console.log("enroll", resJson)
-      if (response.status === 200) {
+      if (response.status === 201) {
         dispatch(examsFullList(resJson.results));
-        dispatch(examDetailRequest(data.exam[0].exam));
+        dispatch(examDetailRequest(data.exams[0].exam));
+
+        // try {
+        //   const response = await GET('api/exams/retrieve/' + data.exams[0].exam);
+        //   console.log("exam detail request", response)
+
+        //   const resJson = await response.json();
+        //   // console.log("exam detail request", resJson)
+
+        //   if (response.status === 200) {
+        //     dispatch(examDetail(resJson));
+        //   }
+        //   if (response.status === 400) {
+        //   }
+        // } catch (error) {
+        //   console.log('err', error);
+        // }
       }
       if (response.status === 400) {
       }
@@ -89,10 +105,10 @@ export const examDetailRequest = (id) => {
   return async dispatch => {
     try {
       const response = await GET('api/exams/retrieve/' + id);
-      // console.log("exam detail request",response)
+      // console.log("exam detail request", response)
 
       const resJson = await response.json();
-      // console.log("exam detail request",resJson)
+      // console.log("exam detail request", resJson)
 
       if (response.status === 200) {
         dispatch(examDetail(resJson));

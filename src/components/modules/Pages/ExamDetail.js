@@ -39,22 +39,10 @@ import Tag from '@components/elements/Tag/index'
 import InfoBox from '@apexapp/components/elements/InfoBox';
 
 
-const data = [
-  {
-    id: 1,
-    title: 'Instruction number 1',
-  },
-  {
-    id: 2,
-    title: 'Instruction number 2',
-  },
-];
-
-
 const ExamDetail = props => {
   const { id } = props.route.params;
-  console.log(`url  ${getSocketUrl()}/clock/exam_${id}`);
-  var ws = React.useRef(new WebSocket(`${getSocketUrl()}/clock/exam_${id}`)).current;
+  // console.log(`url  ${getSocketUrl()}/clock/exam_${id}`);
+  var ws = React.useRef(new WebSocket(`${getSocketUrl()}/clock/exam_${id}/`)).current;
 
 
   const [examId, setExamId] = useState(id)
@@ -73,36 +61,88 @@ const ExamDetail = props => {
   const examDetails = useSelector(state => state.examsReducer.examDetail);
   const auth = useSelector(state => state.authReducer);
   const result = useSelector(state => state.examsReducer.examResult);
-  console.log("exam detail", examDetails, id);
+  // console.log("exam detail", examDetails, id);
 
 
   useEffect(() => {
-    if (examDetails?.sessions[0]?.status === 'resultsout') {
+    if (examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled) {
       dispatch(examResultsRequest(examDetails?.exam_enroll?.id, auth.access_token));
     }
   }, [examDetails]);
 
+  // useEffect(() => {
+  //   ws.onopen = () => {
+  //     // connection opened
+  //     console.log("open")  // send a message
+  //   };
+
+  //   ws.onmessage = async (e) => {
+  //     // console.log("message", e);
+
+  //     let data = await JSON.parse(e.data);
+  //     console.log("message", data);
+
+  //     if (data.status === 'in_progress') {
+  //       dispatch(examDetailRequest(examId));
+  //     }
+
+  //     if (data.session_status === true) {
+  //       dispatch(examDetailRequest(examId));
+  //     }
+  //   };
+
+  //   // ws.onclose = (e) => {
+  //   //   console.log("close");
+  //   // };
+  //   ws.onerror = (e) => {
+  //     console.log("error", e);
+  //   };
+
+  //   return () => {
+  //     ws.close();
+  //   }
+  // }, []);
+
   useEffect(() => {
-    ws.onopen = () => {
-      // connection opened
-      console.log("saaa")  // send a message
-    };
+    const subscribe = props.navigation.addListener('focus', () => {
+      ws.onopen = () => {
+        // connection opened
+        // console.log("open")  // send a message
+      };
 
-    ws.onmessage = (e) => {
-      console.log("message", ex);
-    };
+      ws.onmessage = async (e) => {
+        // console.log("message", e);
 
-    ws.onclose = (e) => {
-      console.log("close");
-    };
-    ws.onerror = (e) => {
-      console.log("error", e);
-    };
+        let data = await JSON.parse(e.data);
+        // console.log("message", data);
+
+        if (data.status === 'in_progress') {
+          dispatch(examDetailRequest(examId));
+        }
+
+        if (data.session_status === true) {
+          dispatch(examDetailRequest(examId));
+        }
+      };
+
+      ws.onclose = (e) => {
+        // console.log("close");
+      };
+      ws.onerror = (e) => {
+        console.log("error", e);
+      };
+    });
+
+
+    const unsubscribe = props.navigation.addListener('blur', () => {
+      ws.close();
+    });
 
     return () => {
-      ws.close();
-    }
-  }, []);
+      subscribe;
+      unsubscribe;
+    };
+  }, [props.navigation]);
 
   useEffect(() => {
     dispatch(examDetailRequest(examId));
