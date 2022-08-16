@@ -42,7 +42,12 @@ const initialState = {
 
 
   takeExamDetails: {
-    questions: []
+    questions: [],
+    exam_enroll: {
+      selected_session: {
+        end_date: '',
+      },
+    }
   },
 
 

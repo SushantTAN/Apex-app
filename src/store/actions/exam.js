@@ -63,28 +63,28 @@ export const examsEnrollRequest = (data, token) => {
     try {
       // console.log("test enroll", data, token);
       const response = await POST('api/enrollments/create/', data, token);
-      // console.log("enroll", response)
+      console.log("enroll", response)
       const resJson = await response.json();
-      // console.log("enroll", resJson)
+      console.log("enroll", resJson)
       if (response.status === 201) {
         dispatch(examsFullList(resJson.results));
         dispatch(examDetailRequest(data.exams[0].exam));
 
-        // try {
-        //   const response = await GET('api/exams/retrieve/' + data.exams[0].exam);
-        //   console.log("exam detail request", response)
+        try {
+          const response = await GET('api/exams/retrieve/' + data.exams[0].exam);
+          console.log("exam detail request", response)
 
-        //   const resJson = await response.json();
-        //   // console.log("exam detail request", resJson)
+          const resJson = await response.json();
+          // console.log("exam detail request", resJson)
 
-        //   if (response.status === 200) {
-        //     dispatch(examDetail(resJson));
-        //   }
-        //   if (response.status === 400) {
-        //   }
-        // } catch (error) {
-        //   console.log('err', error);
-        // }
+          if (response.status === 200) {
+            dispatch(examDetail(resJson));
+          }
+          if (response.status === 400) {
+          }
+        } catch (error) {
+          console.log('err', error);
+        }
       }
       if (response.status === 400) {
       }
@@ -105,10 +105,10 @@ export const examDetailRequest = (id) => {
   return async dispatch => {
     try {
       const response = await GET('api/exams/retrieve/' + id);
-      // console.log("exam detail request", response)
+      console.log("exam detail request", response)
 
       const resJson = await response.json();
-      // console.log("exam detail request", resJson)
+      console.log("exam detail request", resJson)
 
       if (response.status === 200) {
         dispatch(examDetail(resJson));
@@ -173,11 +173,11 @@ export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answ
 export const submitExam = (enrollId, data, token, navigate = () => { }) => {
   return async dispatch => {
     try {
-      // console.log("data", data);
+      console.log("data", data);
       const response = await PATCH('api/enrollments/exam/submit/' + enrollId.id, data, token);
-      // console.log("submit exma",response)
+      console.log("submit exma", response)
       const resJson = await response.json();
-      // console.log("submit exam",resJson)
+      console.log("submit exam", resJson)
       if (response.status === 200) {
         navigate('Home');
       }

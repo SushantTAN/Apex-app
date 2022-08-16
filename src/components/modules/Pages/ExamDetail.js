@@ -107,7 +107,7 @@ const ExamDetail = props => {
     const subscribe = props.navigation.addListener('focus', () => {
       ws.onopen = () => {
         // connection opened
-        // console.log("open")  // send a message
+        console.log("open")  // send a message
       };
 
       ws.onmessage = async (e) => {

@@ -101,7 +101,7 @@ const ExamResults = (props) => {
         navigation={props.navigation}
       // backnav="Exam"
       />
-      <View style={styles.overviewContainer}><Text>Overview</Text></View>
+      {/* <View style={styles.overviewContainer}><Text>Overview</Text></View> */}
     </View>
 
     <View style={styles.questionsContainer}>
