@@ -72,7 +72,7 @@ export const examsEnrollRequest = (data, token) => {
         dispatch(examDetailRequest(data.exams[0].exam));
 
         try {
-          const response = await GET('api/exams/retrieve/' + data.exams[0].exam);
+          const response = await GET('api/exams/retrieve/' + data.exams[0].exam) + '/';
           console.log("exam detail request", response)
 
           const resJson = await response.json();
@@ -106,7 +106,7 @@ export const examDetailRequest = (id) => {
   return async dispatch => {
     try {
       dispatch(setLoading(true));
-      const response = await GET('api/exams/retrieve/' + id);
+      const response = await GET('api/exams/retrieve/' + id + '/');
       // console.log("exam detail request", response)
 
       const resJson = await response.json();

@@ -65,7 +65,7 @@ const ExamDetail = props => {
 
 
   useEffect(() => {
-    if (examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled) {
+    if (examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled && examDetails.exam_enroll) {
       dispatch(examResultsRequest(examDetails?.exam_enroll?.id, auth.access_token));
     }
   }, [examDetails]);
@@ -233,13 +233,14 @@ const ExamDetail = props => {
               <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={examDetails.sessions.length > 1 ? 'Multiple session' : 'Single'} />
               <InfoBox icon={<MarksIcon style={{ color: "#fff" }} />} title="Full marks" desc={examDetails.template.full_marks} />
               <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Pass marks" desc={examDetails.template.pass_marks} />
-              {examDetails?.sessions[0]?.status === 'resultsout' &&
+              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled && examDetails.exam_enroll &&
                 <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Marks" desc={result.score ? result.score : 40} />
               }
-              {examDetails?.sessions[0]?.status === 'resultsout' &&
-                <InfoBox title="Result" desc={result.status} />
+              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled && examDetails.exam_enroll &&
+
+                <InfoBox title="Result" icon={<MarkIcon style={{ color: "#fff" }} />} desc={result.status} />
               }
-              {examDetails?.sessions[0]?.status === 'resultsout' &&
+              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled && examDetails.exam_enroll &&
                 <InfoBox icon={<RankIcon style={{ color: "#fff" }} />} title="Rank" desc={result.rank} />
               }
 
