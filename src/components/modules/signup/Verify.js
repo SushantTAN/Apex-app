@@ -5,7 +5,7 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Image, TouchableOpacity, Animated } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Animated, Alert } from 'react-native';
 
 import CustomTextInput from '@elements/CustomTextInput';
 import CustomButton from '@elements/CustomButton';
@@ -50,18 +50,34 @@ const Verify = props => {
   //   return subscribe;
   // }, []);
 
-  const onChangeHandler = (key, value, password) => {
-    setFormData(prevState => {
-      return {
-        ...prevState,
-        [key]: {
-          ...prevState[key],
-          value: value,
-          valid: validate(value, prevState[key].validationRules, password),
-          touched: true,
-        },
-      };
-    });
+  const onChangeHandler = (key, value) => {
+    try {
+      setFormData(prevState => {
+        return {
+          ...prevState,
+          [key]: {
+            ...prevState[key],
+            value: value,
+            // valid: validate(value, prevState[key].validationRules),
+            // touched: true,
+          },
+        };
+      });
+    } catch (e) {
+      Alert.alert(
+        "Alert Title",
+        e,
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ]
+      );
+    }
+
   };
   const blurHandler = key => {
     setFormData(prevState => {
@@ -119,10 +135,21 @@ const Verify = props => {
         {Object.values(formData).map((item, index) => (
           <CustomTextInput
             onChange={value => {
-              onChangeHandler(
-                item.elementConfig.name,
-                value,
-              );
+              // onChangeHandler(
+              //   item.elementConfig.name,
+              //   value,
+              // );
+              setFormData(prevState => {
+                return {
+                  ...prevState,
+                  [item.elementConfig.name]: {
+                    ...prevState[item.elementConfig.name],
+                    value: value,
+                    // valid: validate(value, prevState[key].validationRules),
+                    // touched: true,
+                  },
+                };
+              });
             }}
             placeholder={item.elementConfig.placeholder}
             // hidden={true}

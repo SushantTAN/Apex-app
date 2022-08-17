@@ -1,16 +1,16 @@
 import react from 'react';
 // import axios from 'axios';
 
-export const apiBaseURL = 'https://c916-27-34-9-136.ngrok.io/';
-export const socketURL = 'c916-27-34-9-136.ngrok.io';
+export const apiBaseURL = 'https://c3bb-27-34-9-136.ngrok.io/';
+export const socketURL = 'c3bb-27-34-9-136.ngrok.io';
 
 // export const apiBaseURL = 'https://apex.calcgen.com/';
 
 
 export const getSocketUrl = () => {
 
-  let socketUrl = `ws://${socketURL}/ws`;
-  // let socketUrl = `wss://${socketURL}/ws`;
+  // let socketUrl = `ws://${socketURL}/ws`;
+  let socketUrl = `wss://${socketURL}/ws`;
 
   if (process.env.NODE_ENV === 'production') {
     //     socketUrl = `wss://${process.env.NEXT_PUBLIC_API_URI}/ws`
