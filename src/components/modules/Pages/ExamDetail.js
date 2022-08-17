@@ -289,13 +289,26 @@ const ExamDetail = props => {
                 color="#ffffff"
               />
             ) : (
-              examDetails.sessions.length > 0 && <CustomButton
-                onPress={handleEnroll}
-                style={styles.CustomButton}
-                type="theme"
-                title={'Enroll now'}
-                color="#ffffff"
-              />
+
+              examDetails?.sessions[0]?.status === 'resultsout' ?
+                (
+                  examDetails.sessions.length > 0 && <CustomButton
+                    onPress={() => { }}
+                    style={[styles.CustomButton]}
+                    type={'disabled'}
+                    title={'Enroll'}
+                  // color="#ffffff"
+                  />) :
+                (
+                  <CustomButton
+                    onPress={handleEnroll}
+                    style={styles.CustomButton}
+                    type="theme"
+                    title={'Enroll now'}
+                    color="#ffffff"
+                  />
+
+                )
             )
           ) : (
             examDetails?.sessions[0]?.status === 'resultsout' ?

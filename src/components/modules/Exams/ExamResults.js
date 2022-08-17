@@ -152,20 +152,20 @@ const ExamResults = (props) => {
         </View>)
       }
       <View style={styles.buttonContainer}>
-        <CustomButton
+        {(page - perPage) >= 0 && <CustomButton
           style={{ marginRight: 16, flex: 1 }}
           type="theme"
           title={'Previous'}
           onPress={handlePrevious}
         // color="#000000"
-        />
-        <CustomButton
+        />}
+        {(page + perPage) < result.exam.questions.length && <CustomButton
           style={{ flex: 1 }}
           type="theme"
           title={'Next'}
           onPress={handleNext}
         // color="#000000"
-        />
+        />}
       </View>
     </View>
 
