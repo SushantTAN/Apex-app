@@ -10,11 +10,11 @@ const initialState = {
     },
 
     duration: "",
+
     courseDetail: {
         sessions:
             [],
-
-
+        enrollment_count: {},
 
 
         notes: {
