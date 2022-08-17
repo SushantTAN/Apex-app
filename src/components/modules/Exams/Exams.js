@@ -106,7 +106,7 @@ const TakeExams = props => {
 
         let diff = Math.floor((endTime - currentTime) / 1000);
 
-        console.log("aaaa", diff, currentTime, endTime);
+        // console.log("aaaa", diff, currentTime, endTime);
 
         let test = new Date(diff * 1000).toISOString().slice(11, 19);
 
@@ -160,7 +160,7 @@ const TakeExams = props => {
   return (
     <>
       <ScrollView stickyHeaderIndices={[0]} style={styles.maincontainer} >
-        {console.log("answers", answers)}
+        {/* {console.log("answers", answers)} */}
         <View style={styles.main}>
           <HeaderSearch
             title={details.name}

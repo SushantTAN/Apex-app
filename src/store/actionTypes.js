@@ -17,3 +17,6 @@ export const SET_EXAM_DETAILS = 'SET_EXAM_DETAILS';
 export const SET_TAKE_EXAM_DETAILS = 'SET_TAKE_EXAM_DETAILS';
 export const SET_EXAM_RESULT = 'SET_EXAM_RESULT';
 export const SUBMIT_EXAM = 'SUBMIT_EXAM';
+
+//Loading
+export const SET_LOADING = 'SET_LOADING';

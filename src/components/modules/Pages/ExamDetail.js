@@ -61,7 +61,7 @@ const ExamDetail = props => {
   const examDetails = useSelector(state => state.examsReducer.examDetail);
   const auth = useSelector(state => state.authReducer);
   const result = useSelector(state => state.examsReducer.examResult);
-  // console.log("exam detail", examDetails, id);
+  console.log("exam detail", examDetails, id);
 
 
   useEffect(() => {
@@ -107,7 +107,7 @@ const ExamDetail = props => {
     const subscribe = props.navigation.addListener('focus', () => {
       ws.onopen = () => {
         // connection opened
-        console.log("open")  // send a message
+        // console.log("open")  // send a message
       };
 
       ws.onmessage = async (e) => {
@@ -290,7 +290,7 @@ const ExamDetail = props => {
               />
             ) : (
 
-              examDetails?.sessions[0]?.status === 'resultsout' ?
+              examDetails?.sessions[0]?.status === 'ended' ?
                 (
                   examDetails.sessions.length > 0 && <CustomButton
                     onPress={() => { }}
