@@ -8,7 +8,7 @@ export const courseList = data => {
     };
 };
 
-export const courseListRequest = (page_size, query, page) => {
+export const courseListRequest = () => {
     return async dispatch => {
         try {
 
@@ -26,3 +26,28 @@ export const courseListRequest = (page_size, query, page) => {
 
     };
 };
+
+export const courseDetail = data => {
+    return {
+        type: types.SET_COURSE_DETAILS,
+        payload: data,
+    };
+};
+
+export const courseDetailRequest = (id) => {
+    return async dispatch => {
+        try {
+            const response = await GET('api/courses/retrieve/' + id + '/')
+            console.log(response)
+            const resJson = await response.json();
+            console.log(resJson)
+            if (response.status === 200) {
+                dispatch(courseDetail(resJson));
+            }
+            if (response.status === 400) {
+            }
+        } catch (error) {
+            console.log('err', error);
+        }
+    }
+}

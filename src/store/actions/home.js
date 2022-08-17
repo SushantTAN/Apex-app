@@ -58,14 +58,14 @@ export const coursesEntrance = (data) => {
   };
 };
 
-export const coursesEntranceRequest = (query,page_size,page) => {
+export const coursesEntranceRequest = (query, page_size, page) => {
   return async (dispatch) => {
     try {
       let url;
-      const dataValue={
-          page_size:page_size?`&page_size=${1}`:'',
-          query:query?`&search=${query}`:'',
-          page:page?`&page=${1}`:'',
+      const dataValue = {
+        page_size: page_size ? `&page_size=${1}` : '',
+        query: query ? `&search=${query}` : '',
+        page: page ? `&page=${1}` : '',
       }
       url = `api/courses/list/?${dataValue.query}${dataValue.page}${dataValue.page_size}`
       const response = await GET('api/courses/list/');

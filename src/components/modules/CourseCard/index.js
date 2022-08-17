@@ -7,7 +7,9 @@ import Tag from '@components/elements/Tag';
 
 const CourseCard = (props) => {
 
-  const { name, tags, actionPress, date, numberOfEnroll } = props;
+  const { name, tags, actionPress, date, numberOfEnroll, sessions } = props;
+  console.log("asdas", sessions)
+
 
   return (
 
@@ -39,12 +41,20 @@ const CourseCard = (props) => {
 
           <View style={styles.tagContainer}>
             <DateIcon style={styles.icon} width={14} height={14} />
-            <Text style={styles.data}>{date}</Text>
+            {sessions.map((item, index) => {
+              return (
+                <Text
+                  key={index}
+                  style={styles.data}>{item.start_date.split('T')[0]}</Text>
+              )
+            })}
           </View>
 
           <View style={styles.tagContainer}>
             <UserIcon style={styles.icon} width={14} height={14} />
-            <Text style={styles.data}>{numberOfEnroll}</Text>
+
+            <Text style={styles.data}>{numberOfEnroll}  student enrolled</Text>
+
           </View>
 
         </View>

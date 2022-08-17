@@ -26,6 +26,7 @@ import BackIcon from '@assets/images/back.svg';
 import FilterIcon from '@assets/images/Filter.svg'
 import { useSelector, useDispatch } from 'react-redux';
 import { courseListRequest } from '@apexapp/store/actions/course';
+import { DrawerItemList } from '@react-navigation/drawer';
 
 
 let information = [
@@ -59,7 +60,7 @@ const data = [
 const Courses = props => {
 
   const handleArrow = id => {
-    props.navigation.navigate('CourseOverview', { test: id });
+    props.navigation.navigate('CourseOverview', { id: id });
   };
 
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ const Courses = props => {
     "Multiple Section",
   ]
 
-
+  // console.log("asdsf", courseList.results)
   return (
 
     <ScrollView contentContainerStyle={{ paddingBottom: 10 }} stickyHeaderIndices={[0]} style={styles.scrollView}>
@@ -83,12 +84,18 @@ const Courses = props => {
       <View style={styles.mainContainer}>
         <View style={styles.text}>
 
-          {console.log(courseList.result)}
+          {/* {console.log("courselist", courseList.result)} */}
 
           {courseList.results.map((item, index) => {
             return (
 
-              <CourseCard tags={courseCardInfo} actionPress={() => handleArrow(item.id)} date={"not found"} name={item.name} numberOfEnroll={"not found"} />
+              <CourseCard
+                key={index}
+                tags={courseCardInfo}
+                actionPress={() => handleArrow(item.id)}
+                sessions={item.sessions}
+                name={item.name}
+                numberOfEnroll={item.enrollment_count.course_enroll_count} />
 
             );
           })}

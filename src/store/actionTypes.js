@@ -20,4 +20,5 @@ export const SUBMIT_EXAM = 'SUBMIT_EXAM';
 
 //Course
 export const SET_COURSE_LIST = 'SET_COURSE_LIST';
+export const SET_COURSE_DETAILS = "SET_COURSE-DETAILS";
 

@@ -8,8 +8,25 @@ const initialState = {
         previous: null,
         results: [],
     },
-}
 
+    duration: "",
+    courseDetail: {
+        sessions:
+            [],
+
+
+
+
+        notes: {
+
+        },
+
+        physical_books: {
+
+        }
+    }
+
+}
 
 const courseReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -19,6 +36,11 @@ const courseReducer = (state = initialState, action) => {
                 courseList: action.payload
             };
 
+        case types.SET_COURSE_DETAILS:
+            return {
+                ...state,
+                courseDetail: action.payload
+            }
 
 
         default:
