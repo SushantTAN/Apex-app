@@ -78,7 +78,7 @@ const TakeExams = props => {
 
   const handleSubmit = () => {
     console.log("before function submit answers", answers);
-    dispatch(submitExam(details.exam_enroll, { ...answers }, auth.access_token, props.navigation.navigate))
+    dispatch(submitExam(details.exam_enroll, { ...answers }, auth.access_token, props.navigation.navigate, id))
   }
 
   useEffect(() => {

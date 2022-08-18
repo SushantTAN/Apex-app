@@ -73,7 +73,7 @@ export const examsEnrollRequest = (data, token) => {
 
         try {
           const response = await GET('api/exams/retrieve/' + data.exams[0].exam) + '/';
-          console.log("exam detail request", response)
+          // console.log("exam detail request", response)
 
           const resJson = await response.json();
           // console.log("exam detail request", resJson)
@@ -173,7 +173,7 @@ export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answ
   };
 };
 
-export const submitExam = (enrollId, data, token, navigate = () => { }) => {
+export const submitExam = (enrollId, data, token, navigate = () => { }, examId) => {
   return async dispatch => {
     try {
       // console.log("data", data);
@@ -182,7 +182,7 @@ export const submitExam = (enrollId, data, token, navigate = () => { }) => {
       const resJson = await response.json();
       // console.log("submit exam", resJson)
       if (response.status === 200) {
-        navigate('Home');
+        navigate('ExamDetail', { id: examId });
       }
       if (response.status === 400) {
       }
