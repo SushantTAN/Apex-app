@@ -65,6 +65,7 @@ const CourseOverview = props => {
   };
   console.log('fffg', courseDetails)
   console.log(courseDetails.sessions, "details")
+  console.log(courseDetails.image)
   return (
     <>
       <View style={{ flex: 1 }}>
@@ -86,7 +87,7 @@ const CourseOverview = props => {
             <View style={styles.img}>
               <Image
                 style={styles.image}
-                source={require('@assets/images/home.jpeg')}
+                source={{ uri: courseDetails.image }}
               />
             </View>
             <View>
@@ -169,30 +170,35 @@ const CourseOverview = props => {
           <View style={{ height: 100 }}></View>
         </ScrollView>
         <View style={styles.gap} />
-        <View style={styles.footer}>
-          <View style={styles.txt}>
-            <Text style={styles.p5}>Get enrollment</Text>
-            <Text style={styles.p4}>Enrolls leads you to payment.</Text>
-          </View>
-          <View>
-            <CustomButton
-              onPress={handleEnroll}
-              type="theme"
-              title={'Enroll now'}
-              style={styles.button}
-              color="white"
-            />
-            <Modal
-              transparent={true}
-              animationType="slide"
-              visible={isModalVisible}
-              nRequestClose={() => changeModalVisible(true)}>
-              <CustomSessionPopup1
-                navigation={props.navigation}
-                changeModalVisible={changeModalVisible} />
-            </Modal>
-          </View>
-        </View>
+        {courseDetails.sessions.length > 0 &&
+
+
+          <View style={styles.footer}>
+            <View style={styles.txt}>
+              <Text style={styles.p5}>Get enrollment</Text>
+              <Text style={styles.p4}>Enrolls leads you to payment.</Text>
+            </View>
+            <View>
+
+              <CustomButton
+                onPress={handleEnroll}
+                type="theme"
+                title={'Choose Session'}
+                style={styles.button}
+                color="white"
+              />
+
+              <Modal
+                transparent={true}
+                animationType="slide"
+                visible={isModalVisible}
+                nRequestClose={() => changeModalVisible(true)}>
+                <CustomSessionPopup1
+                  navigation={props.navigation}
+                  changeModalVisible={changeModalVisible} />
+              </Modal>
+            </View>
+          </View>}
       </View>
     </>
   );

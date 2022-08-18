@@ -8,22 +8,17 @@ const initialState = {
         previous: null,
         results: [],
     },
-
     duration: "",
 
     courseDetail: {
-        sessions:
-            [],
-        enrollment_count: {},
+        sessions: [],
+        enrollment_count: [],
 
 
-        notes: {
+        notes: {},
+        image: "",
 
-        },
-
-        physical_books: {
-
-        }
+        physical_books: {}
     }
 
 }

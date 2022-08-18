@@ -12,7 +12,6 @@ const CourseCard = (props) => {
 
 
   return (
-
     <TouchableOpacity
       onPress={actionPress}
       style={styles.cards}>
