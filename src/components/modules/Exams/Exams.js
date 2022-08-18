@@ -77,7 +77,7 @@ const TakeExams = props => {
   }
 
   const handleSubmit = () => {
-    // console.log("before function submit answers", answers);
+    console.log("before function submit answers", answers);
     dispatch(submitExam(details.exam_enroll, { ...answers }, auth.access_token, props.navigation.navigate, id, props.navigation))
   }
 
@@ -225,7 +225,7 @@ const TakeExams = props => {
                           // console.log("el", el.question)
                           return el.question === details?.questions[currentQuestion].id
                         });
-                        // console.log("findArray", findArray);
+                        console.log("findArray", findArray);
                         if (findArray) {
                           let itemIndex = 0;
                           tempAnswers.question_states.forEach((itemTemp, indexTemp) => {
@@ -253,6 +253,7 @@ const TakeExams = props => {
                       });
                     }}
                   />
+                  {console.log("answers,", answers)}
                   <Text style={styles.a}>{getIndex(index)}</Text>
 
                   <RenderHtml

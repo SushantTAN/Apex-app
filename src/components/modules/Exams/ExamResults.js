@@ -109,23 +109,24 @@ const ExamResults = (props) => {
     <View style={styles.questionsContainer}>
       <View style={styles.gap}></View>
       {
-        questionsInPage.map((question, questionIndex) => <>
+        questionsInPage.map((question, questionIndex) => <Fragment key={questionIndex}>
 
           <View key={questionIndex} style={styles.questionItem}>
 
-            <Text style={styles.index}>{questionIndex + 1}.</Text>
-            <Image
-              style={[
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={styles.index}>{questionIndex + 1}.</Text>
+              {question.img && <Image
+                style={{ height: 80, width: 80 }}
+                source={{ uri: question.img }}
+              />}
 
-              ]}
-              source={{ uri: question.img }}
-            />
 
-            <RenderHTML
-              contentWidth={width}
-              baseStyle={styles.question}
-              source={{ html: question.detail }}
-            />
+              <RenderHTML
+                contentWidth={width}
+                baseStyle={styles.question}
+                source={{ html: question.detail }}
+              />
+            </View>
 
             {question.options.map((option, optionIndex) => <View key={optionIndex} style={getOptionColor(question, option)[1]}>
               <RadioButton
@@ -158,7 +159,7 @@ const ExamResults = (props) => {
 
           </View>
           <View style={styles.gap}></View>
-        </>)
+        </Fragment>)
       }
       <View style={styles.buttonContainer}>
         {(page - perPage) >= 0 && <CustomButton

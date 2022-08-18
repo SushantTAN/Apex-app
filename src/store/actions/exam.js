@@ -4,6 +4,7 @@ import { setLoading } from './loading';
 import { setSuccessMsg } from './popup';
 
 import { CommonActions, StackActions } from '@react-navigation/native';
+import { Alert } from 'react-native';
 
 export const examsList = data => {
   return {
@@ -197,6 +198,19 @@ export const submitExam = (enrollId, data, token, navigate = () => { }, examId, 
 
       }
       if (response.status === 400) {
+
+        Alert.alert(
+          "Error",
+          "An error occured wile submitting the exam, but dont worry your checkpoints have been set.",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ]
+        );
       }
     } catch (error) {
       console.log('err', error);
