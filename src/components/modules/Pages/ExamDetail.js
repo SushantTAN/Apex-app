@@ -61,7 +61,7 @@ const ExamDetail = props => {
   const examDetails = useSelector(state => state.examsReducer.examDetail);
   const auth = useSelector(state => state.authReducer);
   const result = useSelector(state => state.examsReducer.examResult);
-  // console.log("exam detail", examDetails, id);
+  console.log("exam detail", examDetails, id);
 
 
   useEffect(() => {
@@ -279,12 +279,28 @@ const ExamDetail = props => {
 
 
       {examDetails.sessions.length > 0 && <View style={styles.enroll}>
-        <View style={styles.enroll0}>
-          <Text style={styles.enroll1}>Get enrollment</Text>
-          <Text style={styles.enroll2}>
-            On clicking Enroll now leads you exam session page
-          </Text>
-        </View>
+        {examDetails.is_enrolled ? (examDetails.exam_enroll ?
+          (<View style={styles.enroll0}>
+            <Text style={styles.enroll1}>Results Out</Text>
+            <Text style={styles.enroll2}>
+              Result Details will become active after results are out.
+            </Text>
+          </View>)
+          : (<View style={styles.enroll0}>
+            <Text style={styles.enroll1}>Take the exam</Text>
+            <Text style={styles.enroll2}>
+              Click Take Exam after it becomes active.
+            </Text>
+          </View>))
+          : <View style={styles.enroll0}>
+            <Text style={styles.enroll1}>Get enrollment</Text>
+            <Text style={styles.enroll2}>
+              On clicking Enroll now leads you exam session page
+            </Text>
+          </View>}
+
+
+
         {/* {console.log('enroll check in render', examDetails.is_enrolled)} */}
         <View style={styles.buttons}>
           {!examDetails.is_enrolled ? (
