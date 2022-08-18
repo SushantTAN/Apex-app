@@ -3,7 +3,7 @@ import * as types from '../actionTypes';
 import { setLoading } from './loading';
 import { setSuccessMsg } from './popup';
 
-import { CommonActions } from '@react-navigation/native';
+import { CommonActions, StackActions } from '@react-navigation/native';
 
 export const examsList = data => {
   return {
@@ -188,8 +188,12 @@ export const submitExam = (enrollId, data, token, navigate = () => { }, examId, 
         if (data.submitted) {
           dispatch(setSuccessMsg('Test has been submitted'));
         }
-        navigate('ExamDetail', { id: examId });
+        // navigate('ExamDetail', { id: examId });
         // navigation.dispatch(CommonActions.goBack());
+
+        navigation.dispatch(
+          StackActions.replace('ExamDetail', { id: examId })
+        );
 
       }
       if (response.status === 400) {

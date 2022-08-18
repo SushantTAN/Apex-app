@@ -20,7 +20,10 @@ const TopBar = (props) => {
                 <View style={styles.topbarTextContainer}>
                     <View style={styles.topBarTextHeader} >
                         {backIcon &&
-                            <TouchableOpacity onPress={() => navigation.goBack()} >
+                            <TouchableOpacity onPress={() => navigation.goBack()} style={{
+                                paddingVertical: 5,
+                                paddingRight: 8,
+                            }}>
                                 {backIcon}
                             </TouchableOpacity>
 

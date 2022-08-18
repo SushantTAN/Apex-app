@@ -61,7 +61,7 @@ const Profile = props => {
         <Text style={styles.head}>Profile</Text>
         <View style={styles.gap} />
         <View style={styles.img}>
-          <Image source={require('@assets/images/tulogo.png')} />
+          <Image source={require('@assets/images/ProfileDefault.jpg')} style={{ width: 80, height: 80 }} />
 
           <View style={styles.txt}>
             <View>
@@ -81,7 +81,7 @@ const Profile = props => {
         </View>
         <View style={styles.gap} />
         <View style={styles.buttons}>
-          <CustomButton
+          {/* <CustomButton
             onPress={handleEditInfo}
             // type="theme"
             title={'Edit info'}
@@ -98,7 +98,7 @@ const Profile = props => {
               data={data}
               changeModalVisible2={changeModalVisible2}
             />
-          </Modal>
+          </Modal> */}
           <CustomButton
             onPress={handlelogout}
             // type="theme"

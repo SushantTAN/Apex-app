@@ -13,7 +13,8 @@ import {
   Modal,
   Dimensions,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  BackHandler
 } from 'react-native';
 
 import { CommonActions, StackActions } from '@react-navigation/native';
@@ -118,7 +119,7 @@ const ExamDetail = props => {
         // console.log("message", e);
 
         let data = await JSON.parse(e.data);
-        console.log("message", data);
+        // console.log("message", data);
 
         if (data.status === 'in_progress') {
           dispatch(examDetailRequest(examId));
@@ -151,9 +152,17 @@ const ExamDetail = props => {
   useEffect(() => {
     dispatch(examDetailRequest(examId));
 
+    // BackHandler.addEventListener("hardwareBackPress", () => {
+    //   props.navigation.navigate('Home');
+    // });
+
     const subscribe = props.navigation.addListener('focus', () => {
       dispatch(examDetailRequest(examId));
       setIsModalVisible(false);
+      // BackHandler.addEventListener("hardwareBackPress", () => {
+      //   props.navigation.navigate('Home');
+      // });
+
     });
 
     return subscribe;
