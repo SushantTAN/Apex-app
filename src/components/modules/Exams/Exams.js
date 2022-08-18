@@ -99,7 +99,8 @@ const TakeExams = props => {
     var timer;
 
     if (details.exam_enroll.selected_session.end_date !== '') {
-      let endTime = new Date(details.exam_enroll.selected_session.end_date).getTime();
+      let endTime = (new Date(details.exam_enroll.selected_session.end_date).getTime() - 1000 * 30);
+      // console.log(endTime - 1000 * 30);
 
       timer = setInterval(() => {
         let currentTime = new Date().getTime();
@@ -183,22 +184,25 @@ const TakeExams = props => {
               <View style={styles.img}>
                 <Text style={styles.num}>{currentQuestion + 1}.</Text>
 
-                <Image
-                  style={styles.image}
-                  source={{ uri: details?.questions[currentQuestion]?.img }}
-                />
-              </View>
-              <View style={styles.txt}>
-                {/* <HTML html={'<p>test test</p>'} /> */}
-                {/* <HTMLView value='<p>cjasgvcgasdvcga</p>' /> */}
-                <RenderHtml
-                  contentWidth={width}
-                  baseStyle={styles.text}
-                  source={{ html: details?.questions[currentQuestion]?.detail }}
-                />
+                <View>
+                  <Image
+                    style={styles.image}
+                    source={{ uri: details?.questions[currentQuestion]?.img }}
+                  />
+                  <View style={styles.txt}>
+                    {/* <HTML html={'<p>test test</p>'} /> */}
+                    {/* <HTMLView value='<p>cjasgvcgasdvcga</p>' /> */}
+                    <RenderHtml
+                      contentWidth={width}
+                      baseStyle={styles.text}
+                      source={{ html: details?.questions[currentQuestion]?.detail }}
+                    />
 
-                {/* <Text style={styles.text}>{details?.questions[currentQuestion]?.detail}</Text> */}
+                    {/* <Text style={styles.text}>{details?.questions[currentQuestion]?.detail}</Text> */}
+                  </View>
+                </View>
               </View>
+
               {
                 details?.questions[currentQuestion]?.options.map((item, index) => <View key={index} style={styles.txt1}>
                   <RadioButton
@@ -260,7 +264,7 @@ const TakeExams = props => {
                 </View>
                 )}
 
-              <Text style={styles.hint}>SHOW HINTS</Text>
+              {/* <Text style={styles.hint}>SHOW HINTS</Text> */}
             </Fragment>
 
           </View>
