@@ -20,3 +20,6 @@ export const SUBMIT_EXAM = 'SUBMIT_EXAM';
 
 //Loading
 export const SET_LOADING = 'SET_LOADING';
+
+//Popup
+export const SET_SUCCESS_POPUP = 'SET_SUCCESS_POPUP';

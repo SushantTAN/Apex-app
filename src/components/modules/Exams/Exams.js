@@ -63,7 +63,7 @@ const TakeExams = props => {
   const details = useSelector(state => state.examsReducer.takeExamDetails);
   const auth = useSelector(state => state.authReducer);
   const dispatch = useDispatch();
-  console.log("taking exams page,", details)
+  // console.log("taking exams page,", details)
 
 
   const checklistInit = (list) => {
@@ -77,8 +77,8 @@ const TakeExams = props => {
   }
 
   const handleSubmit = () => {
-    console.log("before function submit answers", answers);
-    dispatch(submitExam(details.exam_enroll, { ...answers }, auth.access_token, props.navigation.navigate, id))
+    // console.log("before function submit answers", answers);
+    dispatch(submitExam(details.exam_enroll, { ...answers }, auth.access_token, props.navigation.navigate, id, props.navigation))
   }
 
   useEffect(() => {

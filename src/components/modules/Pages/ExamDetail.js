@@ -16,7 +16,7 @@ import {
   RefreshControl
 } from 'react-native';
 
-import { CommonActions } from '@react-navigation/native';
+import { CommonActions, StackActions } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CustomButton from '@apexapp/components/elements/CustomButton';
@@ -104,17 +104,21 @@ const ExamDetail = props => {
   // }, []);
 
   useEffect(() => {
+    // ws.onopen = () => {
+    //   // connection opened
+    //   console.log("open")  // send a message
+    // };
     const subscribe = props.navigation.addListener('focus', () => {
       ws.onopen = () => {
         // connection opened
-        // console.log("open")  // send a message
+        console.log("open")  // send a message
       };
 
       ws.onmessage = async (e) => {
         // console.log("message", e);
 
         let data = await JSON.parse(e.data);
-        // console.log("message", data);
+        console.log("message", data);
 
         if (data.status === 'in_progress') {
           dispatch(examDetailRequest(examId));
@@ -126,7 +130,7 @@ const ExamDetail = props => {
       };
 
       ws.onclose = (e) => {
-        // console.log("close");
+        console.log("close");
       };
       ws.onerror = (e) => {
         console.log("error", e);
@@ -181,7 +185,10 @@ const ExamDetail = props => {
   };
 
   const handleTakeExam = (id, enrollId, sessionId) => {
-    props.navigation.navigate('TakeExams', { id: id, enrollId: enrollId });
+    // props.navigation.navigate('TakeExams', { id: id, enrollId: enrollId });
+    props.navigation.dispatch(
+      StackActions.replace('TakeExams', { id: id, enrollId: enrollId })
+    );
   }
 
   const handleViewResults = (enrollId) => {

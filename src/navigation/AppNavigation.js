@@ -24,6 +24,7 @@ import SignUpRouter from './signup';
 import SignInRouter from './signin';
 import { store } from '@apexapp/store/store';
 import Walkthrough from '@screens/walkthrough';
+import SuccessPopup from '@apexapp/components/elements/SuccessPopup/SuccessPopup';
 
 
 export const MyStack = createNativeStackNavigator();
@@ -54,6 +55,7 @@ const MainRouter = () => {
         </MyStack.Navigator>
 
         <LoadingScreen />
+        <SuccessPopup />
       </NavigationContainer>
     </Provider>
   );

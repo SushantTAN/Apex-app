@@ -1,6 +1,9 @@
 import { GET, PATCH, POST } from '@utils/api';
 import * as types from '../actionTypes';
 import { setLoading } from './loading';
+import { setSuccessMsg } from './popup';
+
+import { CommonActions } from '@react-navigation/native';
 
 export const examsList = data => {
   return {
@@ -173,7 +176,7 @@ export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answ
   };
 };
 
-export const submitExam = (enrollId, data, token, navigate = () => { }, examId) => {
+export const submitExam = (enrollId, data, token, navigate = () => { }, examId, navigation) => {
   return async dispatch => {
     try {
       // console.log("data", data);
@@ -182,7 +185,12 @@ export const submitExam = (enrollId, data, token, navigate = () => { }, examId) 
       const resJson = await response.json();
       // console.log("submit exam", resJson)
       if (response.status === 200) {
+        if (data.submitted) {
+          dispatch(setSuccessMsg('Test has been submitted'));
+        }
         navigate('ExamDetail', { id: examId });
+        // navigation.dispatch(CommonActions.goBack());
+
       }
       if (response.status === 400) {
       }

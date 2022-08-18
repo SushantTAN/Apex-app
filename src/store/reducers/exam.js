@@ -52,7 +52,9 @@ const initialState = {
 
 
   examResult: {
-
+    exam: {
+      questions: []
+    }
   },
 
 }
