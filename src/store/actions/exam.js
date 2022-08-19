@@ -147,7 +147,7 @@ export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answ
         checklistInit(resJson.questions);
 
         try {
-          const response2 = await GET('api/enrollments/exam/checkpoint/' + resJson.exam_enroll.id, token);
+          const response2 = await GET('api/enrollments/exam/checkpoint/' + resJson.exam_enroll.id + '/', token);
           // console.log("exam checkpoint", response2)
 
           const resJson2 = await response2.json();
