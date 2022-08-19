@@ -109,7 +109,7 @@ const ExamResults = (props) => {
     <View style={styles.questionsContainer}>
       <View style={styles.gap}></View>
       {
-        questionsInPage.map((question, questionIndex) => <Fragment key={questionIndex}>
+        questionsInPage.map((question, questionIndex) => <React.Fragment key={questionIndex}>
 
           <View key={questionIndex} style={styles.questionItem}>
 
@@ -159,7 +159,7 @@ const ExamResults = (props) => {
 
           </View>
           <View style={styles.gap}></View>
-        </Fragment>)
+        </React.Fragment>)
       }
       <View style={styles.buttonContainer}>
         {(page - perPage) >= 0 && <CustomButton
