@@ -26,6 +26,9 @@ import ActiveCoursesIcon from '@assets/images/activeCourses.svg'
 import NotificationIcon from '@assets/images/Notification.svg'
 import ProfileIcon from '@assets//images/User.svg'
 import ActiveProfileIcon from '@assets//images/activeUser.svg'
+import TopBar from '@components/elements/TopBar';
+import DateIcon from '@assets/images/date.svg';
+import BackIcon from '@assets/images/back.svg';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -110,7 +113,12 @@ const BottomTabs = props => {
 };
 
 const TabTest = () => {
-  return <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text>;
+  return <>
+    <TopBar title="Notifications" backIcon={<BackIcon />} search={false} />
+    <View style={{ justifyContent: 'center', height: '100%', width: '100%', alignItems: 'center' }}>
+      <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16, }}>No notifications</Text>
+    </View>
+  </>;
 };
 
 const styles = StyleSheet.create({

@@ -340,7 +340,15 @@ const Home = props => {
                     style={styles.button}
                     color="#000000"
                   /> */}
-                  <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text>
+                  <Image
+                    style={{
+                      margin: 16,
+                      width: WIDTH - 32,
+                      borderRadius: 8
+                    }}
+                    source={require("@assets/images/entrance.png")}
+                  />
+                  {/* <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text> */}
                 </View>
               </View>
             </View>
@@ -385,7 +393,15 @@ const Home = props => {
                     style={styles.button}
                     color="#000000"
                   /> */}
-                  <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text>
+                  <Image
+                    style={{
+                      margin: 16,
+                      width: WIDTH - 32,
+                      borderRadius: 8
+                    }}
+                    source={require("@assets/images/loksewa.png")}
+                  />
+                  {/* <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text> */}
                 </View>
               </View>
             </View>
