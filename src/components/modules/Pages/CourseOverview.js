@@ -170,9 +170,8 @@ const CourseOverview = props => {
           <View style={{ height: 100 }}></View>
         </ScrollView>
         <View style={styles.gap} />
+
         {courseDetails.sessions.length > 0 &&
-
-
           <View style={styles.footer}>
             <View style={styles.txt}>
               <Text style={styles.p5}>Get enrollment</Text>

@@ -7,8 +7,9 @@ import Tag from '@components/elements/Tag';
 
 const CourseCard = (props) => {
 
-  const { name, tags, actionPress, date, numberOfEnroll, sessions } = props;
-  console.log("asdas", sessions)
+  const { name, tags, actionPress, image, date, numberOfEnroll, sessions } = props;
+  console.log("hi", sessions)
+  console.log("hello", image)
 
 
   return (
@@ -19,7 +20,7 @@ const CourseCard = (props) => {
         <Image
           style={styles.image}
           resizeMode="contain"
-          source={require('@assets/images/course.png')}
+          source={{ uri: image }}
         />
       </View>
       <View style={styles.cardContainer}>
