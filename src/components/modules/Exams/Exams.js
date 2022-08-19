@@ -253,7 +253,7 @@ const TakeExams = props => {
                       });
                     }}
                   />
-                  {console.log("answers,", answers)}
+                  {/* {console.log("answers,", answers)} */}
                   <Text style={styles.a}>{getIndex(index)}</Text>
 
                   <RenderHtml
@@ -299,11 +299,11 @@ const TakeExams = props => {
             onPress={async () => {
               if (currentQuestion + 1 <= details.questions.length) {
                 try {
-                  // console.log("data", data);
+                  // console.log("data", { ...answers, submitted: false });
                   const response = await PATCH('api/enrollments/exam/submit/' + details.exam_enroll.id, { ...answers, submitted: false }, auth.access_token);
-                  // console.log("submit exma",response)
+                  // console.log("submit exma", response)
                   const resJson = await response.json();
-                  // console.log("submit exam",resJson)
+                  // console.log("submit exam", resJson)
                   if (response.status === 200) {
 
                   }
