@@ -1,5 +1,10 @@
 import { GET, PATCH, POST } from '@utils/api';
 import * as types from '../actionTypes';
+import { setLoading } from './loading';
+import { setSuccessMsg } from './popup';
+
+import { CommonActions, StackActions } from '@react-navigation/native';
+import { Alert } from 'react-native';
 
 export const examsList = data => {
   return {
@@ -63,12 +68,28 @@ export const examsEnrollRequest = (data, token) => {
     try {
       // console.log("test enroll", data, token);
       const response = await POST('api/enrollments/create/', data, token);
-      console.log("enroll", response)
+      // console.log("enroll", response)
       const resJson = await response.json();
-      console.log("enroll", resJson)
-      if (response.status === 200) {
+      // console.log("enroll", resJson)
+      if (response.status === 201) {
         dispatch(examsFullList(resJson.results));
-        dispatch(examDetailRequest(data.exam[0].exam));
+        dispatch(examDetailRequest(data.exams[0].exam));
+
+        try {
+          const response = await GET('api/exams/retrieve/' + data.exams[0].exam) + '/';
+          // console.log("exam detail request", response)
+
+          const resJson = await response.json();
+          // console.log("exam detail request", resJson)
+
+          if (response.status === 200) {
+            dispatch(examDetail(resJson));
+          }
+          if (response.status === 400) {
+          }
+        } catch (error) {
+          console.log('err', error);
+        }
       }
       if (response.status === 400) {
       }
@@ -88,11 +109,12 @@ export const examDetail = data => {
 export const examDetailRequest = (id) => {
   return async dispatch => {
     try {
-      const response = await GET('api/exams/retrieve/' + id);
-      // console.log("exam detail request",response)
+      dispatch(setLoading(true));
+      const response = await GET('api/exams/retrieve/' + id + '/');
+      // console.log("exam detail request", response)
 
       const resJson = await response.json();
-      // console.log("exam detail request",resJson)
+      // console.log("exam detail request", resJson)
 
       if (response.status === 200) {
         dispatch(examDetail(resJson));
@@ -102,6 +124,7 @@ export const examDetailRequest = (id) => {
     } catch (error) {
       console.log('err', error);
     }
+    dispatch(setLoading(false));
   };
 };
 
@@ -154,18 +177,40 @@ export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answ
   };
 };
 
-export const submitExam = (enrollId, data, token, navigate = () => { }) => {
+export const submitExam = (enrollId, data, token, navigate = () => { }, examId, navigation) => {
   return async dispatch => {
     try {
       // console.log("data", data);
       const response = await PATCH('api/enrollments/exam/submit/' + enrollId.id, data, token);
-      // console.log("submit exma",response)
+      // console.log("submit exma", response)
       const resJson = await response.json();
-      // console.log("submit exam",resJson)
+      // console.log("submit exam", resJson)
       if (response.status === 200) {
-        navigate('Home');
+        if (data.submitted) {
+          dispatch(setSuccessMsg('Test has been submitted'));
+        }
+        // navigate('ExamDetail', { id: examId });
+        // navigation.dispatch(CommonActions.goBack());
+
+        navigation.dispatch(
+          StackActions.replace('ExamDetail', { id: examId })
+        );
+
       }
       if (response.status === 400) {
+
+        Alert.alert(
+          "Error",
+          "An error occured wile submitting the exam, but dont worry your checkpoints have been set.",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ]
+        );
       }
     } catch (error) {
       console.log('err', error);
@@ -187,7 +232,7 @@ export const examResultsRequest = (id, token) => {
       const response = await GET('api/enrollments/exam/result/' + id, token);
       // console.log(response)
       const resJson = await response.json();
-      console.log(resJson)
+      // console.log(resJson)
       if (response.status === 200) {
         dispatch(examResults(resJson));
 

@@ -117,7 +117,7 @@ const logoutSuccess = () => {
 
 
 export const logout = (navigation) => {
-  console.log("logout")
+  // console.log("logout")
   return async dispatch => {
     const url = 'api/auth/logout/';
     const data = { token: '' };
@@ -125,7 +125,7 @@ export const logout = (navigation) => {
     try {
       const response = await POST('api/auth/logout/', data);
       const resJson = await response.json();
-      console.log(resJson, response);
+      // console.log(resJson, response);
       if (response.status === 200) {
         dispatch(logoutSuccess());
         await AsyncStorage.removeItem('apex-tokens');

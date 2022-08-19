@@ -8,24 +8,25 @@ import RenderHTML from "react-native-render-html";
 import HeaderSearch from "@components/elements/HeaderSearch/HeaderSearch";
 import styles from '@styles/modules/Exams/ExamResults.scss';
 import CustomButton from "@apexapp/components/elements/CustomButton";
+import ShowHints from "@apexapp/components/elements/ShowHints/ShowHints";
 
 
 const getIndex = (index) => {
   switch (index) {
     case 0:
-      return 'a.';
+      return 'a. ';
 
     case 1:
-      return 'b.';
+      return 'b. ';
 
     case 2:
-      return 'c.';
+      return 'c. ';
 
     case 3:
-      return 'd.';
+      return 'd. ';
 
     default:
-      return 'a.';
+      return 'a. ';
   }
 }
 
@@ -45,7 +46,7 @@ const ExamResults = (props) => {
 
 
   const handleNext = () => {
-    if ((page + perPage) < result.exam.questions.length) {
+    if ((page + perPage) < result?.exam?.questions?.length) {
       setPage(prevState => prevState + perPage);
     }
   }
@@ -101,71 +102,80 @@ const ExamResults = (props) => {
         navigation={props.navigation}
       // backnav="Exam"
       />
-      <View style={styles.overviewContainer}><Text>Overview</Text></View>
+      {/* <View style={styles.overviewContainer}><Text>Overview</Text></View> */}
     </View>
 
+
     <View style={styles.questionsContainer}>
-
+      <View style={styles.gap}></View>
       {
-        questionsInPage.map((question, questionIndex) => <View key={questionIndex}>
-          <Text style={styles.index}>{questionIndex + 1}.</Text>
-          <Image
-            style={[
+        questionsInPage.map((question, questionIndex) => <React.Fragment key={questionIndex}>
 
-            ]}
-            source={{ uri: question.img }}
-          />
+          <View key={questionIndex} style={styles.questionItem}>
 
-          <RenderHTML
-            contentWidth={width}
-            baseStyle={styles.question}
-            source={{ html: question.detail }}
-          />
-
-          {question.options.map((option, optionIndex) => <View key={optionIndex} style={getOptionColor(question, option)[1]}>
-            <RadioButton
-              color={getOptionColor(question, option)[0]}
-              style={styles.radio}
-              value={'test'}
-              status={['selected-true', 'selected-false', 'unselected-true'].includes(getSelectedTrue(question, option)) ? 'checked' : 'unchecked'}
-              onPress={() => { }}
-            />
-            {/* <Text style={styles.a}>{getIndex(optionIndex)}  </Text> */}
-            <RenderHTML
-              contentWidth={width}
-              baseStyle={styles.optionText}
-              source={{ html: `<p>${getIndex(optionIndex)}</p>` }}
-            />
-            <RenderHTML
-              contentWidth={width}
-              baseStyle={styles.optionText}
-              source={{ html: option.detail }}
-            />
-            {/* <Text>{option.detail}</Text> */}
-          </View>)}
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={styles.index}>{questionIndex + 1}.</Text>
+              {question.img && <Image
+                style={{ height: 80, width: 80 }}
+                source={{ uri: question.img }}
+              />}
 
 
+              <RenderHTML
+                contentWidth={width}
+                baseStyle={styles.question}
+                source={{ html: question.detail }}
+              />
+            </View>
+
+            {question.options.map((option, optionIndex) => <View key={optionIndex} style={getOptionColor(question, option)[1]}>
+              <RadioButton
+                color={getOptionColor(question, option)[0]}
+                style={styles.radio}
+                value={'test'}
+                status={['selected-true', 'selected-false', 'unselected-true'].includes(getSelectedTrue(question, option)) ? 'checked' : 'unchecked'}
+                onPress={() => { }}
+              />
+              {/* <Text style={styles.a}>{getIndex(optionIndex)}  </Text> */}
+              <RenderHTML
+                contentWidth={width}
+                baseStyle={styles.optionText}
+                source={{ html: `<p>${getIndex(optionIndex)}&nbsp;</p>` }}
+              />
+              <RenderHTML
+                contentWidth={width}
+                baseStyle={styles.optionText}
+                source={{ html: option.detail }}
+              />
+              {/* <Text>{option.detail}</Text> */}
+            </View>)}
+
+            <ShowHints data={question.feedback} />
 
 
 
 
-        </View>)
+
+
+          </View>
+          <View style={styles.gap}></View>
+        </React.Fragment>)
       }
       <View style={styles.buttonContainer}>
-        <CustomButton
+        {(page - perPage) >= 0 && <CustomButton
           style={{ marginRight: 16, flex: 1 }}
           type="theme"
           title={'Previous'}
           onPress={handlePrevious}
         // color="#000000"
-        />
-        <CustomButton
+        />}
+        {(page + perPage) < result?.exam?.questions?.length && <CustomButton
           style={{ flex: 1 }}
           type="theme"
           title={'Next'}
           onPress={handleNext}
         // color="#000000"
-        />
+        />}
       </View>
     </View>
 

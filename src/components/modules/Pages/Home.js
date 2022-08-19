@@ -12,6 +12,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
 
 import Carousel, { Pagination } from 'react-native-snap-carousel';
@@ -30,48 +31,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import ExamCard from '../ExamCard';
 import { examsFullListRequest, examsListRequest } from '@apexapp/store/actions/exam';
 
-const data2 = [
-  {
-    image: '',
-    main: 'IOM',
-    main1: 'Multiple Section',
-    info: 'Medical Entrance (ME-CEE) with multiple line ',
-    date: 'Starting on Feb ,2022 (4 month)',
-    data: '200+ students enrolled',
-  },
-  {
-    image: '',
-    main: 'IOM',
-    main1: 'Multiple Section',
-    info: 'Medical Entrance (ME-CEE) with multiple line',
-    date: 'Starting on Feb ,2022 (4 month)',
-    data: '200+ students enrolled',
-  },
-  {
-    image: '',
-    main: 'IOM',
-    main1: 'Multiple Section',
-    info: 'Medical Entrance (ME-CEE) with multiple line',
-    date: 'Starting on Feb ,2022 (4 month)',
-    data: '200+ students enrolled',
-  },
-  {
-    image: '',
-    main: 'IOM',
-    main1: 'Multiple Section',
-    info: 'Medical Entrance (ME-CEE) with multiple line',
-    date: 'Starting on Feb ,2022 (4 month)',
-    data: '200+ students enrolled',
-  },
-  {
-    image: '',
-    main: 'IOM',
-    main1: 'Multiple Section',
-    info: 'Medical Entrance (ME-CEE) with multiple line ',
-    date: 'Starting on Feb ,2022 (4 month)',
-    data: '200+ students enrolled',
-  },
-];
 
 const Home = props => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -125,14 +84,13 @@ const Home = props => {
   const examsPracticeList = useSelector(state => state.homeReducer.examsPracticeList,);
   const coursesList = useSelector(state => state.homeReducer.coursesList);
 
+  const [refreshing, setRefreshing] = useState(false);
+
   const [searchText, setSearchText] = useState('')
 
   const CarouselRef = useRef(null);
-
   const CarouselReff = useRef(null);
-
   const CarouselRefff = useRef(null);
-
   const CarouselReffff = useRef(null);
 
   useEffect(() => {
@@ -225,7 +183,15 @@ const Home = props => {
     );
   };
 
-  console.log(searchText, "search")
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await dispatch(examLiveRequest());
+    await dispatch(examPracticeRequest());
+    await dispatch(coursesEntranceRequest());
+    setRefreshing(false);
+  }
+
+  // console.log(searchText, "search")
 
 
   return (
@@ -234,7 +200,9 @@ const Home = props => {
         <View styles={styles.navbar}>
           <NavBar navigation={props.navigation} value={searchText} searchHandler={searchHandler} />
         </View>
-        <ScrollView contentContainerStyle={{ paddingBottom: 180 }} style={styles.scrollView}>
+        <ScrollView contentContainerStyle={{ paddingBottom: 180 }} style={styles.scrollView} refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
           <View>
             <View style={styles.gap} />
             <View style={styles.txt}>
@@ -287,7 +255,7 @@ const Home = props => {
           <View>
             <View style={styles.gap} />
 
-            <View style={styles.div}>
+            {/* <View style={styles.div}>
               <View style={styles.txt}>
                 <Text style={styles.p}>Practice exams</Text>
               </View>
@@ -331,7 +299,7 @@ const Home = props => {
                   color="#000000"
                 />
               </View>
-            </View>
+            </View> */}
           </View>
           <View style={styles.gap} />
 
@@ -343,7 +311,7 @@ const Home = props => {
 
               <View style={styles.div1}>
                 <View style={styles.textContainer}>
-                  <Carousel
+                  {/* <Carousel
                     ref={CarouselRefff}
                     data={coursesList.results}
                     renderItem={_renderItemWithParallax2}
@@ -365,7 +333,7 @@ const Home = props => {
                       carouselRef={CarouselRefff}
                       tappableDots={!!CarouselRefff}
                     />
-                  </View>
+                  </View> */}
                   <CustomButton
                     type="white"
                     title={'Explore all'}
