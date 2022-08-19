@@ -5,6 +5,7 @@ import examsReducer from './exam';
 import homeReducer from './home';
 import loadingReducer from './loading';
 import popupReducer from './popup';
+import courseReducer from './course';
 
 const rootReducer = combineReducers({
   authReducer,
@@ -12,6 +13,8 @@ const rootReducer = combineReducers({
   homeReducer,
   loadingReducer,
   popupReducer,
+  courseReducer,
+
 })
 
 export default rootReducer;

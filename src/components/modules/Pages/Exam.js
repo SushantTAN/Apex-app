@@ -108,7 +108,7 @@ const Exam = props => {
   // console.log('exam lis', examList);
 
   const handleArrow = () => {
-    props.navigation.navigate('Home');
+    props.navigation.navigate('Home');;
   };
 
   const handleFilter = () => {
@@ -131,7 +131,7 @@ const Exam = props => {
 
   return (
     <View style={styles.maincontainer}>
-      <TopBar filterHandler={handleFilter}  icon={<FilterIcon/>} backIcon={<BackIcon />} title="Exams" />
+      <TopBar filterHandler={handleFilter} icon={<FilterIcon />} backIcon={<BackIcon />} title="Exams" />
       {/* <View style={styles.filterDiv}>
         <TouchableOpacity onPress={handleArrow} style={styles.left}>
           <BackIcon/>
@@ -160,25 +160,26 @@ const Exam = props => {
       </View> */}
 
       <Modal
-          transparent={true}
-          animationType="slide"
-          visible={isModalVisible}
-          nRequestClose={() => changeModalVisible(false)}>
+        transparent={true}
+        animationType="slide"
+        visible={isModalVisible}
+        nRequestClose={() => changeModalVisible(false)}>
 
-          <CustomButtonPopup
-            changeModalVisible={changeModalVisible} />
-        </Modal>
+        <CustomButtonPopup
+          changeModalVisible={changeModalVisible} />
+      </Modal>
 
       <View style={styles.line}></View>
 
-      <ScrollView  nestedScrollEnabled={true} contentContainerStyle={{flexGrow:1,paddingBottom:370}}>
+      <ScrollView nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1, paddingBottom: 370 }}>
         <View >
           {examList.map((item, index) => {
             return (
+
               // <TouchableOpacity onPress={() => handleToDetail(item.id)} style={styles.main} key={index}>
               //   <View style={styles.card}>
               //     <View style={styles.icon}>
-              //       <NoteIcon style={styles.examIcon}/>
+              //       <NoteIcon style={styles.examIcon} />
               //     </View>
               //     <Text style={styles.title}>LIVE</Text>
               //     <Text style={styles.title1}>PRACTICE</Text>
@@ -189,7 +190,7 @@ const Exam = props => {
               //     <Text style={styles.amount}>{item.price}  {'\u2022'}  {item.template.duration} {'\u2022'} 2079-0-11 </Text>
               //   </View>
               // </TouchableOpacity>
-                      <ExamCard tags={examCardInfo} name={item.name} actionPress={()=>handleToDetail(item.id)} price={item.price} duration={item.template.duration} handleExamDetailsLink={()=>handleExamDetailsLink(item.id)} />
+              <ExamCard tags={examCardInfo} name={item.name} actionPress={() => handleToDetail(item.id)} price={item.price} duration={item.template.duration} handleExamDetailsLink={() => handleExamDetailsLink(item.id)} />
 
             );
           })}

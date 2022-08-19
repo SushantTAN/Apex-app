@@ -7,8 +7,8 @@ const Tag = (props) => {
     const { title } = props;
 
     let color = '';
-
-    switch (title.toLowerCase()) {
+    console.log(title)
+    switch (title) {
         case "live":
             color = "#F4777C"
             break;
@@ -29,6 +29,7 @@ const Tag = (props) => {
 
     return (
         <View style={{ ...styles.tagContainer, backgroundColor: color }} >
+            {console.log(title)}
             <Text style={styles.tag} > {props.title} </Text>
         </View>
     )
