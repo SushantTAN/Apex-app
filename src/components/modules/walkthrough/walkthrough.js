@@ -8,7 +8,7 @@ import React, { useEffect } from 'react';
 import { Image, Text, View, Animated } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
-
+import Mainlogo from '@assets/images/logo.svg'
 import styles from '@styles/modules/walkthrough.scss';
 import { useDispatch } from 'react-redux';
 import { login } from '@apexapp/store/actions/auth';
@@ -73,7 +73,7 @@ const Walkthrough = props => {
   return (
     <View style={styles.container}>
       {/* <Animated.View entering={FadeIn.delay(500).duration(700)} style={styles.test}> */}
-      <Animated.Image
+      <Animated.View
         style={[
           {
             transform: [
@@ -81,11 +81,14 @@ const Walkthrough = props => {
                 scale: startValue,
               },
             ],
+            // backgroundColor: 'white',
+            // padding: 6,
           },
         ]}
-        source={require('@assets/images/apexLogo.png')}
-      />
-      {/* </Animated.View> */}
+
+      >
+        <Mainlogo width={100} height={100} />
+      </Animated.View>
     </View>
   );
 };

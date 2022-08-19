@@ -37,7 +37,7 @@ export const courseDetail = data => {
 export const courseDetailRequest = (id) => {
     return async dispatch => {
         try {
-            const response = await GET('api/courses/retrieve/' + id + '/')
+            const response = await GET('api/courses/retrieve/before-enroll/' + id + '/')
             console.log(response)
             const resJson = await response.json();
             console.log(resJson)
