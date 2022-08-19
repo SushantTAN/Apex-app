@@ -9,7 +9,9 @@ import { View, Image, TouchableOpacity, Text } from 'react-native';
 
 import CustomButton from '@apexapp/components/elements/CustomButton';
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
+import TopBar from '@components/elements/TopBar';
 import styles from '@styles/modules/Pages/ExamPayment';
+import BackIcon from '@assets/images/back.svg';
 
 const data = [
   {
@@ -23,8 +25,8 @@ const ExamPaymentPage = props => {
   return (
     <>
       <View style={styles.maincontainer}>
-        <HeaderSearch title="Payments" navigation={props.navigation} />
-
+        {/* <HeaderSearch title="Payments" navigation={props.navigation} /> */}
+      <TopBar title="Payments" backIcon={<BackIcon/>} />
         <View style={styles.gap} />
 
         <View style={styles.text}>

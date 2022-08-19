@@ -11,79 +11,26 @@
    margin-left: 16px;
 }
 
-.card {
-   display: flex;
-   flex-direction: row;
-   justify-content: flex-start;
-   align-items: flex-start;
-   padding: 16px;
 
-}
 
 .pagiStyle {
    padding: 24px 0px 16px 0px;
 }
 
-.file {
-   padding: 18px;
-   border-radius: 5px;
-   padding-right: 16px;
-   background: #FFCB05;
-   margin-right: 20px;
-   padding-left: 16px;
-   padding-top: 18px;
-}
-
-.title {
-   @extend .title-bcr;
-   padding: 8px;
-   padding-right: 8px;
-   margin-right: 12px;
-   color: black;
-   border-radius: 5px;
-   @extend .p1;
-}
-
-.title1 {
-   @extend .title1-bcr;
-   padding: 8px 8px 8px;
-   color: black;
-   border-radius: 5px;
-   @extend .p1;
-}
-
-.text {
-   padding-left: 16px;
-   // width: 95%;
-   // height: 22px;
-   margin-left: 43px;
-   margin-bottom: 15px;
-   @extend .h5;
-   font-family: 'OpenSans-Bold';
 
 
-}
+
 
 .txt {
    font-family: 'Open Sans-serif';
    font-style: normal;
    font-weight: 600;
-   font-size: 19px;
-   line-height: 19px;
+   font-size: 20px;
+   line-height: 27px;
    color: black;
    padding-top: 16px;
 }
 
-.amount {
-   align-items: flex-end;
-   padding-right: 16px;
-   padding-left: 18px;
-
-   margin-left: 53px;
-   @extend .h6;
-   padding-bottom: 16px;
-
-}
 
 .button {
    @extend .button-bcr;
@@ -194,12 +141,7 @@
 
 }
 
-.cards {
-   @extend .card-bcr;
-   margin-right: 16px;
-   margin-left: 16px;
 
-}
 
 .navbar {
    margin-bottom: 8px;
@@ -211,3 +153,4 @@
    @extend .card-bcr;
 
 }
+

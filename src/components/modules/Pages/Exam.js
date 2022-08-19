@@ -17,13 +17,19 @@ import {
 
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
+import { CommonActions } from '@react-navigation/native';
 
 import CustomButton from '@apexapp/components/elements/CustomButton';
 import CustomButtonPopup from '@apexapp/components/elements/CustomButtonPopup';
 import CustomTextInput from '@apexapp/components/elements/CustomTextInput';
 import { examsFullListRequest } from '@apexapp/store/actions/exam';
+import NoteIcon from '@assets/images/note.svg';
 import styles from '@styles/modules/Pages/Exam';
-
+import SearchIcon from '@assets/images/Search.svg'
+import FilterIcon from '@assets/images/Filter.svg';
+import BackIcon from '@assets/images/back.svg';
+import ExamCard from '../ExamCard';
+import TopBar from '@elements/TopBar/index'
 
 let preparation = [
   {
@@ -102,7 +108,7 @@ const Exam = props => {
   // console.log('exam lis', examList);
 
   const handleArrow = () => {
-    props.navigation.navigate('Home');
+    props.navigation.navigate('Home');;
   };
 
   const handleFilter = () => {
@@ -117,27 +123,28 @@ const Exam = props => {
     dispatch(examsFullListRequest());
   }, []);
 
+  const examCardInfo = [
+    { title: "Live" },
+    { title: "Practice" },
+  ]
+
+
   return (
     <View style={styles.maincontainer}>
-      <View style={styles.filterDiv}>
+      <TopBar filterHandler={handleFilter} icon={<FilterIcon />} backIcon={<BackIcon />} title="Exams" />
+      {/* <View style={styles.filterDiv}>
         <TouchableOpacity onPress={handleArrow} style={styles.left}>
-          <Image source={require('@assets/images/leftArrow.png')} />
+          <BackIcon/>
           <Text style={styles.p}>Exams</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleFilter}>
-          <Image
-            style={styles.filter}
-            source={require('@assets/images/Filter.png')}
-          />
+         <FilterIcon/>
         </TouchableOpacity>
-      </View>
+      </View> */}
 
-      <View style={styles.searchandfilter}>
+      {/* <View style={styles.searchandfilter}>
         <TouchableOpacity style={styles.search}>
-          <Image
-            style={styles.searchicon}
-            source={require('@assets/images/search-interface-symbol.png')}
-          />
+        <SearchIcon/>
         </TouchableOpacity>
 
         <CustomTextInput
@@ -147,37 +154,44 @@ const Exam = props => {
           onChange={onChange}
           placeholder="Search here"
           color="#000000"
-        />
+        /> 
 
-        <Modal
-          transparent={true}
-          animationType="slide"
-          visible={isModalVisible}
-          nRequestClose={() => changeModalVisible(false)}>
+        
+      </View> */}
 
-          <CustomButtonPopup
-            changeModalVisible={changeModalVisible} />
-        </Modal>
-      </View>
+      <Modal
+        transparent={true}
+        animationType="slide"
+        visible={isModalVisible}
+        nRequestClose={() => changeModalVisible(false)}>
+
+        <CustomButtonPopup
+          changeModalVisible={changeModalVisible} />
+      </Modal>
 
       <View style={styles.line}></View>
 
-      <ScrollView nestedScrollEnabled={true}>
-        <View>
+      <ScrollView nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1, paddingBottom: 370 }}>
+        <View >
           {examList.map((item, index) => {
             return (
-              <TouchableOpacity onPress={() => handleToDetail(item.id)} style={styles.main} key={index}>
-                <View style={styles.card}>
-                  <Text style={styles.icon}>{item.icon}</Text>
-                  <Text style={styles.title}>LIVE</Text>
-                  <Text style={styles.title1}>PRACTICE</Text>
-                </View>
 
-                <View>
-                  <Text style={styles.text}>{item.name}</Text>
-                  <Text style={styles.amount}>{item.price}  {'\u2022'}  {item.template.duration}</Text>
-                </View>
-              </TouchableOpacity>
+              // <TouchableOpacity onPress={() => handleToDetail(item.id)} style={styles.main} key={index}>
+              //   <View style={styles.card}>
+              //     <View style={styles.icon}>
+              //       <NoteIcon style={styles.examIcon} />
+              //     </View>
+              //     <Text style={styles.title}>LIVE</Text>
+              //     <Text style={styles.title1}>PRACTICE</Text>
+              //   </View>
+
+              //   <View>
+              //     <Text style={styles.text}>{item.name}</Text>
+              //     <Text style={styles.amount}>{item.price}  {'\u2022'}  {item.template.duration} {'\u2022'} 2079-0-11 </Text>
+              //   </View>
+              // </TouchableOpacity>
+              <ExamCard tags={examCardInfo} name={item.name} actionPress={() => handleToDetail(item.id)} price={item.price} duration={item.template.duration} handleExamDetailsLink={() => handleExamDetailsLink(item.id)} />
+
             );
           })}
         </View>
@@ -189,7 +203,6 @@ const Exam = props => {
             style={styles.button}
           />
         </View>
-        <View style={{ height: Dimensions.get('window').height }}></View>
       </ScrollView>
     </View>
   );

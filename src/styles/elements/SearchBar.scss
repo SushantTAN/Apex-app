@@ -1,0 +1,23 @@
+.searchbar {
+    // margin-top: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #F8F8F8;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    // flex: 1;
+}
+
+.searchInput {
+    height: 40px;
+    // flex: 1;
+    padding: 0;
+    color: #000;
+    margin-left: 8px;
+    flex:1;
+    // color: red;
+    // background-color: red;
+    // border-width: 1px;
+}
+

@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import NoteIcon from '@assets/images/note.svg'
 
 import CustomButton from '@apexapp/components/elements/CustomButton';
 import {
@@ -26,6 +27,8 @@ import NavBar from '@apexapp/components/elements/Navbar/Navbar';
 import styles from '@styles/modules/Pages/Home.scss';
 import { WIDTH } from '@apexapp/utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
+import ExamCard from '../ExamCard';
+import { examsFullListRequest, examsListRequest } from '@apexapp/store/actions/exam';
 
 const data2 = [
   {
@@ -34,7 +37,7 @@ const data2 = [
     main1: 'Multiple Section',
     info: 'Medical Entrance (ME-CEE) with multiple line ',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
   {
     image: '',
@@ -42,7 +45,7 @@ const data2 = [
     main1: 'Multiple Section',
     info: 'Medical Entrance (ME-CEE) with multiple line',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
   {
     image: '',
@@ -50,7 +53,7 @@ const data2 = [
     main1: 'Multiple Section',
     info: 'Medical Entrance (ME-CEE) with multiple line',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
   {
     image: '',
@@ -58,7 +61,7 @@ const data2 = [
     main1: 'Multiple Section',
     info: 'Medical Entrance (ME-CEE) with multiple line',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
   {
     image: '',
@@ -66,7 +69,7 @@ const data2 = [
     main1: 'Multiple Section',
     info: 'Medical Entrance (ME-CEE) with multiple line ',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
 ];
 
@@ -122,6 +125,8 @@ const Home = props => {
   const examsPracticeList = useSelector(state => state.homeReducer.examsPracticeList,);
   const coursesList = useSelector(state => state.homeReducer.coursesList);
 
+  const [searchText, setSearchText] = useState('')
+
   const CarouselRef = useRef(null);
 
   const CarouselReff = useRef(null);
@@ -140,35 +145,34 @@ const Home = props => {
     props.navigation.navigate('ExamDetail', { id });
   };
 
+  const examCardInfo = [
+    { title: "Live" },
+    { title: "Practice" },
+  ]
+
+  const searchHandler = (value) => {
+
+    setSearchText(value)
+  }
+
+
+
   const _renderItemWithParallax = ({ item, index }, parallaxProps) => {
     return (
       <>
-        <TouchableOpacity activeOpacity={1} onPress={() => handleExamDetailsLink(item.id)} style={styles.cards}>
-          <View style={styles.card}>
-            <View style={styles.file}></View>
-            <Text style={styles.title}>LIVE </Text>
-            <Text style={styles.title1}>RBB </Text>
-          </View>
 
-          <View>
-            <Text style={styles.text}>{item.name}</Text>
-
-            <Text style={styles.amount}>
-              Rs. {item.price}
-              {' \u2022 '}
-              {item.template.duration}
-            </Text>
-          </View>
-        </TouchableOpacity>
+        <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={() => handleExamDetailsLink(item.id)} />
       </>
     );
   };
   const _renderItemWithParallax1 = ({ item, index }, parallaxProps) => {
     return (
       <>
-        <TouchableOpacity activeOpacity={1} onPress={handleExamDetailsLink} style={styles.cards}>
+        {/* <TouchableOpacity activeOpacity={1} onPress={handleExamDetailsLink} style={styles.cards}>
           <View style={styles.card}>
-            <View style={styles.file}></View>
+            <View style={styles.file}>
+            <NoteIcon style={styles.icon} />
+            </View>
 
             <Text style={styles.title1}>Practice </Text>
           </View>
@@ -181,13 +185,16 @@ const Home = props => {
               {' \u2022'} {item.template.duration}
             </Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={() => handleExamDetailsLink(item.id)} />
+
       </>
     );
   };
   const _renderItemWithParallax2 = ({ item, index }, parallaxProps) => {
     return (
       <>
+        {/* {console.log(item)} */}
         <View style={styles.cards}>
           <View style={styles.img}>
             <Image
@@ -212,17 +219,22 @@ const Home = props => {
             <Text style={styles.data}>{item.data}</Text>
           </View>
         </View>
+        {/* <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={() => handleExamDetailsLink(item.id)} /> */}
+
       </>
     );
   };
+
+  console.log(searchText, "search")
+
 
   return (
     <>
       <View style={styles.division}>
         <View styles={styles.navbar}>
-          <NavBar />
+          <NavBar navigation={props.navigation} value={searchText} searchHandler={searchHandler} />
         </View>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView contentContainerStyle={{ paddingBottom: 180 }} style={styles.scrollView}>
           <View>
             <View style={styles.gap} />
             <View style={styles.txt}>

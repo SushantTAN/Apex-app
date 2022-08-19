@@ -1,8 +1,12 @@
-@use "../library" as themes;
+@use '../library' as themes;
 @import '../common';
 
 .mainContainer {
-  margin: 6px 0px;
+  margin: 6px 0;
+  // margin-right: 32px;
+  // flex: 1;
+  // width: 100%;
+  // background-color: red;
 }
 
 .container {
@@ -10,8 +14,6 @@
   border-radius: 5px;
   // margin: 4px 0px;
   position: relative;
-
-
 }
 
 .errorContainer {
@@ -25,8 +27,6 @@
 
 .input {
   padding: 8px 24px;
-
-
 }
 
 .eye {
@@ -41,7 +41,6 @@
 
 .errorText {
   color: crimson;
-
 }
 
 .errorTexts {

@@ -19,6 +19,8 @@ import {
 
 import CustomButton from '../CustomButton';
 import styles from '@styles/elements/CustomSessionPopup1';
+import DateIcon from '@assets/images/date.svg';
+import { useSelector } from 'react-redux';
 
 const data = [
   {
@@ -31,8 +33,16 @@ const data = [
     date: 'Date',
     time: '29 Jan,2022',
   },
+  {
+    title1: 'Session 3',
+    date: 'Date',
+    time: '29 Jan,2022',
+  },
 ];
 const CustomSessionPopup1 = props => {
+
+
+  const courseDetails = useSelector(state => state.courseReducer.courseDetail);
 
   const handleEnroll = () => {
     props.navigation.navigate('CoursePayment');
@@ -44,7 +54,7 @@ const CustomSessionPopup1 = props => {
 
   return (
     <TouchableOpacity disabled={true} style={styles.container}>
-      <View style={styles.modal}>
+      <View style={{ ...styles.modal, backgroundColor: "#fff" }}>
         <View style={styles.flex1}>
           <Text style={styles.head}>Session</Text>
           <TouchableOpacity onPress={() => closeModal(false, 'Cancel')}>
@@ -54,15 +64,15 @@ const CustomSessionPopup1 = props => {
 
         <Text style={styles.line}></Text>
 
-        <ScrollView>
-          <View>
-            <Text style={styles.topic}>Choose course session</Text>
-            <Text style={styles.p}>
-              Choosing session will let you to particular session exam
-              enrollment
-            </Text>
-          </View>
+        <View style={styles.courseSessionContainer}>
+          <Text style={styles.topic}>Choose course session</Text>
+          <Text style={styles.p}>
+            Choosing session will let you to particular session exam
+            enrollment
+          </Text>
+        </View>
 
+        <ScrollView style={styles.sessionContainer}>
           <View style={styles.flex2}>
             {data.map((item, index) => {
               return (
@@ -71,14 +81,20 @@ const CustomSessionPopup1 = props => {
                     <Text style={styles.title1}>{item.title1}</Text>
                     <View style={styles.flex3}>
                       <View style={styles.iconback}>
-                        <Image
-                          style={styles.clockicon}
-                          source={require('@assets/images/Vecto.png')}
-                        />
+                        <DateIcon style={styles.sessionIcon} />
                       </View>
                       <View>
                         <Text style={styles.title2}>{item.date}</Text>
-                        <Text style={styles.time}>{item.time} pm</Text>
+
+                        {courseDetails.sessions.map((item, index) => {
+                          return (
+
+                            <Text
+                              key={index}
+                              style={styles.time}>{item.start_date.split('T')[0]} </Text>
+                          )
+                        })}
+
                       </View>
                     </View>
                   </View>

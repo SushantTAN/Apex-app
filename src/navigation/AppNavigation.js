@@ -17,6 +17,7 @@ import ExamRouter from './Home/Exam';
 import ExamDetailRouter from './Home/ExamDetail';
 import HomeRouter from './Home/Home';
 import OnBoarding from '@screens/onBoarding';
+import Search from '@screens/Search/Search';
 import ResetRouter from './ResetPassword/Reset';
 import SignUpRouter from './signup';
 import SignInRouter from './signin';
@@ -34,6 +35,7 @@ const MainRouter = () => {
           initialRouteName="Walkthrough">
           <MyStack.Screen name="Walkthrough" component={Walkthrough} />
           <MyStack.Screen name="OnBoarding" component={OnBoarding} />
+          <MyStack.Screen name="Search" component={Search} />
 
           {SignInRouter()}
           {SignUpRouter()}

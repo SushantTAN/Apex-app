@@ -19,6 +19,13 @@ import HomeRouter from '../Home/Home';
 import CoursesRouter from '../Course/Courses';
 import Profile from '@apexapp/screens/Profile/Profile';
 import ProfileRouter from '../Profile/Profile';
+import HomeIcon from '@assets/images/Home.svg'
+import ActiveHome from '@assets/images/Activehome.svg'
+import CoursesIcon from '@assets/images/Courses.svg'
+import ActiveCoursesIcon from '@assets/images/activeCourses.svg'
+import NotificationIcon from '@assets/images/Notification.svg'
+import ProfileIcon from '@assets//images/User.svg'
+import ActiveProfileIcon from '@assets//images/activeUser.svg'
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -48,9 +55,11 @@ const BottomTabs = props => {
           tabBarLabel: 'HOME',
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <Image source={require('@assets/images/homeActive.png')} />
-            ) : (
-              <Image source={require('@assets/images/homeInactive.png')} />
+              // <Image  source={require('@assets/images/homeActive.png')} />
+              <ActiveHome/>
+              ) :
+              ( 
+              <HomeIcon/>
             ),
         }}
       />
@@ -61,9 +70,9 @@ const BottomTabs = props => {
           tabBarLabel: 'MY COURSES',
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <Image source={require('@assets/images/coursesActive.png')} />
+              <ActiveCoursesIcon/>
             ) : (
-              <Image source={require('@assets/images/coursesInactive.png')} />
+              <CoursesIcon/>
             ),
         }}
       />
@@ -75,13 +84,9 @@ const BottomTabs = props => {
           tabBarLabel: 'NOTIFICATION',
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <Image
-                source={require('@assets/images/notificationInactive.png')}
-              />
+              <NotificationIcon style={{color:"#252775"}}/>
             ) : (
-              <Image
-                source={require('@assets/images/notificationInactive.png')}
-              />
+              <NotificationIcon style={{color:"#909090"}}/>
             ),
         }}
       />
@@ -92,9 +97,11 @@ const BottomTabs = props => {
           tabBarLabel: 'PROFILE',
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <Image source={require('@assets/images/profileInactive.png')} />
+              <ActiveProfileIcon/>
+              // <Image source={require('@assets/images/profileInactive.png')} />
             ) : (
-              <Image source={require('@assets/images/profileInactive.png')} />
+              // <Image source={require('@assets/images/profileInactive.png')} />
+              <ProfileIcon style={{color:"#909090"}}/>
             ),
         }}
       />

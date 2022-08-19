@@ -11,7 +11,8 @@
 
 .main {
     background-color: white;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    padding: 16px;
 }
 
 .main1 {
@@ -88,45 +89,48 @@
 
 
 .icon {
-    height: 38px;
-    width: 42px;
-    background-color: yellow;
+    height: 28px;
+    width: 28px;
+    justify-content: center;
+    background-color: #FFCB05;
+    padding: 4px;
     border-radius: 4px;
-    margin-right: 6px;
+    // margin-right: 6px;
 
 
 }
 
 .examDetail {
     margin-top: 6px;
-    padding-left: 16px;
+    // padding-left: 16px;
 
 }
 
 .duration {
-    margin-left: 15px;
+    margin-left: 12px;
 
     font-weight: 700;
 
     @extend .h5;
 }
 
-.duration1 {
+.durationSubText {
     margin-top: 4px;
-    margin-left: 11px;
+    margin-left: 12px;
 
     @extend .p1;
 }
 
 .fullmark {
-    margin-left: 60px;
+    // margin-left: 60px;
+    width: 50%;
     flex-direction: row;
 }
 
 .fullmarks {
     margin-left: 15px;
     font-weight: 700;
-    @extend .h5;
+    @extend .p3;
 }
 
 .fullmarks1 {
@@ -138,56 +142,63 @@
 }
 
 .passmark {
-    margin-top: 20px;
+    margin-top: 12px;
     flex-direction: row;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    width: 50%;
 
 }
 
 .passmarks {
-    // margin-top: 4px;
-    margin-left: 15px;
-
+    margin-left: 12px;
     font-weight: 700;
     @extend .h5;
 }
 
 .passmarks1 {
-    margin-top: 4px;
-    margin-left: 15px;
+    margin-top: 4px; 
+    margin-left: 12px;
     @extend .p1;
+}
+
+.tagContainer {
+    flex-direction: row;
 }
 
 
 .mark {
     flex-direction: row;
-    margin-top: 24px;
-    margin-left: 28px;
+    margin-top: 12px;
+    // margin-left: 28px;
+    width: 50%;
 
 }
 
 .marks {
-    margin-left: 15px;
+    margin-left: 12px;
     font-weight: 700;
     @extend .h5;
 }
 
 .marks1 {
     margin-top: 4px;
-    margin-left: 15px;
+    margin-left: 12px;
     @extend .p1;
 }
 
 .flex1 {
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
+    margin-top: 24px;
+    flex-wrap: wrap;
 }
 
 .pass {
     flex-direction: row;
-    margin-bottom: 15px;
-    margin-top: 10px;
+    margin-bottom: 12px;
+    margin-top: 4px;
+    width: 50%;
+    // margin-top: 12px;
 }
 
 
@@ -219,33 +230,34 @@
 
     flex-direction: row;
     position: absolute;
-    bottom: 0;
+    bottom: 70;
     width: 100%;
-    padding: 0px 16px;
-    height: 90px;
     background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 16px ; 
 
 
 }
 
 .enroll0 {
-    margin-top: 12px;
-    margin-right: 6px;
     // width: 70%;
-    height: 60px;
+    // padding: 16px;
     flex: 1;
+    margin-right: 24px;
+    // margin-top: -16px 
 }
 
 .enroll1 {
 
-    @extend .h3;
+    @extend .h4;
     font-weight: 700;
+    margin-bottom: 4px
 
 }
 
 .enroll2 {
     @extend .p1;
-    margin-top: 2px;
 }
 
 .buttons {
@@ -254,12 +266,12 @@
 
 
 .CustomButton {
-    margin-top: 18px;
 }
 
 .flex2 {
 
     flex-direction: row;
+    width: 50%;
 }
 
 .flex3 {
@@ -269,4 +281,12 @@
 .borderBlack {
     border: 1px solid black;
     // background-color: green($color: #000000);
+}
+
+.examHeaderText {
+    margin-top: 26px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    color: #000;
 }

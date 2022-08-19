@@ -9,17 +9,19 @@
 }
 
 .modal {
-    height: 65%;
-    padding-top: 10px;
-    background-color: white;
-    border-radius: 10px;
+    // height: 65%;
+    // padding-top: 16px;
+    border-radius: 4px;
     width: 100%;
 }
 
 .flex1 {
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 
-    padding: 10px;
+    // padding: 10px;
+    padding: 16px;
 }
 
 .line {
@@ -29,87 +31,114 @@
 }
 
 .head {
-    margin-left: 5px;
+    // margin-left: 5px;
     @extend .P;
 }
 
 .close {
     @extend .h5;
-    margin-top: 2px;
-    margin-left: 74%;
+    // margin-top: 2px;
+    // margin-left: 74%;
 
+}
+
+.courseSessionContainer{
+    // padding: 16px;
+    padding: 16px;
+}
+
+.sessionContainer {
+    height: 300
 }
 
 .topic {
-    margin-top: 5%;
-    margin-left: 16px;
+    // margin-left: 16px;
     @extend .P;
 }
 
+.sessionIcon {
+    color:#000;
+    margin-top: -2px;
+}
+
 .p {
-    margin-top: 3px;
-    margin-left: 18px;
+    margin-top: 4px;
+    // margin-left: 18px;
     @extend .p;
 }
 
 .data {
 
 
-    border-radius: 5px;
+    border-radius: 4px;
     background-color: #f8f8f8;
     flex-direction: row;
-    margin: 8px;
-    margin-left: 14px;
-    padding: 17px;
-    margin-right: 14px;
+    // margin: 8px;
+    // margin-left: 14px;
+    padding: 16px;
+    // margin-right: 14px;
+    margin: 8px 16px;
+    margin-top: 0;
     justify-content: space-between;
+    align-items: flex-end;
 
 
 }
 
 .title1 {
-    margin-top: 6px;
+    // margin-top: 6px;
     @extend .P;
 
 }
 
 .title2 {
-    margin-top: 12px;
+    // margin-top: 12px;
     @extend .p2;
-    margin-left: 15px;
+    margin-left: 12px;
+    font-size: 14px;
+    font-weight: 700;
+
 }
 
 .time {
-    margin-top: 6px;
+    margin-top: 4px;
     @extend .p1;
-    margin-left: 20px;
+    margin-left: 12px;
+    font-size: 12px;
 
-    margin-bottom: 15px;
+    // margin-bottom: 15px;
 }
 
 
 .CustomButton {
-    height: 46%;
-    margin-top: 40px;
+    // height: 46%;
+    // margin-top: 40px;
+    margin-right: 34px;
 }
 
 .clockicon {
-    margin-left: 5px;
-    margin-top: 5px;
-    width: 20px;
-    height: 20px;
+    // margin-left: 5px;
+    // margin-top: 5px;
+    // width: 20px;
+    // height: 20px;
 
 
 }
 
 .iconback {
-    margin-top: 12px;
-    width: 30px;
-    height: 30px;
-    border-radius: 2px;
+    // margin-top: 12px;
+    // width: 30px;
+    // height: 30px;
+    padding: 4px;
+    border-radius: 4px;
     background-color: #eaeaea;
+    justify-content: center;
+
 }
 
 .flex3 {
     flex-direction: row;
+    align-items: flex-start;
+    margin-top: 12px;
+    // margin-top: 12px;
 }

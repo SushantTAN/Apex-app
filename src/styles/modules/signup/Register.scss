@@ -1,4 +1,4 @@
-@use "../../library" as themes;
+@use '../../library' as themes;
 @import '../../common';
 
 .container {
@@ -6,7 +6,10 @@
   height: 100%;
   position: relative;
 }
-
+.containers {
+  flex-grow: 1;
+  padding-bottom: 60px;
+}
 .titleContainer {
   flex-direction: column;
   padding: 16px;
@@ -16,7 +19,7 @@
   @extend .h3;
   color: black;
   font-weight: 500;
-  margin: 8px 0px
+  margin: 8px 0px;
 }
 
 .link {
@@ -32,7 +35,6 @@
 .formContainer {
   padding: 16px;
   @extend .bcr;
-
 }
 
 .signUp {
@@ -52,9 +54,9 @@
   margin: 2px;
   border-radius: 5px;
   background-color: themes.$errorBackground;
-  align-items: center
+  align-items: center;
 }
 
-.errorContainer{
+.errorContainer {
   padding: 0px 32px;
 }

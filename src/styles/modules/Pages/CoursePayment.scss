@@ -40,6 +40,7 @@
   margin-left: 16px;
   color: #2E3192;
   margin-bottom: 16px;
+  font-weight: 700;
 
 }
 
@@ -81,19 +82,22 @@
 
 
 .button {
-  margin-top: 10px;
-  width: 80%;
-  height: 70%;
-  margin-right: 26px;
+  // margin-top: 10px;
+  // width: 80%;
+  // height: 70%;
+  // margin-right: 26px;
 }
 
 .footer {
   justify-content: space-between;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   position: absolute;
   bottom: 0%;
-  width: 99%;
-  height: 10%;
+  width: 100%;
+  padding: 16px;
+  // height: 10%;
 
   @extend .input-bcr;
 }
@@ -101,20 +105,22 @@
 .image {
   height: 25px;
   width: 25px;
-  margin: 16px;
-  margin-left: 24px;
+  // margin: 16px;
+  // margin-left: 24px;
 
 }
 
 .flex {
-  flex-direction: row
+  flex-direction: row;
+  align-items: center;
 }
 
 
 .fottertext {
 
-  margin-top: 16px;
+  // margin-top: 16px;
   @extend .h5;
+  margin-left: 8px;
 
 
 

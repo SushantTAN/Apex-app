@@ -12,6 +12,8 @@ import { CommonActions } from '@react-navigation/native';
 import CustomButtonPopup1 from '@apexapp/components/elements/CustomButtonPopup/index1';
 import CustomTextInput from '@apexapp/components/elements/CustomTextInput';
 import styles from '@styles/elements/HeaderSearch/HeaderSearch.scss';
+import Filtericon from '@assets/images/Filter.svg'
+import BackIcon from '@assets/images/back.svg'
 
 let information = [
   {
@@ -46,19 +48,16 @@ const HeaderSearch = props => {
     <>
       <View style={styles.mainContainer}>
         <View style={styles.filterDiv}>
-          <TouchableOpacity style={styles.left}>
-            <Image source={require('@assets/images/leftArrow.png')} />
-            <Text style={styles.p} onPress={handleArrow}>
+          <TouchableOpacity onPress={handleArrow} >
+            <BackIcon/>
+          </TouchableOpacity>
+            <Text style={styles.p} >
               {props.title}
             </Text>
-          </TouchableOpacity>
+          {/* <Filtericon/> */}
 
           {props.showFilterButton ? (
             <TouchableOpacity onPress={handlefilter}>
-              <Image
-                style={styles.filter}
-                source={require('@assets/images/Filter.png')}
-              />
             </TouchableOpacity>
           ) : null}
 

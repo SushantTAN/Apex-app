@@ -8,10 +8,18 @@ export const examsList = data => {
   };
 };
 
-export const examsListRequest = () => {
+export const examsListRequest = (query, page_size, page) => {
   return async dispatch => {
     try {
-      const response = await GET('api/exams/list/');
+      let url;
+      const dataValue = {
+        page_size: page_size ? `&page_size=${1}` : '',
+        query: query ? `&search=${query}` : '',
+        page: page ? `&page=${1}` : '',
+      }
+      url = `api/exams/list/?${dataValue.query}${dataValue.page}${dataValue.page_size}`
+
+      const response = await GET(url);
       const resJson = await response.json();
       // console.log(response, resJson)
       if (response.status === 200) {
@@ -55,7 +63,7 @@ export const examsEnrollRequest = (data, token) => {
     try {
       // console.log("test enroll", data, token);
       const response = await POST('api/enrollments/create/', data, token);
-      console.log("enroll",response)
+      console.log("enroll", response)
       const resJson = await response.json();
       console.log("enroll", resJson)
       if (response.status === 200) {
@@ -179,7 +187,7 @@ export const examResultsRequest = (id, token) => {
       const response = await GET('api/enrollments/exam/result/' + id, token);
       // console.log(response)
       const resJson = await response.json();
-      // console.log(resJson)
+      console.log(resJson)
       if (response.status === 200) {
         dispatch(examResults(resJson));
 

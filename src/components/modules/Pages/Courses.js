@@ -4,7 +4,7 @@
  * @returns {Course}- returns a module for Course page
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   ScrollView,
@@ -18,7 +18,16 @@ import CustomTextInput from '@apexapp/components/elements/CustomTextInput';
 import CustomButtonPopup1 from '@apexapp/components/elements/CustomButtonPopup/index1';
 import styles from '@styles/modules/Pages/Courses';
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
-import { FlatList } from 'react-native-gesture-handler';
+import DateIcon from '@assets/images/date.svg';
+import UserIcon from '@assets/images/User.svg';
+import TopBar from '@components/elements/TopBar';
+import CourseCard from '../CourseCard';
+import BackIcon from '@assets/images/back.svg';
+import FilterIcon from '@assets/images/Filter.svg'
+import { useSelector, useDispatch } from 'react-redux';
+import { courseListRequest } from '@apexapp/store/actions/course';
+import { DrawerItemList } from '@react-navigation/drawer';
+
 
 let information = [
   {
@@ -30,77 +39,72 @@ let information = [
 const data = [
   {
     image: '',
-    main: 'IOM ',
+    tags: ["IOm", "Multiple Section"],
     main1: 'Multiple  Section',
     info: 'Medical Entrance (ME-CEE) with multiple line ',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
   {
     image: '',
-    main: 'IOM',
+    tags: ["IOm", "Multiple Section"],
     main1: 'Multiple Section',
     info: 'Medical Entrance  (ME-CEE) with multiple line ',
     date: 'Starting on Feb ,2022 (4 month)',
-    data: ' 200+ students enrolled',
+    data: '200+ students enrolled',
   },
 ];
 
+
+
 const Courses = props => {
+
   const handleArrow = id => {
-    props.navigation.navigate('CourseOverview', { test: id });
+    props.navigation.navigate('CourseOverview', { id: id });
   };
 
+  const dispatch = useDispatch();
+  const courseList = useSelector(state => state.courseReducer.courseList);
+
+  useEffect(() => {
+    dispatch(courseListRequest());
+  }, []);
+
+  const courseCardInfo = [
+    "IOM",
+    "Multiple Section",
+  ]
+
+  // console.log("asdsf", courseList.results)
   return (
-    <>
-      <ScrollView stickyHeaderIndices={[0]} style={styles.scrollView}>
-        <View styles={styles.Header}>
-          <HeaderSearch
-            navigation={props.navigation}
-            backnav="Home"
-            showFilterButton={true}
-            title="Courses"
-            searchfunc={() => { }}
-            showSearchButton={true}
-          />
+
+    <ScrollView contentContainerStyle={{ paddingBottom: 10 }} stickyHeaderIndices={[0]} style={styles.scrollView}>
+      <TopBar title="Courses" backIcon={<BackIcon />} icon={<FilterIcon style={{ color: "#000" }} />} />
+      <View style={styles.gap} />
+      <View style={styles.mainContainer}>
+        <View style={styles.text}>
+
+          {/* {console.log("courselist", courseList.result)} */}
+
+          {courseList.results.map((item, index) => {
+            return (
+
+              <CourseCard
+                key={index}
+                tags={courseCardInfo}
+                actionPress={() => handleArrow(item.id)}
+                sessions={item.sessions}
+                name={item.name}
+                numberOfEnroll={item.enrollment_count.course_enroll_count}
+
+              />
+            );
+          })}
         </View>
-        <View style={styles.gap} />
-        <View style={styles.mainContainer}>
-          <View style={styles.text}>
-            {data.map((item, index) => {
-              return (
-                <TouchableOpacity
-                  onPress={() => handleArrow(item.id)}
-                  style={styles.cards}>
-                  <View style={styles.img}>
-                    <Image
-                      style={styles.image}
-                      source={require('@assets/images/home.jpeg')}
-                    />
-                  </View>
 
-                  <View style={styles.card}>
-                    <Text style={styles.main}>{item.main}</Text>
+      </View>
+    </ScrollView>
 
-                    <Text style={styles.main1}>{item.main1}</Text>
-                  </View>
-
-                  <View>
-                    <View>
-                      <Text style={styles.infos}>{item.info}</Text>
-                    </View>
-
-                    <Text style={styles.date}>{item.date}</Text>
-
-                    <Text style={styles.data}>{item.data}</Text>
-                  </View>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </View>
-      </ScrollView>
-    </>
   );
 };
 

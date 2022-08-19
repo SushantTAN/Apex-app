@@ -8,7 +8,7 @@
 }
 
 .modal {
-    height: 80%;
+    // height: 60%;
     padding-top: 10px;
     background-color: white;
     border-radius: 10px;
@@ -29,6 +29,7 @@
 
 .flex3 {
     flex-direction: row;
+    align-items: center;
 }
 
 .CustomButton1 {
@@ -64,13 +65,13 @@
 
 .type {
     @extend .P;
-    margin-top: 5%;
+    margin-top: 16px;
     margin-left: 16px;
 }
 
 .type1 {
 
-    padding: 24px;
+    padding: 16px 10px;
 
 
 }
@@ -84,13 +85,10 @@
 
 .type3 {
     @extend .h5;
-    margin-top: 6px;
-    margin-bottom: 15px;
 }
 
 .type4 {
     @extend .h5;
-    margin-top: 6px;
 }
 
 .category {
@@ -101,17 +99,14 @@
 
 .category1 {
 
-    padding: 22px;
+    padding: 16px 10px;
 
 }
 
 .category2 {
     @extend .h5;
-    margin-top: 6px;
-    margin-bottom: 15px;
 }
 
 .category3 {
     @extend .h5;
-    margin-top: 6px;
 }
