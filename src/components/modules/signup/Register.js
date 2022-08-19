@@ -107,9 +107,9 @@ const Register = props => {
     // dispatch(data, props.navigation.navigate, { username: data.username }, autoFadeOut, setErrorMsg)
     try {
       const response = await POST('api/accounts/create/', data);
-      console.log(response);
+      // console.log(response);
       const resJson = await response.json();
-      console.log(resJson)
+      // console.log(resJson)
       if (response.status === 201) {
         // dispatch(login(resJson));
         props.navigation.navigate('Verify', { username: data.username });

@@ -13,10 +13,11 @@ import {
   Modal,
   Dimensions,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  BackHandler
 } from 'react-native';
 
-import { CommonActions } from '@react-navigation/native';
+import { CommonActions, StackActions } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CustomButton from '@apexapp/components/elements/CustomButton';
@@ -39,19 +40,11 @@ import Tag from '@components/elements/Tag/index'
 import InfoBox from '@apexapp/components/elements/InfoBox';
 
 
-const data = [
-  {
-    id: 1,
-    title: 'Instruction number 1',
-  },
-  {
-    id: 2,
-    title: 'Instruction number 2',
-  },
-];
-
 const ExamDetail = props => {
   const { id } = props.route.params;
+  // console.log(`url  ${getSocketUrl()}/clock/exam_${id}`);
+  var ws = React.useRef(new WebSocket(`${getSocketUrl()}/clock/exam_${id}/`)).current;
+
 
   const [examId, setExamId] = useState(id)
 
@@ -59,7 +52,7 @@ const ExamDetail = props => {
     setExamId(id)
   }, [])
 
-  console.log(examId, "examid")
+  // console.log(examId, "examid")
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -73,17 +66,103 @@ const ExamDetail = props => {
 
 
   useEffect(() => {
-    if (examDetails?.sessions[0]?.status === 'resultsout') {
+    if (examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled && examDetails.exam_enroll) {
       dispatch(examResultsRequest(examDetails?.exam_enroll?.id, auth.access_token));
     }
   }, [examDetails]);
 
+  // useEffect(() => {
+  //   ws.onopen = () => {
+  //     // connection opened
+  //     console.log("open")  // send a message
+  //   };
+
+  //   ws.onmessage = async (e) => {
+  //     // console.log("message", e);
+
+  //     let data = await JSON.parse(e.data);
+  //     console.log("message", data);
+
+  //     if (data.status === 'in_progress') {
+  //       dispatch(examDetailRequest(examId));
+  //     }
+
+  //     if (data.session_status === true) {
+  //       dispatch(examDetailRequest(examId));
+  //     }
+  //   };
+
+  //   // ws.onclose = (e) => {
+  //   //   console.log("close");
+  //   // };
+  //   ws.onerror = (e) => {
+  //     console.log("error", e);
+  //   };
+
+  //   return () => {
+  //     ws.close();
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    // ws.onopen = () => {
+    //   // connection opened
+    //   console.log("open")  // send a message
+    // };
+    const subscribe = props.navigation.addListener('focus', () => {
+      ws.onopen = () => {
+        // connection opened
+        console.log("open")  // send a message
+      };
+
+      ws.onmessage = async (e) => {
+        // console.log("message", e);
+
+        let data = await JSON.parse(e.data);
+        // console.log("message", data);
+
+        if (data.status === 'in_progress') {
+          dispatch(examDetailRequest(examId));
+        }
+
+        if (data.session_status === true) {
+          dispatch(examDetailRequest(examId));
+        }
+      };
+
+      ws.onclose = (e) => {
+        console.log("close");
+      };
+      ws.onerror = (e) => {
+        console.log("error", e);
+      };
+    });
+
+
+    const unsubscribe = props.navigation.addListener('blur', () => {
+      ws.close();
+    });
+
+    return () => {
+      subscribe;
+      unsubscribe;
+    };
+  }, [props.navigation]);
+
   useEffect(() => {
     dispatch(examDetailRequest(examId));
+
+    // BackHandler.addEventListener("hardwareBackPress", () => {
+    //   props.navigation.navigate('Home');
+    // });
 
     const subscribe = props.navigation.addListener('focus', () => {
       dispatch(examDetailRequest(examId));
       setIsModalVisible(false);
+      // BackHandler.addEventListener("hardwareBackPress", () => {
+      //   props.navigation.navigate('Home');
+      // });
+
     });
 
     return subscribe;
@@ -115,7 +194,10 @@ const ExamDetail = props => {
   };
 
   const handleTakeExam = (id, enrollId, sessionId) => {
-    props.navigation.navigate('TakeExams', { id: id, enrollId: enrollId });
+    // props.navigation.navigate('TakeExams', { id: id, enrollId: enrollId });
+    props.navigation.dispatch(
+      StackActions.replace('TakeExams', { id: id, enrollId: enrollId })
+    );
   }
 
   const handleViewResults = (enrollId) => {
@@ -126,7 +208,7 @@ const ExamDetail = props => {
     props.navigation.dispatch(CommonActions.goBack());
   };
 
-  console.log(examDetails.sessions, "detail")
+  // console.log(examDetails.sessions, "detail")
 
 
   return (
@@ -164,16 +246,17 @@ const ExamDetail = props => {
 
               <InfoBox icon={<DateIcon style={{ color: "#fff" }} />} title="Exam Date" desc="29 Jan, 2022" />
               <InfoBox icon={<TimeIcon style={{ color: "#fff" }} />} title="Duration" desc={examDetails.template.duration} />
-              <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={examDetails.sessions.length > 1 ? 'Multiple session' : 'Single'} />
+              <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={examDetails.sessions.map((item, index) => <Text>{item?.start_date?.split('T')[1]?.split('+')[0]}</Text>)} />
               <InfoBox icon={<MarksIcon style={{ color: "#fff" }} />} title="Full marks" desc={examDetails.template.full_marks} />
               <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Pass marks" desc={examDetails.template.pass_marks} />
-              {examDetails?.sessions[0]?.status === 'resultsout' &&
+              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled && examDetails.exam_enroll &&
                 <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Marks" desc={result.score ? result.score : 40} />
               }
-              {examDetails?.sessions[0]?.status === 'resultsout' &&
-                <InfoBox title="Result" desc={result.status} />
+              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled && examDetails.exam_enroll &&
+
+                <InfoBox title="Result" icon={<MarkIcon style={{ color: "#fff" }} />} desc={result.status} />
               }
-              {examDetails?.sessions[0]?.status === 'resultsout' &&
+              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled && examDetails.exam_enroll &&
                 <InfoBox icon={<RankIcon style={{ color: "#fff" }} />} title="Rank" desc={result.rank} />
               }
 
@@ -205,12 +288,28 @@ const ExamDetail = props => {
 
 
       {examDetails.sessions.length > 0 && <View style={styles.enroll}>
-        <View style={styles.enroll0}>
-          <Text style={styles.enroll1}>Get enrollment</Text>
-          <Text style={styles.enroll2}>
-            On clicking Enroll now leads you exam session page
-          </Text>
-        </View>
+        {examDetails.is_enrolled ? (examDetails.exam_enroll ?
+          (<View style={styles.enroll0}>
+            <Text style={styles.enroll1}>Results Out</Text>
+            <Text style={styles.enroll2}>
+              Result Details will become active after results are out.
+            </Text>
+          </View>)
+          : (<View style={styles.enroll0}>
+            <Text style={styles.enroll1}>Take the exam</Text>
+            <Text style={styles.enroll2}>
+              Click Take Exam after it becomes active.
+            </Text>
+          </View>))
+          : <View style={styles.enroll0}>
+            <Text style={styles.enroll1}>Get enrollment</Text>
+            <Text style={styles.enroll2}>
+              On clicking Enroll now leads you exam session page
+            </Text>
+          </View>}
+
+
+
         {/* {console.log('enroll check in render', examDetails.is_enrolled)} */}
         <View style={styles.buttons}>
           {!examDetails.is_enrolled ? (
@@ -223,13 +322,26 @@ const ExamDetail = props => {
                 color="#ffffff"
               />
             ) : (
-              examDetails.sessions.length > 0 && <CustomButton
-                onPress={handleEnroll}
-                style={styles.CustomButton}
-                type="theme"
-                title={'Enroll now'}
-                color="#ffffff"
-              />
+
+              examDetails?.sessions[0]?.status === 'ended' ?
+                (
+                  examDetails.sessions.length > 0 && <CustomButton
+                    onPress={() => { }}
+                    style={[styles.CustomButton]}
+                    type={'disabled'}
+                    title={'Enroll'}
+                  // color="#ffffff"
+                  />) :
+                (
+                  <CustomButton
+                    onPress={handleEnroll}
+                    style={styles.CustomButton}
+                    type="theme"
+                    title={'Enroll now'}
+                    color="#ffffff"
+                  />
+
+                )
             )
           ) : (
             examDetails?.sessions[0]?.status === 'resultsout' ?

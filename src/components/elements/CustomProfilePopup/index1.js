@@ -15,7 +15,8 @@ import styles from '@styles/elements/CustomProfilePopup';
 
 const CustomProfilePopup1 = props => {
   const handlereset = () => {
-    props.navigation.navigate('');
+    props.changeModalVisible1(false);
+    props.navigation.navigate('VerifyNumber');
   };
 
   const closeModal = bool => {

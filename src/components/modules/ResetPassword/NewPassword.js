@@ -63,7 +63,7 @@ const NewPassword = props => {
       username: props.route.params.username,
       password: formData.password.value
     };
-    console.log(data);
+    // console.log(data);
     dispatch(confirmPasswordChange(data, props.navigation.navigate));
     // props.navigation.navigate('NewPassword');
   };
@@ -96,6 +96,7 @@ const NewPassword = props => {
               onChangeHandler(
                 item.elementConfig.name,
                 value,
+                formData.password.value,
               );
             }}
             placeholder={item.elementConfig.placeholder}

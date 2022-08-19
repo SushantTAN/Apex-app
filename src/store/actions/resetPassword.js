@@ -1,4 +1,4 @@
-import {PATCH, POST} from '@utils/api';
+import { PATCH, POST } from '@utils/api';
 import * as types from '../actionTypes';
 
 export const phoneVerify = data => {
@@ -8,7 +8,7 @@ export const phoneVerify = data => {
   };
 };
 
-export const phoneVerifyRequest = (data, navigate = () => {}) => {
+export const phoneVerifyRequest = (data, navigate = () => { }) => {
   return async dispatch => {
     try {
       const response = await PATCH('api/accounts/reset/', data);
@@ -27,7 +27,7 @@ export const phoneVerifyRequest = (data, navigate = () => {}) => {
   };
 };
 
-export const verifyResetOtp = (data, navigate = () => {}) => {
+export const verifyResetOtp = (data, navigate = () => { }) => {
   return async dispatch => {
     try {
       const response = await PATCH('api/accounts/reset/verify/', data);
@@ -46,12 +46,12 @@ export const verifyResetOtp = (data, navigate = () => {}) => {
   };
 };
 
-export const confirmPasswordChange = (data, navigate = () => {}) => {
+export const confirmPasswordChange = (data, navigate = () => { }) => {
   return async dispatch => {
     try {
       const response = await PATCH('api/accounts/reset/confirm/', data);
       const resJson = await response.json();
-      console.log(response.status, resJson);
+      // console.log(response.status, resJson);
       if (response.status === 200) {
         navigate('Login');
       }

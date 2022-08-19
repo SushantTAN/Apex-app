@@ -8,19 +8,30 @@
   margin: 0px 0px 8px 0px;
 }
 
+.gap {
+  background-color: themes.$tilte1-bcr;
+  height: 8px;
+  margin: 4px 0px;
+}
+
 .index {
   @extend .h5;
+  padding-top: 16px;
 }
 
 .questionsContainer {
   background-color: white;
-  padding: 16px;
+  // padding: 16px;
   height: 100%;
 }
 
+.questionItem {
+  padding: 16px;
+}
+
 .question {
-  @extend .h6;
-  padding: 0px 0px 0px 24px;
+  @extend .p;
+  padding: 0px 0px 0px 12px;
 
   font-family: 'OpenSans-SemiBold';
 

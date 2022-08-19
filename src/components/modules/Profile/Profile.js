@@ -15,6 +15,7 @@ import styles from '@styles/modules/Profile/Profile';
 import EditIcon from '@assets/images/Edit.svg';
 import ResetIcon from '@assets/images/Lock.svg';
 import LogoutIcon from '@assets/images/Logout.svg'
+import { useSelector } from 'react-redux';
 
 const data = {
   name: 'Suman Panday',
@@ -26,6 +27,9 @@ const Profile = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalVisible1, setIsModalVisible1] = useState(false);
   const [isModalVisible2, setIsModalVisible2] = useState(false);
+
+  const auth = useSelector(state => state.authReducer.user);
+  // console.log(auth);
 
   const changeModalVisible2 = bool => {
     setIsModalVisible2(bool);
@@ -57,13 +61,13 @@ const Profile = props => {
         <Text style={styles.head}>Profile</Text>
         <View style={styles.gap} />
         <View style={styles.img}>
-          <Image source={require('@assets/images/tulogo.png')} />
+          <Image source={require('@assets/images/ProfileDefault.jpg')} style={{ width: 80, height: 80 }} />
 
           <View style={styles.txt}>
             <View>
-              <Text style={styles.name}>{data.name}</Text>
-              <Text style={styles.number}>{data.number}</Text>
-              <Text style={styles.gmail}>{data.gmail}</Text>
+              <Text style={styles.name}>{auth.full_name}</Text>
+              <Text style={styles.number}>{auth.username}</Text>
+              <Text style={styles.gmail}>{auth.email}</Text>
             </View>
           </View>
         </View>
@@ -77,13 +81,13 @@ const Profile = props => {
         </View>
         <View style={styles.gap} />
         <View style={styles.buttons}>
-          <CustomButton
+          {/* <CustomButton
             onPress={handleEditInfo}
             // type="theme"
             title={'Edit info'}
             style={styles.button}
             color="white"
-            icon = {<EditIcon style={styles.icon} />}
+            icon={<EditIcon style={styles.icon} />}
           />
           <Modal
             transparent={true}
@@ -94,14 +98,14 @@ const Profile = props => {
               data={data}
               changeModalVisible2={changeModalVisible2}
             />
-          </Modal>
+          </Modal> */}
           <CustomButton
             onPress={handlelogout}
             // type="theme"
             title={'Logout'}
             style={styles.button}
             color="white"
-            icon = {<LogoutIcon style={styles.icon} />}
+            icon={<LogoutIcon style={styles.icon} />}
           />
 
           <Modal
@@ -119,9 +123,9 @@ const Profile = props => {
             onPress={handlereset}
             // type="theme"
             title={'Reset password?'}
-            style={ styles.button }
+            style={styles.button}
             color="white"
-            icon = {<ResetIcon style={styles.icon} /> }
+            icon={<ResetIcon style={styles.icon} />}
           />
 
           <Modal
@@ -130,6 +134,7 @@ const Profile = props => {
             visible={isModalVisible1}
             nRequestClose={() => changeModalVisible1(true)}>
             <CustomProfilePopup1
+              navigation={props.navigation}
               data={data}
               changeModalVisible1={changeModalVisible1}
             />

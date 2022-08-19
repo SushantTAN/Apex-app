@@ -57,6 +57,8 @@ const TakeExams = props => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
 
+  const [timer, setTimer] = useState("00:00:00");
+
 
   const details = useSelector(state => state.examsReducer.takeExamDetails);
   const auth = useSelector(state => state.authReducer);
@@ -75,7 +77,8 @@ const TakeExams = props => {
   }
 
   const handleSubmit = () => {
-    dispatch(submitExam(details.exam_enroll, answers, auth.access_token, props.navigation.navigate))
+    console.log("before function submit answers", answers);
+    dispatch(submitExam(details.exam_enroll, { ...answers }, auth.access_token, props.navigation.navigate, id, props.navigation))
   }
 
   useEffect(() => {
@@ -91,15 +94,74 @@ const TakeExams = props => {
 
 
 
-  //for setting checkpoints
+  //for setting timer
   useEffect(() => {
-    
-  }, []);
+    var timer;
+
+    if (details.exam_enroll.selected_session.end_date !== '') {
+      let endTime = (new Date(details.exam_enroll.selected_session.end_date).getTime() - 1000 * 30);
+      // console.log(endTime - 1000 * 30);
+
+      timer = setInterval(() => {
+        let currentTime = new Date().getTime();
+
+        let diff = Math.floor((endTime - currentTime) / 1000);
+
+        // console.log("aaaa", diff, currentTime, endTime);
+
+        let test = new Date(diff * 1000).toISOString().slice(11, 19);
+
+        if (diff > 0) {
+          setTimer(test);
+        }
+
+        if (diff === 1) {
+          clearInterval(timer);
+          handleSubmit();
+        }
+      }, 1000);
+
+    }
+
+    const subscribe = props.navigation.addListener('focus', () => {
+      // if (details.exam_enroll.selected_session.end_date !== '') {
+      //   let endTime = new Date(details.exam_enroll.selected_session.end_date).getTime();
+
+      //   timer = setInterval(() => {
+      //     let currentTime = new Date().getTime();
+
+      //     let diff = Math.floor((endTime - currentTime) / 1000);
+
+      //     console.log("aaaa", diff, currentTime, endTime);
+
+      //     let test = new Date(diff * 1000).toISOString().slice(11, 19);
+
+      //     setTimer(test);
+
+      //     if (diff === 0) {
+      //       clearInterval(timer);
+      //       handleSubmit();
+      //     }
+      //   }, 1000);
+
+      // }
+    });
+
+    const unsubscribe = props.navigation.addListener('blur', () => {
+      clearInterval(timer);
+    });
+
+    return () => {
+      subscribe;
+      unsubscribe;
+    };
+
+  }, [details, props.navigation]);
 
   return (
     <>
       <ScrollView stickyHeaderIndices={[0]} style={styles.maincontainer} >
-        {/* {console.log("answers", props.route.params)} */}
+        {/* {console.log("answers", answers)} */}
         <View style={styles.main}>
           <HeaderSearch
             title={details.name}
@@ -108,7 +170,7 @@ const TakeExams = props => {
           />
 
           <View style={styles.card}>
-            <Text style={styles.title1}>LIVE 00:60:00</Text>
+            <Text style={styles.title1}>LIVE {timer}</Text>
           </View>
         </View>
 
@@ -122,22 +184,25 @@ const TakeExams = props => {
               <View style={styles.img}>
                 <Text style={styles.num}>{currentQuestion + 1}.</Text>
 
-                <Image
-                  style={styles.image}
-                  source={{ uri: details?.questions[currentQuestion]?.img }}
-                />
-              </View>
-              <View style={styles.txt}>
-                {/* <HTML html={'<p>test test</p>'} /> */}
-                {/* <HTMLView value='<p>cjasgvcgasdvcga</p>' /> */}
-                <RenderHtml
-                  contentWidth={width}
-                  baseStyle={styles.text}
-                  source={{ html: details?.questions[currentQuestion]?.detail }}
-                />
+                <View>
+                  <Image
+                    style={styles.image}
+                    source={{ uri: details?.questions[currentQuestion]?.img }}
+                  />
+                  <View style={styles.txt}>
+                    {/* <HTML html={'<p>test test</p>'} /> */}
+                    {/* <HTMLView value='<p>cjasgvcgasdvcga</p>' /> */}
+                    <RenderHtml
+                      contentWidth={width}
+                      baseStyle={styles.text}
+                      source={{ html: details?.questions[currentQuestion]?.detail }}
+                    />
 
-                {/* <Text style={styles.text}>{details?.questions[currentQuestion]?.detail}</Text> */}
+                    {/* <Text style={styles.text}>{details?.questions[currentQuestion]?.detail}</Text> */}
+                  </View>
+                </View>
               </View>
+
               {
                 details?.questions[currentQuestion]?.options.map((item, index) => <View key={index} style={styles.txt1}>
                   <RadioButton
@@ -160,7 +225,7 @@ const TakeExams = props => {
                           // console.log("el", el.question)
                           return el.question === details?.questions[currentQuestion].id
                         });
-                        // console.log("findArray", findArray);
+                        console.log("findArray", findArray);
                         if (findArray) {
                           let itemIndex = 0;
                           tempAnswers.question_states.forEach((itemTemp, indexTemp) => {
@@ -188,6 +253,7 @@ const TakeExams = props => {
                       });
                     }}
                   />
+                  {console.log("answers,", answers)}
                   <Text style={styles.a}>{getIndex(index)}</Text>
 
                   <RenderHtml
@@ -199,7 +265,7 @@ const TakeExams = props => {
                 </View>
                 )}
 
-              <Text style={styles.hint}>SHOW HINTS</Text>
+              {/* <Text style={styles.hint}>SHOW HINTS</Text> */}
             </Fragment>
 
           </View>
@@ -230,16 +296,16 @@ const TakeExams = props => {
           {currentQuestion + 1 !== details.questions.length && <CustomButton
             type="theme"
             title={'Next'}
-            onPress={async() => {
+            onPress={async () => {
               if (currentQuestion + 1 <= details.questions.length) {
                 try {
                   // console.log("data", data);
-                  const response = await PATCH('api/enrollments/exam/submit/' + details.exam_enroll.id, {...answers, submitted: false}, auth.access_token);
+                  const response = await PATCH('api/enrollments/exam/submit/' + details.exam_enroll.id, { ...answers, submitted: false }, auth.access_token);
                   // console.log("submit exma",response)
                   const resJson = await response.json();
                   // console.log("submit exam",resJson)
                   if (response.status === 200) {
-            
+
                   }
                   if (response.status === 400) {
                   }
