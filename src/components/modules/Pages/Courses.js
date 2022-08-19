@@ -20,13 +20,13 @@ import styles from '@styles/modules/Pages/Courses';
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
 import DateIcon from '@assets/images/date.svg';
 import UserIcon from '@assets/images/User.svg';
-import TopBar from '@components/elements/TopBar';
 import CourseCard from '../CourseCard';
-import BackIcon from '@assets/images/back.svg';
 import FilterIcon from '@assets/images/Filter.svg'
+import TopBar from '@elements/TopBar';
 import { useSelector, useDispatch } from 'react-redux';
 import { courseListRequest } from '@apexapp/store/actions/course';
 import { DrawerItemList } from '@react-navigation/drawer';
+import BackIcon from '@assets/images/back.svg';
 
 
 let information = [
@@ -76,15 +76,19 @@ const Courses = props => {
   ]
 
   // console.log("asdsf", courseList.results)
+  return <>
+    <TopBar title="My Courses" backIcon={<BackIcon />} search={false} />
+    <View style={{ justifyContent: 'center', height: '100%', width: '100%', alignItems: 'center' }}>
+      <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16, }}>No courses yet.</Text>
+    </View>
+  </>;
   return (
 
     <ScrollView contentContainerStyle={{ paddingBottom: 10 }} stickyHeaderIndices={[0]} style={styles.scrollView}>
-      <TopBar title="Courses" backIcon={<BackIcon />} icon={<FilterIcon style={{ color: "#000" }} />} />
+      {/* <TopBar title="Courses" backIcon={<BackIcon />} icon={<FilterIcon style={{ color: "#000" }} />} />
       <View style={styles.gap} />
       <View style={styles.mainContainer}>
         <View style={styles.text}>
-
-          {/* {console.log("courselist", courseList.result)} */}
 
           {courseList.results.map((item, index) => {
             return (
@@ -102,7 +106,9 @@ const Courses = props => {
           })}
         </View>
 
-      </View>
+      </View> */}
+
+      <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>No courses yet</Text>
     </ScrollView>
 
   );

@@ -363,8 +363,8 @@ const ExamDetail = props => {
                   :
                   <CustomButton
                     onPress={() => handleTakeExam(examDetails?.id, examDetails?.exam_enroll?.id)}
-                    style={[styles.CustomButton, styles.borderBlack]}
-                    type={['in_progress'].includes(examDetails?.status) ? "white" : 'disabled'}
+                    style={[styles.CustomButton]}
+                    type={['in_progress'].includes(examDetails?.status) ? "theme" : 'disabled'}
                     title={'Take Exam'}
                   // color="#ffffff"
                   />)
