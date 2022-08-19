@@ -334,19 +334,20 @@ const Home = props => {
                       tappableDots={!!CarouselRefff}
                     />
                   </View> */}
-                  <CustomButton
+                  {/* <CustomButton
                     type="white"
                     title={'Explore all'}
                     style={styles.button}
                     color="#000000"
-                  />
+                  /> */}
+                  <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text>
                 </View>
               </View>
             </View>
           </View>
           <View style={styles.gap} />
 
-          {/* <View style={styles.div}>
+          <View style={styles.div}>
             <View>
               <View style={styles.txt}>
                 <Text style={styles.p}>Loksewa preparation</Text>
@@ -354,7 +355,7 @@ const Home = props => {
 
               <View style={styles.div1}>
                 <View style={styles.textContainer}>
-                  <Carousel
+                  {/* <Carousel
                     ref={CarouselReffff}
                     data={data2}
                     renderItem={_renderItemWithParallax2}
@@ -376,18 +377,22 @@ const Home = props => {
                       carouselRef={CarouselReffff}
                       tappableDots={!!CarouselReffff}
                     />
-                  </View>
+                  </View> */}
 
-                  <CustomButton
+                  {/* <CustomButton
                     type="white"
                     title={'Explore all'}
                     style={styles.button}
                     color="#000000"
-                  />
+                  /> */}
+                  <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text>
                 </View>
               </View>
             </View>
-          </View> */}
+          </View>
+
+          <View style={styles.gap} />
+
         </ScrollView>
       </View>
     </>

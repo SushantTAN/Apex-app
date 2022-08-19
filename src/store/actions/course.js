@@ -12,7 +12,7 @@ export const courseListRequest = () => {
     return async dispatch => {
         try {
 
-            const response = await GET(`api/courses/list`);
+            const response = await GET(`api/courses/list/`);
             const resJson = await response.json();
 
             if (response.status === 200) {

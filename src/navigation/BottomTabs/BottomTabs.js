@@ -56,11 +56,11 @@ const BottomTabs = props => {
           tabBarIcon: ({ color, focused }) =>
             focused ? (
               // <Image  source={require('@assets/images/homeActive.png')} />
-              <ActiveHome/>
-              ) :
-              ( 
-              <HomeIcon/>
-            ),
+              <ActiveHome />
+            ) :
+              (
+                <HomeIcon />
+              ),
         }}
       />
       <Tab.Screen
@@ -70,9 +70,9 @@ const BottomTabs = props => {
           tabBarLabel: 'MY COURSES',
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <ActiveCoursesIcon/>
+              <ActiveCoursesIcon />
             ) : (
-              <CoursesIcon/>
+              <CoursesIcon />
             ),
         }}
       />
@@ -84,9 +84,9 @@ const BottomTabs = props => {
           tabBarLabel: 'NOTIFICATION',
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <NotificationIcon style={{color:"#252775"}}/>
+              <NotificationIcon style={{ color: "#252775" }} />
             ) : (
-              <NotificationIcon style={{color:"#909090"}}/>
+              <NotificationIcon style={{ color: "#909090" }} />
             ),
         }}
       />
@@ -97,11 +97,11 @@ const BottomTabs = props => {
           tabBarLabel: 'PROFILE',
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <ActiveProfileIcon/>
+              <ActiveProfileIcon />
               // <Image source={require('@assets/images/profileInactive.png')} />
             ) : (
               // <Image source={require('@assets/images/profileInactive.png')} />
-              <ProfileIcon style={{color:"#909090"}}/>
+              <ProfileIcon style={{ color: "#909090" }} />
             ),
         }}
       />
@@ -110,7 +110,7 @@ const BottomTabs = props => {
 };
 
 const TabTest = () => {
-  return <Text></Text>;
+  return <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text>;
 };
 
 const styles = StyleSheet.create({

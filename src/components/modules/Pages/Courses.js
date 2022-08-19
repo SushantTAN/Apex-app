@@ -76,15 +76,14 @@ const Courses = props => {
   ]
 
   // console.log("asdsf", courseList.results)
+  return <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>No courses yet.</Text>;
   return (
 
     <ScrollView contentContainerStyle={{ paddingBottom: 10 }} stickyHeaderIndices={[0]} style={styles.scrollView}>
-      <TopBar title="Courses" backIcon={<BackIcon />} icon={<FilterIcon style={{ color: "#000" }} />} />
+      {/* <TopBar title="Courses" backIcon={<BackIcon />} icon={<FilterIcon style={{ color: "#000" }} />} />
       <View style={styles.gap} />
       <View style={styles.mainContainer}>
         <View style={styles.text}>
-
-          {/* {console.log("courselist", courseList.result)} */}
 
           {courseList.results.map((item, index) => {
             return (
@@ -102,7 +101,9 @@ const Courses = props => {
           })}
         </View>
 
-      </View>
+      </View> */}
+
+      <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>No courses yet</Text>
     </ScrollView>
 
   );
