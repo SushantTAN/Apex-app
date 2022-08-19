@@ -2,24 +2,36 @@
 @import '../common';
 
 .container {
- background-color: themes.$primary;
- height: 100%;
-  padding: 16px 16px 16px 16px;
-  align-items: center;
+  // background-color: themes.$primary;
+  height: 100%;
+
+  // align-items: center;
 
 }
 
 .heading {
   @extend .h1;
   color: white;
-  padding: 0px 0px 48px 0px;
+
+  // position: absolute;
+  // bottom: 5%;
+  padding: 16px 0px;
+
+}
+
+.textandimage {
+  position: relative;
+  // bottom: 5%;
+
 }
 
 .textContainer {
   width: 100%;
   position: absolute;
   bottom: 0;
-  margin: 6px 0px;
+  height: 100%;
+  // margin: 6px 0px;
+
 }
 
 .pagination {
@@ -29,10 +41,15 @@
 
 .paginationContainer {
   flex-direction: row;
-  align-items: center;
+  // align-items: center;
   justify-content: space-between;
-  padding: 0px 0px 16px 0px;
-  width:100%;
+  padding: 0px 16px 16px 16px;
+  width: 100%;
+  flex-direction: column;
+  // background-color: green;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .paginationDot {

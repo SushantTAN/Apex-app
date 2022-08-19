@@ -4,24 +4,28 @@
  * @returns {OnBoarding}- returns a module for on boarding.
  */
 
-import React, {useRef, useState} from 'react';
-import {Text, View} from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Text, View, Image } from 'react-native';
 
-import Carousel, {Pagination} from 'react-native-snap-carousel';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
 
 import styles from '@styles/modules/onBoarding.scss';
 import CustomButton from '@elements/CustomButton';
-import {WIDTH} from '@utils/constants';
+import { HEIGHT, WIDTH } from '@utils/constants';
 
 const data = [
   {
     title: 'Apex Educational Academy',
+    image: require("@assets/images/Frame72.png")
+
   },
   {
     title: 'One Platform For Everything',
+    image: require("@assets/images/Frame37.png")
   },
   {
     title: 'Where student meets excellence',
+    image: require("@assets/images/Frame36.png")
   },
 ];
 
@@ -30,27 +34,18 @@ const OnBoarding = props => {
 
   const CarouselRef = useRef(null);
 
-  const _renderItemWithParallax = ({item, index}, parallaxProps) => {
-    return <Text style={styles.heading}>{item.title}</Text>;
-  };
+  const _renderItemWithParallax = ({ item, index }, parallaxProps) => {
+    return <View style={styles.textandimage}>
+      <Image
+        style={{ height: HEIGHT, width: WIDTH }}
+        source={item.image} />
+      {/* <View
+        style={{ height: 200, width: WIDTH, backgroundColor: "green", position: "absolute", bottom: 0, zIndex: 0 }}><Text>jfjyf</Text></View> */}
 
-  const handleSigninPress = () => {
-    props.navigation.navigate('Register');
-  };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.textContainer}>
-        <Carousel
-          ref={CarouselRef}
-          data={data}
-          renderItem={_renderItemWithParallax}
-          sliderWidth={WIDTH}
-          itemWidth={WIDTH}
-          onSnapToItem={index => setActiveSlide(index)}
-        />
-
-        <View style={styles.paginationContainer}>
+      <View style={styles.paginationContainer}>
+        <Text style={styles.heading}>{item.title}</Text>
+        <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
           <Pagination
             dotsLength={data.length}
             activeDotIndex={activeSlide}
@@ -71,6 +66,29 @@ const OnBoarding = props => {
             onPress={handleSigninPress}
           />
         </View>
+      </View>
+    </View>
+
+
+  };
+
+  const handleSigninPress = () => {
+    props.navigation.navigate('Register');
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.textContainer}>
+        <Carousel
+          ref={CarouselRef}
+          data={data}
+          renderItem={_renderItemWithParallax}
+          sliderWidth={WIDTH}
+          itemWidth={WIDTH}
+          onSnapToItem={index => setActiveSlide(index)}
+        />
+
+
       </View>
     </View>
   );

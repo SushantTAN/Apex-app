@@ -96,7 +96,7 @@ const Courses = props => {
                 sessions={item.sessions}
                 name={item.name}
                 numberOfEnroll={item.enrollment_count.course_enroll_count}
-
+                image={item.image}
               />
             );
           })}

@@ -44,8 +44,8 @@ const CustomSessionPopup1 = props => {
 
   const courseDetails = useSelector(state => state.courseReducer.courseDetail);
 
-  const handleEnroll = () => {
-    props.navigation.navigate('CoursePayment');
+  const handleEnroll = (id) => {
+    props.navigation.navigate('CoursePayment', { id: id });
   };
 
   const closeModal = bool => {
@@ -88,7 +88,6 @@ const CustomSessionPopup1 = props => {
 
                         {courseDetails.sessions.map((item, index) => {
                           return (
-
                             <Text
                               key={index}
                               style={styles.time}>{item.start_date.split('T')[0]} </Text>
