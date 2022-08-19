@@ -20,6 +20,7 @@ import { PATCH } from '@utils/api';
 import styles from '@styles/modules/Exams/Exams.scss';
 import { submitExam, takeExamDetailRequest } from '@apexapp/store/actions/exam';
 import { useDispatch, useSelector } from 'react-redux';
+import { setLoading } from '@apexapp/store/actions/loading';
 
 
 
@@ -43,6 +44,11 @@ const getIndex = (index) => {
       return 'a.';
   }
 }
+
+var ansGlobal = {
+  question_states: [],
+  submitted: true,
+};
 
 const TakeExams = props => {
   const { id, enrollId } = props.route.params;
@@ -77,8 +83,8 @@ const TakeExams = props => {
   }
 
   const handleSubmit = () => {
-    console.log("before function submit answers", answers);
-    dispatch(submitExam(details.exam_enroll, { ...answers }, auth.access_token, props.navigation.navigate, id, props.navigation))
+    console.log("before function submit answers", ansGlobal);
+    dispatch(submitExam(details.exam_enroll, { ...ansGlobal }, auth.access_token, props.navigation.navigate, id, props.navigation))
   }
 
   useEffect(() => {
@@ -246,14 +252,14 @@ const TakeExams = props => {
                           });
                         }
 
-
+                        ansGlobal = tempAnswers;
 
                         return tempAnswers;
 
                       });
                     }}
                   />
-                  {/* {console.log("answers,", answers)} */}
+                  {console.log("answers,", ansGlobal)}
                   <Text style={styles.a}>{getIndex(index)}</Text>
 
                   <RenderHtml
@@ -299,6 +305,7 @@ const TakeExams = props => {
             onPress={async () => {
               if (currentQuestion + 1 <= details.questions.length) {
                 try {
+                  dispatch(setLoading(true));
                   // console.log("data", { ...answers, submitted: false });
                   const response = await PATCH('api/enrollments/exam/submit/' + details.exam_enroll.id, { ...answers, submitted: false }, auth.access_token);
                   // console.log("submit exma", response)
@@ -312,6 +319,7 @@ const TakeExams = props => {
                 } catch (error) {
                   console.log('err', error);
                 }
+                dispatch(setLoading(false));
                 setCurrentQuestion(prevState => prevState + 1);
                 setCurrentQuestionId(details?.questions[currentQuestion + 1].id)
               }

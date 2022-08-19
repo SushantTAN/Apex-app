@@ -344,9 +344,10 @@ const Home = props => {
                     style={{
                       margin: 16,
                       width: WIDTH - 32,
-                      borderRadius: 8
+                      borderRadius: 8,
+                      height: 120,
                     }}
-                    source={require("@assets/images/entrance.png")}
+                    source={require("@assets/images/entrance2x.png")}
                   />
                   {/* <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text> */}
                 </View>
@@ -397,9 +398,10 @@ const Home = props => {
                     style={{
                       margin: 16,
                       width: WIDTH - 32,
-                      borderRadius: 8
+                      borderRadius: 8,
+                      height: 120,
                     }}
-                    source={require("@assets/images/loksewa.png")}
+                    source={require("@assets/images/loksewa2x.png")}
                   />
                   {/* <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text> */}
                 </View>
