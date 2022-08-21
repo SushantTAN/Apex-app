@@ -22,15 +22,12 @@ const CustomProfilePopup = props => {
     dispatch(logout(props.navigation))
   };
 
-  const closeModal = bool => {
-    props.changeModalVisible(bool);
-  };
   return (
     <TouchableOpacity disabled={true} style={styles.container}>
       <View style={styles.modal}>
         <View style={styles.flex1}>
           <Text style={styles.title}>Logout</Text>
-          <TouchableOpacity onPress={() => closeModal(false, 'Cancel')}>
+          <TouchableOpacity onPress={() => props.closeModal()}>
             <Text style={styles.close}>Close</Text>
           </TouchableOpacity>
         </View>
