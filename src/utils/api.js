@@ -1,10 +1,10 @@
 import react from 'react';
 // import axios from 'axios';
 
-// export const apiBaseURL = 'https://apexeducation.edu.np/';
-export const apiBaseURL = 'https://5886-27-34-9-136.ngrok.io/';
-// export const socketURL = 'apexeducation.edu.np';
-export const socketURL = '5886-27-34-9-136.ngrok.io';
+export const apiBaseURL = 'https://apexeducation.edu.np/';
+// export const apiBaseURL = 'https://8e84-27-34-9-136.ngrok.io/';
+export const socketURL = 'apexeducation.edu.np';
+// export const socketURL = '8e84-27-34-9-136.ngrok.io';
 
 // export const apiBaseURL = 'https://apex.calcgen.com/';
 
