@@ -192,7 +192,7 @@ const TakeExams = props => {
 
                 <View style={{}}>
                   {details?.questions[currentQuestion]?.img && <Image
-                    style={styles.image}
+                    style={[styles.image, { height: HEIGHT * 0.2, width: HEIGHT * 0.2 }]}
                     source={{ uri: details?.questions[currentQuestion]?.img }}
                   />}
                   <View style={styles.txt}>
