@@ -2,25 +2,36 @@
 
 .container {
     font-family: 'OpenSans-Regular';
-    flex: 1;
+    // flex: 1;
     align-items: center;
     justify-content: flex-end;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    // padding: 16px;
 }
 
 .modal {
-    height: 30%;
-    padding-top: 10px;
-    background-color: white;
+    // height: 30%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    // padding-top: 10px;
+    // background-color: green;
     border-radius: 10px;
     width: 100%;
 }
 
 .flex1 {
+    width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    margin: 8px;
-    margin-left: 18px;
-    margin-right: 18px;
+    padding: 16px;
+    // margin: 8px;
+    // margin-left: 18px;
+    // margin-right: 18px;
 
 }
 
@@ -35,17 +46,17 @@
 }
 
 .line {
-    margin-top: 10px;
+    // margin-top: 10px;
     height: 3px;
-    width: 100%;
+    // width: 100%;
     background-color: #f8f8f8;
 }
 
 .head {
     @extend .p;
     font-weight: 600;
-    margin-top: 16px;
-    margin-left: 16px;
+    // margin-top: 16px;
+    // margin-left: 16px;
 
 
 }
@@ -60,10 +71,11 @@
 
 .CustomButton {
     width: 90%;
-    position: absolute;
-    margin-left: 16px;
-    bottom: 8;
+    // position: absolute;
+    // margin-left: 16px;
+    // bottom: 8;
     align-items: center;
+    margin-bottom: 16px;
 
 
 }

@@ -17,6 +17,10 @@ export const SET_EXAM_DETAILS = 'SET_EXAM_DETAILS';
 export const SET_TAKE_EXAM_DETAILS = 'SET_TAKE_EXAM_DETAILS';
 export const SET_EXAM_RESULT = 'SET_EXAM_RESULT';
 export const SUBMIT_EXAM = 'SUBMIT_EXAM';
+export const SET_SUBMITTING = "SET_SUBMITTING";
+export const SET_SHOW_SUBMITTING = "SET_SHOW_SUBMITTING";
+
+
 
 //Loading
 export const SET_LOADING = 'SET_LOADING';
@@ -26,4 +30,3 @@ export const SET_SUCCESS_POPUP = 'SET_SUCCESS_POPUP';
 //Course
 export const SET_COURSE_LIST = 'SET_COURSE_LIST';
 export const SET_COURSE_DETAILS = "SET_COURSE-DETAILS";
-

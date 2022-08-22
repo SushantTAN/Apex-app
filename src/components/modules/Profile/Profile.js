@@ -16,6 +16,7 @@ import EditIcon from '@assets/images/Edit.svg';
 import ResetIcon from '@assets/images/Lock.svg';
 import LogoutIcon from '@assets/images/Logout.svg'
 import { useSelector } from 'react-redux';
+import CustomModal from '@apexapp/components/elements/CustomModal/CustomModal';
 
 const data = {
   name: 'Suman Panday',
@@ -99,26 +100,21 @@ const Profile = props => {
               changeModalVisible2={changeModalVisible2}
             />
           </Modal> */}
-          <CustomButton
-            onPress={handlelogout}
-            // type="theme"
-            title={'Logout'}
-            style={styles.button}
-            color="white"
-            icon={<LogoutIcon style={styles.icon} />}
-          />
 
-          <Modal
-            transparent={true}
-            animationType="slide"
-            visible={isModalVisible}
-            nRequestClose={() => changeModalVisible(true)}>
+          <CustomModal
+            button={<View style={styles.button}>
+              <LogoutIcon style={styles.icon} />
+              <Text style={styles.text}> Logout</Text>
+            </View>}
+          >
             <CustomProfilePopup
               data={data}
               navigation={props.navigation}
               changeModalVisible={changeModalVisible}
             />
-          </Modal>
+          </CustomModal>
+
+
           <CustomButton
             onPress={handlereset}
             // type="theme"

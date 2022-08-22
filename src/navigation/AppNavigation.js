@@ -25,6 +25,7 @@ import SignInRouter from './signin';
 import { store } from '@apexapp/store/store';
 import Walkthrough from '@screens/walkthrough';
 import SuccessPopup from '@apexapp/components/elements/SuccessPopup/SuccessPopup';
+import SubmittingModal from '@apexapp/components/elements/SubmittingModal/SubmittingModal';
 
 
 export const MyStack = createNativeStackNavigator();
@@ -56,6 +57,7 @@ const MainRouter = () => {
 
         <LoadingScreen />
         <SuccessPopup />
+        <SubmittingModal />
       </NavigationContainer>
     </Provider>
   );
