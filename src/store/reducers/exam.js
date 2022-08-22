@@ -57,6 +57,9 @@ const initialState = {
     }
   },
 
+  submitting: null,
+  showSubmitting: false,
+
 }
 
 const examsReducer = (state = initialState, action) => {
@@ -75,6 +78,9 @@ const examsReducer = (state = initialState, action) => {
 
     case types.SET_TAKE_EXAM_DETAILS:
       return { ...state, takeExamDetails: action.payload };
+
+    case types.SET_SUBMITTING:
+      return { ...state, submitting: action.submitting, showSubmitting: action.showSubmitting };
 
     default:
       return state;

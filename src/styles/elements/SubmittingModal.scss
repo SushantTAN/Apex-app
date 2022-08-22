@@ -1,0 +1,30 @@
+@use '../library' as themes;
+@import '../common';
+
+.container { 
+  background-color: white; 
+  height: 40%; 
+  border-radius: 8px; 
+  overflow: hidden;
+}
+
+.header {
+  padding: 16px; 
+  font-size: themes.$h3;
+  font-family: 'OpenSans-Regular'; 
+  color: black; 
+  // flex: 1;
+}
+
+.headerContainer {
+  border-bottom: 1px solid green;
+
+}
+
+.spinnerContainer{
+  flex: 4;
+  justify-content: center;
+  align-items: center;
+// background-color: green;
+
+}

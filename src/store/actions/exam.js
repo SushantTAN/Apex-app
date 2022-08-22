@@ -180,6 +180,7 @@ export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answ
 export const submitExam = (enrollId, data, token, navigate = () => { }, examId, navigation) => {
   return async dispatch => {
     try {
+      dispatch(setSubmitting('submitting', true));
       // console.log("data", data);
       const response = await PATCH('api/enrollments/exam/submit/' + enrollId.id, data, token);
       // console.log("submit exma", response)
@@ -187,18 +188,28 @@ export const submitExam = (enrollId, data, token, navigate = () => { }, examId, 
       // console.log("submit exam", resJson)
       if (response.status === 200) {
         if (data.submitted) {
-          dispatch(setSuccessMsg('Test has been submitted'));
+          // dispatch(setSuccessMsg('Test has been submitted'));
         }
         // navigate('ExamDetail', { id: examId });
         // navigation.dispatch(CommonActions.goBack());
 
-        navigation.dispatch(
-          StackActions.replace('ExamDetail', { id: examId })
-        );
+        // navigation.dispatch(
+        //   StackActions.replace('ExamDetail', { id: examId })
+        // );
+
+        dispatch(setSubmitting('submitted', true));
+
+        setTimeout(() => {
+          dispatch(setSubmitting('', false));
+
+          navigation.dispatch(
+            StackActions.replace('ExamDetail', { id: examId })
+          );
+        }, 1000);
 
       }
       if (response.status === 400) {
-
+        dispatch(setSubmitting('', false));
         Alert.alert(
           "Error",
           "An error occured wile submitting the exam, but dont worry your checkpoints have been set.",
@@ -215,6 +226,7 @@ export const submitExam = (enrollId, data, token, navigate = () => { }, examId, 
     } catch (error) {
       console.log('err', error);
     }
+
   };
 };
 
@@ -242,5 +254,13 @@ export const examResultsRequest = (id, token) => {
     } catch (error) {
       console.log('err', error);
     }
+  };
+};
+
+export const setSubmitting = (data1, data2) => {
+  return {
+    type: types.SET_SUBMITTING,
+    submitting: data1,
+    showSubmitting: data2,
   };
 };
