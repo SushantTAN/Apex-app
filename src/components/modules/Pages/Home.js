@@ -33,6 +33,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ExamCard from '../ExamCard';
 import { examsFullListRequest, examsListRequest } from '@apexapp/store/actions/exam';
 import { useFocusEffect } from '@react-navigation/native';
+import { errorAlert } from '@apexapp/utils/functions';
 
 
 const Home = props => {
@@ -108,6 +109,7 @@ const Home = props => {
       const backHandler = BackHandler.addEventListener(
         'hardwareBackPress',
         () => {
+          // errorAlert("Hold on!", "Are you sure you want to go back?");
           Alert.alert("Hold on!", "Are you sure you want to go back?", [
             {
               text: "Cancel",
