@@ -334,19 +334,29 @@ const Home = props => {
                       tappableDots={!!CarouselRefff}
                     />
                   </View> */}
-                  <CustomButton
+                  {/* <CustomButton
                     type="white"
                     title={'Explore all'}
                     style={styles.button}
                     color="#000000"
+                  /> */}
+                  <Image
+                    style={{
+                      margin: 16,
+                      width: WIDTH - 32,
+                      borderRadius: 8,
+                      height: 120,
+                    }}
+                    source={require("@assets/images/entrance2x.png")}
                   />
+                  {/* <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text> */}
                 </View>
               </View>
             </View>
           </View>
           <View style={styles.gap} />
 
-          {/* <View style={styles.div}>
+          <View style={styles.div}>
             <View>
               <View style={styles.txt}>
                 <Text style={styles.p}>Loksewa preparation</Text>
@@ -354,7 +364,7 @@ const Home = props => {
 
               <View style={styles.div1}>
                 <View style={styles.textContainer}>
-                  <Carousel
+                  {/* <Carousel
                     ref={CarouselReffff}
                     data={data2}
                     renderItem={_renderItemWithParallax2}
@@ -376,18 +386,31 @@ const Home = props => {
                       carouselRef={CarouselReffff}
                       tappableDots={!!CarouselReffff}
                     />
-                  </View>
+                  </View> */}
 
-                  <CustomButton
+                  {/* <CustomButton
                     type="white"
                     title={'Explore all'}
                     style={styles.button}
                     color="#000000"
+                  /> */}
+                  <Image
+                    style={{
+                      margin: 16,
+                      width: WIDTH - 32,
+                      borderRadius: 8,
+                      height: 120,
+                    }}
+                    source={require("@assets/images/loksewa2x.png")}
                   />
+                  {/* <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text> */}
                 </View>
               </View>
             </View>
-          </View> */}
+          </View>
+
+          <View style={styles.gap} />
+
         </ScrollView>
       </View>
     </>

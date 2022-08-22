@@ -2,9 +2,14 @@
 @import '../../common';
 
 .container {
-@extend .bcr;
+    @extend .bcr;
     height: 100%;
     position: relative;
+}
+
+.containers {
+    flex-grow: 1;
+    padding-bottom: 60px;
 }
 
 .lastcontainer {
@@ -41,7 +46,7 @@
 .p {
     @extend .p;
     flex-direction: row;
-    text-align:center;
+    text-align: center;
 }
 
 .formContainer {
@@ -56,16 +61,18 @@
     bottom: 0;
     right: 0;
 }
-.errortext{
+
+.errortext {
     width: 100%;
-    font-weight:400;
-    font-size:26px;
+    font-weight: 400;
+    font-size: 26px;
     padding: 16px 0px;
     margin: 2px;
     border-radius: 5px;
     background-color: #F8A4A7;
     text-align: center;
 }
-.errorContainer{
+
+.errorContainer {
     padding: 0px 32px;
 }
