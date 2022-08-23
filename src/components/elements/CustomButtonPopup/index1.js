@@ -38,7 +38,7 @@ const CustomButtonPopup1 = (props) => {
                 <View style={styles.flex1}>
                     <Text style={styles.title}>Filter</Text>
                     <TouchableOpacity
-                        onPress={() => closeModal(false, 'Cancel')}>
+                        onPress={() => props.closeModal(false, 'Cancel')}>
                         <Text style={styles.close}>Close</Text>
                     </TouchableOpacity>
                 </View>

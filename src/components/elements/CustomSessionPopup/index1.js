@@ -57,7 +57,7 @@ const CustomSessionPopup1 = props => {
       <View style={{ ...styles.modal, backgroundColor: "#fff" }}>
         <View style={styles.flex1}>
           <Text style={styles.head}>Session</Text>
-          <TouchableOpacity onPress={() => closeModal(false, 'Cancel')}>
+          <TouchableOpacity onPress={() => props.closeModal(false, 'Cancel')}>
             <Text style={styles.close}>Close</Text>
           </TouchableOpacity>
         </View>

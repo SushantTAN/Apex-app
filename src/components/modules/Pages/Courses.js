@@ -55,8 +55,6 @@ const data = [
   },
 ];
 
-
-
 const Courses = props => {
 
   const handleArrow = id => {
@@ -76,16 +74,16 @@ const Courses = props => {
   ]
 
   // console.log("asdsf", courseList.results)
-  return <>
-    <TopBar title="My Courses" backIcon={<BackIcon />} search={false} />
-    <View style={{ justifyContent: 'center', height: '100%', width: '100%', alignItems: 'center' }}>
-      <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16, }}>No courses yet.</Text>
-    </View>
-  </>;
+  // return <>
+  //   <TopBar title="My Courses" backIcon={<BackIcon />} search={false} />
+  //   <View style={{ justifyContent: 'center', height: '100%', width: '100%', alignItems: 'center' }}>
+  //     <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16, }}>No courses yet.</Text>
+  //   </View>
+  // </>;
   return (
 
     <ScrollView contentContainerStyle={{ paddingBottom: 10 }} stickyHeaderIndices={[0]} style={styles.scrollView}>
-      {/* <TopBar title="Courses" backIcon={<BackIcon />} icon={<FilterIcon style={{ color: "#000" }} />} />
+      <TopBar title="Courses" backIcon={<BackIcon />} icon={<FilterIcon style={{ color: "#000" }} />} />
       <View style={styles.gap} />
       <View style={styles.mainContainer}>
         <View style={styles.text}>
@@ -106,7 +104,7 @@ const Courses = props => {
           })}
         </View>
 
-      </View> */}
+      </View>
 
       <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>No courses yet</Text>
     </ScrollView>

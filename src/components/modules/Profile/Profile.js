@@ -102,6 +102,7 @@ const Profile = props => {
           </Modal> */}
 
           <CustomModal
+            height="28%"
             button={<View style={styles.button}>
               <LogoutIcon style={styles.icon} />
               <Text style={styles.text}> Logout</Text>
@@ -115,7 +116,23 @@ const Profile = props => {
           </CustomModal>
 
 
-          <CustomButton
+
+          <CustomModal
+            height="30%"
+            button={<View style={styles.button}>
+              <ResetIcon style={styles.icon} />
+              <Text style={styles.text}>Reset </Text>
+            </View>}
+          >
+
+            <CustomProfilePopup1
+              data={data}
+              navigation={props.navigation}
+              changeModalVisible1={changeModalVisible1}
+            />
+
+          </CustomModal>
+          {/* <CustomButton
             onPress={handlereset}
             // type="theme"
             title={'Reset password?'}
@@ -134,7 +151,7 @@ const Profile = props => {
               data={data}
               changeModalVisible1={changeModalVisible1}
             />
-          </Modal>
+          </Modal> */}
         </View>
         <View style={styles.footer}></View>
       </View>
