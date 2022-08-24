@@ -5,13 +5,15 @@
  */
 
 import React, { useRef, useState } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, BackHandler, Alert } from 'react-native';
 
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 
 import styles from '@styles/modules/onBoarding.scss';
 import CustomButton from '@elements/CustomButton';
 import { HEIGHT, WIDTH } from '@utils/constants';
+import { errorAlert } from '@utils/functions';
+import { useFocusEffect } from '@react-navigation/native';
 
 const data = [
   {
@@ -28,6 +30,8 @@ const data = [
     image: require("@assets/images/Frame36.png")
   },
 ];
+
+
 
 const OnBoarding = props => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -71,6 +75,32 @@ const OnBoarding = props => {
 
 
   };
+
+  useFocusEffect(
+    React.useCallback(async () => {
+      // console.log("use focus effect dahsboard")
+      const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        () => {
+          // errorAlert("Hold on!", "Are you sure you want to go back?", BackHandler.exitApp());
+          Alert.alert("Hold on!", "Are you sure you want to go back?", [
+            {
+              text: "Cancel",
+              onPress: () => null,
+              style: "cancel"
+            },
+            { text: "YES", onPress: () => BackHandler.exitApp() }
+          ]);
+          return true;
+        },
+      );
+
+      const unsubscribe = props.navigation.addListener('blur', () => {
+        backHandler.remove();
+      });
+      return unsubscribe;
+    }, [props.route]),
+  );
 
   const handleSigninPress = () => {
     props.navigation.navigate('Register');

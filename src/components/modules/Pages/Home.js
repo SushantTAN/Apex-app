@@ -13,6 +13,8 @@ import {
   Image,
   TouchableOpacity,
   RefreshControl,
+  BackHandler,
+  Alert,
 } from 'react-native';
 
 import Carousel, { Pagination } from 'react-native-snap-carousel';
@@ -30,6 +32,8 @@ import { WIDTH } from '@apexapp/utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import ExamCard from '../ExamCard';
 import { examsFullListRequest, examsListRequest } from '@apexapp/store/actions/exam';
+import { useFocusEffect } from '@react-navigation/native';
+import { errorAlert } from '@apexapp/utils/functions';
 
 
 const Home = props => {
@@ -98,6 +102,32 @@ const Home = props => {
     dispatch(examPracticeRequest());
     dispatch(coursesEntranceRequest());
   }, []);
+
+  useFocusEffect(
+    React.useCallback(async () => {
+      // console.log("use focus effect dahsboard")
+      const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        () => {
+          // errorAlert("Hold on!", "Are you sure you want to go back?");
+          Alert.alert("Hold on!", "Are you sure you want to go back?", [
+            {
+              text: "Cancel",
+              onPress: () => null,
+              style: "cancel"
+            },
+            { text: "YES", onPress: () => BackHandler.exitApp() }
+          ]);
+          return true;
+        },
+      );
+
+      const unsubscribe = props.navigation.addListener('blur', () => {
+        backHandler.remove();
+      });
+      return unsubscribe;
+    }, [props.route]),
+  );
 
   const handleExamDetailsLink = (id) => {
     props.navigation.navigate('ExamDetail', { id });

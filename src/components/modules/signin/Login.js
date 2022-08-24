@@ -118,7 +118,7 @@ const Login = props => {
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, height: '100%', position: 'relative' }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, height: '100%', position: 'relative' }} keyboardShouldPersistTaps={'handled'}>
         <Header />
 
         <View style={styles.titleContainer}>

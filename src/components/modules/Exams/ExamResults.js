@@ -9,6 +9,7 @@ import HeaderSearch from "@components/elements/HeaderSearch/HeaderSearch";
 import styles from '@styles/modules/Exams/ExamResults.scss';
 import CustomButton from "@apexapp/components/elements/CustomButton";
 import ShowHints from "@apexapp/components/elements/ShowHints/ShowHints";
+import { HEIGHT } from "@apexapp/utils/constants";
 
 
 const getIndex = (index) => {
@@ -116,7 +117,7 @@ const ExamResults = (props) => {
             <View style={{ flexDirection: 'row' }}>
               <Text style={styles.index}>{questionIndex + 1}.</Text>
               {question.img && <Image
-                style={{ height: 80, width: 80 }}
+                style={{ height: HEIGHT * 0.2, width: HEIGHT * 0.2 }}
                 source={{ uri: question.img }}
               />}
 
