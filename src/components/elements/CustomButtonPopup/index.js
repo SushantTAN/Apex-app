@@ -11,7 +11,7 @@ import React, { useState } from 'react';
 import CustomButton from '../CustomButton';
 import styles from '@styles/elements/CustomButtonPopup.scss';
 
-import { View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
 const CustomButtonPopup = props => {
@@ -35,83 +35,84 @@ const CustomButtonPopup = props => {
       <View style={styles.modal}>
         <View style={styles.flex1}>
           <Text style={styles.title}>Filter</Text>
-          <TouchableOpacity onPress={() => closeModal(false, 'Cancel')}>
+          <TouchableOpacity onPress={() => props.closeModal(false, 'Cancel')}>
             <Text style={styles.close}>Close</Text>
           </TouchableOpacity>
         </View>
 
         <Text style={styles.line}></Text>
+        <ScrollView>
+          <View>
+            <Text style={styles.type}>Type</Text>
+            <View style={styles.type1}>
 
-        <View>
-          <Text style={styles.type}>Type</Text>
-          <View style={styles.type1}>
+              <TouchableOpacity onPress={() => setChecked('first')} >
+                <View style={styles.flex3}>
+                  <RadioButton
+                    color="#2E3192"
+                    style={styles.radi01}
+                    value="first"
+                    status={checked === 'first' ? 'checked' : 'unchecked'}
+                  />
+                  <Text style={styles.type2}>All</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setChecked('second')}
+              >
+                <View style={styles.flex3}>
+                  <RadioButton
+                    color="#2E3192"
+                    value="second"
+                    status={checked === 'second' ? 'checked' : 'unchecked'}
+                  />
+                  <Text style={styles.type3}>Live</Text>
+                </View>
+              </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => setChecked('first')} >
-            <View style={styles.flex3}>
-              <RadioButton
-                color="#2E3192"
-                style={styles.radi01}
-                value="first"
-                status={checked === 'first' ? 'checked' : 'unchecked'}
-              />
-              <Text style={styles.type2}>All</Text>
+              <TouchableOpacity onPress={() => setChecked('third')}
+              >
+                <View style={styles.flex3}>
+                  <RadioButton
+                    color="#2E3192"
+                    value="third"
+                    status={checked === 'third' ? 'checked' : 'unchecked'}
+                  />
+                  <Text style={styles.type4}>Practice</Text>
+                </View>
+              </TouchableOpacity>
             </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => setChecked('second')}
- >
-            <View style={styles.flex3}>
-              <RadioButton
-                color="#2E3192"
-                value="second"
-                status={checked === 'second' ? 'checked' : 'unchecked'}
-              />
-              <Text style={styles.type3}>Live</Text>
-            </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => setChecked('third')}
->
-            <View style={styles.flex3}>
-              <RadioButton
-                color="#2E3192"
-                value="third"
-                status={checked === 'third' ? 'checked' : 'unchecked'}
-              />
-              <Text style={styles.type4}>Practice</Text>
-            </View>
-          </TouchableOpacity>
           </View>
-        </View>
-
-        <View style={{paddingBottom:60}}>
-          <Text style={styles.category}>Category</Text>
-          <View style={styles.category1}>
+        </ScrollView>
+        <ScrollView>
+          <View style={{ paddingBottom: 60 }}>
+            <Text style={styles.category}>Category</Text>
+            <View style={styles.category1}>
 
               <TouchableOpacity onPress={() => setChecked1('fourth')}>
-            <View style={styles.flex3}>
-              <RadioButton
-                color="#2E3192"
-                value="fourth"
-                status={checked1 === 'fourth' ? 'checked' : 'unchecked'}
-              />
-              <Text style={styles.category2}>Entrance preparation</Text>
-            </View>
+                <View style={styles.flex3}>
+                  <RadioButton
+                    color="#2E3192"
+                    value="fourth"
+                    status={checked1 === 'fourth' ? 'checked' : 'unchecked'}
+                  />
+                  <Text style={styles.category2}>Entrance preparation</Text>
+                </View>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => setChecked1('fifth')}>
-            <View style={styles.flex3}>
-              <RadioButton
-                color="#2E3192"
-                value="third"
-                status={checked1 === 'fifth' ? 'checked' : 'unchecked'}
-              />
-              <Text style={styles.category3}>Loksewa preparation</Text>
-            </View>
+                <View style={styles.flex3}>
+                  <RadioButton
+                    color="#2E3192"
+                    value="third"
+                    status={checked1 === 'fifth' ? 'checked' : 'unchecked'}
+                  />
+                  <Text style={styles.category3}>Loksewa preparation</Text>
+                </View>
               </TouchableOpacity>
 
+            </View>
           </View>
-        </View>
+        </ScrollView>
 
         <View style={styles.flex2}>
           <CustomButton

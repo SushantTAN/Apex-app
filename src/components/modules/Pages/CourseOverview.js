@@ -23,6 +23,7 @@ import styles from '@styles/modules/Pages/CourseOverview';
 import TopBar from '@components/elements/TopBar';
 import DateIcon from '@assets/images/date.svg';
 import BackIcon from '@assets/images/back.svg';
+import CustomModal from '@apexapp/components/elements/CustomModal/CustomModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { courseDetailRequest } from '@apexapp/store/actions/course';
 
@@ -130,7 +131,6 @@ const CourseOverview = props => {
                     </Text>
                   </View>
                 </View>
-
                 <View style={styles.tagContainer}>
                   <View style={styles.icon}>
                     <DateIcon style={styles.tagIcon} />
@@ -179,7 +179,20 @@ const CourseOverview = props => {
             </View>
             <View>
 
-              <CustomButton
+              <CustomModal
+                height="65%"
+                button={<View style={styles.sessionbutton}>
+                  <Text style={styles.sessiontext}> Choose session</Text>
+                </View>}
+              >
+
+                <CustomSessionPopup1
+                  navigation={props.navigation}
+                  changeModalVisible={changeModalVisible}
+                />
+              </CustomModal>
+
+              {/* <CustomButton
                 onPress={handleEnroll}
                 type="theme"
                 title={'Choose Session'}
@@ -195,7 +208,10 @@ const CourseOverview = props => {
                 <CustomSessionPopup1
                   navigation={props.navigation}
                   changeModalVisible={changeModalVisible} />
-              </Modal>
+              </Modal> */}
+
+
+
             </View>
           </View>}
       </View>

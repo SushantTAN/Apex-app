@@ -45,15 +45,15 @@ const CustomModal = (props) => {
           // height: '50%'
         }}
       >
-        <View style={styles.container}>
-        
+        <View style={[styles.container, { height: props.height }]}>
+
           {/* {props.children} */}
 
           {
             Children.map(props.children, (child, index) => {
-              if(!isValidElement(child)) return null;
+              if (!isValidElement(child)) return null;
 
-              return cloneElement(child , {
+              return cloneElement(child, {
                 ...child.props,
                 closeModal: handleBackdropPress
               })

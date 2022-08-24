@@ -5,14 +5,17 @@ import styles from '@styles/elements/TopBar.scss'
 import Search from '@assets/images/Search.svg'
 import { useNavigation } from '@react-navigation/native'
 import SearchBar from '../SearchBar'
-
+import Filter from "@assets/images/Filter.svg";
+import CustomModal from '../CustomModal/CustomModal'
+import CustomButtonPopup from '../CustomButtonPopup'
 const TopBar = (props) => {
 
     const navigation = useNavigation()
 
 
-
     const { title, icon, backIcon, filterHandler, search = true, searchDesign, newBackIcon, newIcon } = props;
+
+
 
     return (
         <View style={styles.topbar}>
@@ -32,9 +35,20 @@ const TopBar = (props) => {
                         {title && <Text style={styles.topbarHeaderTitle} >{title}</Text>}
                     </View>
                     {icon &&
-                        <TouchableOpacity style={styles.icon} onPress={filterHandler} >
-                            {icon}
-                        </TouchableOpacity>
+                        <CustomModal
+                            height="60%"
+                            button={<View style={styles.button}>
+                                <Filter style={styles.filter} />
+                            </View>}
+
+                        >
+                            <CustomButtonPopup
+                            // changeModalVisible={changeModalVisible}
+                            />
+                        </CustomModal>
+                        // <TouchableOpacity style={styles.icon} onPress={filterHandler} >
+                        //     {icon}
+                        // </TouchableOpacity>
                     }
                 </View>
 
