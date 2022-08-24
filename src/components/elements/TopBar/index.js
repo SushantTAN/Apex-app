@@ -56,7 +56,7 @@ const TopBar = (props) => {
             </View>
             {search &&
                 <View style={styles.searchContainer}>
-                    <SearchBar />
+                    <SearchBar navigation={navigation}/>
                 </View>
 
             }
