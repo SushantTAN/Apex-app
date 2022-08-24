@@ -211,6 +211,21 @@
 
 }
 
+.sessionbutton {
+
+
+  background-color: themes.$primary;
+  padding: 12px 24px;
+  border-radius: 4px;
+  align-items: center;
+
+
+}
+
+.sessiontext {
+  color: white;
+}
+
 .p5 {
   @extend .P;
 

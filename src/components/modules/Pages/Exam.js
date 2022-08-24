@@ -166,6 +166,7 @@ const Exam = props => {
         nRequestClose={() => changeModalVisible(false)}>
 
         <CustomButtonPopup
+
           changeModalVisible={changeModalVisible} />
       </Modal>
 

@@ -12,32 +12,37 @@ import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch
 import TopBar from '@components/elements/TopBar';
 import BackIcon from '@assets/images/back.svg';
 import styles from '@styles/modules/Pages/CoursePayment';
+import { useSelector } from 'react-redux';
+import { CommonActions } from '@react-navigation/native';
 
 
 const data = [
   {
     title: 'Instructions',
-    header1: '1.instruction number 1',
-    header2: '2.instruction number 2',
+    header1: 'no description available',
+
   },
 ];
 
 const CoursePayment = (props) => {
+
+  const handlePayment = () => {
+    props.navigation.dispatch(CommonActions.goBack());
+  }
+  const courseDetails = useSelector(state => state.courseReducer.courseDetail);
   return (
     <>
       <View style={styles.maincontainer}>
-      <TopBar backIcon={<BackIcon/>} title="Payments" />
+        <TopBar backIcon={<BackIcon />} title="Payments" />
         <View style={styles.gap} />
 
         <View style={styles.text}>
-          <Text style={styles.baseText}>Engineering Entrance (IOE)</Text>
+          <Text style={styles.baseText}>{courseDetails.name}</Text>
           <Text style={styles.Text}>
-            Apex Education Academy (AEA) has been offering various
-            Career-oriented Entrance Preparation Courses including Medical and
-            Engineering Preparation asince two decades.
+            {courseDetails.description}
           </Text>
           <View style={styles.prices}>
-            <Text style={styles.price}>Rs.500</Text>
+            <Text style={styles.price}>Rs {courseDetails.price}</Text>
           </View>
         </View>
         <View style={styles.gap} />
@@ -49,7 +54,7 @@ const CoursePayment = (props) => {
                 <View style={styles.card}>
                   <Text style={styles.title}>{item.title}</Text>
                   <Text style={styles.header1}>{item.header1}</Text>
-                  <Text style={styles.header2}>{item.header2}</Text>
+
                 </View>
               </View>
             );
@@ -68,6 +73,7 @@ const CoursePayment = (props) => {
           </View>
           <View>
             <CustomButton
+              onPress={handlePayment}
               type="theme"
               title={'Pay now'}
               style={styles.button}
