@@ -27,7 +27,7 @@ const CustomProfilePopup1 = props => {
       <View style={styles.modal}>
         <View style={styles.flex1}>
           <Text style={styles.title}>Reset Password</Text>
-          <TouchableOpacity onPress={() => props.closeModal(false, 'Cancel')}>
+          <TouchableOpacity onPress={() => props.closeModal(false)}>
             <Text style={styles.close}>Close</Text>
           </TouchableOpacity>
         </View>

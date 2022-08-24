@@ -7,18 +7,14 @@ import { useNavigation } from '@react-navigation/native'
 import SearchBar from '../SearchBar'
 import Filter from "@assets/images/Filter.svg";
 import CustomModal from '../CustomModal/CustomModal'
-import CustomButtonPopup1 from '../CustomButtonPopup/index1'
-
+import CustomButtonPopup from '../CustomButtonPopup'
 const TopBar = (props) => {
 
     const navigation = useNavigation()
-    const [isModalVisible, setIsModalVisible] = useState(false);
 
 
     const { title, icon, backIcon, filterHandler, search = true, searchDesign, newBackIcon, newIcon } = props;
-    const changeModalVisible = bool => {
-        setIsModalVisible(bool);
-    };
+
 
 
     return (
@@ -40,14 +36,14 @@ const TopBar = (props) => {
                     </View>
                     {icon &&
                         <CustomModal
-                            height="50%"
+                            height="60%"
                             button={<View style={styles.button}>
                                 <Filter style={styles.filter} />
                             </View>}
 
                         >
-                            <CustomButtonPopup1
-                                changeModalVisible={changeModalVisible}
+                            <CustomButtonPopup
+                            // changeModalVisible={changeModalVisible}
                             />
                         </CustomModal>
                         // <TouchableOpacity style={styles.icon} onPress={filterHandler} >
