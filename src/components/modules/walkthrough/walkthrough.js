@@ -11,7 +11,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Mainlogo from '@assets/images/logo.svg'
 import styles from '@styles/modules/walkthrough.scss';
 import { useDispatch } from 'react-redux';
-import { login } from '@apexapp/store/actions/auth';
+import { login, refreshToken } from '@apexapp/store/actions/auth';
+import { errorAlert, parseJwt } from '@apexapp/utils/functions';
+import { POST } from '@apexapp/utils/api';
 
 const Walkthrough = props => {
   const startValue = new Animated.Value(1);
@@ -58,16 +60,49 @@ const Walkthrough = props => {
 
   useEffect(() => {
     setTimeout(async () => {
-      const tokens = await AsyncStorage.getItem('apex-tokens');
-      // console.log(value);
-      if (tokens) {
-        props.navigation.navigate('BottomTabs');
-        let data = await JSON.parse(tokens);
-        dispatch(login(data));
-      } else {
+      // const tokens = await AsyncStorage.getItem('apex-tokens');
+      // // console.log(value);
+      // if (tokens) {
+      //   // props.navigation.navigate('BottomTabs');
+      //   let data = await JSON.parse(tokens);
+      //   // console.log(new Date(data.refresh_token_expiration).getTime() - new Date().getTime());
+
+      //   if ((new Date(data.refresh_token_expiration).getTime() - new Date().getTime()) > 0) {
+      //     await dispatch(refreshToken(data, props.navigation));
+      //     props.navigation.navigate('BottomTabs');
+      //   }
+      //   else {
+      //     await AsyncStorage.removeItem('apex-tokens');
+      //     props.navigation.navigate('OnBoarding');
+
+      //   }
+
+      //   // dispatch(login(data));
+      // } else {
+      //   props.navigation.navigate('OnBoarding');
+      // }
+
+      try {
+        const response = await POST('api/auth/token/verify/');
+        const resJson = await response.data;
+        console.log("token verify", resJson);
+        if (response) {
+          // dispatch(refreshSuccess(resJson));
+  
+          // dispatch(login({ ...tokens, access_token: resJson.access, access_token_expiration: resJson.access_token_expiration }));
+  
+          props.navigation.navigate('BottomTabs');
+        }
+        
+  
+      } catch (error) {
         props.navigation.navigate('OnBoarding');
+
+        console.log('err token verify', error);
+        // errorAlert("Error Occured", "Login Session Has Expired, please login again.")
+
       }
-    }, 4000);
+    }, 2000);
   }, []);
 
   return (

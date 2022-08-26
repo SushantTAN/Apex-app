@@ -226,8 +226,8 @@ const ExamDetail = props => {
           <View style={styles.tagContainer}>
             <Tag title="Practice exam" />
           </View>
-
-          <Text style={styles.examHeaderText}>{examDetails.name}</Text>
+{console.log("details test", examDetails)}
+          <Text style={styles.examHeaderText}>{examDetails?.name}</Text>
 
           <View style={styles.examDetail}>
             <View style={styles.flex1}>
@@ -244,19 +244,19 @@ const ExamDetail = props => {
                 </View>
               </View> */}
 
-              <InfoBox icon={<DateIcon style={{ color: "#fff" }} />} title="Exam Date" desc={examDetails.sessions[0]?.start_date.split('T')[0]} />
-              <InfoBox icon={<TimeIcon style={{ color: "#fff" }} />} title="Duration" desc={examDetails.template.duration} />
-              <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={examDetails.sessions.map((item, index) => <Text>{item?.start_date?.split('T')[1]?.split('+')[0]}</Text>)} />
-              <InfoBox icon={<MarksIcon style={{ color: "#fff" }} />} title="Full marks" desc={examDetails.template.full_marks} />
-              <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Pass marks" desc={examDetails.template.pass_marks} />
-              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled && examDetails.exam_enroll &&
+              <InfoBox icon={<DateIcon style={{ color: "#fff" }} />} title="Exam Date" desc={examDetails?.sessions[0]?.start_date.split('T')[0]} />
+              <InfoBox icon={<TimeIcon style={{ color: "#fff" }} />} title="Duration" desc={examDetails?.template.duration} />
+              <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={examDetails?.sessions.map((item, index) => <Text>{item?.start_date?.split('T')[1]?.split('+')[0]}</Text>)} />
+              <InfoBox icon={<MarksIcon style={{ color: "#fff" }} />} title="Full marks" desc={examDetails?.template.full_marks} />
+              <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Pass marks" desc={examDetails?.template.pass_marks} />
+              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails?.is_enrolled && examDetails?.exam_enroll &&
                 <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Marks" desc={result.score ? result.score : 40} />
               }
-              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled && examDetails.exam_enroll &&
+              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails?.is_enrolled && examDetails?.exam_enroll &&
 
                 <InfoBox title="Result" icon={<MarkIcon style={{ color: "#fff" }} />} desc={result.status} />
               }
-              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails.is_enrolled && examDetails.exam_enroll &&
+              {examDetails?.sessions[0]?.status === 'resultsout' && examDetails?.is_enrolled && examDetails?.exam_enroll &&
                 <InfoBox icon={<RankIcon style={{ color: "#fff" }} />} title="Rank" desc={result.rank} />
               }
 
@@ -280,15 +280,15 @@ const ExamDetail = props => {
               );
             })} */}
           <Text style={styles.instruction1}>
-            {examDetails.template.description}
+            {examDetails?.template.description}
           </Text>
         </View>
       </ScrollView>
 
 
 
-      {examDetails.sessions.length > 0 && <View style={styles.enroll}>
-        {examDetails.is_enrolled ? (examDetails.exam_enroll ?
+      {examDetails?.sessions.length > 0 && <View style={styles.enroll}>
+        {examDetails?.is_enrolled ? (examDetails?.exam_enroll ?
           (<View style={styles.enroll0}>
             <Text style={styles.enroll1}>Results Out</Text>
             <Text style={styles.enroll2}>
@@ -312,8 +312,8 @@ const ExamDetail = props => {
 
         {/* {console.log('enroll check in render', examDetails.is_enrolled)} */}
         <View style={styles.buttons}>
-          {!examDetails.is_enrolled ? (
-            examDetails.sessions.length > 1 ? (
+          {!examDetails?.is_enrolled ? (
+            examDetails?.sessions.length > 1 ? (
               <CustomButton
                 onPress={handleChooseSession}
                 style={styles.CustomButton}
@@ -325,7 +325,7 @@ const ExamDetail = props => {
 
               examDetails?.sessions[0]?.status === 'ended' ?
                 (
-                  examDetails.sessions.length > 0 && <CustomButton
+                  examDetails?.sessions.length > 0 && <CustomButton
                     onPress={() => { }}
                     style={[styles.CustomButton]}
                     type={'disabled'}
@@ -352,7 +352,7 @@ const ExamDetail = props => {
                 title={'Result Details'}
               // color="#ffffff"
               /> : (
-                examDetails.exam_enroll ?
+                examDetails?.exam_enroll ?
                   <CustomButton
                     onPress={() => { }}
                     style={[styles.CustomButton]}
@@ -379,7 +379,7 @@ const ExamDetail = props => {
               data={{
                 exams: [{
                   exam: id,
-                  selected_session: examDetails.sessions && examDetails.sessions.length > 0 ? examDetails.sessions[0].id : ''
+                  selected_session: examDetails?.sessions && examDetails?.sessions.length > 0 ? examDetails?.sessions[0].id : ''
                 }]
               }}
               examDetails={examDetails}

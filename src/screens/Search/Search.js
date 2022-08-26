@@ -99,7 +99,7 @@ const Search = (props) => {
 
 
 
-          <SearchBar searchHandler={searchHandler} value={searchValue} style={{ flex: 1 }} />
+          <SearchBar searchHandler={searchHandler} value={searchValue} style={{ flex: 1 }} navigation={props.navigation} />
           {/* <TextInput onChangeText={searchHandler}
                     value={searchText}
                     placeholder="Search here"
@@ -165,7 +165,7 @@ const Search = (props) => {
           <View style={styles.container}>
             <View style={styles.textContainer}>
               <View style={styles.txt}>
-                <Text style={styles.p}>Courses</Text>
+                {/* <Text style={styles.p}>Courses</Text> */}
               </View>
               {data.map((item, index) => {
                 return (
@@ -204,7 +204,7 @@ const Search = (props) => {
                   </View>
                 </TouchableOpacity> */}
 
-                    <CourseCard tags={item.tags} actionPress={() => handleArrow(item.id)} date={item.date} name={item.info} numberOfEnroll={item.data} />
+                    {/* <CourseCard tags={item.tags} actionPress={() => handleArrow(item.id)} date={item.date} name={item.info} numberOfEnroll={item.data} /> */}
                   </>
                 );
               })}
