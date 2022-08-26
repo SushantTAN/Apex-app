@@ -12,9 +12,9 @@ export const examLiveRequest = () => {
   return async (dispatch) => {
     try {
       const response = await GET('api/exams/list/?page_size=8');
-      const resJson = await response.json();
+      const resJson = response.data;
       // console.log("action", resJson)
-      if (response.status === 200) {
+      if (response) {
         dispatch(examLive(resJson));
       }
       if (response.status === 400) {
@@ -38,8 +38,8 @@ export const examPracticeRequest = () => {
   return async (dispatch) => {
     try {
       const response = await GET('api/exams/list/?page_size=6');
-      const resJson = await response.json();
-      if (response.status === 200) {
+      const resJson = response.data;
+      if (response) {
         dispatch(examPractice(resJson));
       }
       if (response.status === 400) {
@@ -69,8 +69,8 @@ export const coursesEntranceRequest = (query, page_size, page) => {
       }
       url = `api/courses/list/?${dataValue.query}${dataValue.page}${dataValue.page_size}`
       const response = await GET('api/courses/list/');
-      const resJson = await response.json();
-      if (response.status === 200) {
+      const resJson = response.data;
+      if (response) {
         dispatch(coursesEntrance(resJson));
       }
       if (response.status === 400) {

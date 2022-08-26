@@ -114,17 +114,24 @@ const Register = props => {
         // dispatch(login(resJson));
         props.navigation.navigate('Verify', { username: data.username });
       }
-      if (response.status === 400) {
-        let msg = '';
-        Object.values(resJson).forEach(element => {
-          msg = msg + element[0];
-        });
-        setErrorMsg(msg);
-        autoFadeOut();
-      }
+      
 
     } catch (error) {
       console.log('err', error);
+      try {
+        if (error.response.status === 400) {
+          let msg = '';
+          Object.values(error.response.data).forEach(element => {
+            msg = msg + element[0];
+          });
+          setErrorMsg(msg);
+          autoFadeOut();
+        }
+        // setErrorMsg(error.response.data.non_field_errors[0]);
+        // console.log(error.response.data);
+      } catch (err) {
+        console.log(err)
+      }
     }
   };
 

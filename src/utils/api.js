@@ -1,10 +1,10 @@
 import react from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 
 export const apiBaseURL = 'https://apexeducation.edu.np/';
-// export const apiBaseURL = 'https://030a-27-34-9-136.ngrok.io/';
+// export const apiBaseURL = 'https://812a-27-34-9-136.ngrok.io/';
 export const socketURL = 'apexeducation.edu.np';
-// export const socketURL = '030a-27-34-9-136.ngrok.io';
+// export const socketURL = '812a-27-34-9-136.ngrok.io';
 
 // export const apiBaseURL = 'https://apex.calcgen.com/';
 
@@ -22,13 +22,13 @@ export const getSocketUrl = () => {
 }
 
 const getHeaders = (token) => {
-  if (token) {
-    return {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + token,
-    };
-  }
+  // if (token) {
+  //   return {
+  //     Accept: 'application/json',
+  //     'Content-Type': 'application/json',
+  //     Authorization: 'Bearer ' + token,
+  //   };
+  // }
   return {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -36,32 +36,37 @@ const getHeaders = (token) => {
 };
 
 export const GET = (url, token) => {
-  return fetch(apiBaseURL + url, {
-    method: 'GET',
-    headers: getHeaders(token),
+  return axios.get(apiBaseURL + url, {
+    headers: getHeaders(),
+    withCredentials: true,
+    crossDomain: true,
   });
 };
 
 export const POST = (url, data, token) => {
-  return fetch(apiBaseURL + url, {
-    method: 'POST',
-    headers: getHeaders(token),
-    body: JSON.stringify(data),
+  return axios.post(apiBaseURL + url, data, {
+    headers: getHeaders(),
+    withCredentials: true,
+    crossDomain: true,
   });
 };
 
 export const PATCH = (url, data, token) => {
-  return fetch(apiBaseURL + url, {
-    method: 'PATCH',
-    headers: getHeaders(token),
-    body: JSON.stringify(data),
+  return axios.patch(apiBaseURL + url, data, {
+    headers: getHeaders(),
+    withCredentials: true,
+    crossDomain: true,
   });
 };
 
 export const DELETE = (url, data) => {
-  return fetch(apiBaseURL + url, {
-    method: 'DELETE',
+  return axios.delete(apiBaseURL + url, {
     headers: getHeaders(),
-    body: JSON.stringify({ data }),
+    withCredentials: true,
+    crossDomain: true,
   });
 };
+
+
+axios.defaults.withCredentials = true;
+

@@ -1,5 +1,7 @@
 //Auth
 export const SET_TOKENS = "SET_TOKENS";
+export const SET_REFRESH_RESULT = "SET_REFRESH_RESULT";
+
 export const LOGOUT = "LOGOUT";
 
 //Register
