@@ -55,7 +55,7 @@ export const courseDetailRequest = (id) => {
 export const courseEnrollRequest = (id) => {
     return async dispatch => {
         try {
-            const response = await GET('api/courses/retrieve/before-enroll/' + id + '/')
+            const response = await GET('' + id + '/')
             const resJson = await response.json();
             if (response.status === 200) {
                 dispatch(courseDetail(resJson));

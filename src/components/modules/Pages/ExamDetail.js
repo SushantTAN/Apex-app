@@ -244,7 +244,7 @@ const ExamDetail = props => {
                 </View>
               </View> */}
 
-              <InfoBox icon={<DateIcon style={{ color: "#fff" }} />} title="Exam Date" desc="29 Jan, 2022" />
+              <InfoBox icon={<DateIcon style={{ color: "#fff" }} />} title="Exam Date" desc={examDetails.sessions[0]?.start_date.split('T')[0]} />
               <InfoBox icon={<TimeIcon style={{ color: "#fff" }} />} title="Duration" desc={examDetails.template.duration} />
               <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={examDetails.sessions.map((item, index) => <Text>{item?.start_date?.split('T')[1]?.split('+')[0]}</Text>)} />
               <InfoBox icon={<MarksIcon style={{ color: "#fff" }} />} title="Full marks" desc={examDetails.template.full_marks} />

@@ -144,7 +144,7 @@ const Register = props => {
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={{ ...styles.containers }}>
+      <ScrollView keyboardShouldPersistTaps={'handled'} contentContainerStyle={{ ...styles.containers }}>
         <Header />
 
         <View style={styles.titleContainer}>
