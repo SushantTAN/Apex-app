@@ -4,7 +4,7 @@
  * @returns {CoursePayment}- returns a module for Coursepayment
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Image, TouchableOpacity, Text } from 'react-native';
 
 import CustomButton from '@apexapp/components/elements/CustomButton';
@@ -12,8 +12,9 @@ import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch
 import TopBar from '@components/elements/TopBar';
 import BackIcon from '@assets/images/back.svg';
 import styles from '@styles/modules/Pages/CoursePayment';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CommonActions } from '@react-navigation/native';
+import { courseEnrollRequest } from '@apexapp/store/actions/course';
 
 
 const data = [
@@ -25,11 +26,17 @@ const data = [
 ];
 
 const CoursePayment = (props) => {
+  const dispatch = useDispatch();
 
-  const handlePayment = () => {
-    props.navigation.dispatch(CommonActions.goBack());
+  const handlePayment = (id, enrollId) => {
+    props.navigation.navigate('CourseOverview', { id: id, enrollId: enrollId })
+
+    dispatch(courseEnrollRequest())
+    // console.log("enroll", courseEnrollRequest)
   }
+
   const courseDetails = useSelector(state => state.courseReducer.courseDetail);
+
   return (
     <>
       <View style={styles.maincontainer}>

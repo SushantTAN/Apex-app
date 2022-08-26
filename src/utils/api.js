@@ -2,8 +2,8 @@ import react from 'react';
 // import axios from 'axios';
 
 // export const apiBaseURL = 'https://apexeducation.edu.np/';
-export const apiBaseURL = 'http://192.168.0.38:8001/';
-export const socketURL = '192.168.0.38:8001';
+export const apiBaseURL = 'http://192.168.0.46:8000/';
+export const socketURL = '192.168.0.38:8000';
 // export const apiBaseURL = 'https://5886-27-34-9-136.ngrok.io/';
 // export const socketURL = 'apexeducation.edu.np';
 // export const socketURL = '5886-27-34-9-136.ngrok.io';

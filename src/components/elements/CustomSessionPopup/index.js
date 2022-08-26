@@ -3,7 +3,7 @@
  
  * @param {Function} props.onPress - function to execute on pressing
 
- * @returns {CustomSessionPopup}- returns a popup Component
+ * @returns {CustomSessionPopup} - returns a popup Component
  */
 
 import React, { useState, useEffect } from 'react';
