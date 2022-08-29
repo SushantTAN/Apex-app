@@ -17,6 +17,7 @@ import { POST } from '@apexapp/utils/api';
 import { useDispatch } from 'react-redux';
 import { login } from '@apexapp/store/actions/auth';
 import { ScrollView } from 'react-native-gesture-handler';
+import { setLoading } from '@apexapp/store/actions/loading';
 
 const Register = props => {
   const [formData, setFormData] = useState(registerForm);
@@ -106,9 +107,10 @@ const Register = props => {
     };
     // dispatch(data, props.navigation.navigate, { username: data.username }, autoFadeOut, setErrorMsg)
     try {
+      dispatch(setLoading(true));
       const response = await POST('api/accounts/create/', data);
       // console.log(response);
-      const resJson = await response.json();
+      const resJson = await response.data;
       // console.log(resJson)
       if (response.status === 201) {
         // dispatch(login(resJson));
@@ -133,6 +135,7 @@ const Register = props => {
         console.log(err)
       }
     }
+    dispatch(setLoading(false));
   };
 
   useEffect(() => {

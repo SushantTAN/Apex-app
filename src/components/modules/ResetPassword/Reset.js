@@ -13,7 +13,7 @@ import styles from '@styles/modules/ResetPassword/Reset.scss';
 import { useDispatch } from 'react-redux';
 import validate from '@utils/validation';
 import { verifyForm } from '@apexapp/data/signup/verify';
-import { verifyResetOtp } from '@apexapp/store/actions/resetPassword';
+import { phoneVerifyRequest, verifyResetOtp } from '@apexapp/store/actions/resetPassword';
 
 
 const Reset = props => {
@@ -21,6 +21,8 @@ const Reset = props => {
   const [errormsg, setErrorMsg] = useState('');
 
   const dispatch = useDispatch();
+  const counter = useSelector(state => state.resetReducer.counter);
+
 
   const onChangeHandler = (key, value, password) => {
     setFormData(prevState => {
@@ -73,6 +75,10 @@ const Reset = props => {
     props.navigation.navigate('VerifyNumber');
   };
 
+  const handleResend = () => {
+    dispatch(phoneVerifyRequest(props.route.params, props.navigation.navigate, counter));
+  }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleResets} style={styles.left}>
@@ -120,6 +126,7 @@ const Reset = props => {
           type="white"
           title={'Re-send code'}
           style={styles.signUps}
+          onPress={handleResend}
         />
 
         <CustomButton
