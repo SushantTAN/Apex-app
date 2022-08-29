@@ -35,6 +35,8 @@ import { examsFullListRequest, examsListRequest } from '@apexapp/store/actions/e
 import { useFocusEffect } from '@react-navigation/native';
 import { errorAlert, getDuration } from '@apexapp/utils/functions';
 import { logout, refreshToken } from '@apexapp/store/actions/auth';
+import Entrancepic from "@assets/images/Entrance.svg";
+import Loksewapic from "@assets/images/Loksewa.svg";
 
 
 const Home = props => {
@@ -153,11 +155,11 @@ const Home = props => {
 
     timer = setInterval(() => {
       // if (getDuration(auth.refresh_token_expiration) > 5) {
-        console.log("test timer");
-        dispatch(refreshToken(auth));
+      console.log("test timer");
+      dispatch(refreshToken(auth));
       // }
       // else{
-        // dispatch(logout(props.navigation));
+      // dispatch(logout(props.navigation));
       // }
     }, (getDuration(auth.access_token_expiration) - 5) * 1000);
   }, []);

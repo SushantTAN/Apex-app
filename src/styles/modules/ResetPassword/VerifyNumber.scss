@@ -2,7 +2,7 @@
 @import '../../common';
 
 .container {
- @extend .bcr;
+  @extend .bcr;
   height: 100%;
   padding: 16px;
   padding-top: 96px;
@@ -10,20 +10,16 @@
 
 .title {
 
-  @extend .h3;
-  color: black;
-  height:60px;
-  top: 16px;
-  font-weight: 152px;
-  margin: 10px 2px;
-  font-size:20px;
-  font-weight: 500;
-  width:100%
+  @extend .P;
+  margin-top: 50px;
+
+
 }
 
 .p {
   @extend .p;
   flex-direction: row;
+  margin-top: 16px;
 }
 
 .formContainer {
@@ -33,7 +29,7 @@
 
 .bottomContainer {
 
-  position: absolute;
+  position: relative;
   bottom: 16px;
   right: 16px;
   flex-direction: row;
@@ -41,6 +37,7 @@
 
 
 
-.signUps {
-  @extend .bcr;
+.signUp {
+  margin: 16px;
+  width: 100%;
 }

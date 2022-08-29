@@ -88,13 +88,13 @@ const Walkthrough = props => {
         console.log("token verify", resJson);
         if (response) {
           // dispatch(refreshSuccess(resJson));
-  
+
           // dispatch(login({ ...tokens, access_token: resJson.access, access_token_expiration: resJson.access_token_expiration }));
-  
+
           props.navigation.navigate('BottomTabs');
         }
-        
-  
+
+
       } catch (error) {
         props.navigation.navigate('OnBoarding');
 
