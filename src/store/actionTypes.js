@@ -22,6 +22,9 @@ export const SUBMIT_EXAM = 'SUBMIT_EXAM';
 export const SET_SUBMITTING = "SET_SUBMITTING";
 export const SET_SHOW_SUBMITTING = "SET_SHOW_SUBMITTING";
 
+//Reset Password
+export const SET_COUNTER = "SET_COUNTER";
+export const DECREMENT_COUNTER = "DECREMENT_COUNTER";
 
 
 //Loading

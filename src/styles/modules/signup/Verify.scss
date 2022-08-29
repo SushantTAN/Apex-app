@@ -9,7 +9,7 @@
 }
 
 .title {
-  @extend .h3;
+  @extend .P;
   color: black;
   font-weight: 600;
   margin: 8px 0px;
@@ -19,6 +19,7 @@
 .p {
   @extend .p;
   flex-direction: row;
+  margin-top: 10;
 }
 
 .formContainer {
@@ -40,6 +41,7 @@
 
 .signUps {
   @extend .bcr;
+  position: relative;
 }
 
 .errortext {
