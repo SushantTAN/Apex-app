@@ -44,8 +44,8 @@ const CustomSessionPopup1 = props => {
 
   const courseDetails = useSelector(state => state.courseReducer.courseDetail);
 
-  const handleEnroll = (id) => {
-    props.navigation.navigate('CoursePayment', { id: id });
+  const handleEnroll = (id, enrollId) => {
+    props.navigation.navigate('CoursePayment', { id: id, enrollId: enrollId });
   };
 
   const closeModal = bool => {

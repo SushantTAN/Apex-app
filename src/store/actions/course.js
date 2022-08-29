@@ -38,13 +38,30 @@ export const courseDetailRequest = (id) => {
     return async dispatch => {
         try {
             const response = await GET('api/courses/retrieve/before-enroll/' + id + '/')
-            console.log(response)
+            // console.log(response)
             const resJson = await response.json();
-            console.log(resJson)
+            // console.log(resJson)
             if (response.status === 200) {
                 dispatch(courseDetail(resJson));
             }
             if (response.status === 400) {
+            }
+        } catch (error) {
+            console.log('err', error);
+        }
+    }
+}
+
+export const courseEnrollRequest = (id) => {
+    return async dispatch => {
+        try {
+            const response = await GET('' + id + '/')
+            const resJson = await response.json();
+            if (response.status === 200) {
+                dispatch(courseDetail(resJson));
+            }
+            if (response.status === 400) {
+
             }
         } catch (error) {
             console.log('err', error);

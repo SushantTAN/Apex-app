@@ -28,7 +28,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { courseDetailRequest } from '@apexapp/store/actions/course';
 
 
-
 const CourseOverview = props => {
   const { id } = props.route.params.id;
   // console.log("params", props.route.params.id)
@@ -56,16 +55,15 @@ const CourseOverview = props => {
   const changeModalVisible = bool => {
     setIsModalVisible(bool);
   };
-
   const handleEnroll = () => {
-    changeModalVisible(true);
+    // changeModalVisible(true);
   };
   const handleBack = () => {
     props.navigation.dispatch(CommonActions.goBack());
 
   };
   console.log('fffg', courseDetails)
-  console.log(courseDetails.sessions, "details")
+  console.log(courseDetails.sessions, " details")
   console.log(courseDetails.image)
   return (
     <>
@@ -171,7 +169,19 @@ const CourseOverview = props => {
         </ScrollView>
         <View style={styles.gap} />
 
-        {courseDetails.sessions.length > 0 &&
+        {courseDetails.is_enrolled ? (
+          (
+            <CustomButton
+              onPress={() => handleEnroll()}
+              style={styles.CustomButton}
+              type="theme"
+              title={'Go to course'}
+              color="#ffffff"
+            />
+          )
+        ) : (
+
+          courseDetails.sessions.length > 0 &&
           <View style={styles.footer}>
             <View style={styles.txt}>
               <Text style={styles.p5}>Get enrollment</Text>
@@ -182,7 +192,7 @@ const CourseOverview = props => {
               <CustomModal
                 height="65%"
                 button={<View style={styles.sessionbutton}>
-                  <Text style={styles.sessiontext}> Choose session</Text>
+                  <Text style={styles.sessiontext}>Choose   session</Text>
                 </View>}
               >
 
@@ -191,6 +201,7 @@ const CourseOverview = props => {
                   changeModalVisible={changeModalVisible}
                 />
               </CustomModal>
+
 
               {/* <CustomButton
                 onPress={handleEnroll}
@@ -213,7 +224,8 @@ const CourseOverview = props => {
 
 
             </View>
-          </View>}
+
+          </View>)}
       </View>
     </>
   );
