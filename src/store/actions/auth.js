@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import { PATCH, POST } from '@utils/api';
 import * as types from '../actionTypes';
+import { setLoading } from './loading';
 
 export const login = data => {
   return {
@@ -19,6 +20,8 @@ export const loginRequest = (
 ) => {
   return async dispatch => {
     try {
+      dispatch(setLoading(true));
+
       const response = await POST('api/auth/login/', data);
       const resJson = response.data;
       // console.log(resJson, response);
@@ -42,6 +45,9 @@ export const loginRequest = (
 
 
     }
+
+    dispatch(setLoading(false));
+
   };
 };
 
@@ -61,6 +67,8 @@ export const registerRequest = (
 ) => {
   return async dispatch => {
     try {
+      dispatch(setLoading(true));
+
       const response = await POST('api/accounts/create/', data);
       // console.log(response);
       const resJson = response.data;
@@ -84,6 +92,8 @@ export const registerRequest = (
       }
 
     }
+    dispatch(setLoading(false));
+
   };
 };
 
@@ -102,6 +112,8 @@ export const verifyRequest = (
 ) => {
   return async dispatch => {
     try {
+      dispatch(setLoading(true));
+
       const response = await PATCH('api/accounts/create/verify/', data);
       const resJson = response.data;
       // console.log(resJson);
@@ -125,6 +137,8 @@ export const verifyRequest = (
       errorAlert("Error Occured", "Please try again.");
 
     }
+    dispatch(setLoading(false));
+
   };
 };
 
@@ -142,6 +156,8 @@ export const logout = (navigation) => {
     const data = { token: '' };
 
     try {
+      dispatch(setLoading(true));
+
       const response = await POST('api/auth/logout/', data);
       const resJson = await response.data;
       // console.log(resJson, response);
@@ -160,6 +176,8 @@ export const logout = (navigation) => {
       errorAlert("Error Occured", "Please try again.");
 
     }
+    dispatch(setLoading(false));
+
   };
 }
 
@@ -172,6 +190,8 @@ const refreshSuccess = () => {
 export const refreshToken = (tokens, navigation) => {
   return async dispatch => {
     try {
+      // dispatch(setLoading(true));
+
       const response = await POST('api/auth/token/refresh/');
       const resJson = await response.data;
       console.log("refresh token", resJson, tokens.refresh_token, response.status);
@@ -188,5 +208,7 @@ export const refreshToken = (tokens, navigation) => {
       console.log('err refresh token', error);
       errorAlert("Error Occured", "Login Session Has Expired, please login again.")
     }
+    // dispatch(setLoading(false));
+
   };
 }

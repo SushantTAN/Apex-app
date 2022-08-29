@@ -13,7 +13,7 @@ import styles from '@styles/modules/ResetPassword/Reset.scss';
 import { useDispatch } from 'react-redux';
 import validate from '@utils/validation';
 import { verifyForm } from '@apexapp/data/signup/verify';
-import { verifyResetOtp } from '@apexapp/store/actions/resetPassword';
+import { phoneVerifyRequest, verifyResetOtp } from '@apexapp/store/actions/resetPassword';
 
 
 const Reset = props => {
@@ -73,8 +73,13 @@ const Reset = props => {
     props.navigation.navigate('VerifyNumber');
   };
 
+  const handleResend = () => {
+    dispatch(phoneVerifyRequest(props.route.params, props.navigation.navigate));
+  }
+
   return (
     <View style={styles.container}>
+      {console.log("params test",props.route.params)}
       <TouchableOpacity onPress={handleResets} style={styles.left}>
         <Image source={require('@assets/images/leftArrow.png')} />
       </TouchableOpacity>
@@ -120,6 +125,7 @@ const Reset = props => {
           type="white"
           title={'Re-send code'}
           style={styles.signUps}
+          onPress={handleResend}
         />
 
         <CustomButton
