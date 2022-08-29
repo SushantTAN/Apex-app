@@ -14,13 +14,14 @@ import validate from '@utils/validation';
 import { phoneVerifyForm } from '@data/reset/phoneVerify';
 import { verifyRequest } from '@apexapp/store/actions/auth';
 import { phoneVerifyRequest } from '@apexapp/store/actions/resetPassword';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const VerifyNumber = props => {
   const [formData, setFormData] = useState(phoneVerifyForm);
   const [errormsg, setErrorMsg] = useState('');
 
   const dispatch = useDispatch();
+  const counter = useSelector(state => state.resetReducer.counter);
 
 
   const onChangeHandler = (key, value, password) => {
@@ -66,7 +67,7 @@ const VerifyNumber = props => {
       // username: 'test',
     };
     console.log(data)
-    dispatch(phoneVerifyRequest(data, props.navigation.navigate));
+    dispatch(phoneVerifyRequest(data, props.navigation.navigate, counter));
     // props.navigation.navigate('Reset');
   };
 

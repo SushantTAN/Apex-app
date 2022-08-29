@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { PATCH, POST } from '@utils/api';
 import * as types from '../actionTypes';
 import { setLoading } from './loading';
+import { setSuccessMsg } from './popup';
 
 export const login = data => {
   return {
@@ -118,6 +119,7 @@ export const verifyRequest = (
       const resJson = response.data;
       // console.log(resJson);
       if (response) {
+        dispatch(setSuccessMsg('Account Created and Verified'));
         dispatch(login(resJson));
         await AsyncStorage.setItem('apex-tokens', JSON.stringify(resJson));
         navigate('BottomTabs');
