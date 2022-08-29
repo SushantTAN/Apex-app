@@ -1,3 +1,4 @@
+import { errorAlert } from '@apexapp/utils/functions';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { PATCH, POST } from '@utils/api';
@@ -19,9 +20,9 @@ export const loginRequest = (
   return async dispatch => {
     try {
       const response = await POST('api/auth/login/', data);
-      const resJson = await response.json();
+      const resJson = response.data;
       // console.log(resJson, response);
-      if (response.status === 200) {
+      if (response) {
         dispatch(login(resJson));
         await AsyncStorage.setItem('apex-tokens', JSON.stringify(resJson));
         navigate('BottomTabs');
@@ -32,6 +33,14 @@ export const loginRequest = (
       }
     } catch (error) {
       console.log('err', error);
+      // errorAlert("Error Occured", "Please try again.");
+      try {
+        setErrorMsg(error.response.data.non_field_errors[0]);
+      } catch (err) {
+        console.log(err)
+      }
+
+
     }
   };
 };
@@ -54,18 +63,26 @@ export const registerRequest = (
     try {
       const response = await POST('api/accounts/create/', data);
       // console.log(response);
-      const resJson = await response.json();
+      const resJson = response.data;
       // console.log(resJson);
-      // if (response.status === 200) {
-      dispatch(login(resJson));
-      navigate('Verify');
-      // }
+      if (response) {
+        dispatch(login(resJson));
+        navigate('Verify');
+      }
       if (response.status === 400) {
         setErrorMsg(resJson.non_field_errors[0]);
         autoFadeOut();
       }
     } catch (error) {
       console.log('err', error);
+      errorAlert("Error Occured", "Please try again.");
+
+      try {
+        setErrorMsg(error.response.data.non_field_errors[0]);
+      } catch (err) {
+        console.log(err)
+      }
+
     }
   };
 };
@@ -86,9 +103,9 @@ export const verifyRequest = (
   return async dispatch => {
     try {
       const response = await PATCH('api/accounts/create/verify/', data);
-      const resJson = await response.json();
+      const resJson = response.data;
       // console.log(resJson);
-      if (response.status === 200) {
+      if (response) {
         dispatch(login(resJson));
         await AsyncStorage.setItem('apex-tokens', JSON.stringify(resJson));
         navigate('BottomTabs');
@@ -105,6 +122,8 @@ export const verifyRequest = (
       }
     } catch (error) {
       console.log('err', error);
+      errorAlert("Error Occured", "Please try again.");
+
     }
   };
 };
@@ -124,9 +143,9 @@ export const logout = (navigation) => {
 
     try {
       const response = await POST('api/auth/logout/', data);
-      const resJson = await response.json();
+      const resJson = await response.data;
       // console.log(resJson, response);
-      if (response.status === 200) {
+      if (response) {
         dispatch(logoutSuccess());
         await AsyncStorage.removeItem('apex-tokens');
         // navigation.navigate('Login');
@@ -138,7 +157,36 @@ export const logout = (navigation) => {
 
     } catch (error) {
       console.log('err', error);
+      errorAlert("Error Occured", "Please try again.");
+
     }
   };
 }
 
+const refreshSuccess = () => {
+  return {
+    type: types.SET_REFRESH_RESULT
+  }
+}
+
+export const refreshToken = (tokens, navigation) => {
+  return async dispatch => {
+    try {
+      const response = await POST('api/auth/token/refresh/');
+      const resJson = await response.data;
+      console.log("refresh token", resJson, tokens.refresh_token, response.status);
+      if (resJson) {
+        dispatch(refreshSuccess(resJson));
+
+        dispatch(login({ ...tokens, access_token: resJson.access, access_token_expiration: resJson.access_token_expiration }));
+
+        // navigation.navigate('BottomTabs');
+      }
+
+
+    } catch (error) {
+      console.log('err refresh token', error);
+      errorAlert("Error Occured", "Login Session Has Expired, please login again.")
+    }
+  };
+}

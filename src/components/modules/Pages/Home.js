@@ -33,7 +33,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import ExamCard from '../ExamCard';
 import { examsFullListRequest, examsListRequest } from '@apexapp/store/actions/exam';
 import { useFocusEffect } from '@react-navigation/native';
-import { errorAlert } from '@apexapp/utils/functions';
+import { errorAlert, getDuration } from '@apexapp/utils/functions';
+import { logout, refreshToken } from '@apexapp/store/actions/auth';
 
 
 const Home = props => {
@@ -87,6 +88,8 @@ const Home = props => {
   const examsLiveList = useSelector(state => state.homeReducer.examsLiveList);
   const examsPracticeList = useSelector(state => state.homeReducer.examsPracticeList,);
   const coursesList = useSelector(state => state.homeReducer.coursesList);
+  const auth = useSelector(state => state.authReducer);
+
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -142,6 +145,22 @@ const Home = props => {
 
     setSearchText(value)
   }
+
+  useEffect(() => {
+    var timer;
+
+    console.log(getDuration(auth.access_token_expiration))
+
+    timer = setInterval(() => {
+      // if (getDuration(auth.refresh_token_expiration) > 5) {
+        console.log("test timer");
+        dispatch(refreshToken(auth));
+      // }
+      // else{
+        // dispatch(logout(props.navigation));
+      // }
+    }, (getDuration(auth.access_token_expiration) - 5) * 1000);
+  }, []);
 
 
 
