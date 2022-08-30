@@ -35,6 +35,8 @@ import { examsFullListRequest, examsListRequest } from '@apexapp/store/actions/e
 import { useFocusEffect } from '@react-navigation/native';
 import { errorAlert, getDuration } from '@apexapp/utils/functions';
 import { logout, refreshToken } from '@apexapp/store/actions/auth';
+import Entrancepic from "@assets/images/Entrance.svg";
+import Loksewapic from "@assets/images/Loksewa.svg";
 
 
 const Home = props => {
@@ -153,11 +155,11 @@ const Home = props => {
 
     timer = setInterval(() => {
       // if (getDuration(auth.refresh_token_expiration) > 5) {
-        console.log("test timer");
-        dispatch(refreshToken(auth));
+      console.log("test timer");
+      dispatch(refreshToken(auth));
       // }
       // else{
-        // dispatch(logout(props.navigation));
+      // dispatch(logout(props.navigation));
       // }
     }, (getDuration(auth.access_token_expiration) - 5) * 1000);
   }, []);
@@ -389,14 +391,15 @@ const Home = props => {
                     style={styles.button}
                     color="#000000"
                   /> */}
-                  <Image
+
+                  <Entrancepic
+
                     style={{
                       margin: 16,
                       width: WIDTH - 32,
                       borderRadius: 8,
                       height: 120,
                     }}
-                    source={require("@assets/images/entrance2x.png")}
                   />
                   {/* <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text> */}
                 </View>
@@ -443,15 +446,13 @@ const Home = props => {
                     style={styles.button}
                     color="#000000"
                   /> */}
-                  <Image
+                  <Loksewapic
                     style={{
                       margin: 16,
                       width: WIDTH - 32,
                       borderRadius: 8,
                       height: 120,
-                    }}
-                    source={require("@assets/images/loksewa2x.png")}
-                  />
+                    }} />
                   {/* <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text> */}
                 </View>
               </View>

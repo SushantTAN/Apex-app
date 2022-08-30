@@ -10,7 +10,7 @@
 
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
-
+import Eyeicon from "@assets/images/eye-invisible.svg";
 import styles from '@styles/elements/CustomInput.scss';
 
 const CustomTextInput = props => {
@@ -35,7 +35,8 @@ const CustomTextInput = props => {
           <TouchableOpacity
             onPress={() => setPassword(prevState => !prevState)}
             style={styles.eye}>
-            <Image source={require('@assets/images/eye-invisible.png')} />
+
+            <Eyeicon height={15} width={30} />
           </TouchableOpacity>
         )}
       </View>

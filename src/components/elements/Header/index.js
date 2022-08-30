@@ -7,17 +7,18 @@
  */
 
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
-
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from '@styles/elements/Header.scss';
+import Mainlogo from "@assets/images/Apexlogo.svg";
+
 
 const Header = props => {
   return (
     <View style={styles.container}>
       <Image
         style={styles.logo}
-        source={require('@assets/images/apexLogo.png')}
       />
+      <Mainlogo width={90} height={90} />
       <Text style={styles.heading}>Apex Educational Academy</Text>
     </View>
   );

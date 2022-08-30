@@ -102,7 +102,7 @@ const Profile = props => {
           </Modal> */}
 
           <CustomModal
-            height="28%"
+            height="35%"
             button={<View style={styles.button}>
               <LogoutIcon style={styles.icon} />
               <Text style={styles.text}> Logout</Text>
@@ -118,7 +118,7 @@ const Profile = props => {
 
 
           <CustomModal
-            height="30%"
+            height="40%"
             button={<View style={styles.button}>
               <ResetIcon style={styles.icon} />
               <Text style={styles.text}>Reset </Text>

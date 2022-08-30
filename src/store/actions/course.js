@@ -1,5 +1,7 @@
+import { errorAlert } from '@apexapp/utils/functions';
 import { GET } from '@utils/api';
 import * as types from '../actionTypes';
+import { setLoading } from './loading';
 
 export const courseList = data => {
     return {
@@ -11,18 +13,20 @@ export const courseList = data => {
 export const courseListRequest = () => {
     return async dispatch => {
         try {
-
+            dispatch(setLoading(true))
             const response = await GET(`api/courses/list/`);
-            const resJson = await response.json();
+            const resJson = await response.data;
 
-            if (response.status === 200) {
+            if (response) {
                 dispatch(courseList(resJson));
             }
             if (response.status === 400) {
             }
         } catch (error) {
             console.log("err", error);
+            errorAlert("Error Occured", "Please try again.");
         }
+        dispatch(setLoading(false));
 
     };
 };
@@ -37,27 +41,31 @@ export const courseDetail = data => {
 export const courseDetailRequest = (id) => {
     return async dispatch => {
         try {
+            dispatch(setLoading(true));
             const response = await GET('api/courses/retrieve/before-enroll/' + id + '/')
             // console.log(response)
-            const resJson = await response.json();
+            const resJson = await response.data;
             // console.log(resJson)
-            if (response.status === 200) {
+            if (response) {
                 dispatch(courseDetail(resJson));
             }
             if (response.status === 400) {
             }
         } catch (error) {
             console.log('err', error);
+            errorAlert("Error Occured", "Please try again .");
         }
+        dispatch(setLoading(false));
     }
 }
 
 export const courseEnrollRequest = (id) => {
     return async dispatch => {
         try {
+            dispatch(setLoading(true));
             const response = await GET('' + id + '/')
-            const resJson = await response.json();
-            if (response.status === 200) {
+            const resJson = await response.data;
+            if (response) {
                 dispatch(courseDetail(resJson));
             }
             if (response.status === 400) {
@@ -65,6 +73,8 @@ export const courseEnrollRequest = (id) => {
             }
         } catch (error) {
             console.log('err', error);
+            errorAlert("Error Occured", "Please try again.");
         }
-    }
-}
+        dispatch(setLoading(false));
+    };
+};

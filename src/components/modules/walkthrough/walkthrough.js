@@ -81,20 +81,19 @@ const Walkthrough = props => {
       // } else {
       //   props.navigation.navigate('OnBoarding');
       // }
-
       try {
         const response = await POST('api/auth/token/verify/', {});
         const resJson = await response.data;
         console.log("token verify", resJson);
         if (response) {
           await dispatch(refreshToken(resJson));
-  
+
           // dispatch(login({ ...tokens, access_token: resJson.access, access_token_expiration: resJson.access_token_expiration }));
-  
+
           props.navigation.navigate('BottomTabs');
         }
-        
-  
+
+
       } catch (error) {
         props.navigation.navigate('OnBoarding');
 
