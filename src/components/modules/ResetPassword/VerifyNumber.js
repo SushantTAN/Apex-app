@@ -9,7 +9,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 
 import CustomTextInput from '@elements/CustomTextInput';
 import CustomButton from '@elements/CustomButton';
-import styles from '@styles/modules/ResetPassword/Reset.scss';
+import styles from '@styles/modules/ResetPassword/VerifyNumber.scss';
 import validate from '@utils/validation';
 import { phoneVerifyForm } from '@data/reset/phoneVerify';
 import { verifyRequest } from '@apexapp/store/actions/auth';

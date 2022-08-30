@@ -5,6 +5,7 @@
     @extend .bcr;
     height: 100%;
     position: relative;
+    background-color: #f2f2f2;
 }
 
 .containers {
@@ -21,10 +22,11 @@
 .titleContainer {
     flex-direction: column;
     padding: 16px;
+    align-items: center;
 }
 
 .title {
-    @extend .h2;
+    @extend .P;
     color: black;
     font-weight: 600;
     margin: 8px 0px
@@ -54,12 +56,11 @@
 }
 
 .signIn {
-    width: 30%;
+    width: 90%;
     padding: 14px 16px;
     margin: 16px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    position: relative;
+
 }
 
 .errortext {
@@ -75,4 +76,14 @@
 
 .errorContainer {
     padding: 0px 32px;
+}
+
+.border {
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    background-color: #f2f2f2;
+}
+
+.background {
+    background-color: #2E3192;
 }

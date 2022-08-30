@@ -9,7 +9,7 @@
 }
 
 .title {
-  @extend .h3;
+  @extend .P;
   color: black;
   font-weight: 600;
   margin: 8px 0px;
@@ -19,6 +19,7 @@
 .p {
   @extend .p;
   flex-direction: row;
+  margin-top: 10;
 }
 
 .formContainer {
@@ -26,11 +27,12 @@
 }
 
 .bottomContainer {
-  @extend .input-bcr;
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  flex-direction: row;
+  // @extend .input-bcr;
+  position: relative;
+
+  // right: 16px;
+  flex-direction: column;
+
 }
 
 .left {
@@ -40,6 +42,11 @@
 
 .signUps {
   @extend .bcr;
+
+}
+
+.signUp {
+  margin-top: 20px;
 }
 
 .errortext {

@@ -182,18 +182,19 @@ const Verify = props => {
 
       <View style={styles.bottomContainer}>
         <CustomButton
+          type="theme"
+          title={'Verify'}
+          style={styles.signUp}
+          onPress={handleVerify}
+        />
+        <CustomButton
           type="white"
           title={'Re-send code'}
           style={styles.signUps}
           onPress={handleVerify}
         />
 
-        <CustomButton
-          type="theme"
-          title={'Verify'}
-          style={styles.signUp}
-          onPress={handleVerify}
-        />
+
       </View>
     </View>
   );

@@ -5,18 +5,26 @@
   @extend .bcr;
   height: 100%;
   position: relative;
+  background-color: #f2f2f2;
+
+
 }
+
 .containers {
   flex-grow: 1;
   padding-bottom: 60px;
 }
+
 .titleContainer {
+  margin-top: 30px;
   flex-direction: column;
-  padding: 16px;
+  align-items: center;
+
+
 }
 
 .title {
-  @extend .h3;
+  @extend .P;
   color: black;
   font-weight: 500;
   margin: 8px 0px;
@@ -30,20 +38,23 @@
 .p {
   @extend .p;
   flex-direction: row;
+  margin-bottom: 15;
 }
 
 .formContainer {
   padding: 16px;
   @extend .bcr;
+  background-color: #f2f2f2;
 }
 
 .signUp {
-  width: 30%;
+  width: 90%;
   padding: 14px 16px;
   margin: 16px;
   position: absolute;
   bottom: 0;
-  right: 0;
+  // right: 0;
+  // left: 0;
 }
 
 .errortext {
@@ -59,4 +70,28 @@
 
 .errorContainer {
   padding: 0px 32px;
+}
+
+.termsandcondition {
+  margin: 16px;
+
+}
+
+.condition {
+  @extend.h6;
+
+}
+
+.terms {
+  color: blue;
+}
+
+.border {
+  background-color: #f2f2f2;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+
+.background {
+  background-color: #2E3192;
 }
