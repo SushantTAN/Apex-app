@@ -60,7 +60,7 @@ const Walkthrough = props => {
 
   useEffect(() => {
     setTimeout(async () => {
-      // const tokens = await AsyncStorage.getItem('apex-tokens');
+      
       // // console.log(value);
       // if (tokens) {
       //   // props.navigation.navigate('BottomTabs');
@@ -84,11 +84,11 @@ const Walkthrough = props => {
       try {
         const response = await POST('api/auth/token/verify/', {});
         const resJson = await response.data;
-        console.log("token verify", resJson);
+        // console.log("token verify", parsed);
         if (response) {
           await dispatch(refreshToken(resJson));
 
-          // dispatch(login({ ...tokens, access_token: resJson.access, access_token_expiration: resJson.access_token_expiration }));
+          // dispatch(login({ ...parsed, access_token: resJson.access, access_token_expiration: resJson.access_token_expiration }));
 
           props.navigation.navigate('BottomTabs');
         }
