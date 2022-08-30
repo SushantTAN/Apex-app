@@ -226,7 +226,7 @@ const ExamDetail = props => {
           <View style={styles.tagContainer}>
             <Tag title="Practice exam" />
           </View>
-{console.log("details test", examDetails)}
+          {console.log("details test", examDetails)}
           <Text style={styles.examHeaderText}>{examDetails?.name}</Text>
 
           <View style={styles.examDetail}>
