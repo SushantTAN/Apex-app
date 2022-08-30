@@ -27,11 +27,12 @@
 }
 
 .bottomContainer {
-  @extend .input-bcr;
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  flex-direction: row;
+  // @extend .input-bcr;
+  position: relative;
+
+  // right: 16px;
+  flex-direction: column;
+
 }
 
 .left {
@@ -41,7 +42,11 @@
 
 .signUps {
   @extend .bcr;
-  position: relative;
+
+}
+
+.signUp {
+  margin-top: 20px;
 }
 
 .errortext {
