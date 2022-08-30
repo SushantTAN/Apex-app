@@ -10,8 +10,8 @@
 }
 
 .head {
-    @extend .h3;
-    font-weight: 700;
+    @extend .P;
+    // font-weight: 700;
     margin-top: 32px;
     line-height: 27.24px;
     margin-bottom: 8px;
@@ -36,7 +36,7 @@
 
 .name {
 
-    @extend .h3;
+    @extend .P;
     margin-left: 16px;
     font-weight: 600;
 
@@ -45,29 +45,24 @@
 }
 
 .number {
+    @extend .h5;
     margin-left: 16px;
-    font-weight: 400;
-    font-family: 'Open Sans';
-    font-style: normal;
+
     margin-top: 8px;
-    color: black;
-    font-size: 12px;
-    line-height: 16px;
+
 }
 
-.text{
+.text {
     @extend .p1;
 }
 
 .gmail {
+    @extend .h5;
     margin-left: 16px;
     margin-top: 4px;
-    font-weight: 400;
-    @extend .p1;
-    font-style: normal;
 
-    line-height: 16px;
-    color: black;
+
+
 }
 
 .div {
@@ -76,12 +71,10 @@
 
 .p {
 
-    @extend .p;
+    @extend .P;
     margin-left: 16px;
 
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 21.79px;
+
 
 }
 
