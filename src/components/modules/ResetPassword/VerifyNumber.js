@@ -67,7 +67,7 @@ const VerifyNumber = props => {
       // username: 'test',
     };
     console.log(data)
-    dispatch(phoneVerifyRequest(data, props.navigation.navigate, counter));
+    dispatch(phoneVerifyRequest(data, props.navigation, counter));
     // props.navigation.navigate('Reset');
   };
 
