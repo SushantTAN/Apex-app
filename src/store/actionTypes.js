@@ -1,6 +1,8 @@
 //Auth
 export const SET_TOKENS = "SET_TOKENS";
 export const SET_REFRESH_RESULT = "SET_REFRESH_RESULT";
+export const SET_LOGGED_USER = "SET_LOGGED_USER";
+
 
 export const LOGOUT = "LOGOUT";
 

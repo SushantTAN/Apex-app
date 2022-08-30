@@ -6,12 +6,13 @@
  * @returns {CustomDropdown}- returns a Dropdown Component
  */
 
-import React, { useState, Children, isValidElement, cloneElement } from 'react';
+import React, { useState, Children, isValidElement, cloneElement, useEffect } from 'react';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
 
 import Modal from 'react-native-modal';
 
 import styles from '@styles/elements/CustomModal.scss';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const CustomModal = (props) => {
   const [open, setOpen] = useState(false);
@@ -23,6 +24,24 @@ const CustomModal = (props) => {
   const handleButtonPress = () => {
     setOpen(true);
   }
+
+  const navigation = useNavigation();
+  // const route = useRoute();
+  // console.log(route);
+
+  useEffect(() => {
+    // console.log("test running")
+    // setOpen(false);
+
+    const unsubscribe = navigation.addListener('blur', () => {
+      setOpen(false);
+    });
+
+    return () => {
+      unsubscribe;
+    };
+  }, 
+  []);
 
   return (
     <View>

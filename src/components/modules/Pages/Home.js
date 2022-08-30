@@ -30,61 +30,19 @@ import NavBar from '@apexapp/components/elements/Navbar/Navbar';
 import styles from '@styles/modules/Pages/Home.scss';
 import { WIDTH } from '@apexapp/utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
-import ExamCard from '../ExamCard';
+import ExamCard from '../../elements/ExamCard';
 import { examsFullListRequest, examsListRequest } from '@apexapp/store/actions/exam';
 import { useFocusEffect } from '@react-navigation/native';
 import { errorAlert, getDuration } from '@apexapp/utils/functions';
 import { logout, refreshToken } from '@apexapp/store/actions/auth';
 import Entrancepic from "@assets/images/Entrance.svg";
 import Loksewapic from "@assets/images/Loksewa.svg";
+import CustomCarousel from '../../elements/CustomCarousel';
 
 
 const Home = props => {
-  const [activeSlide, setActiveSlide] = useState(0);
 
-  const [activeSlides, setActiveSlides] = useState(0);
-
-  const [activeSlidess, setActiveSlidess] = useState(0);
-
-  const [activeSlidesss, setActiveSlidesss] = useState(0);
-
-  const [data, setData] = useState([
-    {
-      file: '',
-      title: 'Live',
-      title1: 'RBB',
-      text: 'Loksewa Mock Test - 1',
-      amount: `Rs.500 \u2022   60 min`,
-    },
-    {
-      file: '',
-      title: 'Live',
-      title1: 'RBB',
-      text: 'Loksewa Mock Test - 1',
-      amount: `Rs.500 \u2022  60 min`,
-    },
-    {
-      file: '',
-      title: 'Live',
-      title1: 'RBB',
-      text: 'Loksewa Mock Test - 1',
-      amount: `Rs.500 \u2022 60 min`,
-    },
-    {
-      file: '',
-      title: 'Live',
-      title1: 'RBB',
-      text: 'Loksewa Mock Test - 1',
-      amount: `Rs.500 \u2022  60 min`,
-    },
-    {
-      file: '',
-      title: 'Live',
-      title1: 'RBB',
-      text: 'Loksewa Mock Test - 1',
-      amount: `Rs.500 \u2022 60 min`,
-    },
-  ]);
+  
 
   const dispatch = useDispatch();
   const examsLiveList = useSelector(state => state.homeReducer.examsLiveList);
@@ -96,11 +54,6 @@ const Home = props => {
   const [refreshing, setRefreshing] = useState(false);
 
   const [searchText, setSearchText] = useState('')
-
-  const CarouselRef = useRef(null);
-  const CarouselReff = useRef(null);
-  const CarouselRefff = useRef(null);
-  const CarouselReffff = useRef(null);
 
   useEffect(() => {
     dispatch(examLiveRequest());
@@ -260,98 +213,14 @@ const Home = props => {
               <Text style={styles.p}>Live exams</Text>
             </View>
             <View style={styles.container}>
-              <View style={styles.textContainer}>
-                <Carousel
-                  ref={CarouselRef}
-                  data={examsLiveList.results}
-                  renderItem={_renderItemWithParallax}
-                  sliderWidth={WIDTH}
-                  itemWidth={WIDTH}
-                  onSnapToItem={index => setActiveSlide(index)}
-                />
-
-                <View style={styles.paginationContainers}>
-                  <Pagination
-                    dotsLength={examsLiveList.results.length}
-                    activeDotIndex={activeSlide}
-                    containerStyle={styles.pagiStyle}
-                    dotColor={'#2E3192'}
-                    dotStyle={[
-                      styles.pagiDot,
-                      { width: WIDTH / examsLiveList.results.length - 20 },
-                    ]}
-                    inactiveDotColor={'#EAEAEA'}
-                    inactiveDotOpacity={0.4}
-                    inactiveDotScale={1}
-                    inactiveDotStyle={[
-                      styles.inactDotStyle,
-                      { width: WIDTH / examsLiveList.results.length - 20 },
-                    ]}
-                    carouselRef={CarouselRef}
-                    tappableDots={!!CarouselRef}
-                  />
-                </View>
-                <CustomButton
-                  type="white"
-                  onPress={() => {
-                    props.navigation.navigate('Exam');
-                  }}
-                  title={'Explore all'}
-                  style={styles.button}
-                  color="#000000"
-                />
-              </View>
+              <CustomCarousel
+                cardItem={_renderItemWithParallax}
+                data={examsLiveList.results}
+                buttonClick={() => { props.navigation.navigate('Exam') }}
+              />
             </View>
           </View>
-          <View>
-            <View style={styles.gap} />
 
-            {/* <View style={styles.div}>
-              <View style={styles.txt}>
-                <Text style={styles.p}>Practice exams</Text>
-              </View>
-              <View style={styles.textContainer}>
-                <Carousel
-                  ref={CarouselReff}
-                  data={examsPracticeList.results}
-                  renderItem={_renderItemWithParallax1}
-                  sliderWidth={WIDTH}
-                  itemWidth={WIDTH}
-                  onSnapToItem={index => setActiveSlides(index)}
-                />
-                <View style={styles.paginationContainers}>
-                  <Pagination
-                    dotsLength={examsPracticeList.results.length}
-                    activeDotIndex={activeSlides}
-                    containerStyle={[styles.pagiStyle]}
-                    dotColor={'#2E3192'}
-                    dotStyle={[
-                      styles.pagiDot,
-                      { width: WIDTH / examsPracticeList.results.length - 20 },
-                    ]}
-                    inactiveDotColor={'#EAEAEA'}
-                    inactiveDotOpacity={0.4}
-                    inactiveDotScale={1}
-                    inactiveDotStyle={[
-                      styles.inactDotStyle,
-                      { width: WIDTH / examsPracticeList.results.length - 20 },
-                    ]}
-                    carouselRef={CarouselReff}
-                    tappableDots={!!CarouselReff}
-                  />
-                </View>
-                <CustomButton
-                  type="white"
-                  onPress={() => {
-                    props.navigation.navigate('Exam');
-                  }}
-                  title={'Explore all'}
-                  style={styles.button}
-                  color="#000000"
-                />
-              </View>
-            </View> */}
-          </View>
           <View style={styles.gap} />
 
           <View style={styles.div}>
@@ -362,35 +231,6 @@ const Home = props => {
 
               <View style={styles.div1}>
                 <View style={styles.textContainer}>
-                  {/* <Carousel
-                    ref={CarouselRefff}
-                    data={coursesList.results}
-                    renderItem={_renderItemWithParallax2}
-                    sliderWidth={WIDTH}
-                    itemWidth={WIDTH}
-                    onSnapToItem={index => setActiveSlidess(index)}
-                  />
-                  <View style={styles.paginationContainez}>
-                    <Pagination
-                      dotsLength={coursesList.results.length}
-                      activeDotIndex={activeSlidess}
-                      containerStyle={styles.pagiStyle}
-                      dotColor={'#2E3192'}
-                      dotStyle={styles.pagiDot}
-                      inactiveDotColor={'#EAEAEA'}
-                      inactiveDotOpacity={0.4}
-                      inactiveDotScale={1}
-                      inactiveDotStyle={styles.inactDotStyle}
-                      carouselRef={CarouselRefff}
-                      tappableDots={!!CarouselRefff}
-                    />
-                  </View> */}
-                  {/* <CustomButton
-                    type="white"
-                    title={'Explore all'}
-                    style={styles.button}
-                    color="#000000"
-                  /> */}
 
                   <Entrancepic
 
@@ -416,36 +256,7 @@ const Home = props => {
 
               <View style={styles.div1}>
                 <View style={styles.textContainer}>
-                  {/* <Carousel
-                    ref={CarouselReffff}
-                    data={data2}
-                    renderItem={_renderItemWithParallax2}
-                    sliderWidth={WIDTH}
-                    itemWidth={WIDTH}
-                    onSnapToItem={index => setActiveSlidesss(index)}
-                  />
-                  <View style={styles.paginationContainez}>
-                    <Pagination
-                      dotsLength={data.length}
-                      activeDotIndex={activeSlidesss}
-                      containerStyle={styles.pagiStyle}
-                      dotColor={'#2E3192'}
-                      dotStyle={styles.pagiDot}
-                      inactiveDotColor={'#EAEAEA'}
-                      inactiveDotOpacity={0.4}
-                      inactiveDotScale={1}
-                      inactiveDotStyle={styles.inactDotStyle}
-                      carouselRef={CarouselReffff}
-                      tappableDots={!!CarouselReffff}
-                    />
-                  </View> */}
-
-                  {/* <CustomButton
-                    type="white"
-                    title={'Explore all'}
-                    style={styles.button}
-                    color="#000000"
-                  /> */}
+                  
                   <Loksewapic
                     style={{
                       margin: 16,

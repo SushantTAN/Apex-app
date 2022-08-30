@@ -13,6 +13,7 @@ import CustomTextInput from '@elements/CustomTextInput';
 import styles from '@styles/modules/ResetPassword/NewPassword.scss';
 import validate from '@utils/validation';
 import { useDispatch } from 'react-redux';
+import { CommonActions } from '@react-navigation/native';
 
 
 const NewPassword = props => {
@@ -68,9 +69,13 @@ const NewPassword = props => {
     // props.navigation.navigate('NewPassword');
   };
 
+  const handleBack = () => {
+    props.navigation.dispatch(CommonActions.goBack());
+  }
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleNewPassChange} style={styles.left}>
+      <TouchableOpacity onPress={handleBack} style={styles.left}>
         <Image source={require('@assets/images/leftArrow.png')} />
       </TouchableOpacity>
 

@@ -6,6 +6,7 @@ import homeReducer from './home';
 import loadingReducer from './loading';
 import popupReducer from './popup';
 import courseReducer from './course';
+import resetReducer from './resetPassword';
 
 const rootReducer = combineReducers({
   authReducer,
@@ -14,7 +15,7 @@ const rootReducer = combineReducers({
   loadingReducer,
   popupReducer,
   courseReducer,
-
+  resetReducer,
 })
 
 export default rootReducer;

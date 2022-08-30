@@ -3,6 +3,7 @@ import { PATCH, POST } from '@utils/api';
 import * as types from '../actionTypes';
 import { setLoading } from './loading';
 import { setSuccessMsg } from './popup';
+import { CommonActions, StackActions } from '@react-navigation/native';
 
 export const phoneVerify = data => {
   return {
@@ -11,7 +12,7 @@ export const phoneVerify = data => {
   };
 };
 
-export const phoneVerifyRequest = (data, navigate = () => { }, counter) => {
+export const phoneVerifyRequest = (data, navigation, toRoute) => {
   return async dispatch => {
     try {
       dispatch(setLoading(true));
@@ -19,10 +20,15 @@ export const phoneVerifyRequest = (data, navigate = () => { }, counter) => {
       const resJson = await response.data;
       // console.log(response, resJson)
       if (response) {
-        navigate('Reset', {
-          username: data.username,
-        });
-        dispatch(startCounter(counter))
+        // navigate('Reset', {
+        //   username: data.username,
+        // });
+        navigation.dispatch(
+          StackActions.replace(toRoute === 'Verify' ? 'Verify' : 'Reset', {
+            username: data.username,
+          })
+        );
+        // dispatch(startCounter(counter))
       }
       if (response.status === 400) {
       }
@@ -34,7 +40,7 @@ export const phoneVerifyRequest = (data, navigate = () => { }, counter) => {
   };
 };
 
-export const verifyResetOtp = (data, navigate = () => { }) => {
+export const verifyResetOtp = (data, navigation) => {
   return async dispatch => {
     try {
       dispatch(setLoading(true));
@@ -42,9 +48,14 @@ export const verifyResetOtp = (data, navigate = () => { }) => {
       const resJson = await response.data;
       // console.log(response, resJson)
       if (response) {
-        navigate('NewPassword', {
-          username: data.username,
-        });
+        // navigate('NewPassword', {
+        //   username: data.username,
+        // });
+        navigation.dispatch(
+          StackActions.replace('NewPassword', {
+            username: data.username,
+          })
+        );
       }
       if (response.status === 400) {
       }
@@ -87,12 +98,13 @@ export const decrementCounter = data => {
 export const startCounter = (counter) => {
   return async dispatch => {
     try {
-      let timer
+      let timer;
       timer = setInterval(() => {
+        console.log("counter timer")
         dispatch(decrementCounter());
-        if (counter <= 0) {
-          clearInterval(timer);
-        }
+        // if (counter <= 0) {
+        clearInterval(timer);
+        // }
       }, 1000);
     } catch (error) {
 

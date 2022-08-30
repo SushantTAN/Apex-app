@@ -28,7 +28,7 @@ import styles from '@styles/modules/Pages/Exam';
 import SearchIcon from '@assets/images/Search.svg'
 import FilterIcon from '@assets/images/Filter.svg';
 import BackIcon from '@assets/images/back.svg';
-import ExamCard from '../ExamCard';
+import ExamCard from '../../elements/ExamCard';
 import TopBar from '@elements/TopBar/index'
 
 let preparation = [

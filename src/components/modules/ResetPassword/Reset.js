@@ -14,14 +14,17 @@ import { useDispatch } from 'react-redux';
 import validate from '@utils/validation';
 import { verifyForm } from '@apexapp/data/signup/verify';
 import { phoneVerifyRequest, verifyResetOtp } from '@apexapp/store/actions/resetPassword';
+import { CommonActions } from '@react-navigation/native';
 
 
 const Reset = props => {
   const [formData, setFormData] = useState(verifyForm);
   const [errormsg, setErrorMsg] = useState('');
+  const [counter, setCounter] = useState(120);
+
 
   const dispatch = useDispatch();
-  const counter = useSelector(state => state.resetReducer.counter);
+  // const counter = useSelector(state => state.resetReducer.counter);
 
 
   const onChangeHandler = (key, value, password) => {
@@ -67,17 +70,43 @@ const Reset = props => {
       otp: formData.otp.value,
     };
     console.log(data);
-    dispatch(verifyResetOtp(data, props.navigation.navigate));
+    dispatch(verifyResetOtp(data, props.navigation));
     // props.navigation.navigate('NewPassword');
   };
 
   const handleResets = () => {
-    props.navigation.navigate('VerifyNumber');
+    // props.navigation.navigate('VerifyNumber');
+    props.navigation.dispatch(CommonActions.goBack());
   };
 
-  const handleResend = () => {
-    dispatch(phoneVerifyRequest(props.route.params, props.navigation.navigate, counter));
+  const handleResend = async () => {
+    
+    await dispatch(phoneVerifyRequest(props.route.params, props.navigation, counter));
+    startTimer();
   }
+
+  // console.log("verify otp screen")
+  const startTimer = () => {
+    setCounter(120);
+    let timer;
+    timer = setInterval(() => {
+      // console.log("counter", counter);
+
+      setCounter(prevState => {
+        if (prevState <= 0) {
+          clearInterval(timer);
+          return prevState;
+        }
+        return prevState - 1
+      });
+    }, 1000);
+
+  }
+
+  useEffect(() => {
+    // console.log("use effect")
+    startTimer();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -119,15 +148,15 @@ const Reset = props => {
           />
         ))}
       </View>
-      <Text style={styles.p}>Reset code in: 33s</Text>
+      <Text style={styles.p}>Reset code in: {counter}s</Text>
 
       <View style={styles.bottomContainer}>
-        <CustomButton
+        { counter === 0 ? <CustomButton
           type="white"
           title={'Re-send code'}
           style={styles.signUps}
           onPress={handleResend}
-        />
+        /> : <View style={{justifyContent:'center', alignItems: 'center',padding: 16}}><Text style={{color:"gray"}}>Re-send code</Text></View>}
 
         <CustomButton
           type="theme"

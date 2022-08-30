@@ -25,7 +25,7 @@ export const loginRequest = (
 
       const response = await POST('api/auth/login/', data);
       const resJson = response.data;
-      // console.log(resJson, response);
+      console.log(resJson, response);
       if (response) {
         dispatch(login(resJson));
         await AsyncStorage.setItem('apex-tokens', JSON.stringify(resJson));
@@ -189,10 +189,19 @@ const refreshSuccess = () => {
   }
 }
 
+const setLoggedUser = (data) => {
+  return {
+    type: types.SET_LOGGED_USER,
+    payload: data,
+  }
+}
+
 export const refreshToken = (tokens, navigation) => {
   return async dispatch => {
     try {
       // dispatch(setLoading(true));
+      const tokens = await AsyncStorage.getItem('apex-tokens');
+      const parsed = await JSON.parse(tokens);
 
       const response = await POST('api/auth/token/refresh/');
       const resJson = await response.data;
@@ -201,6 +210,7 @@ export const refreshToken = (tokens, navigation) => {
         dispatch(refreshSuccess(resJson));
 
         dispatch(login({ ...tokens, access_token: resJson.access, access_token_expiration: resJson.access_token_expiration }));
+        dispatch(setLoggedUser(parsed.user));
 
         // navigation.navigate('BottomTabs');
       }
@@ -208,7 +218,7 @@ export const refreshToken = (tokens, navigation) => {
 
     } catch (error) {
       console.log('err refresh token', error);
-      errorAlert("Error Occured", "Login Session Has Expired, please login again.")
+      // errorAlert("Error Occured", "Login Session Has Expired, please login again.")
     }
     // dispatch(setLoading(false));
 
