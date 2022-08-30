@@ -60,44 +60,39 @@ const Walkthrough = props => {
 
   useEffect(() => {
     setTimeout(async () => {
-      
-      // // console.log(value);
-      // if (tokens) {
-      //   // props.navigation.navigate('BottomTabs');
-      //   let data = await JSON.parse(tokens);
-      //   // console.log(new Date(data.refresh_token_expiration).getTime() - new Date().getTime());
 
-      //   if ((new Date(data.refresh_token_expiration).getTime() - new Date().getTime()) > 0) {
-      //     await dispatch(refreshToken(data, props.navigation));
-      //     props.navigation.navigate('BottomTabs');
-      //   }
-      //   else {
-      //     await AsyncStorage.removeItem('apex-tokens');
-      //     props.navigation.navigate('OnBoarding');
-
-      //   }
-
-      //   // dispatch(login(data));
-      // } else {
-      //   props.navigation.navigate('OnBoarding');
-      // }
       try {
         const response = await POST('api/auth/token/verify/', {});
         const resJson = await response.data;
         // console.log("token verify", parsed);
         if (response) {
+
           await dispatch(refreshToken(resJson));
+          props.navigation.navigate('BottomTabs');
+
 
           // dispatch(login({ ...parsed, access_token: resJson.access, access_token_expiration: resJson.access_token_expiration }));
 
-          props.navigation.navigate('BottomTabs');
+
         }
 
 
       } catch (error) {
-        props.navigation.navigate('OnBoarding');
 
-        console.log('err token verify', error);
+
+        try {
+          const response = await POST('api/auth/token/refresh/');
+          const resJson = await response.data;
+
+          await dispatch(refreshToken(resJson));
+          props.navigation.navigate('BottomTabs');
+        } catch (e) {
+          props.navigation.navigate('OnBoarding');
+        }
+
+        // props.navigation.navigate('OnBoarding');
+
+        // console.log('err token verify', error);
         // errorAlert("Error Occured", "Login Session Has Expired, please login again.")
 
       }

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { View, Text, TouchableOpacity, ScrollView, TextInput } from 'react-native'
 import SearchBar from '@components/elements/SearchBar';
 import TopBar from '@components/elements/TopBar';
-import ExamCard from '@components/modules/ExamCard/index';
+import ExamCard from '@apexapp/components/elements/ExamCard/index';
 import BackIcon from '@assets/images/back.svg'
 import FilterIcon from '@assets/images/Filter.svg'
 import SearchIcon from '@assets/images/Search.svg';

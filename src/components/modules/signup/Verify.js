@@ -16,6 +16,7 @@ import { verifyForm } from '@apexapp/data/signup/verify';
 import validate from '@apexapp/utils/validation';
 import { PATCH } from '@apexapp/utils/api';
 import { phoneVerifyRequest } from '@apexapp/store/actions/resetPassword';
+import { CommonActions } from '@react-navigation/native';
 
 const Verify = props => {
   const [formData, setFormData] = useState(verifyForm);
@@ -118,7 +119,8 @@ const Verify = props => {
   }
 
   const handleBack = () => {
-    props.navigation.navigate('Register');
+    // props.navigation.navigate('Register');
+    props.navigation.dispatch(CommonActions.goBack());
   };
 
   const startTimer = () => {

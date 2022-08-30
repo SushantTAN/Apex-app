@@ -7,6 +7,8 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 
+import { CommonActions } from '@react-navigation/native';
+
 import CustomTextInput from '@elements/CustomTextInput';
 import CustomButton from '@elements/CustomButton';
 import styles from '@styles/modules/ResetPassword/VerifyNumber.scss';
@@ -15,6 +17,7 @@ import { phoneVerifyForm } from '@data/reset/phoneVerify';
 import { verifyRequest } from '@apexapp/store/actions/auth';
 import { phoneVerifyRequest } from '@apexapp/store/actions/resetPassword';
 import { useDispatch, useSelector } from 'react-redux';
+
 
 const VerifyNumber = props => {
   const [formData, setFormData] = useState(phoneVerifyForm);
@@ -72,7 +75,8 @@ const VerifyNumber = props => {
   };
 
   const handleResets = () => {
-    props.navigation.navigate('Login');
+    // props.navigation.navigate('Login');
+    props.navigation.dispatch(CommonActions.goBack());
   };
 
   return (

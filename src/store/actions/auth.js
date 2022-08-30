@@ -218,7 +218,7 @@ export const refreshToken = (tokens, navigation) => {
 
     } catch (error) {
       console.log('err refresh token', error);
-      errorAlert("Error Occured", "Login Session Has Expired, please login again.")
+      // errorAlert("Error Occured", "Login Session Has Expired, please login again.")
     }
     // dispatch(setLoading(false));
 

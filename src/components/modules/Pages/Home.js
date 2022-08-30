@@ -30,7 +30,7 @@ import NavBar from '@apexapp/components/elements/Navbar/Navbar';
 import styles from '@styles/modules/Pages/Home.scss';
 import { WIDTH } from '@apexapp/utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
-import ExamCard from '../ExamCard';
+import ExamCard from '../../elements/ExamCard';
 import { examsFullListRequest, examsListRequest } from '@apexapp/store/actions/exam';
 import { useFocusEffect } from '@react-navigation/native';
 import { errorAlert, getDuration } from '@apexapp/utils/functions';
@@ -219,14 +219,8 @@ const Home = props => {
                 buttonClick={() => { props.navigation.navigate('Exam') }}
               />
             </View>
-
-
           </View>
-          <View>
-            <View style={styles.gap} />
 
-           
-          </View>
           <View style={styles.gap} />
 
           <View style={styles.div}>

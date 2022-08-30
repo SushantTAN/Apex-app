@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import validate from '@utils/validation';
 import { verifyForm } from '@apexapp/data/signup/verify';
 import { phoneVerifyRequest, verifyResetOtp } from '@apexapp/store/actions/resetPassword';
+import { CommonActions } from '@react-navigation/native';
 
 
 const Reset = props => {
@@ -74,7 +75,8 @@ const Reset = props => {
   };
 
   const handleResets = () => {
-    props.navigation.navigate('VerifyNumber');
+    // props.navigation.navigate('VerifyNumber');
+    props.navigation.dispatch(CommonActions.goBack());
   };
 
   const handleResend = async () => {
