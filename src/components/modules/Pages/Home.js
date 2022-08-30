@@ -396,7 +396,7 @@ const Home = props => {
 
                     style={{
                       margin: 16,
-                      width: WIDTH - 32,
+                      width: WIDTH,
                       borderRadius: 8,
                       height: 120,
                     }}
@@ -449,7 +449,7 @@ const Home = props => {
                   <Loksewapic
                     style={{
                       margin: 16,
-                      width: WIDTH - 32,
+                      width: WIDTH,
                       borderRadius: 8,
                       height: 120,
                     }} />
