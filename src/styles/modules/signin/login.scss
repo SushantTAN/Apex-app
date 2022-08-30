@@ -20,6 +20,7 @@
 }
 
 .titleContainer {
+    margin-top: 12px;
     flex-direction: column;
     padding: 16px;
     align-items: center;
@@ -53,6 +54,7 @@
 
 .formContainer {
     padding: 16px;
+    margin-top: 16px;
 }
 
 .signIn {
@@ -79,11 +81,13 @@
 }
 
 .border {
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
     background-color: #f2f2f2;
 }
 
 .background {
     background-color: #2E3192;
+
 }
