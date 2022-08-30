@@ -15,11 +15,12 @@ import { verifyRequest } from '@apexapp/store/actions/auth';
 import { verifyForm } from '@apexapp/data/signup/verify';
 import validate from '@apexapp/utils/validation';
 import { PATCH } from '@apexapp/utils/api';
+import { phoneVerifyRequest } from '@apexapp/store/actions/resetPassword';
 
 const Verify = props => {
   const [formData, setFormData] = useState(verifyForm);
   const [errormsg, setErrorMsg] = useState('');
-  const [timeRemaining, setTimeRemaining] = useState(120);
+  const [counter, setCounter] = useState(10);
 
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const autoFadeOut = () => {
@@ -111,9 +112,36 @@ const Verify = props => {
     dispatch(verifyRequest(data, autoFadeOut, props.navigation.navigate, setErrorMsg));
   };
 
+  const handleResend = async () => {
+    await dispatch(phoneVerifyRequest(props.route.params, props.navigation, 'Verify'));
+    startTimer();
+  }
+
   const handleBack = () => {
     props.navigation.navigate('Register');
   };
+
+  const startTimer = () => {
+    setCounter(10);
+    let timer;
+    timer = setInterval(() => {
+      // console.log("counter", counter);
+
+      setCounter(prevState => {
+        if (prevState <= 0) {
+          clearInterval(timer);
+          return prevState;
+        }
+        return prevState - 1
+      });
+    }, 1000);
+
+  }
+
+  useEffect(() => {
+    // console.log("use effect")
+    startTimer();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -170,7 +198,7 @@ const Verify = props => {
         ))}
       </View>
 
-      <Text style={styles.p}>Code will expire in {timeRemaining}s</Text>
+      <Text style={styles.p}>Code will expire in {counter}s</Text>
 
       <View style={styles.errorContainer}>
         {errormsg !== '' && (
@@ -179,7 +207,7 @@ const Verify = props => {
           </Animated.View>
         )}
       </View>
-
+      {console.log("hhh", props.route.params)}
       <View style={styles.bottomContainer}>
         <CustomButton
           type="theme"
@@ -187,12 +215,12 @@ const Verify = props => {
           style={styles.signUp}
           onPress={handleVerify}
         />
-        <CustomButton
+        {counter === 0 ? <CustomButton
           type="white"
           title={'Re-send code'}
           style={styles.signUps}
-          onPress={handleVerify}
-        />
+          onPress={handleResend}
+        /> : <View style={{ justifyContent: 'center', alignItems: 'center', padding: 16 }}><Text style={{ color: "gray" }}>Re-send code</Text></View>}
 
 
       </View>

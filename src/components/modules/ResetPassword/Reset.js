@@ -88,7 +88,7 @@ const Reset = props => {
     setCounter(120);
     let timer;
     timer = setInterval(() => {
-      console.log("counter", counter);
+      // console.log("counter", counter);
 
       setCounter(prevState => {
         if (prevState <= 0) {
@@ -102,7 +102,7 @@ const Reset = props => {
   }
 
   useEffect(() => {
-    console.log("use effect")
+    // console.log("use effect")
     startTimer();
   }, []);
 

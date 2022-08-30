@@ -12,7 +12,7 @@ export const phoneVerify = data => {
   };
 };
 
-export const phoneVerifyRequest = (data, navigation, counter) => {
+export const phoneVerifyRequest = (data, navigation, toRoute) => {
   return async dispatch => {
     try {
       dispatch(setLoading(true));
@@ -24,7 +24,7 @@ export const phoneVerifyRequest = (data, navigation, counter) => {
         //   username: data.username,
         // });
         navigation.dispatch(
-          StackActions.replace('Reset', {
+          StackActions.replace(toRoute === 'Verify' ? 'Verify' : 'Reset', {
             username: data.username,
           })
         );
@@ -103,7 +103,7 @@ export const startCounter = (counter) => {
         console.log("counter timer")
         dispatch(decrementCounter());
         // if (counter <= 0) {
-          clearInterval(timer);
+        clearInterval(timer);
         // }
       }, 1000);
     } catch (error) {
