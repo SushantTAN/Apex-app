@@ -12,7 +12,7 @@ import MyCourses from '@apexapp/components/modules/Courses/MyCourses';
 const CoursesRouter = () => {
   return (
     <MyStack.Navigator screenOptions={{ headerShown: false }}>
-      {/* <MyStack.Screen name="MyCourses" component={MyCourses} /> */}
+      <MyStack.Screen name="MyCourses" component={MyCourses} />
       <MyStack.Screen name="Courses" component={Courses} />
       <MyStack.Screen name="CourseOverview" component={CourseOverview} />
       <MyStack.Screen name="CoursePayment" component={CoursePayment} />

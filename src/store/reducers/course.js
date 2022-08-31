@@ -19,7 +19,10 @@ const initialState = {
         image: "",
 
         physical_books: {}
-    }
+    },
+
+
+    myCoursesList: [],
 
 }
 
@@ -36,6 +39,9 @@ const courseReducer = (state = initialState, action) => {
                 ...state,
                 courseDetail: action.payload
             }
+
+        case types.SET_MY_COURSES:
+            return { ...state, myCoursesList: action.payload }
 
 
         default:

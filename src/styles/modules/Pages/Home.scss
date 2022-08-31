@@ -68,8 +68,12 @@
 
 .image {
    width: 100%;
-   border-top-right-radius: 5px;
-   border-top-left-radius: 5px;
+   height: 150px;
+   border-radius: 10px;
+   // margin: 16px;
+   
+   // border-top-right-radius: 5px;
+   // border-top-left-radius: 5px;
 
 
 }
@@ -80,6 +84,7 @@
 }
 
 .textContainer{
+   padding: 16px;
    // justify-content: center;
    // align-items: center
 }

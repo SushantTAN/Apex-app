@@ -42,7 +42,7 @@ import CustomCarousel from '../../elements/CustomCarousel';
 
 const Home = props => {
 
-  
+
 
   const dispatch = useDispatch();
   const examsLiveList = useSelector(state => state.homeReducer.examsLiveList);
@@ -232,7 +232,7 @@ const Home = props => {
               <View style={styles.div1}>
                 <View style={styles.textContainer}>
 
-                  <Entrancepic
+                  {/* <Entrancepic
 
                     style={{
                       margin: 16,
@@ -240,7 +240,14 @@ const Home = props => {
                       borderRadius: 8,
                       height: 120,
                     }}
+                  /> */}
+
+                  <Image
+                    style={styles.image}
+                    // resizeMode="contain"
+                    source={require('@assets/images/entrance2x.png')}
                   />
+
                   {/* <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text> */}
                 </View>
               </View>
@@ -256,14 +263,20 @@ const Home = props => {
 
               <View style={styles.div1}>
                 <View style={styles.textContainer}>
-                  
-                  <Loksewapic
+
+                  {/* <Loksewapic
                     style={{
                       margin: 16,
                       width: WIDTH - 16,
                       borderRadius: 8,
                       height: 120,
-                    }} />
+                    }} /> */}
+
+                  <Image
+                    style={styles.image}
+                    // resizeMode="contain"
+                    source={require('@assets/images/loksewa2x.png')}
+                  />
                   {/* <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16 }}>Coming Soon</Text> */}
                 </View>
               </View>
