@@ -118,79 +118,81 @@ const Login = props => {
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
-      <View style={styles.container}>
-        <ScrollView contentContainerStyle={{ flexGrow: 1, height: '100%', position: 'relative' }} keyboardShouldPersistTaps={'handled'}>
+      <ScrollView>
+        <View style={styles.container}>
+          <ScrollView contentContainerStyle={{ flexGrow: 1, height: '100%', position: 'relative' }} keyboardShouldPersistTaps={'handled'}>
 
-          <View style={styles.background}>
-            <Header />
+            <View style={styles.background}>
+              <Header />
 
-            <View style={styles.border}>
+              <View style={styles.border}>
 
-              <View style={styles.titleContainer}>
-                <Text style={styles.title}> Login</Text>
+                <View style={styles.titleContainer}>
+                  <Text style={styles.title}> Login</Text>
 
-                <View style={styles.p}>
-                  <Text style={styles.p}> Haven't got an account?</Text>
-                  <TouchableOpacity onPress={handleSignupLink}>
-                    <Text style={styles.link}> Sign up.</Text>
+                  <View style={styles.p}>
+                    <Text style={styles.p}> Haven't got an account?</Text>
+                    <TouchableOpacity onPress={handleSignupLink}>
+                      <Text style={styles.link}> Sign up.</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+
+                <View style={styles.formContainer}>
+                  {Object.values(formData).map((item, index) => (
+                    <CustomTextInput
+                      onChange={value => {
+                        onChangeHandler(
+                          item.elementConfig.name,
+                          value,
+                          formData.password.value,
+                        );
+                      }}
+                      placeholder={item.elementConfig.placeholder}
+                      // hidden={true}
+                      password={item.elementConfig.type === 'password'}
+                      key={item.elementConfig.name}
+                      // id={item.elementConfig.name}
+                      // type={item.elementConfig.type}
+                      keyboardType={item.elementConfig.keyboardType}
+                      value={item.value}
+                      valid={item.valid}
+                      error={item.errorMessage}
+                      touched={item.touched}
+                      // errorMessage={item.errorMessage}
+                      onBlur={() => blurHandler(item.elementConfig.name)}
+                      onFocus={() => focusHandler(item.elementConfig.name)}
+                    // focus={item.focus}
+                    />
+                  ))}
+                </View>
+                <View style={styles.lastcontainer}>
+                  <Text style={styles.p}>Forget password?</Text>
+                  <TouchableOpacity onPress={handleResetLink}>
+                    <Text style={styles.link1}> Reset.</Text>
                   </TouchableOpacity>
                 </View>
-              </View>
 
-              <View style={styles.formContainer}>
-                {Object.values(formData).map((item, index) => (
-                  <CustomTextInput
-                    onChange={value => {
-                      onChangeHandler(
-                        item.elementConfig.name,
-                        value,
-                        formData.password.value,
-                      );
-                    }}
-                    placeholder={item.elementConfig.placeholder}
-                    // hidden={true}
-                    password={item.elementConfig.type === 'password'}
-                    key={item.elementConfig.name}
-                    // id={item.elementConfig.name}
-                    // type={item.elementConfig.type}
-                    keyboardType={item.elementConfig.keyboardType}
-                    value={item.value}
-                    valid={item.valid}
-                    error={item.errorMessage}
-                    touched={item.touched}
-                    // errorMessage={item.errorMessage}
-                    onBlur={() => blurHandler(item.elementConfig.name)}
-                    onFocus={() => focusHandler(item.elementConfig.name)}
-                  // focus={item.focus}
-                  />
-                ))}
-              </View>
-              <View style={styles.lastcontainer}>
-                <Text style={styles.p}>Forget password?</Text>
-                <TouchableOpacity onPress={handleResetLink}>
-                  <Text style={styles.link1}> Reset.</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={styles.errorContainer}>
-                {errormsg !== '' && (
-                  <Animated.View style={[styles.errortext, { opacity: fadeAnim }]}>
-                    <Text style={styles.p}>{errormsg}</Text>
-                  </Animated.View>
-                )}
+                <View style={styles.errorContainer}>
+                  {errormsg !== '' && (
+                    <Animated.View style={[styles.errortext, { opacity: fadeAnim }]}>
+                      <Text style={styles.p}>{errormsg}</Text>
+                    </Animated.View>
+                  )}
+                </View>
               </View>
             </View>
-          </View>
 
-          <CustomButton
-            type={isValid ? 'theme' : 'disabled'}
-            title={'Sign in'}
-            style={styles.signIn}
-            onPress={handleSubmit}
-          />
+            <CustomButton
+              type={isValid ? 'theme' : 'disabled'}
+              title={'Sign in'}
+              style={styles.signIn}
+              onPress={handleSubmit}
+            />
 
-        </ScrollView>
-      </View>
+          </ScrollView>
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
 
   );
