@@ -184,9 +184,9 @@ const TakeExams = props => {
           <View style={styles.text5}>
 
             <Fragment>
-              <View style={styles.cards}>
+              {/* <View style={styles.cards}>
                 <Text style={styles.point}>1 points</Text>
-              </View>
+              </View> */}
               <View style={styles.img}>
                 <Text style={styles.num}>{currentQuestion + 1}.</Text>
 
