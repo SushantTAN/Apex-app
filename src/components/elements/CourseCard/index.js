@@ -8,8 +8,8 @@ import Tag from '@components/elements/Tag';
 const CourseCard = (props) => {
 
   const { name, tags, actionPress, image, date, numberOfEnroll, sessions } = props;
-  console.log("hi", sessions)
-  console.log("hello", image)
+  // console.log("hi", sessions)
+  // console.log("hello", image)
 
 
   return (

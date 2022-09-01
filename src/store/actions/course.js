@@ -16,6 +16,7 @@ export const courseListRequest = () => {
             dispatch(setLoading(true))
             const response = await GET(`api/courses/list/`);
             const resJson = await response.data;
+            console.log("course list ", resJson);
 
             if (response) {
                 dispatch(courseList(resJson));
@@ -45,15 +46,31 @@ export const courseDetailRequest = (id) => {
             const response = await GET('api/courses/retrieve/before-enroll/' + id + '/')
             // console.log(response)
             const resJson = await response.data;
-            // console.log(resJson)
+            console.log("before enroll",resJson)
             if (response) {
                 dispatch(courseDetail(resJson));
             }
             if (response.status === 400) {
             }
         } catch (error) {
-            console.log('err', error);
-            errorAlert("Error Occured", "Please try again .");
+            console.log('err brfore enroll', error);
+            // errorAlert("Error Occured", "Please try again .");
+
+            try {
+                dispatch(setLoading(true));
+                const response = await GET('api/courses/retrieve/after-enroll/' + id + '/')
+                // console.log(response)
+                const resJson = await response.data;
+                // console.log("after enroll",resJson)
+                if (response) {
+                    dispatch(courseDetail(resJson));
+                }
+                if (response.status === 400) {
+                }
+            } catch (error) {
+                console.log('err brfore enroll', error);
+                errorAlert("Error Occured", "Please try again .");
+            }
         }
         dispatch(setLoading(false));
     }
@@ -65,6 +82,7 @@ export const courseEnrollRequest = (data) => {
             dispatch(setLoading(true));
             const response = await POST('api/enrollments/create/', data)
             const resJson = await response.data;
+            // console.log("enroll course",response)
             if (response) {
                 dispatch(courseDetail(resJson));
             }
@@ -72,7 +90,7 @@ export const courseEnrollRequest = (data) => {
 
             }
         } catch (error) {
-            console.log('err', error.response.data);
+            console.log('err', error);
             errorAlert("Error Occured", "Please try again.");
         }
         dispatch(setLoading(false));

@@ -38,7 +38,7 @@ const CoursePayment = (props) => {
         completed_date: date,
       }]
     }
-    console.log("data", data)
+    // console.log("data", data)
     dispatch(courseEnrollRequest(data))
     // console.log("enroll", courseEnrollRequest)
   }
@@ -48,7 +48,7 @@ const CoursePayment = (props) => {
   return (
     <>
       <View style={styles.maincontainer}>
-        {console.log("params", props.route.params)}
+        {/* {console.log("params", props.route.params)} */}
         <TopBar backIcon={<BackIcon />} title="Payments" />
         <View style={styles.gap} />
 

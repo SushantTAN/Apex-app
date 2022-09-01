@@ -13,7 +13,7 @@ const ExamCard = (props) => {
   return (
     <TouchableOpacity activeOpacity={1} onPress={actionPress} style={styles.cards}>
       <View style={styles.card}>
-        <View style={[styles.file, {backgroundColor: status === 'scheduled' ? 'green' : '#FFCB05'}]}>
+        <View style={[styles.file, {backgroundColor: status === 'scheduled' ? '#03958A' : '#FFCB05'}]}>
           {status !== 'scheduled' ? <NoteIcon style={styles.icon} /> : <SuccessIcon style={{ color: "white" }} />}
         </View>
         <View style={styles.tagContainer}>

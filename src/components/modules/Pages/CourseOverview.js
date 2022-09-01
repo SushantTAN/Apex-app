@@ -48,7 +48,7 @@ const CourseOverview = props => {
     if (props.route.params.id) {
       dispatch(courseDetailRequest(props.route.params.id));
     }
-    console.log("course", courseId)
+    // console.log("course", courseId)
   }, [props.route.params.id]);
 
 
@@ -192,7 +192,7 @@ const CourseOverview = props => {
               <CustomModal
                 height="65%"
                 button={<View style={styles.sessionbutton}>
-                  <Text style={styles.sessiontext}>Choose   session</Text>
+                  <Text style={styles.sessiontext}>Choose session</Text>
                 </View>}
               >
 

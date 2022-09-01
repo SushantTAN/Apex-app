@@ -43,7 +43,7 @@ const CustomSessionPopup1 = props => {
 
 
   const courseDetails = useSelector(state => state.courseReducer.courseDetail);
-  console.log("course details", courseDetails);
+  // console.log("course details", courseDetails);
 
   const handleEnroll = (courseId, sessionId) => {
     props.navigation.navigate('CoursePayment', { courseId, sessionId });
@@ -55,7 +55,7 @@ const CustomSessionPopup1 = props => {
 
   return (
     <TouchableOpacity disabled={true} style={styles.container}>
-      {console.log("params in modal", props.route.params)}
+      {/* {console.log("params in modal", props.route.params)} */}
       <View style={{ ...styles.modal, backgroundColor: "#fff" }}>
         <View style={styles.flex1}>
           <Text style={styles.head}>Session</Text>
