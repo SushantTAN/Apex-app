@@ -61,7 +61,7 @@ const MyCourses = props => {
       actionPress={() => handleClick(item.id)}
       sessions={item.sessions}
       name={item.name}
-      numberOfEnroll={item.enrollment_count.course_enroll_count}
+      numberOfEnroll={item?.enrollment_count?.course_enroll_count}
       image={item.image}
     />
   }

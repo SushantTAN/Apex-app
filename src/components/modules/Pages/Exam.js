@@ -191,7 +191,7 @@ const Exam = props => {
               //     <Text style={styles.amount}>{item.price}  {'\u2022'}  {item.template.duration} {'\u2022'} 2079-0-11 </Text>
               //   </View>
               // </TouchableOpacity>
-              <ExamCard tags={examCardInfo} name={item.name} actionPress={() => handleToDetail(item.id)} price={item.price} duration={item.template.duration} handleExamDetailsLink={() => handleExamDetailsLink(item.id)} />
+              <ExamCard status={item.status} tags={examCardInfo} name={item.name} actionPress={() => handleToDetail(item.id)} price={item.price} duration={item.template.duration} handleExamDetailsLink={() => handleExamDetailsLink(item.id)} />
 
             );
           })}

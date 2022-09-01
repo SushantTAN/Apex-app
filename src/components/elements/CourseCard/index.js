@@ -41,7 +41,7 @@ const CourseCard = (props) => {
 
           <View style={styles.tagContainer}>
             <DateIcon style={styles.icon} width={14} height={14} />
-            {sessions.map((item, index) => {
+            {sessions?.map((item, index) => {
               return (
                 <Text
                   key={index}

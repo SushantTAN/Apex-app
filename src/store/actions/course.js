@@ -93,8 +93,8 @@ export const myCourseListRequest = () => {
             dispatch(setLoading(true));
             const response = await GET(`api/enrollments/course-enroll/list/`);
             const resJson = await response.data;
-            console.log(response)
-            console.log(resJson);
+            // console.log(response)
+            // console.log("my courses",resJson);
 
 
             if (response) {

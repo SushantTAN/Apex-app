@@ -104,8 +104,6 @@ const Home = props => {
   useEffect(() => {
     var timer;
 
-    console.log(getDuration(auth.access_token_expiration))
-
     timer = setInterval(() => {
       // if (getDuration(auth.refresh_token_expiration) > 5) {
       console.log("test timer");
@@ -122,8 +120,7 @@ const Home = props => {
   const _renderItemWithParallax = ({ item, index }, parallaxProps) => {
     return (
       <>
-
-        <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} actionPress={() => handleExamDetailsLink(item.id)} />
+        <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} status={item.status} actionPress={() => handleExamDetailsLink(item.id)} />
       </>
     );
   };
