@@ -13,17 +13,16 @@ const initialState = {
     courseDetail: {
         sessions: [],
         enrollment_count: [],
-
-
         notes: {},
         image: "",
-
         physical_books: {}
     },
 
 
     myCoursesList: [],
-
+    myCoursesDetails: {
+        notes: [],
+    },
 }
 
 const courseReducer = (state = initialState, action) => {
@@ -42,6 +41,8 @@ const courseReducer = (state = initialState, action) => {
 
         case types.SET_MY_COURSES:
             return { ...state, myCoursesList: action.payload }
+        case types.SET_MY_COURSE_DETAIL:
+            return { ...state, myCoursesDetails: action.payload }
 
 
         default:

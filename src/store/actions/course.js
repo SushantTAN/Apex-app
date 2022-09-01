@@ -127,3 +127,34 @@ export const myCourseListRequest = () => {
 
     };
 };
+
+
+export const myCoursesDetail = data => {
+    return {
+        type: types.SET_MY_COURSE_DETAIL,
+        payload: data,
+    };
+};
+
+export const myCourseDetailRequest = (id) => {
+    return async dispatch => {
+        try {
+            dispatch(setLoading(true));
+            const response = await GET(`api/courses/retrieve/after-enroll/${id}`);
+            const resJson = await response.data;
+            console.log(response)
+            console.log("my courses details",resJson);
+
+
+            if (response) {
+                dispatch(myCoursesDetail(resJson));
+            }
+
+        } catch (error) {
+            console.log("err", error.response.data);
+            errorAlert("Error Occured", "Please try again.");
+        }
+        dispatch(setLoading(false));
+
+    };
+};

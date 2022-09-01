@@ -45,7 +45,7 @@ const MyCourses = props => {
   ]
 
   const handleClick = (id) => {
-
+    props.navigation.navigate('MyCourseDetails', {id});
   }
 
   const onRefresh = () => {
