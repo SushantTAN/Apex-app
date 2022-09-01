@@ -69,14 +69,16 @@ const MyCourses = props => {
   return (
     <View style={styles.container}>
       <TopBar title="My Courses" backIcon={<View></View>} search={false} />
-      <FlatList
+      {myCourses.length > 0 ? <FlatList
         data={myCourses}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
-      />
+      /> : <View style={{ justifyContent: 'center', height: '100%', width: '100%', alignItems: 'center' }}>
+      <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16, }}>No courses yet</Text>
+    </View>}
       {/* <Text>My courses</Text> */}
     </View>
   );

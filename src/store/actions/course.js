@@ -1,5 +1,5 @@
 import { errorAlert } from '@apexapp/utils/functions';
-import { GET } from '@utils/api';
+import { GET, POST } from '@utils/api';
 import * as types from '../actionTypes';
 import { setLoading } from './loading';
 
@@ -59,11 +59,11 @@ export const courseDetailRequest = (id) => {
     }
 }
 
-export const courseEnrollRequest = (id) => {
+export const courseEnrollRequest = (data) => {
     return async dispatch => {
         try {
             dispatch(setLoading(true));
-            const response = await GET('' + id + '/')
+            const response = await POST('api/enrollments/create/', data)
             const resJson = await response.data;
             if (response) {
                 dispatch(courseDetail(resJson));
@@ -72,7 +72,7 @@ export const courseEnrollRequest = (id) => {
 
             }
         } catch (error) {
-            console.log('err', error);
+            console.log('err', error.response.data);
             errorAlert("Error Occured", "Please try again.");
         }
         dispatch(setLoading(false));
