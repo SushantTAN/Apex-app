@@ -65,7 +65,7 @@ const MyCourseDetailsPage = props => {
     fetchData();
   }, []);
 
-  return <View style={styles.container}>
+  return <ScrollView style={styles.container}>
     <HeaderSearch
       title={myCourseDetails.name}
       navigation={props.navigation}
@@ -74,7 +74,7 @@ const MyCourseDetailsPage = props => {
     />
     {/* <TopBar title={myCourseDetails.name} backIcon={<View></View>} search={false} /> */}
 
-    <ScrollView horizontal contentContainerStyle={{ backgroundColor: 'white', paddingHorizontal: 16 }}>
+    <ScrollView horizontal contentContainerStyle={{ backgroundColor: 'white', paddingHorizontal: 16, marginBottom: 8 }}>
       {
         data.map((item, index) =>
           <Fragment key={index}>
@@ -85,7 +85,7 @@ const MyCourseDetailsPage = props => {
     </ScrollView>
 
     {renderModule()}
-  </View>;
+  </ScrollView>;
 };
 
 export default MyCourseDetailsPage;

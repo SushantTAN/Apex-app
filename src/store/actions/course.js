@@ -46,7 +46,7 @@ export const courseDetailRequest = (id) => {
             const response = await GET('api/courses/retrieve/before-enroll/' + id + '/')
             // console.log(response)
             const resJson = await response.data;
-            console.log("before enroll",resJson)
+            console.log("before enroll", resJson)
             if (response) {
                 dispatch(courseDetail(resJson));
             }
@@ -143,7 +143,7 @@ export const myCourseDetailRequest = (id) => {
             const response = await GET(`api/courses/retrieve/after-enroll/${id}`);
             const resJson = await response.data;
             console.log(response)
-            console.log("my courses details",resJson);
+            console.log("my courses details", resJson);
 
 
             if (response) {
@@ -152,6 +152,36 @@ export const myCourseDetailRequest = (id) => {
 
         } catch (error) {
             console.log("err", error.response.data);
+            errorAlert("Error Occured", "Please try again.");
+        }
+        dispatch(setLoading(false));
+
+    };
+};
+
+export const coursesExams = data => {
+    return {
+        type: types.SET_COURSE_EXAMS,
+        payload: data,
+    };
+};
+
+export const courseExamsRequest = () => {
+    return async dispatch => {
+        try {
+            dispatch(setLoading(true));
+            const response = await GET(`api/exams/list/`);
+            const resJson = await response.data;
+            console.log(response)
+            console.log("my courses", resJson);
+
+
+            if (response) {
+                dispatch(coursesExams(resJson));
+            }
+
+        } catch (error) {
+            console.log("err", error);
             errorAlert("Error Occured", "Please try again.");
         }
         dispatch(setLoading(false));

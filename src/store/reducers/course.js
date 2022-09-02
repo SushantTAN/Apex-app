@@ -23,6 +23,13 @@ const initialState = {
     myCoursesDetails: {
         notes: [],
     },
+
+    courseExamsList: {
+        count: 0,
+        next: '',
+        previous: '',
+        results: [],
+    },
 }
 
 const courseReducer = (state = initialState, action) => {
@@ -43,7 +50,8 @@ const courseReducer = (state = initialState, action) => {
             return { ...state, myCoursesList: action.payload }
         case types.SET_MY_COURSE_DETAIL:
             return { ...state, myCoursesDetails: action.payload }
-
+        case types.SET_COURSE_EXAMS:
+            return { ...state, courseExamsList: action.payload }
 
         default:
             return state;
