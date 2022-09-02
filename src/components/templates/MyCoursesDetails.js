@@ -6,6 +6,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 
+import ExamFilter from '@modules/Courses/CourseDetails/Filters/ExamFilter';
 import HeaderSearch from '../elements/HeaderSearch/HeaderSearch';
 import MyCourseClasses from '../modules/Courses/CourseDetails/MyCourseClasses';
 import MyCourseExams from '../modules/Courses/CourseDetails/MyCourseExams';
@@ -59,18 +60,19 @@ const MyCourseDetailsPage = props => {
     // console.log(props.route.params)
     dispatch(myCourseDetailRequest(props.route.params.id));
   }
-  
+
   useEffect(() => {
     fetchData();
   }, []);
 
   return <View style={styles.container}>
-    {/* <HeaderSearch
-      title={'My Course Details'}
+    <HeaderSearch
+      title={myCourseDetails.name}
       navigation={props.navigation}
-    // backnav="Exam"
-    /> */}
-    <TopBar title={myCourseDetails.name} backIcon={<View></View>} search={false} />
+      showFilterButton
+      filterComponent={<ExamFilter />}
+    />
+    {/* <TopBar title={myCourseDetails.name} backIcon={<View></View>} search={false} /> */}
 
     <ScrollView horizontal contentContainerStyle={{ backgroundColor: 'white', paddingHorizontal: 16 }}>
       {
@@ -87,3 +89,5 @@ const MyCourseDetailsPage = props => {
 };
 
 export default MyCourseDetailsPage;
+
+
