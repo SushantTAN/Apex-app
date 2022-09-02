@@ -205,11 +205,11 @@ export const refreshToken = (tokens, navigation) => {
 
       const response = await POST('api/auth/token/refresh/');
       const resJson = await response.data;
-      console.log("refresh token", resJson, tokens.refresh_token, response.status);
+      console.log("refresh token", resJson, parsed);
       if (resJson) {
         dispatch(refreshSuccess(resJson));
 
-        dispatch(login({ ...tokens, access_token: resJson.access, access_token_expiration: resJson.access_token_expiration }));
+        dispatch(login({ ...parsed, access_token: resJson.access, access_token_expiration: resJson.access_token_expiration }));
         dispatch(setLoggedUser(parsed.user));
 
         // navigation.navigate('BottomTabs');

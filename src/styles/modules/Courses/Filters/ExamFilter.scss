@@ -1,0 +1,66 @@
+@use "../../../library" as themes;
+@import '../../../common';
+
+.container {
+  padding: 16px;
+  flex: 1;
+}
+
+.header {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 0px 16px 0px;
+  border-bottom-width: 1px;
+  border-bottom-color: themes.$tilte1-bcr;
+  margin: 0px 0px 16px 0px;
+  // flex: 0.08;
+}
+
+.title {
+  @extend .h4;
+  font-family: 'OpenSans-SemiBold';
+}
+
+.close {
+  @extend .p;
+
+}
+
+.subHead {
+  @extend .h5;
+  font-family: 'OpenSans-SemiBold';
+}
+
+.category {
+  padding: 16px 0px;
+  // flex: 1;
+  // flex-grow: 1;
+  justify-content: space-between;
+}
+
+.item {
+  flex-direction: row;
+  align-items: center;
+  margin: 4px 0px;
+}
+
+.text {
+  @extend .p;
+}
+
+.buttonsContainer {
+  flex-direction: row;
+  // flex: 0.15;
+}
+
+.resetButton {
+  border-color: black;
+  border-width: 1px;
+  flex: 1;
+}
+
+.contentContainer {
+  // height: 100%;
+  // flex: 1;
+  justify-content: space-between;
+}

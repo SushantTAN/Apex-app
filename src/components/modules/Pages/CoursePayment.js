@@ -30,8 +30,16 @@ const CoursePayment = (props) => {
 
   const handlePayment = (id, enrollId) => {
     props.navigation.navigate('CourseOverview', { id: id, enrollId: enrollId })
-
-    dispatch(courseEnrollRequest())
+    let date = new Date().toISOString();
+    let data = {
+      courses: [{
+        course: props.route.params.courseId,
+        selected_session: props.route.params.sessionId,
+        completed_date: date,
+      }]
+    }
+    // console.log("data", data)
+    dispatch(courseEnrollRequest(data))
     // console.log("enroll", courseEnrollRequest)
   }
 
@@ -40,6 +48,7 @@ const CoursePayment = (props) => {
   return (
     <>
       <View style={styles.maincontainer}>
+        {/* {console.log("params", props.route.params)} */}
         <TopBar backIcon={<BackIcon />} title="Payments" />
         <View style={styles.gap} />
 

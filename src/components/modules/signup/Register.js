@@ -5,7 +5,7 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Image, Text, View, TouchableOpacity, Animated } from 'react-native';
+import { Image, Text, View, TouchableOpacity, Animated, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 
 import Header from '@elements/Header';
 import styles from '@styles/modules/signup/Register.scss';
@@ -16,7 +16,7 @@ import validate from '@apexapp/utils/validation';
 import { POST } from '@apexapp/utils/api';
 import { useDispatch } from 'react-redux';
 import { login } from '@apexapp/store/actions/auth';
-import { ScrollView } from 'react-native-gesture-handler';
+// import { ScrollView } from 'react-native-gesture-handler';
 import { setLoading } from '@apexapp/store/actions/loading';
 
 const Register = props => {
@@ -153,84 +153,84 @@ const Register = props => {
   }, [formData]);
 
   return (
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
+      <View style={styles.container}>
 
-    <View style={styles.container}>
+        <ScrollView keyboardShouldPersistTaps={'handled'} contentContainerStyle={{ ...styles.containers }}>
+          <View style={styles.background}>
+            <Header />
 
-      <ScrollView keyboardShouldPersistTaps={'handled'} contentContainerStyle={{ ...styles.containers }}>
-        <View style={styles.background}>
-          <Header />
+            <View style={styles.border}>
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>Register for free</Text>
 
-          <View style={styles.border}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>Register for free</Text>
+                <View style={styles.p}>
+                  <Text style={styles.p}>Already got an account?</Text>
+                  <TouchableOpacity onPress={handleToLoginLink}>
+                    <Text style={styles.link}> Login.</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
 
-              <View style={styles.p}>
-                <Text style={styles.p}>Already got an account?</Text>
-                <TouchableOpacity onPress={handleToLoginLink}>
-                  <Text style={styles.link}> Login.</Text>
-                </TouchableOpacity>
+              <ScrollView>
+
+                <View style={styles.formContainer}>
+
+                  {Object.values(formData).map((item, index) => (
+                    <CustomTextInput
+                      onChange={value => {
+                        onChangeHandler(
+                          item.elementConfig.name,
+                          value,
+                          formData.password.value,
+                        );
+                      }}
+                      placeholder={item.elementConfig.placeholder}
+                      // hidden={true}
+                      password={item.elementConfig.type === 'password'}
+                      key={item.elementConfig.name}
+                      // id={item.elementConfig.name}
+                      // type={item.elementConfig.type}
+                      keyboardType={item.elementConfig.keyboardType}
+                      value={item.value}
+                      valid={item.valid}
+                      error={item.errorMessage}
+                      touched={item.touched}
+                      // errorMessage={item.errorMessage}
+                      onBlur={() => blurHandler(item.elementConfig.name)}
+                      onFocus={() => focusHandler(item.elementConfig.name)}
+                    // focus={item.focus}
+                    />
+                  ))}
+
+                </View>
+
+
+                <View style={styles.termsandcondition}>
+                  <Text style={styles.condition}>By signing up you will be agree to <Text style={styles.terms}> terms and condition.</Text></Text>
+                </View>
+              </ScrollView>
+              <View style={styles.errorContainer}>
+                {errormsg !== '' && (
+                  <Animated.View style={[styles.errortext, { opacity: fadeAnim }]}>
+                    <Text style={styles.p}>{errormsg}</Text>
+                  </Animated.View>
+                )}
               </View>
             </View>
 
-            <ScrollView>
-
-              <View style={styles.formContainer}>
-
-                {Object.values(formData).map((item, index) => (
-                  <CustomTextInput
-                    onChange={value => {
-                      onChangeHandler(
-                        item.elementConfig.name,
-                        value,
-                        formData.password.value,
-                      );
-                    }}
-                    placeholder={item.elementConfig.placeholder}
-                    // hidden={true}
-                    password={item.elementConfig.type === 'password'}
-                    key={item.elementConfig.name}
-                    // id={item.elementConfig.name}
-                    // type={item.elementConfig.type}
-                    keyboardType={item.elementConfig.keyboardType}
-                    value={item.value}
-                    valid={item.valid}
-                    error={item.errorMessage}
-                    touched={item.touched}
-                    // errorMessage={item.errorMessage}
-                    onBlur={() => blurHandler(item.elementConfig.name)}
-                    onFocus={() => focusHandler(item.elementConfig.name)}
-                  // focus={item.focus}
-                  />
-                ))}
-
-              </View>
-
-
-              <View style={styles.termsandcondition}>
-                <Text style={styles.condition}>By signing up you will be agree to <Text style={styles.terms}> terms and condition.</Text></Text>
-              </View>
-            </ScrollView>
-            <View style={styles.errorContainer}>
-              {errormsg !== '' && (
-                <Animated.View style={[styles.errortext, { opacity: fadeAnim }]}>
-                  <Text style={styles.p}>{errormsg}</Text>
-                </Animated.View>
-              )}
-            </View>
           </View>
+          <CustomButton
+            type={isValid ? 'theme' : 'disabled'}
+            title={'Sign up'}
+            style={styles.signUp}
+            onPress={handleSignupPress}
+          />
 
-        </View>
-        <CustomButton
-          type={isValid ? 'theme' : 'disabled'}
-          title={'Sign up'}
-          style={styles.signUp}
-          onPress={handleSignupPress}
-        />
+        </ScrollView>
 
-      </ScrollView>
-
-    </View >
-
+      </View >
+    </KeyboardAvoidingView>
   );
 };
 

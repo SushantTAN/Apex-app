@@ -34,6 +34,11 @@ export const SET_LOADING = 'SET_LOADING';
 
 //Popup
 export const SET_SUCCESS_POPUP = 'SET_SUCCESS_POPUP';
+
 //Course
 export const SET_COURSE_LIST = 'SET_COURSE_LIST';
 export const SET_COURSE_DETAILS = "SET_COURSE-DETAILS";
+export const SET_MY_COURSES = "SET_MY_COURSES";
+export const SET_MY_COURSE_DETAIL = "SET_MY_COURSE_DETAIL";
+export const SET_COURSE_EXAMS = "SET_COURSE_EXAMS";
+

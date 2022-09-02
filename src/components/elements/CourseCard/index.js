@@ -8,8 +8,8 @@ import Tag from '@components/elements/Tag';
 const CourseCard = (props) => {
 
   const { name, tags, actionPress, image, date, numberOfEnroll, sessions } = props;
-  console.log("hi", sessions)
-  console.log("hello", image)
+  // console.log("hi", sessions)
+  // console.log("hello", image)
 
 
   return (
@@ -41,7 +41,7 @@ const CourseCard = (props) => {
 
           <View style={styles.tagContainer}>
             <DateIcon style={styles.icon} width={14} height={14} />
-            {sessions.map((item, index) => {
+            {sessions?.map((item, index) => {
               return (
                 <Text
                   key={index}

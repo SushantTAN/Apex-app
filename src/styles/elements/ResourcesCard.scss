@@ -1,0 +1,28 @@
+@use "../library" as themes;
+@import '../common';
+
+.noteItem{
+  width: 100%;
+  flex-direction: row;
+  background-color: themes.$input;
+  padding: 16px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.title{
+  @extend .h5;
+  font-family: 'OpenSans-Bold';
+}
+
+.iconContainer{
+  border-radius: 4px;
+  padding: 8px 4px;
+  margin: 0px 16px 0px 0px;
+  background-color: themes.$iconBg;
+}
+
+.infoContainer{
+  // height: 100%;
+  justify-content: space-between;
+}

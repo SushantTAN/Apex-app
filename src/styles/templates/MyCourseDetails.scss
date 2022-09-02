@@ -1,0 +1,39 @@
+@use "../library" as themes;
+@import '../common';
+
+.container {
+  background-color: white;
+  // flex:1;
+}
+
+.tabItem {
+  padding: 8px 16px 8px 8px;
+}
+
+.headerContainer {
+  background-color: white;
+}
+
+.selecetdTabItem {
+  padding: 8px 16px 8px 8px;
+  color: themes.$primary;
+}
+
+.tabText {
+  @extend .p;
+
+  padding-bottom: 5px;
+  // font-size: themes.$h6;
+  //   color: themes.$black;
+  font-family: 'OpenSans-Regular';
+
+}
+
+.tabTextSelected {
+  @extend .p;
+
+  border-bottom-width: 3px;
+  padding-bottom: 5px;
+  border-bottom-color: #252775;
+  color: themes.$primary;
+}

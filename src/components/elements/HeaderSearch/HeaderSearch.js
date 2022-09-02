@@ -14,6 +14,7 @@ import CustomTextInput from '@apexapp/components/elements/CustomTextInput';
 import styles from '@styles/elements/HeaderSearch/HeaderSearch.scss';
 import Filtericon from '@assets/images/Filter.svg'
 import BackIcon from '@assets/images/back.svg'
+import CustomModal from '../CustomModal/CustomModal';
 
 let information = [
   {
@@ -48,20 +49,23 @@ const HeaderSearch = props => {
     <>
       <View style={styles.mainContainer}>
         <View style={styles.filterDiv}>
-          <TouchableOpacity onPress={handleArrow} >
-            <BackIcon/>
-          </TouchableOpacity>
+          <View style={styles.titleContainer}>
+            <TouchableOpacity onPress={handleArrow} >
+              <BackIcon />
+            </TouchableOpacity>
             <Text style={styles.p} >
               {props.title}
             </Text>
+          </View>
           {/* <Filtericon/> */}
 
-          {props.showFilterButton ? (
+          {/* {props.showFilterButton ? (
             <TouchableOpacity onPress={handlefilter}>
+              <Filtericon />
             </TouchableOpacity>
-          ) : null}
+          ) : null} */}
 
-          <Modal
+          {/* <Modal
             animationType="slide"
             transparent={true}
             visible={isModalVisible}
@@ -69,7 +73,14 @@ const HeaderSearch = props => {
               changeModalVisible(false);
             }}>
             <CustomButtonPopup1 changeModalVisible={changeModalVisible} />
-          </Modal>
+          </Modal> */}
+
+          {props.showFilterButton && <CustomModal
+            height="60%"
+            button={<Filtericon />}
+          >
+            {props.filterComponent ? props.filterComponent : <CustomButtonPopup1 changeModalVisible={changeModalVisible} />}
+          </CustomModal>}
         </View>
 
         <View style={styles.searchandfilter}>

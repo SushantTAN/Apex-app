@@ -2,18 +2,19 @@ import React, { Fragment } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import styles from '@styles/modules/ExamCard'
 import NoteIcon from '@assets/images/note.svg'
+import SuccessIcon from '@assets/images/Success.svg';
 import Tag from '@components/elements/Tag'
 
 
 const ExamCard = (props) => {
 
-  const { name, price, duration, id, actionPress, tags } = props;
+  const { name, price, duration, id, actionPress, tags, status } = props;
 
   return (
     <TouchableOpacity activeOpacity={1} onPress={actionPress} style={styles.cards}>
       <View style={styles.card}>
-        <View style={styles.file}>
-          <NoteIcon style={styles.icon} />
+        <View style={[styles.file, {backgroundColor: status === 'scheduled' ? '#03958A' : '#FFCB05'}]}>
+          {status !== 'scheduled' ? <NoteIcon style={styles.icon} /> : <SuccessIcon style={{ color: "white" }} />}
         </View>
         <View style={styles.tagContainer}>
           {tags.length > 0 && tags.map((t, index) => {

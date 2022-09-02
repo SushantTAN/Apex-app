@@ -67,7 +67,7 @@ const BottomTabs = props => {
         }}
       />
       <Tab.Screen
-        name="Courses"
+        name="MyCourses"
         component={CoursesRouter}
         options={{
           tabBarLabel: 'MY COURSES',

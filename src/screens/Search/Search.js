@@ -12,7 +12,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CustomButton from '@apexapp/components/elements/CustomButton';
 import { WIDTH } from '@apexapp/utils/constants';
 import styles from '@styles/modules/Pages/Search.scss'
-import CourseCard from '@components/modules/CourseCard';
+import CourseCard from '@apexapp/components/elements/CourseCard';
 import { coursesEntranceRequest } from '@apexapp/store/actions/home';
 
 

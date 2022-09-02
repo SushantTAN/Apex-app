@@ -43,9 +43,10 @@ const CustomSessionPopup1 = props => {
 
 
   const courseDetails = useSelector(state => state.courseReducer.courseDetail);
+  // console.log("course details", courseDetails);
 
-  const handleEnroll = (id, enrollId) => {
-    props.navigation.navigate('CoursePayment', { id: id, enrollId: enrollId });
+  const handleEnroll = (courseId, sessionId) => {
+    props.navigation.navigate('CoursePayment', { courseId, sessionId });
   };
 
   const closeModal = bool => {
@@ -54,6 +55,7 @@ const CustomSessionPopup1 = props => {
 
   return (
     <TouchableOpacity disabled={true} style={styles.container}>
+      {/* {console.log("params in modal", props.route.params)} */}
       <View style={{ ...styles.modal, backgroundColor: "#fff" }}>
         <View style={styles.flex1}>
           <Text style={styles.head}>Session</Text>
@@ -74,32 +76,32 @@ const CustomSessionPopup1 = props => {
 
         <ScrollView style={styles.sessionContainer}>
           <View style={styles.flex2}>
-            {data.map((item, index) => {
+            {courseDetails?.sessions?.map((item, index) => {
               return (
                 <View style={styles.data} key={index}>
                   <View>
-                    <Text style={styles.title1}>{item.title1}</Text>
+                    <Text style={styles.title1}>Session {index + 1}</Text>
                     <View style={styles.flex3}>
                       <View style={styles.iconback}>
                         <DateIcon style={styles.sessionIcon} />
                       </View>
                       <View>
-                        <Text style={styles.title2}>{item.date}</Text>
+                        <Text style={styles.title2}>{item.start_date.split('T')[0]}</Text>
 
-                        {courseDetails.sessions.map((item, index) => {
-                          return (
+                        {/* {courseDetails.sessions.map((item, index) => {
+                          return ( */}
                             <Text
                               key={index}
-                              style={styles.time}>{item.start_date.split('T')[0]} </Text>
-                          )
-                        })}
+                              style={styles.time}>{item.start_date.split('T')[1].split('+')[0]} </Text>
+                          {/* )
+                        })} */}
 
                       </View>
                     </View>
                   </View>
 
                   <CustomButton
-                    onPress={handleEnroll}
+                    onPress={() => handleEnroll(item.course, item.id)}
                     style={styles.CustomButton}
                     type="theme"
                     title={'Enroll now'}

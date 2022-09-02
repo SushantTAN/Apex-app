@@ -20,7 +20,7 @@ import styles from '@styles/modules/Pages/Courses';
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
 import DateIcon from '@assets/images/date.svg';
 import UserIcon from '@assets/images/User.svg';
-import CourseCard from '../CourseCard';
+import CourseCard from '../../elements/CourseCard';
 import FilterIcon from '@assets/images/Filter.svg'
 import TopBar from '@elements/TopBar';
 import { useSelector, useDispatch } from 'react-redux';
@@ -97,7 +97,7 @@ const Courses = props => {
                 actionPress={() => handleArrow(item.id)}
                 sessions={item.sessions}
                 name={item.name}
-                numberOfEnroll={item.enrollment_count.course_enroll_count}
+                numberOfEnroll={item?.enrollment_count?.course_enroll_count}
                 image={item.image}
               />
             );

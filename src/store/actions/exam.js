@@ -51,6 +51,7 @@ export const examsFullList = data => {
 export const examsFullListRequest = () => {
   return async dispatch => {
     try {
+      dispatch(setLoading(true));
       // console.log("test",);
       const response = await GET('api/exams/list/');
       const resJson = await response.data;
@@ -65,17 +66,19 @@ export const examsFullListRequest = () => {
       errorAlert("Error Occured", "Please try again.");
 
     }
+    dispatch(setLoading(false));
   };
 };
 
 export const examsEnrollRequest = (data, token) => {
   return async dispatch => {
     try {
+      dispatch(setLoading(true));
       // console.log("test enroll", data, token);
       const response = await POST('api/enrollments/create/', data, token);
-      console.log("enroll", response)
+      // console.log("enroll", response)
       const resJson = response.data;
-      console.log("enroll", resJson)
+      // console.log("enroll", resJson)
       if (response) {
         await dispatch(examsFullList(resJson.results));
         await dispatch(examDetailRequest(data.exams[0].exam));
@@ -103,6 +106,7 @@ export const examsEnrollRequest = (data, token) => {
       errorAlert("Error Occured", "Please try again.");
 
     }
+    dispatch(setLoading(false));
   };
 };
 
@@ -147,6 +151,7 @@ export const takeExamDetail = data => {
 export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answers, setAnswers = () => { }, setCurrentQuestion = () => { }) => {
   return async dispatch => {
     try {
+      dispatch(setLoading(true));
       const response = await GET('api/exams/paper/' + id, token);
       // console.log(response)
       const resJson = response.data;
@@ -187,6 +192,7 @@ export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answ
       errorAlert("Error Occured", "Please try again.");
 
     }
+    dispatch(setLoading(false));
   };
 };
 
@@ -255,6 +261,7 @@ export const examResults = data => {
 export const examResultsRequest = (id, token) => {
   return async dispatch => {
     try {
+      dispatch(setLoading(true));
       // console.log("action", id, token);
       const response = await GET('api/enrollments/exam/result/' + id, token);
       // console.log(response)
@@ -271,6 +278,7 @@ export const examResultsRequest = (id, token) => {
       errorAlert("Error Occured", "Please try again.");
 
     }
+    dispatch(setLoading(false));
   };
 };
 

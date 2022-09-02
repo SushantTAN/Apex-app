@@ -48,7 +48,7 @@ const CourseOverview = props => {
     if (props.route.params.id) {
       dispatch(courseDetailRequest(props.route.params.id));
     }
-    console.log("course", courseId)
+    // console.log("course", courseId)
   }, [props.route.params.id]);
 
 
@@ -62,9 +62,9 @@ const CourseOverview = props => {
     props.navigation.dispatch(CommonActions.goBack());
 
   };
-  console.log('fffg', courseDetails)
-  console.log(courseDetails.sessions, " details")
-  console.log(courseDetails.image)
+  // console.log('fffg', courseDetails)
+  // console.log(courseDetails.sessions, " details")
+  // console.log(courseDetails.image)
   return (
     <>
       <View style={{ flex: 1 }}>
@@ -106,7 +106,7 @@ const CourseOverview = props => {
                   </View>
                   <View style={{ justifyContent: "flex-start" }}>
                     <Text style={styles.tagTitle}>Starting Date</Text>
-                    {courseDetails.sessions.map((item, index) => {
+                    {courseDetails?.sessions?.map((item, index) => {
                       return (
                         <Text
                           key={index}
@@ -136,7 +136,7 @@ const CourseOverview = props => {
                   <View style={{ justifyContent: "flex-start" }}>
                     <Text style={styles.tagTitle}>Student</Text>
                     <Text style={styles.tagDesc}>
-                      {courseDetails.enrollment_count.course_enroll_count} students
+                      {courseDetails?.enrollment_count?.course_enroll_count} students
                       {/* {examDetails.sessions[0].start_date.split('T')[0]} */}
                     </Text>
                   </View>
@@ -181,7 +181,7 @@ const CourseOverview = props => {
           )
         ) : (
 
-          courseDetails.sessions.length > 0 &&
+          courseDetails?.sessions?.length > 0 &&
           <View style={styles.footer}>
             <View style={styles.txt}>
               <Text style={styles.p5}>Get enrollment</Text>
@@ -192,11 +192,12 @@ const CourseOverview = props => {
               <CustomModal
                 height="65%"
                 button={<View style={styles.sessionbutton}>
-                  <Text style={styles.sessiontext}>Choose   session</Text>
+                  <Text style={styles.sessiontext}>Choose session</Text>
                 </View>}
               >
 
                 <CustomSessionPopup1
+                  route={props.route}
                   navigation={props.navigation}
                   changeModalVisible={changeModalVisible}
                 />
