@@ -1,7 +1,79 @@
+@use "../../library" as themes;
+@import '../../common';
 
+.container {}
 
-.container {
+.padding {
   padding: 16px;
-  // flex:1;
-  height: 100px;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.category {
+  @extend .p;
+  background-color: themes.$tilte1-bcr;
+  padding: 4px;
+  width: auto;
+  margin-bottom: 8px;
+}
+
+.image {
+  width: 100%;
+  height: 200px;
+  border-radius: 4px;
+}
+
+.title {
+  @extend .h4;
+  margin: 16px 0px;
+  font-family: 'OpenSans-SemiBold';
+}
+
+.flex1 {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.tagContainer {
+  width: 50%;
+  flex-direction: row;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.icon {
+  background-color: #FFCB05;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.tagIcon {
+  background-color: #FFCB05;
+  border-radius: 4px;
+  padding: 4px;
+  color: #fff
+}
+
+.tagTitle {
+  margin-left: 12px;
+  @extend .P;
+  font-size: 14px;
+  font-weight: 600;
+
+}
+
+.tagDesc {
+  margin-top: 4px;
+  margin-left: 12px;
+  color: #000;
+  font-size: 12px;
+}
+
+.gap {
+  height: 8px;
+  background-color: themes.$tilte1-bcr;
 }

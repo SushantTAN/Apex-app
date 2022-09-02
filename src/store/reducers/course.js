@@ -22,6 +22,7 @@ const initialState = {
     myCoursesList: [],
     myCoursesDetails: {
         notes: [],
+        sessions: [],
     },
 
     courseExamsList: {

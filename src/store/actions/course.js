@@ -172,8 +172,8 @@ export const courseExamsRequest = () => {
             dispatch(setLoading(true));
             const response = await GET(`api/exams/list/`);
             const resJson = await response.data;
-            console.log(response)
-            console.log("my courses", resJson);
+            // console.log(response)
+            // console.log("my courses", resJson);
 
 
             if (response) {
