@@ -65,24 +65,27 @@ const MyCourseDetailsPage = props => {
     fetchData();
   }, []);
 
-  return <ScrollView style={styles.container}>
-    <HeaderSearch
-      title={myCourseDetails.name}
-      navigation={props.navigation}
-      showFilterButton
-      filterComponent={<ExamFilter />}
-    />
-    {/* <TopBar title={myCourseDetails.name} backIcon={<View></View>} search={false} /> */}
+  return <ScrollView style={styles.container} stickyHeaderIndices={[0]}
+    showsVerticalScrollIndicator={false}>
+    <View style={styles.headerContainer}>
+      <HeaderSearch
+        title={myCourseDetails.name}
+        navigation={props.navigation}
+        showFilterButton
+        filterComponent={<ExamFilter />}
+      />
+      {/* <TopBar title={myCourseDetails.name} backIcon={<View></View>} search={false} /> */}
 
-    <ScrollView horizontal contentContainerStyle={{ backgroundColor: 'white', paddingHorizontal: 16, marginBottom: 8 }}>
-      {
-        data.map((item, index) =>
-          <Fragment key={index}>
-            <TabItem title={item.name} id={item.id} callback={setActiveSceen} selectedId={activeScreen} />
-          </Fragment>
-        )
-      }
-    </ScrollView>
+      <ScrollView horizontal contentContainerStyle={{ backgroundColor: 'white', paddingHorizontal: 16, marginBottom: 8 }}>
+        {
+          data.map((item, index) =>
+            <Fragment key={index}>
+              <TabItem title={item.name} id={item.id} callback={setActiveSceen} selectedId={activeScreen} />
+            </Fragment>
+          )
+        }
+      </ScrollView>
+    </View>
 
     {renderModule()}
   </ScrollView>;

@@ -81,7 +81,7 @@ const MyCourseOverview = props => {
         </View>
       </View>
 
-      <View style={styles.gap}></View>
+      {/* <View style={styles.gap}></View> */}
 
       {/* <View style={styles.padding}>
         <Text style={styles.title}>Course Overview</Text>

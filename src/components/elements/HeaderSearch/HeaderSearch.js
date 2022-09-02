@@ -75,12 +75,12 @@ const HeaderSearch = props => {
             <CustomButtonPopup1 changeModalVisible={changeModalVisible} />
           </Modal> */}
 
-          <CustomModal
+          {props.showFilterButton && <CustomModal
             height="60%"
             button={<Filtericon />}
           >
             {props.filterComponent ? props.filterComponent : <CustomButtonPopup1 changeModalVisible={changeModalVisible} />}
-          </CustomModal>
+          </CustomModal>}
         </View>
 
         <View style={styles.searchandfilter}>

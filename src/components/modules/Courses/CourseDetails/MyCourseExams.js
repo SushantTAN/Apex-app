@@ -29,6 +29,10 @@ const MyCourseExams = props => {
     dispatch(courseExamsRequest());
   }, []);
 
+  const handleToDetail = (id) => {
+    props.navigation.navigate('ExamDetail', { id: id });
+  }
+
   return (
     <ScrollView style={styles.container}>
       {/* <Text>Course Exams</Text> */}
