@@ -42,10 +42,17 @@
   flex-direction: row;
 }
 
+.optionIndex {
+  @extend .p;
+  font-family: 'OpenSans-Regular';
+}
+
 .optionText {
   @extend .p;
   font-family: 'OpenSans-Regular';
-
+  // padding-right: 16px;
+  flex: 1;
+  flex-wrap: wrap;
 }
 
 .a {

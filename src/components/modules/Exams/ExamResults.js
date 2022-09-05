@@ -90,8 +90,14 @@ const ExamResults = (props) => {
     }
   }
 
+  const getIndexOfQuestion = (question) => {
+    let test = result.exam.questions.indexOf(question);
+    return test + 1;
+  }
+
 
   useEffect(() => {
+    console.log("result", result);
     setQuestionsInPage(result.exam.questions.slice(page, page + perPage));
 
   }, [page]);
@@ -114,12 +120,14 @@ const ExamResults = (props) => {
 
           <View key={questionIndex} style={styles.questionItem}>
 
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={styles.index}>{questionIndex + 1}.</Text>
-              {question.img && <Image
-                style={{ height: HEIGHT * 0.2, width: HEIGHT * 0.2 }}
-                source={{ uri: question.img }}
-              />}
+            <View style={{ flexDirection: 'column' }}>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={styles.index}>{getIndexOfQuestion(question)}.</Text>
+                {question.img && <Image
+                  style={{ height: HEIGHT * 0.2, width: HEIGHT * 0.2 }}
+                  source={{ uri: question.img }}
+                />}
+              </View>
 
 
               <RenderHTML
@@ -140,7 +148,7 @@ const ExamResults = (props) => {
               {/* <Text style={styles.a}>{getIndex(optionIndex)}  </Text> */}
               <RenderHTML
                 contentWidth={width}
-                baseStyle={styles.optionText}
+                baseStyle={styles.optionIndex}
                 source={{ html: `<p>${getIndex(optionIndex)}&nbsp;</p>` }}
               />
               <RenderHTML
@@ -164,14 +172,14 @@ const ExamResults = (props) => {
       }
       <View style={styles.buttonContainer}>
         {(page - perPage) >= 0 && <CustomButton
-          style={{ marginRight: 16, flex: 1 }}
+          style={{ margin: 16, flex: 1 }}
           type="theme"
           title={'Previous'}
           onPress={handlePrevious}
         // color="#000000"
         />}
         {(page + perPage) < result?.exam?.questions?.length && <CustomButton
-          style={{ flex: 1 }}
+          style={{ flex: 1, margin: 16 }}
           type="theme"
           title={'Next'}
           onPress={handleNext}

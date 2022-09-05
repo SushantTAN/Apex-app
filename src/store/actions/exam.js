@@ -162,6 +162,54 @@ export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answ
 
         try {
           const response2 = await GET('api/enrollments/exam/checkpoint/' + resJson.exam_enroll.id, token);
+          console.log("exam checkpoint", response2)
+
+          const resJson2 = response2.data;
+          console.log("exam checkpoint", resJson2)
+
+          if (response2) {
+            // dispatch(examDetail(resJson));
+
+            setAnswers(prevState => {
+              let tempState = { ...prevState };
+              tempState.question_states = resJson2.question_states;
+              return tempState;
+            });
+            // setCurrentQuestion(resJson2.question_states.length)
+          }
+          if (response2.status === 400) {
+          }
+        } catch (error) {
+          console.log('err', error);
+          errorAlert("Error Occured", "Please try again.");
+
+        }
+      }
+      if (response.status === 400) {
+      }
+    } catch (error) {
+      console.log('err', error);
+      errorAlert("Error Occured", "Please try again.");
+
+    }
+    dispatch(setLoading(false));
+  };
+};
+
+export const takeExamDetailRequestWithPerPage = (id, token, checklistInit = () => { }, answers, setAnswers = () => { }, setCurrentQuestion = () => { }) => {
+  return async dispatch => {
+    try {
+      dispatch(setLoading(true));
+      const response = await GET('api/exams/paper/' + id, token);
+      // console.log(response)
+      const resJson = response.data;
+      // console.log(resJson)
+      if (response) {
+        dispatch(takeExamDetail(resJson));
+        checklistInit(resJson.questions);
+
+        try {
+          const response2 = await GET('api/enrollments/exam/checkpoint/' + resJson.exam_enroll.id, token);
           // console.log("exam checkpoint", response2)
 
           const resJson2 = response2.data;
@@ -181,7 +229,7 @@ export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answ
           }
         } catch (error) {
           console.log('err', error);
-      errorAlert("Error Occured", "Please try again.");
+          errorAlert("Error Occured", "Please try again.");
 
         }
       }

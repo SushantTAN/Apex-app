@@ -62,7 +62,7 @@ const ExamDetail = props => {
   const examDetails = useSelector(state => state.examsReducer.examDetail);
   const auth = useSelector(state => state.authReducer);
   const result = useSelector(state => state.examsReducer.examResult);
-  console.log("exam detail", examDetails, id);
+  // console.log("exam detail", examDetails, id);
 
 
   useEffect(() => {
@@ -196,7 +196,7 @@ const ExamDetail = props => {
   const handleTakeExam = (id, enrollId, sessionId) => {
     // props.navigation.navigate('TakeExams', { id: id, enrollId: enrollId });
     props.navigation.dispatch(
-      StackActions.replace('TakeExams', { id: id, enrollId: enrollId })
+      StackActions.replace('TakeExamsWithPerPage', { id: id, enrollId: enrollId })
     );
   }
 
@@ -226,7 +226,7 @@ const ExamDetail = props => {
           <View style={styles.tagContainer}>
             <Tag title="Practice exam" />
           </View>
-          {console.log("details test", examDetails)}
+          {/* {console.log("details test", examDetails)} */}
           <Text style={styles.examHeaderText}>{examDetails?.name}</Text>
 
           <View style={styles.examDetail}>

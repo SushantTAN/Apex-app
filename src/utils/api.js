@@ -2,9 +2,9 @@ import react from 'react';
 import axios from 'axios';
 
 // export const apiBaseURL = 'https://apexeducation.edu.np/';
-export const apiBaseURL = 'https://533c-27-34-9-136.ngrok.io/';
+export const apiBaseURL = 'https://ceca-27-34-9-136.ngrok.io/';
 // export const socketURL = 'apexeducation.edu.np';
-export const socketURL = '533c-27-34-9-136.ngrok.io';
+export const socketURL = 'ceca-27-34-9-136.ngrok.io';
 
 // export const apiBaseURL = 'https://apex.calcgen.com/';
 
