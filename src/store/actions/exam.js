@@ -162,10 +162,10 @@ export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answ
 
         try {
           const response2 = await GET('api/enrollments/exam/checkpoint/' + resJson.exam_enroll.id, token);
-          console.log("exam checkpoint", response2)
+          // console.log("exam checkpoint", response2)
 
           const resJson2 = response2.data;
-          console.log("exam checkpoint", resJson2)
+          // console.log("exam checkpoint", resJson2)
 
           if (response2) {
             // dispatch(examDetail(resJson));

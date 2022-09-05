@@ -5,7 +5,7 @@
  */
 
 import React, { Fragment, useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, useWindowDimensions } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView, useWindowDimensions, BackHandler, Alert } from 'react-native';
 
 import RenderHtml from 'react-native-render-html';
 import { RadioButton } from 'react-native-paper';
@@ -21,6 +21,7 @@ import styles from '@styles/modules/Exams/Exams.scss';
 import { submitExam, takeExamDetailRequest } from '@apexapp/store/actions/exam';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '@apexapp/store/actions/loading';
+import { StackActions, useFocusEffect } from '@react-navigation/native';
 
 
 
@@ -72,7 +73,7 @@ const TakeExamsWithPerPage = props => {
   const details = useSelector(state => state.examsReducer.takeExamDetails);
   const auth = useSelector(state => state.authReducer);
   const dispatch = useDispatch();
-  console.log("taking exams page,", typeof (details?.template?.display_num_questions));
+  // console.log("taking exams page,", typeof (details?.template?.display_num_questions));
 
 
   const checklistInit = (list) => {
@@ -86,13 +87,13 @@ const TakeExamsWithPerPage = props => {
   }
 
   const handleSubmit = () => {
-    console.log("before function submit answers", ansGlobal);
+    // console.log("before function submit answers", ansGlobal);
     dispatch(submitExam(details.exam_enroll, { ...ansGlobal }, auth.access_token, props.navigation.navigate, id, props.navigation))
   }
 
   const findIfSelected = (que, option) => {
     let test = answers.question_states.find(el => el.question === que && el.selected_option === option);
-    console.log("test", test);
+    // console.log("test", test);
     if (test) {
       return 'checked';
     } else {
@@ -106,7 +107,7 @@ const TakeExamsWithPerPage = props => {
   }
 
   useEffect(() => {
-    console.log(typeof (details?.template?.display_num_questions))
+    // console.log(typeof (details?.template?.display_num_questions))
 
     if (details?.template?.display_num_questions) {
       setQueList(details.questions.slice(page, page + details.template.display_num_questions));
@@ -115,13 +116,74 @@ const TakeExamsWithPerPage = props => {
 
   useEffect(() => {
     setCheckedList([]);
+    // BackHandler.addEventListener("hardwareBackPress", backAction);
+
     const subscribe = props.navigation.addListener('focus', () => {
       setCheckedList([]);
       dispatch(takeExamDetailRequest(id, auth.access_token, checklistInit, answers, setAnswers, setCurrentQuestion));
+
+      // BackHandler.addEventListener("hardwareBackPress", backAction);
     });
 
     return subscribe;
   }, []);
+
+  useFocusEffect(
+    React.useCallback(async () => {
+      // console.log("use focus effect dahsboard")
+      const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        () => {
+
+
+
+          Alert.alert("Hold on!", "Are you sure you want to go back?", [
+            {
+              text: "Cancel",
+              onPress: () => null,
+              style: "cancel"
+            },
+            {
+              text: "YES", onPress: () => {
+                const popAction = StackActions.pop();
+                props.navigation.dispatch(popAction)
+              }
+            }
+          ]);
+
+          return true;
+
+        },
+      );
+
+      const unsubscribe = props.navigation.addListener('blur', () => {
+        backHandler.remove();
+      });
+      return unsubscribe;
+    }, [props.route]),
+  );
+
+  const backAction = () => {
+
+
+
+    Alert.alert("Hold on!", "Are you sure you want to go back?", [
+      {
+        text: "Cancel",
+        onPress: () => null,
+        style: "cancel"
+      },
+      {
+        text: "YES", onPress: () => {
+          const popAction = StackActions.pop();
+          props.navigation.dispatch(popAction)
+        }
+      }
+    ]);
+
+
+
+  }
 
 
 
@@ -193,12 +255,13 @@ const TakeExamsWithPerPage = props => {
   return (
     <>
       <ScrollView stickyHeaderIndices={[0]} style={styles.maincontainer} >
-        {console.log("answers", answers)}
+        {/* {console.log("answers", answers)} */}
         <View style={styles.main}>
           <HeaderSearch
             title={details.name}
             navigation={props.navigation}
-            backnav="Exam"
+            // backnav="Exam"
+            backhandler={backAction}
           />
 
           <View style={styles.card}>

@@ -15,6 +15,7 @@ import styles from '@styles/elements/HeaderSearch/HeaderSearch.scss';
 import Filtericon from '@assets/images/Filter.svg'
 import BackIcon from '@assets/images/back.svg'
 import CustomModal from '../CustomModal/CustomModal';
+import CustomButton from '../CustomButton';
 
 let information = [
   {
@@ -50,9 +51,14 @@ const HeaderSearch = props => {
       <View style={styles.mainContainer}>
         <View style={styles.filterDiv}>
           <View style={styles.titleContainer}>
-            <TouchableOpacity onPress={handleArrow} >
-              <BackIcon />
-            </TouchableOpacity>
+            {props.backhandler ?
+              <TouchableOpacity onPress={props.backhandler} >
+                <BackIcon />
+              </TouchableOpacity>
+              :
+              <TouchableOpacity onPress={handleArrow} >
+                <BackIcon />
+              </TouchableOpacity>}
             <Text style={styles.p} >
               {props.title}
             </Text>

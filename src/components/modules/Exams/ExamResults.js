@@ -97,7 +97,7 @@ const ExamResults = (props) => {
 
 
   useEffect(() => {
-    console.log("result", result);
+    // console.log("result", result);
     setQuestionsInPage(result.exam.questions.slice(page, page + perPage));
 
   }, [page]);

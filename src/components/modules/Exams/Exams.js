@@ -259,7 +259,7 @@ const TakeExams = props => {
                       });
                     }}
                   />
-                  {console.log("answers,", ansGlobal)}
+                  {/* {console.log("answers,", ansGlobal)} */}
                   <Text style={styles.a}>{getIndex(index)}</Text>
 
                   <RenderHtml
