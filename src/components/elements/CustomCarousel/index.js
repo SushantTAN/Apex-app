@@ -44,11 +44,11 @@ const CustomCarousel = props => {
           dotColor={'#2E3192'}
           dotStyle={[
             styles.pagiDot,
-            { width: WIDTH / props.data.length - 20 },
+            { width: WIDTH / props.data.length - 15 },
           ]}
           inactiveDotColor={'#EAEAEA'}
           inactiveDotOpacity={0.4}
-          inactiveDotScale={1}
+          inactiveDotScale={1.4}
           inactiveDotStyle={[
             styles.inactDotStyle,
             { width: WIDTH / props.data.length - 20 },

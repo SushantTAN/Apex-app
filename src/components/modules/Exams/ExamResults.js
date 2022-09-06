@@ -120,21 +120,23 @@ const ExamResults = (props) => {
 
           <View key={questionIndex} style={styles.questionItem}>
 
-            <View style={{ flexDirection: 'column' }}>
-              <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ flexDirection: 'column' }}>
                 <Text style={styles.index}>{getIndexOfQuestion(question)}.</Text>
+
+              </View>
+
+              <View>
                 {question.img && <Image
                   style={{ height: HEIGHT * 0.2, width: HEIGHT * 0.2 }}
                   source={{ uri: question.img }}
                 />}
+                <RenderHTML
+                  contentWidth={width}
+                  baseStyle={styles.question}
+                  source={{ html: question.detail }}
+                />
               </View>
-
-
-              <RenderHTML
-                contentWidth={width}
-                baseStyle={styles.question}
-                source={{ html: question.detail }}
-              />
             </View>
 
             {question.options.map((option, optionIndex) => <View key={optionIndex} style={getOptionColor(question, option)[1]}>

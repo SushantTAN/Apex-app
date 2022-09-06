@@ -67,6 +67,7 @@
     justify-content: flex-start;
     margin-left: 16px;
     margin-bottom: 20px;
+    padding: 16px;
 
 }
 
@@ -74,7 +75,7 @@
     font-weight: 600;
     font-size: 18px;
     line-height: 25px;
-    margin-left: 16px;
+    // margin-left: 16px;
     color: black;
     margin-right: 8px;
     margin-top: 10px;
@@ -238,7 +239,7 @@
 
 .fottertext {
 
-    margin-top: 25.5px;
+    // margin-top: 25.5px;
     // margin-bottom:25.5px;
     color: black;
     margin-right: 25px;
@@ -256,6 +257,8 @@
     bottom: 0%;
     width: 100%;
     padding: 16px;
+    border-top-width: 1px;
+    border-top-color: themes.$tilte1-bcr;
     @extend .input-bcr;
 }
 
@@ -270,12 +273,12 @@
 .button {
 
     @extend .footer-bcr;
-    margin-top: 16px;
+    // margin-top: 16px;
     padding: 15px;
     padding-left: 24px;
     padding-right: 24px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    // padding-top: 12px;
+    // padding-bottom: 12px;
     margin-left: 16px;
 
     justify-content: center;

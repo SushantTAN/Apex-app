@@ -443,6 +443,7 @@ const TakeExamsWithPerPage = props => {
 
                       </View>
                       )}
+                    <View style={{ backgroundColor: '#EAEAEA', height: 8 }}></View>
                   </Fragment>)
               }
             </Fragment>

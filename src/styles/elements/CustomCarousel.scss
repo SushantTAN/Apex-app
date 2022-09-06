@@ -2,22 +2,27 @@
 @import "../common";
 
 .pagiStyle {
-  padding: 24px 0px 16px 0px;
+  padding: 12px 0px 24px 0px;
 }
 
 .pagiDot {
-  width: 60px;
+  width: 70px;
   height: 5px;
+  padding: 0;
+  margin: 0;
 }
 
 .inactDotStyle {
-  width: 60px;
+  width: 70px;
+  height: 4px;
+  padding: 0;
+  margin: 0;
 }
 
 .button {
   @extend .button-bcr;
   border: solid;
-  padding: 15px;
+  // padding: 15px;
   margin-left: 20px;
   width: 90%;
   font-weight: 600;
@@ -29,5 +34,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 0px 0px 16px 0px;
+  // padding: 0px 0px 16px 0px;
+}
+
+.button {
+  padding: 12px;
+  background-color: #F8F8F8;
+  border: none;
 }
