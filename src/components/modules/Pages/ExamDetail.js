@@ -246,7 +246,7 @@ const ExamDetail = props => {
 
               <InfoBox icon={<DateIcon style={{ color: "#fff" }} />} title="Exam Date" desc={examDetails?.sessions[0]?.start_date.split('T')[0]} />
               <InfoBox icon={<TimeIcon style={{ color: "#fff" }} />} title="Duration" desc={examDetails?.template.duration} />
-              <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={examDetails?.sessions.map((item, index) => <Text>{item?.start_date?.split('T')[1]?.split('+')[0]}</Text>)} />
+              <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={examDetails?.sessions.map((item, index) => <Text key={index}>{item?.start_date?.split('T')[1]?.split('+')[0]}</Text>)} />
               <InfoBox icon={<MarksIcon style={{ color: "#fff" }} />} title="Full marks" desc={examDetails?.template.full_marks} />
               <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Pass marks" desc={examDetails?.template.pass_marks} />
               {examDetails?.sessions[0]?.status === 'resultsout' && examDetails?.is_enrolled && examDetails?.exam_enroll &&

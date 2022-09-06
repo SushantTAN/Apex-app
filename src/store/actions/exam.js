@@ -122,10 +122,10 @@ export const examDetailRequest = (id) => {
     try {
       dispatch(setLoading(true));
       const response = await GET('api/exams/retrieve/' + id + '/');
-      console.log("exam detail request", response)
+      // console.log("exam detail request", response)
 
       const resJson = await response.data;
-      console.log("exam detail request", resJson)
+      // console.log("exam detail request", resJson)
 
       if (resJson) {
         dispatch(examDetail(resJson));

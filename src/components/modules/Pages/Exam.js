@@ -30,6 +30,7 @@ import FilterIcon from '@assets/images/Filter.svg';
 import BackIcon from '@assets/images/back.svg';
 import ExamCard from '../../elements/ExamCard';
 import TopBar from '@elements/TopBar/index'
+import ListLayout from '../Layouts/ListLayout';
 
 let preparation = [
   {
@@ -130,7 +131,7 @@ const Exam = props => {
 
 
   return (
-    <View style={styles.maincontainer}>
+    <ScrollView contentContainerStyle={styles.maincontainer} stickyHeaderIndices={[0]} nestedScrollEnabled={true}>
       <TopBar filterHandler={handleFilter} icon={<FilterIcon />} backIcon={<BackIcon />} title="Exams" />
       {/* <View style={styles.filterDiv}>
         <TouchableOpacity onPress={handleArrow} style={styles.left}>
@@ -172,7 +173,7 @@ const Exam = props => {
 
       <View style={styles.line}></View>
 
-      <ScrollView nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1, paddingBottom: 370 }}>
+      {/* <ScrollView nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1, paddingBottom: 370 }}>
         <View >
           {examList?.map((item, index) => {
             return (
@@ -204,8 +205,10 @@ const Exam = props => {
             style={styles.button}
           />
         </View>
-      </ScrollView>
-    </View>
+      </ScrollView> */}
+
+      <ListLayout />
+    </ScrollView>
   );
 };
 
