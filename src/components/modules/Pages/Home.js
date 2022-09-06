@@ -55,15 +55,20 @@ const Home = props => {
 
   const [searchText, setSearchText] = useState('')
 
-  useEffect(() => {
-    dispatch(examLiveRequest());
-    dispatch(examPracticeRequest());
-    dispatch(coursesEntranceRequest());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(examLiveRequest());
+  //   dispatch(examPracticeRequest());
+  //   dispatch(coursesEntranceRequest());
+  // }, []);
 
   useFocusEffect(
     React.useCallback(async () => {
       // console.log("use focus effect dahsboard")
+
+      dispatch(examLiveRequest());
+      dispatch(examPracticeRequest());
+      dispatch(coursesEntranceRequest());
+
       const backHandler = BackHandler.addEventListener(
         'hardwareBackPress',
         () => {
@@ -119,9 +124,7 @@ const Home = props => {
 
   const _renderItemWithParallax = ({ item, index }, parallaxProps) => {
     return (
-      <>
-        <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} status={item.status} actionPress={() => handleExamDetailsLink(item.id)} />
-      </>
+      <ExamCard tags={examCardInfo} name={item.name} price={item.price} duration={item.template.duration} status={item.status} actionPress={() => handleExamDetailsLink(item.id)} />
     );
   };
   const _renderItemWithParallax1 = ({ item, index }, parallaxProps) => {
