@@ -54,6 +54,7 @@ var ansGlobal = {
 const TakeExamsWithPerPage = props => {
   const { id, enrollId } = props.route.params;
   const width = useWindowDimensions().width;
+  const scrollRef = React.useRef();
 
   const [checkedList, setCheckedList] = useState([]);
   const [answers, setAnswers] = useState({
@@ -254,7 +255,7 @@ const TakeExamsWithPerPage = props => {
 
   return (
     <>
-      <ScrollView stickyHeaderIndices={[0]} style={styles.maincontainer} >
+      <ScrollView stickyHeaderIndices={[0]} style={styles.maincontainer} ref={scrollRef}>
         {/* {console.log("answers", answers)} */}
         <View style={styles.main}>
           <HeaderSearch
@@ -455,7 +456,7 @@ const TakeExamsWithPerPage = props => {
       </ScrollView>
       <View style={styles.footer}>
         <View style={styles.txts}>
-          <Text style={styles.fottertext}>Questions</Text>
+          <Text style={styles.fottertext}>Page</Text>
           <Text style={styles.fottertexts}>{currentQuestion + 1}/{Math.ceil(details.questions.length / details?.template?.display_num_questions)}</Text>
         </View>
         <View style={styles.nextContainer}>
@@ -498,6 +499,8 @@ const TakeExamsWithPerPage = props => {
                 setCurrentQuestionId(details?.questions[currentQuestion + 1].id);
                 setpage(prevState => prevState + details?.template?.display_num_questions);
               }
+
+              scrollRef.current.scrollTo(0);
             }}
             style={styles.button}
             color="white"

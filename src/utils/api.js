@@ -6,8 +6,8 @@ export var socketURL = '';
 
 
 if (__DEV__) {
-  apiBaseURL = 'https://3973-27-34-9-136.ngrok.io/';
-  socketURL = '3973-27-34-9-136.ngrok.io';
+  apiBaseURL = 'http://192.168.0.2:8000/';
+  socketURL = '192.168.0.2:8000';
 
 } else {
   apiBaseURL = 'https://apexeducation.edu.np/';

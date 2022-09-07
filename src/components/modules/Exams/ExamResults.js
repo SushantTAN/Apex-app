@@ -151,12 +151,13 @@ const ExamResults = (props) => {
               <RenderHTML
                 contentWidth={width}
                 baseStyle={styles.optionIndex}
-                source={{ html: `<p>${getIndex(optionIndex)}&nbsp;</p>` }}
+                source={{ html: `<p style="padding: 0; margin: 0;">${getIndex(optionIndex)}&nbsp;</p>` }}
               />
               <RenderHTML
                 contentWidth={width}
                 baseStyle={styles.optionText}
                 source={{ html: option.detail }}
+              // tagsStyles={styles.p}
               />
               {/* <Text>{option.detail}</Text> */}
             </View>)}
