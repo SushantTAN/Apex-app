@@ -205,7 +205,7 @@ export const refreshToken = (tokens, navigation) => {
 
       const response = await POST('api/auth/token/refresh/');
       const resJson = await response.data;
-      console.log("refresh token", resJson, parsed);
+      // console.log("refresh token", resJson, parsed);
       if (resJson) {
         dispatch(refreshSuccess(resJson));
 

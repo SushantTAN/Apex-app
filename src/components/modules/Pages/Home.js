@@ -111,7 +111,7 @@ const Home = props => {
 
     timer = setInterval(() => {
       // if (getDuration(auth.refresh_token_expiration) > 5) {
-      console.log("test timer");
+      // console.log("test timer");
       dispatch(refreshToken(auth));
       // }
       // else{

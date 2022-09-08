@@ -38,6 +38,7 @@ import MarkIcon from '@assets/images/mark.svg'
 import RankIcon from '@assets/images/Rank.svg'
 import Tag from '@components/elements/Tag/index'
 import InfoBox from '@apexapp/components/elements/InfoBox';
+import CustomModal from '@elements/CustomModal/CustomModal';
 
 
 const ExamDetail = props => {
@@ -314,13 +315,33 @@ const ExamDetail = props => {
         <View style={styles.buttons}>
           {!examDetails?.is_enrolled ? (
             examDetails?.sessions.length > 1 ? (
-              <CustomButton
-                onPress={handleChooseSession}
-                style={styles.CustomButton}
-                type="theme"
-                title={'Choose Session'}
-                color="#ffffff"
-              />
+              // <CustomButton
+              //   onPress={handleChooseSession}
+              //   style={styles.CustomButton}
+              //   type="theme"
+              //   title={'Choose Session'}
+              //   color="#ffffff"
+              // />
+
+              <CustomModal
+                height="60%"
+                button={<View style={styles.button}>
+                  <Filter style={styles.filter} />
+                </View>}
+
+              >
+                <CustomSessionPopup
+                  data={{
+                    exams: [{
+                      exam: id,
+                      selected_session: examDetails?.sessions && examDetails?.sessions.length > 0 ? examDetails?.sessions[0].id : ''
+                    }]
+                  }}
+                  examDetails={examDetails}
+                  navigation={props.navigation}
+                  changeModalVisible={changeModalVisible}
+                />
+              </CustomModal>
             ) : (
 
               ['ended', 'resultsout'].includes(examDetails?.sessions[0]?.status) ?

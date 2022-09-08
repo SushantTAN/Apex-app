@@ -40,7 +40,7 @@ const CustomSessionPopup = props => {
   const dispatch = useDispatch();
   const examDetails = useSelector(state => state.examsReducer.examDetail);
   const auth = useSelector(state => state.authReducer);
-  console.log('examdetails', examDetails);
+  // console.log('examdetails', examDetails);
 
   // const handleEnroll = () => {
   //   // props.navigation.navigate('ExamPayment')
@@ -65,6 +65,7 @@ const CustomSessionPopup = props => {
       }]
     }
     dispatch(examsEnrollRequest(data, auth.access_token));
+    props.closeModal();
   };
 
   const handleTakeExam = (id, enrollId, sessionId) => {
@@ -84,7 +85,7 @@ const CustomSessionPopup = props => {
       <View style={styles.modal}>
         <View style={styles.flex1}>
           <Text style={styles.head}>Session</Text>
-          <TouchableOpacity onPress={() => closeModal(false, 'Cancel')}>
+          <TouchableOpacity onPress={() => props.closeModal(false, 'Cancel')}>
             <Text style={styles.close}>Close</Text>
           </TouchableOpacity>
         </View>
