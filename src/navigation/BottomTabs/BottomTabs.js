@@ -29,6 +29,7 @@ import ActiveProfileIcon from '@assets//images/activeUser.svg'
 import TopBar from '@components/elements/TopBar';
 import DateIcon from '@assets/images/date.svg';
 import BackIcon from '@assets/images/back.svg';
+import BookIcon from '@assets/images/bookIcon.svg';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -84,12 +85,12 @@ const BottomTabs = props => {
         name="Notification"
         component={TabTest}
         options={{
-          tabBarLabel: 'NOTIFICATION',
+          tabBarLabel: 'CLASS',
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <NotificationIcon style={{ color: "#252775" }} />
+              <BookIcon style={{ color: "#252775" }} />
             ) : (
-              <NotificationIcon style={{ color: "#909090" }} />
+              <BookIcon style={{ color: "#909090" }} />
             ),
         }}
       />

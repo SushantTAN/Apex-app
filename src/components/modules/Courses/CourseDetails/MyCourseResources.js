@@ -4,7 +4,7 @@
  * @returns {MyCourseResources}- returns a module for Course Resources.
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { ScrollView, Text, View, } from 'react-native';
 
 import BookIcon from '@assets/images/BookIcon.svg';
@@ -23,10 +23,12 @@ const MyCourseResources = props => {
       {/* <Text>Course Resources</Text> */}
 
       {
-        myCourseDetails.notes.map((note, noteIndex) => <ResourcesCard
+        myCourseDetails.notes.map((note, noteIndex) => <Fragment key={noteIndex}><ResourcesCard
           noteIndex={noteIndex}
           item={note}
-        />)
+        />
+        </Fragment>
+        )
       }
     </ScrollView>
   );

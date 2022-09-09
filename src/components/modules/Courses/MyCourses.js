@@ -22,7 +22,7 @@ const MyCourses = props => {
 
   const dispatch = useDispatch();
   const myCourses = useSelector(state => state.courseReducer.myCoursesList);
-  console.log(myCourses);
+  // console.log(myCourses);
 
   const fetchData = () => {
     dispatch(myCourseListRequest());
@@ -45,7 +45,7 @@ const MyCourses = props => {
   ]
 
   const handleClick = (id) => {
-    props.navigation.navigate('MyCourseDetails', {id});
+    props.navigation.navigate('MyCourseDetails', { id });
   }
 
   const onRefresh = () => {
@@ -77,8 +77,8 @@ const MyCourses = props => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       /> : <View style={{ justifyContent: 'center', height: '100%', width: '100%', alignItems: 'center' }}>
-      <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16, }}>No courses yet</Text>
-    </View>}
+        <Text style={{ fontFamily: 'OpenSans-SemiBold', padding: 16, fontSize: 16, }}>No courses yet</Text>
+      </View>}
       {/* <Text>My courses</Text> */}
     </View>
   );

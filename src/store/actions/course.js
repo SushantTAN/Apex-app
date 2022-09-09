@@ -16,7 +16,7 @@ export const courseListRequest = () => {
             dispatch(setLoading(true))
             const response = await GET(`api/courses/list/`);
             const resJson = await response.data;
-            console.log("course list ", resJson);
+            // console.log("course list ", resJson);
 
             if (response) {
                 dispatch(courseList(resJson));
@@ -46,7 +46,7 @@ export const courseDetailRequest = (id) => {
             const response = await GET('api/courses/retrieve/before-enroll/' + id + '/')
             // console.log(response)
             const resJson = await response.data;
-            console.log("before enroll", resJson)
+            // console.log("before enroll", resJson)
             if (response) {
                 dispatch(courseDetail(resJson));
             }
@@ -142,8 +142,8 @@ export const myCourseDetailRequest = (id) => {
             dispatch(setLoading(true));
             const response = await GET(`api/courses/retrieve/after-enroll/${id}`);
             const resJson = await response.data;
-            console.log(response)
-            console.log("my courses details", resJson);
+            // console.log(response)
+            // console.log("my courses details", resJson);
 
 
             if (response) {
