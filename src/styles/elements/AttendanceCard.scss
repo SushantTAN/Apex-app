@@ -1,0 +1,30 @@
+@use "../library" as themes;
+@import '../common';
+
+.container {
+  background-color: themes.$input;
+  padding: 12px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0px
+}
+
+.contentContainer {
+  padding: 0px 8px 0px 16px;
+}
+
+.date{
+  @extend .h6;
+}
+
+.status {
+  @extend .p;
+  font-family: 'OpenSans-SemiBold';
+  padding: 8px 0px;
+}
+
+.videos{
+  @extend .h5;
+  color: themes.$primary;
+}

@@ -1,2 +1,31 @@
 @use "../../library" as themes;
 @import '../../common';
+
+.container {
+  // background-color: white;
+  // margin: 8px 0px;
+  // padding: 12px;
+}
+
+.weekContainer{
+  background-color: white;
+  padding: 8px 8px;
+  margin-bottom: 8px
+}
+
+.week {
+  @extend .h6;
+  padding: 4px 8px;
+}
+
+.dataContainer{
+  background-color: white;
+  padding: 16px;
+  // margin: 8px 0px;
+}
+
+.heading {
+  @extend .h5;
+  color: themes.$disabled;
+
+}

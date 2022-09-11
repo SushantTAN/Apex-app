@@ -1,2 +1,29 @@
 @use "../../library" as themes;
 @import '../../common';
+
+.container {
+  flex:1;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  // background-color: green;
+}
+
+.infoContainer{
+  position: absolute;
+  bottom: 0;
+  padding: 16px;
+}
+
+.heading {
+  @extend .p;
+  font-family: 'OpenSans-SemiBold';
+  text-align: center;
+  padding: 0px 0px 16px 0px
+}
+
+.text{
+  @extend .h6;
+  text-align: center;
+
+}

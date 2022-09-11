@@ -19,10 +19,6 @@ const Classes = props => {
 
   ];
 
-  const renderItem = ({ item, index }) => {
-    <Text>hello</Text>
-  }
-
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Upcoming Classes</Text>
