@@ -30,6 +30,7 @@ import TopBar from '@components/elements/TopBar';
 import DateIcon from '@assets/images/date.svg';
 import BackIcon from '@assets/images/back.svg';
 import BookIcon from '@assets/images/bookIcon.svg';
+import Class from '@apexapp/screens/Class/Class';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -82,8 +83,8 @@ const BottomTabs = props => {
       />
 
       <Tab.Screen
-        name="Notification"
-        component={TabTest}
+        name="Class"
+        component={Class}
         options={{
           tabBarLabel: 'CLASS',
           tabBarIcon: ({ color, focused }) =>

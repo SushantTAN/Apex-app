@@ -1,0 +1,73 @@
+@use "../library" as themes;
+@import '../common';
+
+.container {
+  background-color: themes.$input;
+  border-radius: 8px;
+  flex-direction: row;
+  overflow: hidden;
+  margin: 8px 0px;
+  height: 150px;
+  // background-color: green;
+}
+
+.imageContainer {
+  // width: 35%;
+  // height: 100%;
+  flex: 0.35;
+  position: relative;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  // margin-right: 12px;
+}
+
+.timeContainer{
+  position: absolute;
+  bottom: 0;
+  // background-color: green;
+  width: 100%;
+  align-items: center;
+  padding: 8px;
+}
+
+.timeText{
+  @extend .h6;
+  background-color: themes.$live;
+  padding: 2px 6px;
+  border-radius:4px;
+  color: white;
+}
+
+.contentContainer{
+  padding: 12px;
+  flex: 0.65;
+  // align-items: flex-start;
+  // flex-wrap: wrap;
+}
+
+.date{
+  @extend .h6;
+  // color: themes.$disabled;
+  padding: 0px 0px 8px 0px;
+}
+
+.title {
+  @extend .h5;
+  padding: 0px 12px 0px 0px;
+  font-family: 'OpenSans-SemiBold';
+  // flex-wrap: wrap;
+  flex-grow: 1; 
+  // flex-direction: 'row';
+  text-transform: capitalize;
+}
+
+.joinButton{
+  // flex: 1;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+}

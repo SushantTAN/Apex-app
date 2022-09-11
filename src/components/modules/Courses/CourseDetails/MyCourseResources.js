@@ -7,7 +7,7 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { ScrollView, Text, View, } from 'react-native';
 
-import BookIcon from '@assets/images/BookIcon.svg';
+// import BookIcon from '@assets/images/BookIcon.svg';
 import styles from '@styles/modules/Courses/MyCourseResources.scss';
 import { useSelector } from 'react-redux';
 import ResourcesCard from '@apexapp/components/elements/ResourceCard';

@@ -31,6 +31,11 @@ const CustomButton = props => {
       container = [container, styles.disabledBack];
       text = [styles.white];
       break;
+
+    case 'red':
+      container = [container, styles.redBack];
+      text = [styles.white];
+      break;
     default:
       container = styles.container;
   }
@@ -39,7 +44,7 @@ const CustomButton = props => {
     <TouchableOpacity
       style={[container, props.style]}
       onPress={props.type === 'disabled' ? () => { } : props.onPress}>
-        { props.icon &&  props.icon }
+      {props.icon && props.icon}
       <Text style={[text]}> {props.title}</Text>
     </TouchableOpacity>
   );

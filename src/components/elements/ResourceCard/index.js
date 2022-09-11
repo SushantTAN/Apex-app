@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
-import BookIcon from '@assets/images/BookIcon.svg';
+import BookIcon from '@assets/images/bookIcon.svg';
 import styles from '@styles/elements/ResourcesCard.scss';
 
 const ResourcesCard = props => {

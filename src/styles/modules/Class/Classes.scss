@@ -1,0 +1,13 @@
+@use "../../library" as themes;
+@import '../../common';
+
+.container {
+  background-color: white;
+  padding: 16px;
+}
+
+.header{
+  @extend .h4;
+  color: themes.$disabled;
+  padding:  0px 0px 8px 0px;
+}
