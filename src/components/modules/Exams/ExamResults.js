@@ -59,9 +59,7 @@ const ExamResults = (props) => {
 
   const getSelectedTrue = (question, option) => {
     let currentQueState = {};
-
     currentQueState = result.question_states.find(el => el.question === question.id);
-
     if ((option.id === currentQueState?.selected_option)) {
       if (option.correct) {
         return 'selected-true';
@@ -74,6 +72,22 @@ const ExamResults = (props) => {
       }
       return 'unselected-false';
     }
+  }
+
+  const getQuestionCorrect = (question) => {
+    let status = <Text style={styles.noAttempt}>Not Attempted</Text>;
+
+    question.options.forEach(element => {
+      switch (getSelectedTrue(question, element)) {
+        case 'selected-true':
+          status = <Text style={styles.trueOption}>Correct Answer</Text>;
+          break;
+        case 'selected-false':
+          status = <Text style={styles.falseOption}>Incorrect Answer</Text>;
+          break;
+      }
+    });
+    return status;
   }
 
   const getOptionColor = (question, option) => {
@@ -115,6 +129,7 @@ const ExamResults = (props) => {
 
     <View style={styles.questionsContainer}>
       <View style={styles.gap}></View>
+      {/* {console.log("llll", questionsInPage[2])} */}
       {
         questionsInPage.map((question, questionIndex) => <React.Fragment key={questionIndex}>
 
@@ -162,12 +177,9 @@ const ExamResults = (props) => {
               {/* <Text>{option.detail}</Text> */}
             </View>)}
 
+            {getQuestionCorrect(question)}
+
             <ShowHints data={question.feedback} />
-
-
-
-
-
 
           </View>
           <View style={styles.gap}></View>

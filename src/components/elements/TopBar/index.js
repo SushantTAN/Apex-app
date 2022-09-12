@@ -5,7 +5,7 @@ import styles from '@styles/elements/TopBar.scss'
 import Search from '@assets/images/Search.svg'
 import { useNavigation } from '@react-navigation/native'
 import SearchBar from '../SearchBar'
-import Filter from "@assets/images/Filter.svg";
+// import Filtericon from '@assets/images/Filter.svg'
 import CustomModal from '../CustomModal/CustomModal'
 import CustomButtonPopup from '../CustomButtonPopup'
 const TopBar = (props) => {
@@ -38,7 +38,7 @@ const TopBar = (props) => {
                         <CustomModal
                             height="60%"
                             button={<View style={styles.button}>
-                                <Filter style={styles.filter} />
+                                {/* <Filtericon style={styles.filter} /> */}
                             </View>}
 
                         >
@@ -56,7 +56,7 @@ const TopBar = (props) => {
             </View>
             {search &&
                 <View style={styles.searchContainer}>
-                    <SearchBar navigation={navigation}/>
+                    <SearchBar navigation={navigation} />
                 </View>
 
             }

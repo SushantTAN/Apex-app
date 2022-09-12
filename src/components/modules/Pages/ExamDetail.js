@@ -27,7 +27,7 @@ import { examDetail, examDetailRequest, examResultsRequest, examsEnrollRequest }
 import HeaderSearch from '@apexapp/components/elements/HeaderSearch/HeaderSearch';
 import TopBar from '@apexapp/components/elements/TopBar';
 import Divider from '@components/elements/Divider/index';
-import FilterIcon from '@assets/images/Filter.svg';
+// import FilterIcon from '@assets/images/Filter.svg';
 import BackIcon from '@assets/images/back.svg';
 import { getSocketUrl } from '@utils/api';
 import DateIcon from '@assets/images/date.svg'
@@ -326,7 +326,7 @@ const ExamDetail = props => {
               <CustomModal
                 height="60%"
                 button={<View style={styles.button}>
-                  <Filter style={styles.filter} />
+                  {/* <Filter style={styles.filter} /> */}
                 </View>}
 
               >

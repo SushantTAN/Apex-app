@@ -1,22 +1,25 @@
-import react from 'react';
 import axios from 'axios';
+
 
 export var apiBaseURL = '';
 export var socketURL = '';
 
-
 if (__DEV__) {
-  apiBaseURL = 'http://ec4a-27-34-9-136.ngrok.io/';
-  socketURL = 'ec4a-27-34-9-136.ngrok.io';
+  apiBaseURL = 'http://192.168.0.2:8000/';
+  socketURL = '192.168.0.2:8000';
 
 } else {
   apiBaseURL = 'https://apexeducation.edu.np/';
   socketURL = 'apexeducation.edu.np';
 }
 
-
 export const getSocketUrl = () => {
-  let socketUrl = `wss://${socketURL}/ws`;
+  let socketUrl = '';
+  if (__DEV__) {
+    socketUrl = `ws://${socketURL}/ws`;
+  } else {
+    socketUrl = `wss://${socketURL}/ws`;
+  }
   return socketUrl;
 }
 
@@ -59,6 +62,4 @@ export const DELETE = (url, data) => {
   });
 };
 
-
 axios.defaults.withCredentials = true;
-
