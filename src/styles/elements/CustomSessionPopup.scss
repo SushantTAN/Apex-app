@@ -14,6 +14,7 @@
     background-color: white;
     border-radius: 10px;
     width: 100%;
+    flex: 1;
 }
 
 .flex1 {
@@ -66,17 +67,16 @@
     margin-top: 16px;
     margin-left: 16px;
     margin-right: 16px;
-    padding: 18px;
+    padding: 16px;
     justify-content: space-between;
     align-items: center;
 
 }
 
 .title1 {
-    margin-top: 10px;
-
-    font-weight: 700;
-    @extend .h3
+    @extend .p;
+    // margin-top: 10px;
+    font-family: 'OpenSans-SemiBold';
 }
 
 .title2 {
@@ -97,9 +97,9 @@
 
 
 .CustomButton {
-    height: 45%;
+    // height: 45%;
 
-    margin-top: 20px;
+    // margin-top: 20px;
     color: white;
 }
 
@@ -116,8 +116,10 @@
     margin-top: 12px;
     width: 30px;
     height: 30px;
-    border-radius: 2px;
+    border-radius: 4px;
     background-color: #eaeaea;
+    justify-content: center;
+    align-items: center;
 }
 
 .flex3 {

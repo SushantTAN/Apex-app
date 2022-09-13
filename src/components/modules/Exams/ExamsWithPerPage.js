@@ -256,7 +256,7 @@ const TakeExamsWithPerPage = props => {
   return (
     <>
       <ScrollView stickyHeaderIndices={[0]} style={styles.maincontainer} ref={scrollRef}>
-        {/* {console.log("answers", answers)} */}
+        {console.log("params", props.route.params)}
         <View style={styles.main}>
           <HeaderSearch
             title={details.name}

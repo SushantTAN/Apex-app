@@ -63,7 +63,7 @@ const ExamDetail = props => {
   const examDetails = useSelector(state => state.examsReducer.examDetail);
   const auth = useSelector(state => state.authReducer);
   const result = useSelector(state => state.examsReducer.examResult);
-  // console.log("exam detail", examDetails, id);
+  console.log("exam detail", examDetails, id);
 
 
   useEffect(() => {
@@ -326,7 +326,7 @@ const ExamDetail = props => {
               <CustomModal
                 height="60%"
                 button={<View style={styles.button}>
-                  {/* <Filter style={styles.filter} /> */}
+                  <Text style={{ color: 'white', fontFamily: 'OpenSans-Regular' }}>Choose Session</Text>
                 </View>}
 
               >

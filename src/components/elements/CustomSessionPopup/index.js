@@ -16,6 +16,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { examsEnrollRequest } from '@apexapp/store/actions/exam';
 
+import ClockIcon from "@assets/images/clockIcon.svg";
+
 const data = [
   {
     title1: 'Session 1',
@@ -80,45 +82,58 @@ const CustomSessionPopup = props => {
     props.changeModalVisible(bool);
   };
   return (
-
-    <TouchableOpacity disabled={true} style={styles.container}>
-      <View style={styles.modal}>
-        <View style={styles.flex1}>
-          <Text style={styles.head}>Session</Text>
-          <TouchableOpacity onPress={() => props.closeModal(false, 'Cancel')}>
-            <Text style={styles.close}>Close</Text>
-          </TouchableOpacity>
-        </View>
-        <Text style={styles.line}></Text>
-        <View>
-          <Text style={styles.topic}>Choose exam session</Text>
-          <Text style={styles.p}>
-            Choosing session will let you to particular session exam enrollment
-          </Text>
-        </View>
+    <View style={styles.modal}>
+      <View style={styles.flex1}>
+        <Text style={styles.head}>Session</Text>
+        <TouchableOpacity onPress={() => props.closeModal(false, 'Cancel')}>
+          <Text style={styles.close}>Close</Text>
+        </TouchableOpacity>
+      </View>
+      <Text style={styles.line}></Text>
+      <View>
+        <Text style={styles.topic}>Choose exam session</Text>
+        <Text style={styles.p}>
+          Choosing session will let you to particular session exam enrollment
+        </Text>
+      </View>
 
 
-        <ScrollView>
-          {examDetails.sessions.map((item, index) => {
-            return (
-              <View style={styles.data}>
-                <View key={index}>
+      <ScrollView>
+        {examDetails.sessions.map((item, index) => {
+          return (
+            <View style={styles.data} key={index}>
 
-                  <Text style={styles.title1}>Session {index + 1}</Text>
-                  <View style={styles.flex3}>
-                    <View style={styles.iconback}>
-                      <Image style={styles.clockicon}
-                        source={require('@assets/images/Vecto.png')} />
-                    </View>
-                    <View>
-                      <Text style={styles.title2}>Time</Text>
-                      <Text style={styles.time}> {new Date(item.start_date).toLocaleTimeString('en',
-                        { timeStyle: 'short', hour12: false, timeZone: 'UTC' })}</Text>
-                    </View>
+              <View>
+                <Text style={styles.title1}>Session {index + 1}</Text>
+                <View style={styles.flex3}>
+                  <View style={styles.iconback}>
+                    <ClockIcon />
+                  </View>
+                  <View>
+                    <Text style={styles.title2}>Exam Time</Text>
+                    <Text style={styles.time}> {new Date(item.start_date).toLocaleTimeString('en',
+                      { timeStyle: 'short', hour12: false, timeZone: 'UTC' })}</Text>
                   </View>
                 </View>
+              </View>
 
-                {!examDetails.is_enrolled ? (
+              {['ended', 'resultsout'].includes(item.status) ?
+                <CustomButton
+                  onPress={() => { }}
+                  style={styles.CustomButton}
+                  type="disabled"
+                  title={'Enroll now'}
+                  color="#ffffff"
+                />
+                : <CustomButton
+                  onPress={() => handleEnroll(index)}
+                  style={styles.CustomButton}
+                  type="theme"
+                  title={'Enroll now'}
+                  color="#ffffff"
+                />}
+
+              {/* {!examDetails.is_enrolled ? (
                   (
                     <CustomButton
                       onPress={() => handleEnroll(index)}
@@ -153,19 +168,14 @@ const CustomSessionPopup = props => {
                           title={'Take Exam'}
                         // color="#ffffff"
                         />)
-                )}
-              </View>
+                )} */}
+            </View>
 
-            );
+          );
 
-          })}
-        </ScrollView>
-      </View>
-
-
-
-
-    </TouchableOpacity >
+        })}
+      </ScrollView>
+    </View>
   );
 };
 
