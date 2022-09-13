@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "801497355244",
+    "project_id": "apex-education-cbf3c",
+    "storage_bucket": "apex-education-cbf3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801497355244:android:40e72332560ae9ad0166c9",
+        "android_client_info": {
+          "package_name": "com.apexmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801497355244-riu70j2ei4a6qkls43eoodsr91sveia4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD59jYoxs7Fj61JAmqDJL_PE-1bNdOA3jU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "801497355244-riu70j2ei4a6qkls43eoodsr91sveia4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
