@@ -29,9 +29,9 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
 
 const App = () => {
 
-  useEffect(() => {
-    // let tokens = await messaging().getToken();
-    // console.log("messagong", tokens)
+  useEffect(async () => {
+    let tokens = await messaging().getToken();
+    console.log("messagong", tokens)
     const subscribe = messaging().onMessage(async remoteMessage => {
       // Get the message body
       let message_body = remoteMessage.notification.body;

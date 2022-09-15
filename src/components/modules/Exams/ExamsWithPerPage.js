@@ -121,7 +121,7 @@ const TakeExamsWithPerPage = props => {
 
     const subscribe = props.navigation.addListener('focus', () => {
       setCheckedList([]);
-      dispatch(takeExamDetailRequest(id, auth.access_token, checklistInit, answers, setAnswers, setCurrentQuestion));
+      dispatch(takeExamDetailRequest(id, auth.access_token, checklistInit, answers, setAnswers, setCurrentQuestion, props.route.params.sessionId));
 
       // BackHandler.addEventListener("hardwareBackPress", backAction);
     });

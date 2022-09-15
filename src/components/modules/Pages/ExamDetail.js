@@ -179,6 +179,13 @@ const ExamDetail = props => {
     setIsModalVisible(bool);
   };
 
+  const findSessionWithId = (id) => {
+    let session = examDetails.sessions.find(el => el.id === id) || {};
+    console.log(session.id, session.status);
+
+    return session;
+  }
+
   const handleChooseSession = () => {
     changeModalVisible(true);
   };
@@ -197,7 +204,7 @@ const ExamDetail = props => {
   const handleTakeExam = (id, enrollId, sessionId) => {
     // props.navigation.navigate('TakeExams', { id: id, enrollId: enrollId });
     props.navigation.dispatch(
-      StackActions.replace('TakeExamsWithPerPage', { id: id, enrollId: enrollId })
+      StackActions.replace('TakeExamsWithPerPage', { id: id, enrollId: enrollId, sessionId: sessionId })
     );
   }
 
@@ -334,7 +341,7 @@ const ExamDetail = props => {
                   data={{
                     exams: [{
                       exam: id,
-                      selected_session: examDetails?.sessions && examDetails?.sessions.length > 0 ? examDetails?.sessions[0].id : ''
+                      selected_session: examDetails?.sessions && examDetails?.sessions.length > 0 ? findSessionWithId(examDetails.session_id)?.id : ''
                     }]
                   }}
                   examDetails={examDetails}
@@ -344,7 +351,7 @@ const ExamDetail = props => {
               </CustomModal>
             ) : (
 
-              ['ended', 'resultsout'].includes(examDetails?.sessions[0]?.status) ?
+              ['ended', 'resultsout'].includes(findSessionWithId(examDetails.session_id)?.status) ?
                 (
                   examDetails?.sessions.length > 0 && <CustomButton
                     onPress={() => { }}
@@ -365,7 +372,7 @@ const ExamDetail = props => {
                 )
             )
           ) : (
-            examDetails?.sessions[0]?.status === 'resultsout' ?
+            findSessionWithId(examDetails.session_id)?.status === 'resultsout' ?
               <CustomButton
                 onPress={() => { handleViewResults(examDetails?.exam_enroll?.id) }}
                 style={[styles.CustomButton]}
@@ -383,9 +390,9 @@ const ExamDetail = props => {
                   />
                   :
                   <CustomButton
-                    onPress={() => handleTakeExam(examDetails?.id, examDetails?.exam_enroll?.id)}
+                    onPress={() => handleTakeExam(examDetails?.id, examDetails?.exam_enroll?.id, examDetails?.session_id)}
                     style={[styles.CustomButton]}
-                    type={['in_progress'].includes(examDetails?.status) ? "theme" : 'disabled'}
+                    type={['active'].includes(findSessionWithId(examDetails.session_id)?.status) ? "theme" : 'disabled'}
                     title={'Take Exam'}
                   // color="#ffffff"
                   />)

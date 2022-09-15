@@ -148,11 +148,11 @@ export const takeExamDetail = data => {
   };
 };
 
-export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answers, setAnswers = () => { }, setCurrentQuestion = () => { }) => {
+export const takeExamDetailRequest = (id, token, checklistInit = () => { }, answers, setAnswers = () => { }, setCurrentQuestion = () => { }, sessionId) => {
   return async dispatch => {
     try {
       dispatch(setLoading(true));
-      const response = await GET('api/exams/paper/' + id, token);
+      const response = await GET('api/exams/paper/' + id + `/${sessionId}/`, token);
       // console.log(response)
       const resJson = response.data;
       // console.log(resJson)
@@ -312,9 +312,9 @@ export const examResultsRequest = (id, token) => {
       dispatch(setLoading(true));
       // console.log("action", id, token);
       const response = await GET('api/enrollments/exam/result/' + id, token);
-      // console.log(response)
+      console.log("result", response)
       const resJson = response.data;
-      // console.log(resJson)
+      console.log("result", resJson)
       if (response) {
         dispatch(examResults(resJson));
 

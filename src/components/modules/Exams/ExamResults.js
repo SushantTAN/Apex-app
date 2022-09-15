@@ -10,6 +10,7 @@ import styles from '@styles/modules/Exams/ExamResults.scss';
 import CustomButton from "@apexapp/components/elements/CustomButton";
 import ShowHints from "@apexapp/components/elements/ShowHints/ShowHints";
 import { HEIGHT } from "@apexapp/utils/constants";
+import { examResultsRequest } from "@apexapp/store/actions/exam";
 
 
 const getIndex = (index) => {
@@ -114,9 +115,14 @@ const ExamResults = (props) => {
     // console.log("result", result);
     setQuestionsInPage(result.exam.questions.slice(page, page + perPage));
 
-  }, [page]);
+  }, [page, result]);
+
+  useEffect(() => {
+    dispatch(examResultsRequest(props.route.params.enrollId, undefined));
+  }, []);
 
   return <ScrollView stickyHeaderIndices={[0]}>
+    {console.log(props.route.params)}
     <View>
       <HeaderSearch
         title={result?.exam?.name}
