@@ -5,12 +5,14 @@ export var apiBaseURL = '';
 export var socketURL = '';
 
 if (__DEV__) {
-  apiBaseURL = 'http://192.168.0.46:8001/';
-  socketURL = '192.168.0.46:8001';
+  apiBaseURL = 'https://8c9c-27-34-9-136.in.ngrok.io/';
+  socketURL = '8c9c-27-34-9-136.in.ngrok.io';
 
 } else {
-  apiBaseURL = 'https://apexeducation.edu.np/';
-  socketURL = 'apexeducation.edu.np';
+  // apiBaseURL = 'https://apexeducation.edu.np/';
+  // socketURL = 'apexeducation.edu.np';
+  apiBaseURL = 'https://8c9c-27-34-9-136.in.ngrok.io/';
+  socketURL = '8c9c-27-34-9-136.in.ngrok.io';
 }
 
 export const getSocketUrl = () => {
