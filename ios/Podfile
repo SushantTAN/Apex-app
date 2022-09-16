@@ -21,6 +21,8 @@ target 'ApexMobile' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
   target 'ApexMobileTests' do
     inherit! :complete
     # Pods for testing
@@ -37,3 +39,6 @@ target 'ApexMobile' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
+
+permissions_path = '../node_modules/react-native-permissions/ios'
+pod 'Permission-Camera', :path => "#{permissions_path}/Camera"

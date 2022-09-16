@@ -21,7 +21,7 @@ import { CommonActions } from '@react-navigation/native';
 const Verify = props => {
   const [formData, setFormData] = useState(verifyForm);
   const [errormsg, setErrorMsg] = useState('');
-  const [counter, setCounter] = useState(10);
+  const [counter, setCounter] = useState(120);
 
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const autoFadeOut = () => {
@@ -124,7 +124,7 @@ const Verify = props => {
   };
 
   const startTimer = () => {
-    setCounter(10);
+    setCounter(120);
     let timer;
     timer = setInterval(() => {
       // console.log("counter", counter);
