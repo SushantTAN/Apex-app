@@ -63,7 +63,7 @@ const ExamDetail = props => {
   const examDetails = useSelector(state => state.examsReducer.examDetail);
   const auth = useSelector(state => state.authReducer);
   const result = useSelector(state => state.examsReducer.examResult);
-  console.log("exam detail", examDetails, id);
+  // console.log("exam detail", examDetails, id);
 
 
   useEffect(() => {
@@ -181,7 +181,7 @@ const ExamDetail = props => {
 
   const findSessionWithId = (id) => {
     let session = examDetails.sessions.find(el => el.id === id) || {};
-    console.log(session.id, session.status);
+    // console.log(session.id, session.status);
 
     return session;
   }
@@ -254,17 +254,25 @@ const ExamDetail = props => {
 
               <InfoBox icon={<DateIcon style={{ color: "#fff" }} />} title="Exam Date" desc={examDetails?.sessions[0]?.start_date.split('T')[0]} />
               <InfoBox icon={<TimeIcon style={{ color: "#fff" }} />} title="Duration" desc={examDetails?.template.duration} />
-              <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={examDetails?.sessions.map((item, index) => <Text key={index}>{item?.start_date?.split('T')[1]?.split('+')[0]}</Text>)} />
+              <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={
+
+                examDetails.session_id ? findSessionWithId(examDetails.session_id)?.start_date?.split('T')[1]?.split('+')[0] :
+
+                  (
+                    examDetails.sessions.length > 0 ? 'Multiple Sessions' :
+                      examDetails?.sessions.map((item, index) => <Text key={index}>{item?.start_date?.split('T')[1]?.split('+')[0]}</Text>)
+                  )
+              } />
               <InfoBox icon={<MarksIcon style={{ color: "#fff" }} />} title="Full marks" desc={examDetails?.template.full_marks} />
               <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Pass marks" desc={examDetails?.template.pass_marks} />
               {findSessionWithId(examDetails?.session_id)?.status === 'resultsout' && examDetails?.is_enrolled && examDetails?.exam_enroll &&
                 <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Marks" desc={result.score ? result.score : 40} />
               }
-              {findSessionWithId(examDetails?.session_id)?.status && examDetails?.is_enrolled && examDetails?.exam_enroll &&
+              {findSessionWithId(examDetails?.session_id)?.status === 'resultsout' && examDetails?.is_enrolled && examDetails?.exam_enroll &&
 
                 <InfoBox title="Result" icon={<MarkIcon style={{ color: "#fff" }} />} desc={result.status} />
               }
-              {findSessionWithId(examDetails?.session_id)?.status && examDetails?.is_enrolled && examDetails?.exam_enroll &&
+              {findSessionWithId(examDetails?.session_id)?.status === 'resultsout' && examDetails?.is_enrolled && examDetails?.exam_enroll &&
                 <InfoBox icon={<RankIcon style={{ color: "#fff" }} />} title="Rank" desc={result.rank} />
               }
 
