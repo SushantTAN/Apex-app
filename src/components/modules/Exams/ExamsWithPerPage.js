@@ -256,7 +256,7 @@ const TakeExamsWithPerPage = props => {
   return (
     <>
       <ScrollView stickyHeaderIndices={[0]} style={styles.maincontainer} ref={scrollRef}>
-        {console.log("params", props.route.params)}
+        {/* {console.log("answers", ansGlobal)} */}
         <View style={styles.main}>
           <HeaderSearch
             title={details.name}
@@ -383,7 +383,51 @@ const TakeExamsWithPerPage = props => {
                     </View>
 
                     {
-                      question.options.map((option, optionIndex) => <View key={optionIndex} style={styles.txt1}>
+                      question.options.map((option, optionIndex) => <TouchableOpacity
+                        onPress={() => {
+                          // setChecked(option.id);
+
+                          //to display selected dots.
+                          let tempCheck = [...checkedList];
+                          tempCheck[currentQuestion] = option.id;
+                          setCheckedList(tempCheck);
+
+
+                          setAnswers(prevState => {
+                            let tempAnswers = { ...prevState };
+                            let findArray = tempAnswers.question_states.find(el => {
+                              // console.log("el", el.question)
+                              return el.question === question.id
+                            });
+                            // console.log("findArray", findArray);
+                            if (findArray) {
+                              let itemIndex = 0;
+                              tempAnswers.question_states.forEach((itemTemp, indexTemp) => {
+                                // console.log(itemTemp.question, indexTemp);
+                                if (itemTemp.question === findArray.question) {
+                                  itemIndex = indexTemp;
+                                }
+                              });
+                              tempAnswers.question_states[itemIndex].selected_option = option.id
+
+                              // console.log("g", itemIndex);
+
+                            } else {
+                              // console.log("f")
+                              tempAnswers.question_states.push({
+                                question: question.id,
+                                selected_option: option.id,
+                              });
+                            }
+
+                            ansGlobal = tempAnswers;
+
+                            return tempAnswers;
+
+
+                          });
+                        }}
+                        key={optionIndex} style={styles.txt1}>
                         <RadioButton
                           color="#2E3192"
                           style={styles.radi01}
@@ -442,7 +486,7 @@ const TakeExamsWithPerPage = props => {
                           source={{ html: option.detail }}
                         />
 
-                      </View>
+                      </TouchableOpacity>
                       )}
                     <View style={{ backgroundColor: '#EAEAEA', height: 8 }}></View>
                   </Fragment>)

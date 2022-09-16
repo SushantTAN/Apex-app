@@ -11,6 +11,8 @@ import CustomButton from "@apexapp/components/elements/CustomButton";
 import ShowHints from "@apexapp/components/elements/ShowHints/ShowHints";
 import { HEIGHT } from "@apexapp/utils/constants";
 import { examResultsRequest } from "@apexapp/store/actions/exam";
+import TopBar from "@apexapp/components/elements/TopBar";
+import BackIcon from '@assets/images/back.svg';
 
 
 const getIndex = (index) => {
@@ -124,17 +126,18 @@ const ExamResults = (props) => {
   return <ScrollView stickyHeaderIndices={[0]}>
     {console.log(props.route.params)}
     <View>
-      <HeaderSearch
+      {/* <HeaderSearch
         title={result?.exam?.name}
         navigation={props.navigation}
       // backnav="Exam"
-      />
+      /> */}
+      <TopBar search={false} backIcon={<BackIcon />} title={result?.exam?.name} />
       {/* <View style={styles.overviewContainer}><Text>Overview</Text></View> */}
     </View>
 
 
     <View style={styles.questionsContainer}>
-      <View style={styles.gap}></View>
+      {/* <View style={styles.gap}></View> */}
       {/* {console.log("llll", questionsInPage[2])} */}
       {
         questionsInPage.map((question, questionIndex) => <React.Fragment key={questionIndex}>

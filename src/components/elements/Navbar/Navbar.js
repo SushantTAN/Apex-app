@@ -21,7 +21,7 @@ let preparation = [
 ];
 
 const NavBar = props => {
-  const { searchHandler, value } = props ;
+  const { searchHandler, value } = props;
   const [show, setShow] = useState(false);
   const [selectedItem, setSelectedItem] = useState(0);
   const onChange = item => {
@@ -34,7 +34,7 @@ const NavBar = props => {
       <View style={styles.container}>
         <Image
           style={styles.image}
-          source={require('@assets/images/apexLogo.png')}
+          source={require('@assets/images/mainlogo.png')}
         />
         {/* <View style={styles.flex}>
 
@@ -53,7 +53,7 @@ const NavBar = props => {
             color="#000000"
           />
         </View> */}
-        <SearchBar navigation={props.navigation} value={value} searchHandler={searchHandler} style={styles.homeSearch}/>
+        <SearchBar navigation={props.navigation} value={value} searchHandler={searchHandler} style={styles.homeSearch} />
       </View>
     </>
   );

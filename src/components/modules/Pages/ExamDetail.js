@@ -153,16 +153,9 @@ const ExamDetail = props => {
   useEffect(() => {
     dispatch(examDetailRequest(examId));
 
-    // BackHandler.addEventListener("hardwareBackPress", () => {
-    //   props.navigation.navigate('Home');
-    // });
-
     const subscribe = props.navigation.addListener('focus', () => {
       dispatch(examDetailRequest(examId));
       setIsModalVisible(false);
-      // BackHandler.addEventListener("hardwareBackPress", () => {
-      //   props.navigation.navigate('Home');
-      // });
 
     });
 
@@ -173,6 +166,13 @@ const ExamDetail = props => {
     setRefreshing(true);
     await dispatch(examDetailRequest(examId));
     setRefreshing(false);
+  }
+
+  const getExamStat = () => {
+    let correct = 0;
+    let total = result.questions.length;
+
+
   }
 
   const changeModalVisible = bool => {
@@ -226,10 +226,11 @@ const ExamDetail = props => {
             navigation={props.navigation}
             backnav="Exam"
           /> */}
-      <TopBar search={false} backIcon={<BackIcon />} title="Exams details" />
-      <ScrollView style={{ ...styles.maincontainer }} refreshControl={
+      <ScrollView style={{ ...styles.maincontainer }} stickyHeaderIndices={[0]} refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
+        <TopBar search={false} backIcon={<BackIcon />} title="Exams details" />
+
         <View style={styles.main}>
           <View style={styles.tagContainer}>
             <Tag title="Practice exam" />
@@ -253,7 +254,6 @@ const ExamDetail = props => {
               </View> */}
 
               <InfoBox icon={<DateIcon style={{ color: "#fff" }} />} title="Exam Date" desc={examDetails?.sessions[0]?.start_date.split('T')[0]} />
-              <InfoBox icon={<TimeIcon style={{ color: "#fff" }} />} title="Duration" desc={examDetails?.template.duration} />
               <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={
 
                 examDetails.session_id ? findSessionWithId(examDetails.session_id)?.start_date?.split('T')[1]?.split('+')[0] :
@@ -263,17 +263,25 @@ const ExamDetail = props => {
                       examDetails?.sessions.map((item, index) => <Text key={index}>{item?.start_date?.split('T')[1]?.split('+')[0]}</Text>)
                   )
               } />
+              <InfoBox icon={<TimeIcon style={{ color: "#fff" }} />} title="Duration" desc={examDetails?.template.duration} />
+
               <InfoBox icon={<MarksIcon style={{ color: "#fff" }} />} title="Full marks" desc={examDetails?.template.full_marks} />
               <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Pass marks" desc={examDetails?.template.pass_marks} />
               {findSessionWithId(examDetails?.session_id)?.status === 'resultsout' && examDetails?.is_enrolled && examDetails?.exam_enroll &&
-                <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Marks" desc={result.score ? result.score : 40} />
+                <InfoBox icon={<MarkIcon style={{ color: "#fff" }} />} title="Marks Obtained" desc={result.score ? result.score : 40} />
               }
               {findSessionWithId(examDetails?.session_id)?.status === 'resultsout' && examDetails?.is_enrolled && examDetails?.exam_enroll &&
 
                 <InfoBox title="Result" icon={<MarkIcon style={{ color: "#fff" }} />} desc={result.status} />
               }
+
+              {/* {findSessionWithId(examDetails?.session_id)?.status === 'resultsout' && examDetails?.is_enrolled && examDetails?.exam_enroll &&
+
+                <InfoBox title="Exam Stat" icon={<MarkIcon style={{ color: "#fff" }} />} desc={result.status} />
+              } */}
+
               {findSessionWithId(examDetails?.session_id)?.status === 'resultsout' && examDetails?.is_enrolled && examDetails?.exam_enroll &&
-                <InfoBox icon={<RankIcon style={{ color: "#fff" }} />} title="Rank" desc={result.rank} />
+                <InfoBox icon={<RankIcon style={{ color: "#fff" }} />} title="Rank" desc={result.status === 'failed' ? 'Not ranked' : result.rank} />
               }
 
 
@@ -296,7 +304,8 @@ const ExamDetail = props => {
               );
             })} */}
           <Text style={styles.instruction1}>
-            {examDetails?.template.description}
+            {/* {examDetails?.template.description} */}
+            Please refesh the page if the button is not activated when the time is reached.
           </Text>
         </View>
       </ScrollView>
@@ -424,7 +433,8 @@ const ExamDetail = props => {
             />
           </Modal>
         </View>
-      </View>}
+      </View>
+      }
     </>
   );
 };
