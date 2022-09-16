@@ -255,11 +255,9 @@ const ExamDetail = props => {
 
               <InfoBox icon={<DateIcon style={{ color: "#fff" }} />} title="Exam Date" desc={examDetails?.sessions[0]?.start_date.split('T')[0]} />
               <InfoBox icon={<ClockIcon style={{ color: "#fff" }} />} title="Time" desc={
-
                 examDetails.session_id ? findSessionWithId(examDetails.session_id)?.start_date?.split('T')[1]?.split('+')[0] :
-
                   (
-                    examDetails.sessions.length > 0 ? 'Multiple Sessions' :
+                    examDetails.sessions.length > 1 ? 'Multiple Sessions' :
                       examDetails?.sessions.map((item, index) => <Text key={index}>{item?.start_date?.split('T')[1]?.split('+')[0]}</Text>)
                   )
               } />
