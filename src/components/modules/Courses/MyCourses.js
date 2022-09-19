@@ -68,7 +68,7 @@ const MyCourses = props => {
 
   return (
     <View style={styles.container}>
-      <TopBar title="My Courses" backIcon={<View></View>} search={false} />
+      <TopBar title="My Courses" backIcon={null} search={false} />
       {myCourses.length > 0 ? <FlatList
         data={myCourses}
         renderItem={renderItem}

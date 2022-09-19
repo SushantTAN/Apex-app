@@ -10,6 +10,7 @@
 
 .titleContainer {
   flex-direction: row;
+  align-items: center;
 }
 
 .filterDiv {
@@ -33,7 +34,7 @@
   //  font-family: Open sans-serif;
   //  font-style: normal;
   //  font-weight: 700;
-  @extend .H;
+  @extend .P;
   line-height: 25px;
   margin-left: 12px;
 }

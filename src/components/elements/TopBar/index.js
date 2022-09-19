@@ -26,6 +26,7 @@ const TopBar = (props) => {
                             <TouchableOpacity onPress={() => navigation.goBack()} style={{
                                 paddingVertical: 5,
                                 paddingRight: 8,
+
                             }}>
                                 {backIcon}
                             </TouchableOpacity>

@@ -43,9 +43,9 @@ const ClassPage = props => {
     { id: 2, name: 'QR' },
   ];
 
-  return <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={{minHeight: HEIGHT - 55}}>
+  return <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={{ minHeight: HEIGHT - 55 }}>
     <View style={styles.headerContainer}>
-      <TopBar title="Class" backIcon={<View></View>} search={false} />
+      <TopBar title="Class" backIcon={null} search={false} />
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ backgroundColor: 'white', paddingHorizontal: 16, marginBottom: 8 }}>
         {
           headerData.map((item, index) =>

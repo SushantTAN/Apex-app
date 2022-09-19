@@ -22,8 +22,9 @@
     justify-content: space-between;
     width: 100%;
 }
+
 .topBarTextHeader {
-    flex-direction:row ;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -46,32 +47,26 @@
     flex: 1;
     // border-width: 1px;
 }
+
 .search {
     flex-direction: row;
     align-items: center;
 }
 
 .topbarHeaderTitle {
-    @extend .h3;
+    @extend .P;
     // font-size: 20px;
-    font-weight: 700;
+    // font-weight: 700;
     line-height: 27px;
     color: #000;
-    margin-left: 8px;
+    // margin-left: 8px;
     margin-right: 8px
 }
+
 .icon {
     margin-left: 8px;
 }
 
-.searchContainer{
+.searchContainer {
     margin-top: 16px;
 }
-
-
-
-
-
-
-
- 
