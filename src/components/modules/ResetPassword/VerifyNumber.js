@@ -18,10 +18,14 @@ import { verifyRequest } from '@apexapp/store/actions/auth';
 import { phoneVerifyRequest } from '@apexapp/store/actions/resetPassword';
 import { useDispatch, useSelector } from 'react-redux';
 
+import LeftIcon from '@assets/images/leftarrow.svg';
+
 
 const VerifyNumber = props => {
   const [formData, setFormData] = useState(phoneVerifyForm);
-  const [errormsg, setErrorMsg] = useState('');
+  // const [errormsg, setErrorMsg] = useState('');
+  const [valid, setValid] = useState(false);
+
 
   const dispatch = useDispatch();
   const counter = useSelector(state => state.resetReducer.counter);
@@ -29,6 +33,12 @@ const VerifyNumber = props => {
 
   const onChangeHandler = (key, value, password) => {
     setFormData(prevState => {
+      if (validate(value, prevState[key].validationRules, password)) {
+        setValid(true);
+      }
+      else {
+        setValid(false);
+      }
       return {
         ...prevState,
         [key]: {
@@ -81,8 +91,9 @@ const VerifyNumber = props => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleResets} style={styles.left}>
-        <Image source={require('@assets/images/leftArrow.png')} />
+      <TouchableOpacity onPress={handleResets} style={[styles.left, { marginLeft: -3 }]}>
+        {/* <Image source={require('@assets/images/leftArrow.png')} /> */}
+        <LeftIcon style={{ color: '000', alignItems: 'flex-start', }} />
       </TouchableOpacity>
 
       <Text style={styles.title}>Phone number</Text>
@@ -121,7 +132,7 @@ const VerifyNumber = props => {
 
       <View style={styles.bottomContainer}>
         <CustomButton
-          type="theme"
+          type={valid ? "theme" : 'disabled'}
           title={'Send code'}
           style={styles.signUp}
           onPress={handleReset}

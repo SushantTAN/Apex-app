@@ -16,6 +16,8 @@ import { verifyForm } from '@apexapp/data/signup/verify';
 import { phoneVerifyRequest, verifyResetOtp } from '@apexapp/store/actions/resetPassword';
 import { CommonActions } from '@react-navigation/native';
 
+import LeftIcon from '@assets/images/leftarrow.svg';
+
 
 const Reset = props => {
   const [formData, setFormData] = useState(verifyForm);
@@ -80,7 +82,7 @@ const Reset = props => {
   };
 
   const handleResend = async () => {
-    
+
     await dispatch(phoneVerifyRequest(props.route.params, props.navigation, counter));
     startTimer();
   }
@@ -110,8 +112,9 @@ const Reset = props => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleResets} style={styles.left}>
-        <Image source={require('@assets/images/leftArrow.png')} />
+      <TouchableOpacity onPress={handleResets} style={[styles.left, { marginLeft: -3 }]}>
+        {/* <Image source={require('@assets/images/leftArrow.png')} /> */}
+        <LeftIcon style={{ color: '000' }} />
       </TouchableOpacity>
 
       <Text style={styles.title}>Reset password</Text>
@@ -151,12 +154,12 @@ const Reset = props => {
       <Text style={styles.p}>Reset code in: {counter}s</Text>
 
       <View style={styles.bottomContainer}>
-        { counter === 0 ? <CustomButton
+        {counter === 0 ? <CustomButton
           type="white"
           title={'Re-send code'}
           style={styles.signUps}
           onPress={handleResend}
-        /> : <View style={{justifyContent:'center', alignItems: 'center',padding: 16}}><Text style={{color:"gray"}}>Re-send code</Text></View>}
+        /> : <View style={{ justifyContent: 'center', alignItems: 'center', padding: 16 }}><Text style={{ color: "gray" }}>Re-send code</Text></View>}
 
         <CustomButton
           type="theme"

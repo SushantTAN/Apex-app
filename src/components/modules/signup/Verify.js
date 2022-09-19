@@ -18,6 +18,8 @@ import { PATCH } from '@apexapp/utils/api';
 import { phoneVerifyRequest } from '@apexapp/store/actions/resetPassword';
 import { CommonActions } from '@react-navigation/native';
 
+import LeftIcon from '@assets/images/leftarrow.svg';
+
 const Verify = props => {
   const [formData, setFormData] = useState(verifyForm);
   const [errormsg, setErrorMsg] = useState('');
@@ -147,8 +149,9 @@ const Verify = props => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleBack} style={styles.left}>
-        <Image source={require('@assets/images/leftArrow.png')} />
+      <TouchableOpacity onPress={handleBack} style={[styles.left, { marginLeft: -3 }]}>
+        {/* <Image source={require('@assets/images/leftArrow.png')} /> */}
+        <LeftIcon style={{ color: '000' }} />
       </TouchableOpacity>
 
       <Text style={styles.title}>Verify Yourself</Text>

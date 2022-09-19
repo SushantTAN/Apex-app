@@ -15,6 +15,8 @@ import validate from '@utils/validation';
 import { useDispatch } from 'react-redux';
 import { CommonActions } from '@react-navigation/native';
 
+import LeftIcon from '@assets/images/leftarrow.svg';
+
 
 const NewPassword = props => {
   const [formData, setFormData] = useState(changePasswordForm);
@@ -75,8 +77,9 @@ const NewPassword = props => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleBack} style={styles.left}>
-        <Image source={require('@assets/images/leftArrow.png')} />
+      <TouchableOpacity onPress={handleBack} style={[styles.left, { marginLeft: -3 }]}>
+        {/* <Image source={require('@assets/images/leftArrow.png')} /> */}
+        <LeftIcon style={{ color: '000' }} />
       </TouchableOpacity>
 
       <View style={styles.titleContainer}>
