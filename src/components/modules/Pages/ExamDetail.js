@@ -216,6 +216,20 @@ const ExamDetail = props => {
     props.navigation.dispatch(CommonActions.goBack());
   };
 
+  const getExamTags = () => {
+    let output = <Tag title="LIVE" />;
+    examDetails.sessions.forEach((session, sessionIndex) => {
+      if (session.status === 'resultsout') {
+        output = <Tag title="Results Out" />
+      }
+      if (session.status === 'active') {
+        output = <Tag title="Happening now" />
+      }
+    });
+
+    return output;
+  }
+
   // console.log(examDetails.sessions, "detail")
 
 
@@ -233,7 +247,7 @@ const ExamDetail = props => {
 
         <View style={styles.main}>
           <View style={styles.tagContainer}>
-            <Tag title="Practice exam" />
+            {getExamTags()}
           </View>
           {/* {console.log("details test", examDetails)} */}
           <Text style={styles.examHeaderText}>{examDetails?.name}</Text>

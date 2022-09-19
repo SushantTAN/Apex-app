@@ -12,6 +12,10 @@ const Tag = (props) => {
         case "LIVE":
             color = "#F4777C"
             break;
+        case "Happening now":
+            color = "#F4777C"
+            break;
+
         case "practice":
             color = '#EAEAEA'
             break;

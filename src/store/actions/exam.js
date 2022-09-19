@@ -312,7 +312,7 @@ export const examResultsRequest = (id, token) => {
       dispatch(setLoading(true));
       // console.log("action", id, token);
       const response = await GET('api/enrollments/exam/result/' + id, token);
-      // console.log("result", response)
+      console.log("result", response)
       const resJson = response.data;
       console.log("result", resJson)
       if (response) {
