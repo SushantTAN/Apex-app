@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 
 import BottomTabs from './BottomTabs/BottomTabs';
 import CoursePaymentRouter from './Course/CoursePayment';
+import ErrorPopup from '@apexapp/components/elements/ErrorPopup';
 import ExamPaymentRouter from './Home/ExamPayment';
 import ExamRouter from './Home/Exam';
 import ExamDetailRouter from './Home/ExamDetail';
@@ -26,6 +27,7 @@ import { store } from '@apexapp/store/store';
 import Walkthrough from '@screens/walkthrough';
 import SuccessPopup from '@apexapp/components/elements/SuccessPopup/SuccessPopup';
 import SubmittingModal from '@apexapp/components/elements/SubmittingModal/SubmittingModal';
+
 
 
 export const MyStack = createNativeStackNavigator();
@@ -57,6 +59,7 @@ const MainRouter = () => {
 
         <LoadingScreen />
         <SuccessPopup />
+        <ErrorPopup />
         <SubmittingModal />
       </NavigationContainer>
     </Provider>

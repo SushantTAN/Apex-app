@@ -118,7 +118,7 @@ const Login = props => {
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps={'handled'}>
         <View style={styles.container}>
           <ScrollView contentContainerStyle={{ flexGrow: 1, height: '100%', position: 'relative' }} keyboardShouldPersistTaps={'handled'}>
 

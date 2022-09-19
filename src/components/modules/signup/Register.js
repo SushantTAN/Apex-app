@@ -15,6 +15,7 @@ import { registerForm } from '@data/signup/register';
 import validate from '@apexapp/utils/validation';
 import { POST } from '@apexapp/utils/api';
 import { useDispatch } from 'react-redux';
+import { setErrorMsg } from '@apexapp/store/actions/popup';
 import { login } from '@apexapp/store/actions/auth';
 // import { ScrollView } from 'react-native-gesture-handler';
 import { setLoading } from '@apexapp/store/actions/loading';
@@ -22,7 +23,7 @@ import { setLoading } from '@apexapp/store/actions/loading';
 const Register = props => {
   const [formData, setFormData] = useState(registerForm);
 
-  const [errormsg, setErrorMsg] = useState('');
+  const [errormsg2, setErrorMsg2] = useState('');
   const [isValid, setIsvalid] = useState(false);
 
   const dispatch = useDispatch();
@@ -126,7 +127,7 @@ const Register = props => {
           Object.values(error.response.data).forEach(element => {
             msg = msg + element[0];
           });
-          setErrorMsg(msg);
+          dispatch(setErrorMsg(msg));
           autoFadeOut();
         }
         // setErrorMsg(error.response.data.non_field_errors[0]);
@@ -172,7 +173,7 @@ const Register = props => {
                 </View>
               </View>
 
-              <ScrollView>
+              <ScrollView keyboardShouldPersistTaps={'handled'}>
 
                 <View style={styles.formContainer}>
 
@@ -210,14 +211,14 @@ const Register = props => {
                   <Text style={styles.condition}>By signing up you will be agree to <Text style={styles.terms}> terms and condition.</Text></Text>
                 </View>
 
-                {errormsg !== '' && (<View style={styles.errorContainer}>
+                {/* {errormsg !== '' && (<View style={styles.errorContainer}>
 
                   <Animated.View style={[styles.errortext, { opacity: fadeAnim }]}>
                     <Text style={styles.p}>{errormsg}</Text>
                   </Animated.View>
 
                 </View>
-                )}
+                )} */}
 
                 <View style={{ paddingHorizontal: 16 }}>
                   <CustomButton

@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { PATCH, POST } from '@utils/api';
 import * as types from '../actionTypes';
 import { setLoading } from './loading';
-import { setSuccessMsg } from './popup';
+import { setSuccessMsg, setErrorMsg } from './popup';
 
 export const login = data => {
   return {
@@ -17,7 +17,7 @@ export const loginRequest = (
   data,
   callback = () => { },
   navigate,
-  setErrorMsg = () => { },
+  // setErrorMsg = () => { },
 ) => {
   return async dispatch => {
     try {
@@ -31,24 +31,17 @@ export const loginRequest = (
         await AsyncStorage.setItem('apex-tokens', JSON.stringify(resJson));
         navigate('BottomTabs');
       }
-      if (response.status === 400) {
-        setErrorMsg(resJson.non_field_errors[0]);
-        callback();
-      }
     } catch (error) {
       console.log('err', error);
       // errorAlert("Error Occured", "Please try again.");
       try {
-        setErrorMsg(error.response.data.non_field_errors[0]);
+        // setErrorMsg(error.response.data.non_field_errors[0]);
+        dispatch(setErrorMsg(error.response.data.non_field_errors[0]));
       } catch (err) {
         console.log(err)
       }
-
-
     }
-
     dispatch(setLoading(false));
-
   };
 };
 
@@ -87,7 +80,7 @@ export const registerRequest = (
       errorAlert("Error Occured", "Please try again.");
 
       try {
-        setErrorMsg(error.response.data.non_field_errors[0]);
+        dispatch(setErrorMsg(error.response.data.non_field_errors[0]));
       } catch (err) {
         console.log(err)
       }
@@ -131,7 +124,7 @@ export const verifyRequest = (
         // });
         // console.log('msg', resJson?.otp[0]);
 
-        setErrorMsg(resJson.otp[0]);
+        dispatch(setErrorMsg(resJson.otp[0]));
         autoFadeOut();
       }
     } catch (error) {

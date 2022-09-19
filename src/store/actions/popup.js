@@ -21,3 +21,27 @@ export const setSuccessMsg = (msg) => {
     }
   };
 }
+
+
+export const setErrorPopup = data => {
+  return {
+    type: types.SET_ERROR_POPUP,
+    payload: data,
+  };
+};
+
+export const setErrorMsg = (msg) => {
+  return async (dispatch) => {
+    try {
+      console.log("test")
+
+      dispatch(setErrorPopup(msg));
+
+      setTimeout(() => {
+        dispatch(setErrorPopup(''));
+      }, 4000);
+    } catch (e) {
+      console.log('err popup', e);
+    }
+  };
+}
