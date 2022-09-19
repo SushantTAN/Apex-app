@@ -14,15 +14,15 @@
 }
 
 .lastcontainer {
-    padding: 16px;
-    margin: 2px;
+    padding: 0px 16px;
+    margin: 0px 0px 8px 0px;
     flex-direction: row;
 }
 
 .titleContainer {
-    margin-top: 12px;
+    margin-top: 16px;
     flex-direction: column;
-    padding: 16px;
+    padding: 16px 16px 0px 16px;
     align-items: center;
 }
 
@@ -30,7 +30,7 @@
     @extend .P;
     color: black;
     font-weight: 600;
-    margin: 8px 0px
+    margin: 8px 0px;
 }
 
 .link {
@@ -58,7 +58,7 @@
 }
 
 .signIn {
-    width: 90%;
+    // width: 90%;
     padding: 14px 16px;
     margin: 16px;
     position: relative;

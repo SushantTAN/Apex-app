@@ -209,23 +209,30 @@ const Register = props => {
                 <View style={styles.termsandcondition}>
                   <Text style={styles.condition}>By signing up you will be agree to <Text style={styles.terms}> terms and condition.</Text></Text>
                 </View>
-              </ScrollView>
-              <View style={styles.errorContainer}>
-                {errormsg !== '' && (
+
+                {errormsg !== '' && (<View style={styles.errorContainer}>
+
                   <Animated.View style={[styles.errortext, { opacity: fadeAnim }]}>
                     <Text style={styles.p}>{errormsg}</Text>
                   </Animated.View>
+
+                </View>
                 )}
-              </View>
+
+                <View style={{ paddingHorizontal: 16 }}>
+                  <CustomButton
+                    type={isValid ? 'theme' : 'disabled'}
+                    title={'Sign up'}
+                    style={styles.signUp}
+                    onPress={handleSignupPress}
+                  />
+                </View>
+              </ScrollView>
+
             </View>
 
           </View>
-          <CustomButton
-            type={isValid ? 'theme' : 'disabled'}
-            title={'Sign up'}
-            style={styles.signUp}
-            onPress={handleSignupPress}
-          />
+
 
         </ScrollView>
 

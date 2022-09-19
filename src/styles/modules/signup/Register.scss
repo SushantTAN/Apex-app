@@ -16,7 +16,7 @@
 }
 
 .titleContainer {
-  margin-top: 30px;
+  margin-top: 32px;
   flex-direction: column;
   align-items: center;
 
@@ -27,7 +27,7 @@
   @extend .P;
   color: black;
   font-weight: 500;
-  margin: 8px 0px;
+  margin: 0px 0px 8px 0px;
 }
 
 .link {
@@ -38,7 +38,7 @@
 .p {
   @extend .p;
   flex-direction: row;
-  margin-bottom: 15;
+  margin-bottom: 8;
 }
 
 .formContainer {
@@ -48,11 +48,11 @@
 }
 
 .signUp {
-  width: 90%;
+  // width: 90%;
   padding: 14px 16px;
-  margin: 16px;
-  position: absolute;
-  bottom: 0;
+  // margin: 16px;
+  // position: absolute;
+  // bottom: 0;
   // right: 0;
   // left: 0;
 }
@@ -73,12 +73,14 @@
 }
 
 .termsandcondition {
-  margin: 16px;
+  // @extend .h3;
+  padding: 16px;
 
 }
 
 .condition {
-  @extend.h6;
+  @extend .h5;
+  // font-size: 14;
 
 }
 
