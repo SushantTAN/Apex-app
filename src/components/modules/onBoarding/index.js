@@ -66,7 +66,8 @@ const OnBoarding = props => {
 
           <CustomButton
             type="white"
-            title={activeSlide === 2 ? 'Signup' : 'Skip to Signup'}
+            style={styles.button}
+            title={activeSlide === 2 ? 'Signup' : 'Skip'}
             onPress={handleSigninPress}
           />
         </View>
