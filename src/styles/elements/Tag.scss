@@ -1,3 +1,6 @@
+@use '../library' as themes;
+@import '../common';
+
 .tagContainer {
     padding: 2px 4px;
     margin-right: 8px;
@@ -5,10 +8,10 @@
 }
 
 .tag {
+    @extend .p;
     font-size: 12px;
     font-weight: 700;
     line-height: 16px;
     color: #000;
     text-transform: uppercase;
 }
-

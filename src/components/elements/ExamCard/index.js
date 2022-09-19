@@ -23,13 +23,13 @@ const ExamCard = (props) => {
             <NoteIcon style={styles.icon} />
           </View>
           <View style={styles.tagContainer}>
-            {tags.length > 0 && tags.map((t, index) => {
-              return (
-                <Fragment key={index}>
-                  <Tag title={t.title} />
-                </Fragment>
-              )
-            })}
+            {/* {tags.length > 0 && tags.map((t, index) => {
+              return ( */}
+            <Fragment>
+              <Tag title={'LIVE'} />
+            </Fragment>
+            {/* )
+            })} */}
           </View>
         </View>
 

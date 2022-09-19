@@ -9,7 +9,7 @@ const Tag = (props) => {
     let color = '';
     // console.log(title)
     switch (title) {
-        case "live":
+        case "LIVE":
             color = "#F4777C"
             break;
         case "practice":
