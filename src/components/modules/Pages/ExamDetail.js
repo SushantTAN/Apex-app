@@ -366,7 +366,7 @@ const ExamDetail = props => {
               </CustomModal>
             ) : (
 
-              ['ended', 'resultsout'].includes(findSessionWithId(examDetails.session_id)?.status) ?
+              ['ended', 'resultsout'].includes(examDetails.sessions[0]?.status) ?
                 (
                   examDetails?.sessions.length > 0 && <CustomButton
                     onPress={() => { }}
