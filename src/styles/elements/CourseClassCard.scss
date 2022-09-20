@@ -1,0 +1,41 @@
+@use "../library" as themes;
+@import '../common';
+
+.container {
+  // padding: 16px;
+  border-radius: 4px;
+  width: 50%;
+  overflow: hidden;
+}
+
+.imageContainer {
+  // width: 35%;
+  height: 150px;
+  flex: 0.40;
+  position: relative;
+  overflow: hidden;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+
+}
+
+.duration {
+  @extend .p;
+}
+
+.title {
+  @extend .P;
+  font-size: 16px;
+
+}
+
+.textContainer {
+  flex: 0.4;
+  padding: 16px;
+  height: 130px;
+  background-color: themes.$input;
+  justify-content: space-between;
+}
