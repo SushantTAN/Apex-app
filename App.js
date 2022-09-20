@@ -6,6 +6,7 @@ import { Text, TouchableOpacity, View, LogBox, Alert } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 
 import Router from './src/navigation/AppNavigation';
+import ZoomMeeting from '@apexapp/components/modules/Pages/zoomMeeting';
 
 // Ignore log notification by message:
 LogBox.ignoreLogs(['Warning: ...', 'ViewPropTypes will', 'Warning: Failed prop type', 'Require cycle:']);
@@ -60,6 +61,7 @@ const App = () => {
 
   return (
     <Router />
+    // <ZoomMeeting />
   );
 }
 
