@@ -5,8 +5,8 @@ export var apiBaseURL = '';
 export var socketURL = '';
 
 if (__DEV__) {
-  apiBaseURL = 'http://192.168.0.2:8000/';
-  socketURL = '192.168.0.2:8000';
+  apiBaseURL = 'http://192.168.0.35:8000/';
+  socketURL = '192.168.0.35:8000';
 
 } else {
   apiBaseURL = 'https://apexeducation.edu.np/';

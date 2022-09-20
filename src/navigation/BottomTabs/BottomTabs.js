@@ -30,6 +30,7 @@ import TopBar from '@components/elements/TopBar';
 import DateIcon from '@assets/images/date.svg';
 import BackIcon from '@assets/images/back.svg';
 import BookIcon from '@assets/images/bookIcon.svg';
+import ReadIcon from "@assets/images/Read.svg";
 import Class from '@apexapp/screens/Class/Class';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -89,13 +90,18 @@ const BottomTabs = props => {
           tabBarLabel: 'CLASS',
           tabBarIcon: ({ color, focused }) =>
             focused ? (
-              <BookIcon style={{ color: "#252775" }} />
+              <View style={{ transform: [{ scale: 0.68 }], marginTop: -6 }} >
+                <ReadIcon style={{ color: "#252775", width: 20 }} />
+              </View>
             ) : (
-              <BookIcon style={{ color: "#909090" }} />
+              <View style={{ transform: [{ scale: 0.68 }], marginTop: -6 }} >
+                <ReadIcon style={{ color: "#909090" }} />
+              </View>
+
             ),
         }}
       />
-      <Tab.Screen
+      < Tab.Screen
         name="Profile"
         component={ProfileRouter}
         options={{
@@ -110,7 +116,7 @@ const BottomTabs = props => {
             ),
         }}
       />
-    </Tab.Navigator>
+    </Tab.Navigator >
   );
 };
 

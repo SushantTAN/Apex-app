@@ -143,7 +143,7 @@ export const myCourseDetailRequest = (id) => {
             const response = await GET(`api/courses/retrieve/after-enroll/${id}`);
             const resJson = await response.data;
             // console.log(response)
-            // console.log("my courses details", resJson);
+            console.log("my courses details", resJson);
 
 
             if (response) {
