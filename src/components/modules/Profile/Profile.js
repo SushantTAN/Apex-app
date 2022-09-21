@@ -4,19 +4,20 @@
  * @returns {Profile}- returns a module for profile of the user
  */
 import React, { useState } from 'react';
-
 import { View, Image, TouchableOpacity, Modal, Text } from 'react-native';
 
 import CustomButton from '@apexapp/components/elements/CustomButton';
+import CustomModal from '@apexapp/components/elements/CustomModal/CustomModal';
 import CustomProfilePopup from '@apexapp/components/elements/CustomProfilePopup';
 import CustomProfilePopup1 from '@apexapp/components/elements/CustomProfilePopup/index1';
 import CustomProfilePopup2 from '@apexapp/components/elements/CustomProfilePopup/index2';
 import styles from '@styles/modules/Profile/Profile';
-import EditIcon from '@assets/images/Edit.svg';
-import ResetIcon from '@assets/images/Lock.svg';
-import LogoutIcon from '@assets/images/Logout.svg'
 import { useSelector } from 'react-redux';
-import CustomModal from '@apexapp/components/elements/CustomModal/CustomModal';
+
+import EditIcon from '@assets/images/Edit.svg';
+import LogoutIcon from '@assets/images/Logout.svg';
+import ResetIcon from '@assets/images/Lock.svg';
+
 
 const data = {
   name: 'Suman Panday',
