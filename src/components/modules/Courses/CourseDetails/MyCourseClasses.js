@@ -19,7 +19,13 @@ const MyCourseClasses = props => {
   const meetings = myCoursesDetails.course_enroll.selected_session.meetings;
 
   const Item = ({ item, index }) => {
-    return <CourseClassCard item={item} />;
+    return <View style={{
+      width: '50%',
+      paddingRight: index % 2 === 0 ? 8 : 0,
+      paddingLeft: index % 2 === 0 ? 0 : 8
+    }}>
+      <CourseClassCard item={item} />
+    </View>;
   };
 
   return (
@@ -35,8 +41,8 @@ const MyCourseClasses = props => {
         numColumns={2}
         renderItem={Item}
         contentContainerStyle={{}}
-        style={{ paddingBottom: 15, marginTop: 10 }}
-        ItemSeparatorComponent={() => <View style={{ width: 20, height: 20 }} />}
+        style={{}}
+        ItemSeparatorComponent={() => <View style={{ width: 20, height: 16 }} />}
         columnWrapperStyle={{
           justifyContent: "space-between"
         }}

@@ -5,25 +5,20 @@
     @extend .input-bcr;
     height: 100%;
     position: relative;
-
-
 }
 
 .head {
     @extend .P;
     // font-weight: 700;
-    margin-top: 32px;
+    margin-top: 24px;
     line-height: 27.24px;
     margin-bottom: 8px;
     margin-left: 16px;
-
-
 }
 
 .gap {
     height: 8px;
     @extend .card-bcr;
-
 }
 
 .img {
@@ -35,21 +30,16 @@
 }
 
 .name {
-
     @extend .P;
     margin-left: 16px;
     font-weight: 600;
-
     line-height: 27px;
-
 }
 
 .number {
     @extend .h5;
     margin-left: 16px;
-
     margin-top: 8px;
-
 }
 
 .text {
@@ -60,9 +50,6 @@
     @extend .h5;
     margin-left: 16px;
     margin-top: 4px;
-
-
-
 }
 
 .div {
@@ -70,19 +57,14 @@
 }
 
 .p {
-
     @extend .P;
     margin-left: 16px;
-
-
-
 }
 
 .title1 {
     @extend .p1;
     @extend .title1-bcr;
     padding: 4px 8px;
-
     color: black;
     border-radius: 4px;
     flex-direction: row;
@@ -90,7 +72,6 @@
     line-height: 16.79px;
     font-size: 12px;
     text-transform: uppercase;
-
 }
 
 .title2 {
@@ -116,14 +97,9 @@
     margin-left: 16px;
     margin-top: 20px;
     margin-bottom: 20px;
-
 }
 
-
-
-
 .button {
-
     @extend .card-bcr;
     padding: 15px;
     margin-left: 20px;
@@ -134,7 +110,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
 }
 
 .icon {
@@ -144,11 +119,9 @@
 .buttons {
     @extend .button-bcr;
     margin-bottom: 16px;
-
 }
 
 .footer {
-
     position: relative;
     bottom: 0%;
     width: 100%;

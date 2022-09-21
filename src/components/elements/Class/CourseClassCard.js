@@ -27,7 +27,7 @@ const CourseClassCard = (props) => {
     <View style={styles.textContainer}>
       <View>
         <Text style={styles.duration}>{item.duration}</Text>
-        <Text style={styles.title}>{item.topic}</Text>
+        <Text numberOfLines={1} style={styles.title}>{item.topic}</Text>
       </View>
       <ZoomMeeting meetingId={item.meeting_id} password={item.password} topic={item.topic} />
     </View>
