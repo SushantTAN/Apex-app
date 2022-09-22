@@ -139,8 +139,9 @@ export const myCoursesDetail = data => {
 export const myCourseDetailRequest = (id) => {
     return async dispatch => {
         try {
+            console.log(id);
             dispatch(setLoading(true));
-            const response = await GET(`api/courses/retrieve/after-enroll/${id}`);
+            const response = await GET(`api/courses/retrieve/after-enroll/${id}/`);
             const resJson = await response.data;
             // console.log(response)
             console.log("my courses details", resJson);

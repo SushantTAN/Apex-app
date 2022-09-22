@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ZoomUs from "react-native-zoom-us";
-import { Button, Alert, StyleSheet } from "react-native";
+import { Button, Alert, StyleSheet, BackHandler } from "react-native";
 import CustomButton from '@apexapp/components/elements/CustomButton';
 import VideoCamera from '@assets/images/VideoCamera.svg';
 import { ZoomUsVideoView } from 'react-native-zoom-us';
 import { useSelector } from 'react-redux';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 
 const CLIENT_KEY = '1Pdmz2ex00PWc2Pj9F1Fb0hzH4sq8SmuFZVm';
@@ -13,8 +14,10 @@ const CLIENT_SECRET = '3EWQHADjLwHeHWOG8E0V85nXRlbgJ032dTNV';
 const ZoomMeeting = (props) => {
   const [isInitialized, setIsInitialized] = useState(false);
 
+  const navigation = useNavigation();
+
   const auth = useSelector(state => state.authReducer);
-  console.log(auth)
+  // console.log(auth)
 
   useEffect(() => {
     (async () => {
@@ -24,8 +27,9 @@ const ZoomMeeting = (props) => {
           clientSecret: CLIENT_SECRET,
 
         }, {
-          // enableCustomizedMeetingUI: true
-          disableClearWebKitCache: true
+          // enableCustomizedMeetingUI: true,
+
+          // disableClearWebKitCache: true
         });
         console.log('message is ', message);
         setIsInitialized(true);
@@ -37,22 +41,24 @@ const ZoomMeeting = (props) => {
   }, []);
 
   const joinMeeting = async () => {
+    // props.setMeetingOn(true);
+    // navigation.navigate('CustomZoomUI');
+
     const meeting = await ZoomUs.joinMeeting({
       userName: auth.user.full_name,
       meetingNumber: props.meetingId,
       password: props.password,
       noInvite: true,
-      noTitlebar: true,
-      // noWebinarRegisterDialog: true,
+      // noTitlebar: true,
+      noWebinarRegisterDialog: true,
       noTextPassword: true,
       noTextMeetingId: true,
       noShare: true,
       noButtonShare: true,
+      // noMeetingEndMessage: true,
+      // noMeetingEndMessage: true,
 
-
-
-
-      // autoConnectAudio: true,
+      autoConnectAudio: true,
       // noAudio: true,
       // noVideo: true,
       // noButtonLeave: true,
@@ -74,10 +80,34 @@ const ZoomMeeting = (props) => {
       // noChatMsgToast: true,
       // zoomAccessToken: '',
 
+
     });
+
+
 
     console.log('meetng joined ', meeting);
   };
+
+
+  const backPress = async () => {
+    await ZoomUs.leaveMeeting();
+  }
+
+  // useFocusEffect(
+  //   React.useCallback(async () => {
+  //     // console.log("use focus effect dahsboard")
+  //     const backHandler = BackHandler.addEventListener(
+  //       'hardwareBackPress',
+  //       backPress
+  //     );
+
+  //     const unsubscribe = props.navigation.addListener('blur', () => {
+  //       backHandler.remove();
+  //     });
+  //     return unsubscribe;
+  //   }, []),
+  // );
+
   return (<>
     <CustomButton
       style={{ flexDirection: 'row', justifyContent: 'center' }}

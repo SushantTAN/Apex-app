@@ -29,7 +29,7 @@ const CourseClassCard = (props) => {
         <Text style={styles.duration}>{item.duration}</Text>
         <Text numberOfLines={1} style={styles.title}>{item.topic}</Text>
       </View>
-      <ZoomMeeting meetingId={item.meeting_id} password={item.password} topic={item.topic} />
+      <ZoomMeeting meetingId={item.meeting_id} password={item.password} topic={item.topic} meetingOn={props.meetingOn} setMeetingOn={props.setMeetingOn} />
     </View>
   </View>
 }

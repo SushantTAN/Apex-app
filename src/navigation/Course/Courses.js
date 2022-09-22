@@ -9,6 +9,7 @@ import CourseOverview from '@screens/Pages/CourseOverview';
 import CoursePayment from '@screens/Pages/CoursePayment';
 import MyCourseDetails from '@screens/Courses/MyCourseDetails';
 import MyCourses from '@components/modules/Courses/MyCourses';
+import CustomZoomUI from '@apexapp/components/modules/ZoomUI/CustomZoomUi';
 
 
 const CoursesRouter = () => {
@@ -21,6 +22,9 @@ const CoursesRouter = () => {
       <MyStack.Screen name="Courses" component={Courses} />
       <MyStack.Screen name="CourseOverview" component={CourseOverview} />
       <MyStack.Screen name="CoursePayment" component={CoursePayment} />
+
+      <MyStack.Screen name="CustomZoomUI" component={CustomZoomUI} />
+
 
     </MyStack.Navigator>
   );

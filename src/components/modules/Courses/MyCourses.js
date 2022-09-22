@@ -58,7 +58,7 @@ const MyCourses = props => {
     return <CourseCard
       key={index}
       tags={courseCardInfo}
-      actionPress={() => handleClick(item.id)}
+      actionPress={() => handleClick(item.course)}
       sessions={item.sessions}
       name={item.name}
       numberOfEnroll={item?.enrollment_count?.course_enroll_count}
@@ -69,6 +69,7 @@ const MyCourses = props => {
   return (
     <View style={styles.container}>
       <TopBar title="My Courses" backIcon={null} search={false} />
+      {console.log("mycoui", myCourses)}
       {myCourses.length > 0 ? <FlatList
         data={myCourses}
         renderItem={renderItem}
