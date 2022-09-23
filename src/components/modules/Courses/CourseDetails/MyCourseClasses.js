@@ -155,13 +155,13 @@ const MyCourseClasses = props => {
       />} */}
       {/* </View> */}
 
-      <TouchableOpacity onPress={async () => {
+      {/* <TouchableOpacity onPress={async () => {
         await ZoomUs.leaveMeeting()
       }}>
         <Text>
           Leave
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };

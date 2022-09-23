@@ -9,6 +9,14 @@ buildscript {
         compileSdkVersion = 31
         targetSdkVersion = 31
 
+        // googlePlayServicesVersion = "+" // default: "+"
+        // firebaseMessagingVersion = "15.4.0" // default: "21.1.0"
+
+        // compileSdkVersion = <Your compile SDK version> // default: 23
+        // buildToolsVersion = "<Your build tools version>" // default: "23.0.1"
+        // targetSdkVersion = <Your target SDK version> // default: 23
+        // supportLibVersion = "<Your support lib version>" // default: 23.1.1
+
         if (System.properties['os.arch'] == "aarch64") {
             // For M1 Users we need to use the NDK 24 which added support for aarch64
             ndkVersion = "24.0.8215888"
@@ -26,6 +34,9 @@ buildscript {
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("de.undercouch:gradle-download-task:4.1.2")
         classpath("com.google.gms:google-services:4.3.10")
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
+        // Add the dependency for the Performance Monitoring Gradle plugin
+        classpath 'com.google.firebase:perf-plugin:1.4.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
